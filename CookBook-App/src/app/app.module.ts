@@ -10,12 +10,17 @@ import { RouterModule } from '@angular/router';
 import { AuthModule } from './auth/auth.module';
 import { SharedModule } from './shared/shared.module';
 import { RecetasModule } from './recetas/recetas.module';
+import { PerfilComponent } from './usuario/pages/perfil/perfil.component';
+import { MisRecetasComponent } from './usuario/pages/mis-recetas/mis-recetas.component';
+import { NotificacionesComponent } from './usuario/pages/notificaciones/notificaciones.component';
+import { UsuarioModule } from './usuario/usuario.module';
+import { LibraryModule } from './library/library.module';
 
 
 
 @NgModule({
   declarations: [
-    AppComponent,
+    AppComponent
   ],
   imports: [
     //Modulos de Angular
@@ -28,6 +33,8 @@ import { RecetasModule } from './recetas/recetas.module';
     AuthModule,
     SharedModule,
     RecetasModule,
+    UsuarioModule,
+    LibraryModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

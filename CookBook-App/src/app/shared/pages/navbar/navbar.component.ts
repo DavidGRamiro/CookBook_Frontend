@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { MenuItem } from '../../interfaces/menu.interface';
+import { MenuItem } from '../../interfaces/share.interface';
 
 @Component({
   selector: 'app-navbar',
@@ -12,7 +12,7 @@ export class NavbarComponent implements OnInit {
     { item: 'Home', ruta: '/home'},
     { item: 'Recetas', ruta: '/recetas' },
     { item: 'Planes', ruta: '/planes'},
-    { item: 'Mi perfil', ruta: '/usuario' },
+    { item: 'Mi perfil', ruta: '/user' },
     { item: 'Sobre nosotros', ruta: '/about' },
     { item: 'Login', ruta: '/auth/login' }
   ];
