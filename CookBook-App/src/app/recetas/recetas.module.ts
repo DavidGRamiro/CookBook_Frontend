@@ -9,6 +9,7 @@ import { CenasComponent } from './pages/cenas/cenas.component';
 import { ComidasComponent } from './pages/comidas/comidas.component';
 import { DesayunosComponent } from './pages/desayunos/desayunos.component';
 import { NiniosComponent } from './pages/ninios/ninios.component';
+import { VeganosComponent } from './pages/veganos/veganos.component';
 
 
 @NgModule({
@@ -19,7 +20,8 @@ import { NiniosComponent } from './pages/ninios/ninios.component';
     DesayunosComponent,
     NiniosComponent,
     RecetasComponent,
-    VerUnaComponent
+    VerUnaComponent,
+    VeganosComponent
   ],
   imports: [
     CommonModule,
