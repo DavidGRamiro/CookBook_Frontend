@@ -1,1 +1,10 @@
-<p>perfil works!</p>
+<h2>Mi perfil</h2>
+
+<div>
+  <ul *ngFor="let items of listaPerfil">
+    <li>
+      <a [routerLink] ="items.ruta">{{ items.item }}</a>
+    </li>
+  </ul>
+</div>
+

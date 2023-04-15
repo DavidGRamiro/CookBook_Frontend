@@ -10,11 +10,9 @@ import { RouterModule } from '@angular/router';
 import { AuthModule } from './auth/auth.module';
 import { SharedModule } from './shared/shared.module';
 import { RecetasModule } from './recetas/recetas.module';
-import { PerfilComponent } from './usuario/pages/perfil/perfil.component';
-import { MisRecetasComponent } from './usuario/pages/mis-recetas/mis-recetas.component';
-import { NotificacionesComponent } from './usuario/pages/notificaciones/notificaciones.component';
 import { UsuarioModule } from './usuario/usuario.module';
-import { LibraryModule } from './library/library.module';
+import { PlanesModule } from './planes/planes.module';
+
 
 
 
@@ -25,16 +23,17 @@ import { LibraryModule } from './library/library.module';
   imports: [
     //Modulos de Angular
     BrowserModule,
-    AppRoutingModule,
+    AppRoutingModule, // Este es el routing global de la aplicación, que se encarga de cargar los path padres y los modulos de rutas hijas.
     BrowserAnimationsModule,
     RouterModule,
 
-    //Creados por nosotros
+    //Creados por nosotros, referentes a cada directiva creada, dentro de ellos están sus propios componentes.
     AuthModule,
     SharedModule,
+    PlanesModule,
     RecetasModule,
     UsuarioModule,
-    LibraryModule,
+
   ],
   providers: [],
   bootstrap: [AppComponent]

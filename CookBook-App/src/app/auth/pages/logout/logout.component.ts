@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-registro',
-  templateUrl: './registro.component.html',
-  styleUrls: ['./registro.component.css']
+  selector: 'app-logout',
+  templateUrl: './logout.component.html',
+  styleUrls: ['./logout.component.css']
 })
-export class RegistroComponent implements OnInit {
+export class LogoutComponent implements OnInit {
 
   //Explicación en Login. Tendrá la misma estructura.
   constructor() { }
@@ -13,7 +13,5 @@ export class RegistroComponent implements OnInit {
   ngOnInit(): void {
   }
 
-
-
-
 }
+
