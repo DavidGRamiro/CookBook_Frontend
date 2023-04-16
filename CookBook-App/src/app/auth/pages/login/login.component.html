@@ -1,1 +1,38 @@
-<p>login works!</p>
+<div class ="card flex justify-content-center">
+  <h1> Formulario de login</h1>
+
+</div>
+
+
+
+<div class ="row">
+  <div clas ="col">
+    <!-- Referencia al formulario} -->
+    <form [formGroup]="formLogin" id="formularioLogin">
+      <div class="card flex justify-content-center mt-3">
+        <!-- Para el input email -->
+        <span class="p-float-label mt-3">
+            <input pInputText id="userEmail" formControlName="email"/>
+            <label htmlFor="userEmail">Email</label>
+        </span>
+      </div>
+      <div class ="col-12 mt-3">
+        <div class="card flex justify-content-center">
+          <span class="p-float-label">
+              <input pInputText id="Contraseña" formControlName="password"/>
+              <label htmlFor="password">Contraseña</label>
+          </span>
+        </div>
+      </div>
+      <div class="card flex justify-content-center" >
+        <p-button styleClass="p-button-success" label="Inicar sesión" [loading]="loading" (click)="load()" (click)="validarUsuario()"></p-button>
+      </div>
+      <p-divider></p-divider>
+      <div class="card flex justify-content-center" >
+        <p-button styleClass="p-button-warning" label="Registrarse" (click) ="navegarRegistro()"></p-button>
+      </div>
+    </form>
+</div>
+
+
+

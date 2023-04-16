@@ -1,1 +1,27 @@
-<p>registro works!</p>
+<h2>Formulario de registro</h2>
+
+<div class="row">
+  <div class="col">
+
+    <form [formGroup]="formRegistro" (ngSubmit)="procesarRegistro()">
+      <span class="p-float-label mt-4">
+        <input pInputText id="username" formControlName="username"/>
+        <label htmlFor="username">Nombre</label>
+      </span>
+
+      <span class="p-float-label mt-4">
+        <input pInputText id="email" formControlName="email"/>
+        <label htmlFor="email">Correo electrónico</label>
+      </span>
+
+      <span class="p-float-label mt-4">
+        <input pInputText id="password" formControlName="password"/>
+        <label htmlFor="password">Contraseña</label>
+      </span>
+
+      <span class="p-float-label mt-4">
+        <button pButton label="Registrarme" type="submit" ></button>
+      </span>
+    </form>
+  </div>
+</div>
