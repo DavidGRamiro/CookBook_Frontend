@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
+import { Usuario } from '../../interface/auth.interface';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MessageService } from 'primeng/api';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -8,16 +12,57 @@ import { AuthService } from '../../services/auth.service';
 })
 export class LoginComponent implements OnInit {
 
-  //Los constructores tendrán servicios inyectados, para poder usarlos en el componente, y llamar al método que necesitemos.
-  // Por ejemplo, en este caso, inyectamos el servicio de autenticación, para poder llamar al método de login.
-  // PJ: constructor( private _authService: AuthService){}
-  // Luego, definiremos nuestros métodos propios dentro de cada componente, y dentro de ellos, llamaremos a los métodos de los servicios.
+  loading: boolean = false;
 
-  // PJ: hacerLogin(){
-  //   this._authService.login();}
+  //La respuesta de nuestras peticiones la almacenamos en este objeto.
+  usuarioRecibido! : Usuario;
 
-  constructor() { }
+  formLogin : FormGroup = this._fb.group(
+    {
+      email: ['', [Validators.required, Validators.email]],
+      password: ['',[Validators.required]]
+    }
+  );
+
+  constructor(private _authService: AuthService,
+              private _fb : FormBuilder,
+              private _router: Router) { }
 
   ngOnInit(): void {
   }
+
+
+  //Validacion del usuario introducido con los que tenemos en BBDD
+  validarUsuario(){
+    if(this.formLogin.valid){
+      this._authService.obtenerUno({
+        email: this.formLogin.value.email,
+        password: this.formLogin.value.password
+        }).subscribe( res =>{
+                this.usuarioRecibido = res;
+                this._router.navigateByUrl("/home")
+                return true;
+          })
+    }
+  }
+
+  navegarRegistro(){
+    this._router.navigateByUrl("auth/registro")
+  }
+
+  //Funcion asociada al botón submit que muestra una animación tipo spinner
+  load(){
+    this.loading = true;
+    setTimeout(() => {
+      this.loading = false;
+    }, 1500);
+  }
+
 }
+
+
+
+
+
+
+
