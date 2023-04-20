@@ -31,7 +31,6 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
   }
 
-
   //Validacion del usuario introducido con los que tenemos en BBDD
   validarUsuario(){
     if(this.formLogin.valid){

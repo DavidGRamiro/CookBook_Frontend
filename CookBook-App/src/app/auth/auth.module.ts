@@ -3,13 +3,14 @@ import { CommonModule } from '@angular/common';
 
 import { AuthRoutingModule } from './auth-routing.module';
 import { HttpClientModule } from '@angular/common/http';
-
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
 import { PrimeNGModule } from '../library/prime-ng/prime-ng.module';
 
 import { LoginComponent } from './pages/login/login.component';
 import { RegistroComponent } from './pages/registro/registro.component';
 import { LogoutComponent } from './pages/logout/logout.component';
+
 
 @NgModule({
   declarations: [
@@ -24,8 +25,12 @@ import { LogoutComponent } from './pages/logout/logout.component';
     ReactiveFormsModule,
 
     AuthRoutingModule,
-    PrimeNGModule
+    PrimeNGModule,
   ],
-  exports: []
+  exports:[
+    LoginComponent,
+    RegistroComponent,
+    LogoutComponent,
+  ]
 })
 export class AuthModule { }

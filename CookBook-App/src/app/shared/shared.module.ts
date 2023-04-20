@@ -19,10 +19,12 @@ import { FooterComponent } from './pages/footer/footer.component';
     CommonModule,
     SharedRoutingModule,
     PrimeNGModule,
+
   ],
   exports:[
     NavbarComponent,
     FooterComponent,
+    MainComponent
   ]
 })
 export class SharedModule { }

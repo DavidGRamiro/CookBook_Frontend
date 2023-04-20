@@ -1,38 +1,48 @@
-<div class ="card flex justify-content-center">
-  <h1> Formulario de login</h1>
-
-</div>
 
 
+<div class="containner text-center m-8">
+  <div class="row">
+    <div id="izquierdo" class="col">
+        <h1>HOLA</h1>
+        <form [formGroup]="formLogin" id="formularioLogin">
+          <div class="content-center">
+            <!-- Para el input email -->
+            <div class="row">
+              <div class="col">
+                <input pInputText id="userEmail" formControlName="email"/>
+                <label htmlFor="userEmail">Email</label>
+              </div>
+            </div>
+            <!-- Para el input contraseña -->
+            <div class="row">
+              <div class="col">
+                <input pInputText id="password" formControlName="password"/>
+                <label htmlFor="userEmail">Email</label>
+              </div>
+          </div>
 
-<div class ="row">
-  <div clas ="col">
-    <!-- Referencia al formulario} -->
-    <form [formGroup]="formLogin" id="formularioLogin">
-      <div class="card flex justify-content-center mt-3">
-        <!-- Para el input email -->
-        <span class="p-float-label mt-3">
-            <input pInputText id="userEmail" formControlName="email"/>
-            <label htmlFor="userEmail">Email</label>
-        </span>
-      </div>
-      <div class ="col-12 mt-3">
-        <div class="card flex justify-content-center">
-          <span class="p-float-label">
-              <input pInputText id="Contraseña" formControlName="password"/>
-              <label htmlFor="password">Contraseña</label>
-          </span>
+          <div class="justify-content-center mt-5 mb-6" >
+            <p-button styleClass="p-button-success" label="Inicar sesión" [loading]="loading" (click)="load()" (click)="validarUsuario()"></p-button>
+          </div>
+          <p-divider></p-divider>
+          <h5 class="mt-5 mb-6">Si todavía no eres usuario, create una cuenta </h5>
+          <div class=" justify-content-center" >
+            <p-button styleClass="p-button-warning" label="Registrarse" (click) ="navegarRegistro()"></p-button>
+          </div>
+
         </div>
-      </div>
-      <div class="card flex justify-content-center" >
-        <p-button styleClass="p-button-success" label="Inicar sesión" [loading]="loading" (click)="load()" (click)="validarUsuario()"></p-button>
-      </div>
-      <p-divider></p-divider>
-      <div class="card flex justify-content-center" >
-        <p-button styleClass="p-button-warning" label="Registrarse" (click) ="navegarRegistro()"></p-button>
-      </div>
-    </form>
+        </form>
+    </div>
+    <div id="derecho"class="col">
+      <h1>Hola</h1>
+    </div>
+  </div>
 </div>
+
+
+
+
+
 
 
 
