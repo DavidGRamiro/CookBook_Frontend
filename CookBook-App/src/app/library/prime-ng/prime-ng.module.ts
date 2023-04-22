@@ -8,6 +8,7 @@ import { DividerModule } from 'primeng/divider';
 import { CardModule } from 'primeng/card';
 import { PasswordModule } from 'primeng/password';
 import { ToastModule } from 'primeng/toast';
+import { TableModule } from 'primeng/table';
 
 
 @NgModule({
@@ -20,6 +21,7 @@ import { ToastModule } from 'primeng/toast';
     CardModule,
     PasswordModule,
     ToastModule,
+    TableModule
   ]
 })
 

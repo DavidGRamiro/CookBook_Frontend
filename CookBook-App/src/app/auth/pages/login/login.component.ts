@@ -12,6 +12,7 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent implements OnInit {
 
+  logueado: boolean = false;
   loading: boolean = false;
 
   //La respuesta de nuestras peticiones la almacenamos en este objeto.
@@ -31,7 +32,6 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
   }
 
-
   //Validacion del usuario introducido con los que tenemos en BBDD
   validarUsuario(){
     if(this.formLogin.valid){
@@ -40,8 +40,8 @@ export class LoginComponent implements OnInit {
         password: this.formLogin.value.password
         }).subscribe( res =>{
                 this.usuarioRecibido = res;
+                this.logueado = true;
                 this._router.navigateByUrl("/home")
-                return true;
           })
     }
   }
