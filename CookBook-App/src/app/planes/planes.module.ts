@@ -19,6 +19,12 @@ import { PlanesComponent } from './pages/planes/planes.component';
     CommonModule,
     PlanesRoutingModule,
 
+  ],
+  exports:[
+    SaludableComponent,
+    GanarPesoComponent,
+    PerderPesoComponent,
+    PlanesComponent
   ]
 })
 export class PlanesModule { }

@@ -17,6 +17,11 @@ import { PerfilComponent } from './pages/perfil/perfil.component';
   imports: [
     CommonModule,
     UsuarioRoutingModule,
+  ],
+  exports:[
+    MisRecetasComponent,
+    NotificacionesComponent,
+    PerfilComponent
   ]
 })
 
