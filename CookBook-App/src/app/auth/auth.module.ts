@@ -10,6 +10,7 @@ import { PrimeNGModule } from '../library/prime-ng/prime-ng.module';
 import { LoginComponent } from './pages/login/login.component';
 import { RegistroComponent } from './pages/registro/registro.component';
 import { LogoutComponent } from './pages/logout/logout.component';
+import { SharedModule } from '../shared/shared.module';
 
 
 @NgModule({
@@ -26,6 +27,7 @@ import { LogoutComponent } from './pages/logout/logout.component';
 
     AuthRoutingModule,
     PrimeNGModule,
+    SharedModule
   ],
   exports:[
     LoginComponent,

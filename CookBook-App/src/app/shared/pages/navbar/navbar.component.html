@@ -6,8 +6,12 @@
       <!-- <img src="assets\images\CB.png" height="50" width="50" class="mr-2" /> -->
     </ng-template>
     <ng-template pTemplate="end">
-        <p-button label="Iniciar sesión" styleClass="p-button p-button-rounded success" icon="pi pi-user" routerLink="auth/login"></p-button>
-
+      <div *ngIf="loggin == true; else noLogueado">
+        <h2>Bienvenido</h2>
+      </div>
+      <ng-template #noLogueado>
+        <p-button label="Inicar sesión" styleClass="p-button p-button-rounded success" icon="pi pi-user" routerLink="auth/login"></p-button>
+      </ng-template>
     </ng-template>
   </p-menubar>
 </div>
