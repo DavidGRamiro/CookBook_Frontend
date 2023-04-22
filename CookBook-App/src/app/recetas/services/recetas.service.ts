@@ -7,6 +7,7 @@ import { Categoria, Receta } from '../interface/recetas.interface';
   providedIn: 'root'
 })
 export class RecetasService {
+
   private endPoint: string = "http://localhost:8080";
   private common : string = "/recetas"
 
