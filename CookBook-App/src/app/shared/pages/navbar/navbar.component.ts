@@ -21,6 +21,7 @@ export class NavbarComponent implements OnInit {
         { label: 'Vegano', routerLink: 'recetas/veganos' },
         { label: 'Para niños', routerLink: 'recetas/ninios' },
         { label: 'Alérgenos', routerLink: 'recetas/alergenos' },
+        { label: 'Categorias', routerLink: 'categorias/todas' },
         { label: 'Todas las recetas', routerLink: 'recetas/todas' },
       ]
     },
