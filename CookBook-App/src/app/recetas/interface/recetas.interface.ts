@@ -1,13 +1,13 @@
 
 
 export interface Categoria{
-
   idCategoria?: number,
   nombre: string,
   descripcion: string
 }
 
 export interface Receta {
+  idReceta:               number;
   calorias:               number;
   carbohidratos:          number;
   descripcion:            string;
@@ -26,13 +26,13 @@ export interface RecetasConIngrediente {
   idRecetaIncrediente: number;
   cantidad:            number;
   unidadMedida:        string;
-  ingrediente:         Ingrediente;
+  ingrediente:         Ingrediente ;
 }
 
 export interface Ingrediente {
   idIngrediente: number;
   descripcion:   string;
-  nombre:        string;
+  nombre:        string | null | undefined;
 }
 
 export interface Usuario {

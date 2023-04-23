@@ -30,14 +30,21 @@ export class RecetasService {
   recetaPorCategoria( categoria: string): Observable<Receta[]>{
     const url = `${ this.endPoint }${ this.common }/porCategoria`
     const params = new HttpParams().set('categoria', categoria)
-    return this._http.get<Receta[]>(url, {params})
+    return this._http.get<Receta[]>(url, { params })
   }
 
   //Peticion para buscar una receta por un ingrediente en específico.
   recetaPorIngrediente( ingrediente: string): Observable<Receta[]>{
     const url = `${ this.endPoint }${ this.common }/porIngrediente`
     const params = new HttpParams().set('ingrediente', ingrediente)
-    return this._http.get<Receta[]>(url, { params})
+    return this._http.get<Receta[]>(url, { params })
+  }
+
+  //Obetner una receta por su ID.
+  obtenerUnaReceta( id: number): Observable<Receta>{
+    const url = `${ this.endPoint }${ this.common }/una`
+    const params = new HttpParams().set('idReceta', id);
+    return this._http.get<Receta>(url,{ params })
   }
 
 }

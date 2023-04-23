@@ -1,18 +1,12 @@
-<div class="container">
-  <div class ="row">
-    <div class ="col-md-4">
-      <p-card header="{{ receta.nombre }}" subheader="{{ receta.usuario.username }}" [style]="{ width: '360px'}">
-          <ng-template pTemplate="header">
-              <img alt="Card" src="https://primefaces.org/cdn/primeng/images/usercard.png" />
-          </ng-template>
-          <p>
-            {{ receta.descripcion }}
-          </p>
-          <ng-template pTemplate="footer">
-              <p-button label="Save" icon="pi pi-check"></p-button>
-              <p-button label="Cancel" icon="pi pi-times" styleClass="p-button-secondary" [style]="{ 'margin-left': '.5em' }"></p-button>
-          </ng-template>
-      </p-card>
-    </div>
-  </div>
-</div>
+<p-card header="{{ receta.nombre }}" subheader="{{ receta.usuario.username }}" [style]="{ width: '280px', height:'380px'}">
+  <ng-template pTemplate="header">
+    <img alt="Card" src="https://primefaces.org/cdn/primeng/images/usercard.png" />
+  </ng-template>
+    <p>
+      {{ receta.descripcion }}
+    </p>
+<!-- <ng-template pTemplate="footer"> -->
+    <p-button label="Ver receta" icon="pi pi-check" [routerLink]="['/recetas', receta.idReceta]"></p-button>
+<!-- </ng-template> -->
+</p-card>
+
