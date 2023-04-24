@@ -11,6 +11,8 @@ import { DesayunosComponent } from './pages/desayunos/desayunos.component';
 import { NiniosComponent } from './pages/ninios/ninios.component';
 import { VeganosComponent } from './pages/veganos/veganos.component';
 import { SharedModule } from '../shared/shared.module';
+import { PrimeNGModule } from '../library/prime-ng/prime-ng.module';
+import { MessageService } from 'primeng/api';
 
 
 
@@ -29,7 +31,8 @@ import { SharedModule } from '../shared/shared.module';
   imports: [
     CommonModule,
     RecetasRoutingModule,
-    SharedModule
+    SharedModule,
+    PrimeNGModule
 
   ],
   exports:[
@@ -41,6 +44,7 @@ import { SharedModule } from '../shared/shared.module';
     RecetasComponent,
     VerUnaComponent,
     VeganosComponent
-  ]
+  ],
+  providers:[MessageService]
 })
 export class RecetasModule { }
