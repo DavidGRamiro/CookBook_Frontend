@@ -27,7 +27,7 @@ export class VerUnaComponent {
   }
 
   obtenerUna(idCategoria: string){
-    this._categoriaService.getUnaCategoria(+idCategoria).subscribe( res => {
+    this._categoriaService.getUna(+idCategoria).subscribe( res => {
       this.datos = res;
     });
   }
