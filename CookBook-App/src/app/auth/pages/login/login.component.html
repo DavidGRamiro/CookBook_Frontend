@@ -1,1 +1,48 @@
-<p>login works!</p>
+
+
+<div class="containner text-center m-8">
+  <div class="row">
+    <div id="izquierdo" class="col">
+        <h1>HOLA</h1>
+        <form [formGroup]="formLogin" id="formularioLogin">
+          <div class="content-center">
+            <!-- Para el input email -->
+            <div class="row">
+              <div class="col">
+                <input pInputText id="userEmail" formControlName="email"/>
+                <label htmlFor="userEmail">Email</label>
+              </div>
+            </div>
+            <!-- Para el input contraseña -->
+            <div class="row">
+              <div class="col">
+                <input pInputText id="password" formControlName="password"/>
+                <label htmlFor="userEmail">Email</label>
+              </div>
+          </div>
+
+          <div class="justify-content-center mt-5 mb-6" >
+            <p-button styleClass="p-button-success" label="Inicar sesión" [loading]="loading" (click)="load()" (click)="validarUsuario()"></p-button>
+          </div>
+          <p-divider></p-divider>
+          <h5 class="mt-5 mb-6">Si todavía no eres usuario, create una cuenta </h5>
+          <div class=" justify-content-center" >
+            <p-button styleClass="p-button-warning" label="Registrarse" (click) ="navegarRegistro()"></p-button>
+          </div>
+
+        </div>
+        </form>
+    </div>
+    <div id="derecho"class="col">
+      <h1>Hola</h1>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+

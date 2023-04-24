@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { MenuReceta } from '../../interface/menuReceta.interface';
+import { Receta } from '../../interface/recetas.interface';
+import { RecetasService } from '../../services/recetas.service';
+
 
 @Component({
   selector: 'app-recetas',
@@ -8,18 +10,31 @@ import { MenuReceta } from '../../interface/menuReceta.interface';
 })
 export class RecetasComponent implements OnInit {
 
-  menuReceta: MenuReceta[] = [
-    { categoria: 'Alergenos', ruta: '/recetas/alergenos'},
-    { categoria: 'Cenas', ruta: '/recetas/cenas'},
-    { categoria: 'Comidas', ruta: '/recetas/comidas'},
-    { categoria: 'Desayunos', ruta: '/recetas/desayunos'},
-    { categoria: 'Niños', ruta: '/recetas/niños'},
-    { categoria: 'Todas', ruta: '/recetas/todas'},
-  ]
+  public cols!: any[];
+  public datos!: Receta[];
+  public usuarioRecibido: string[] = [];
 
-  constructor() { }
+
+  constructor( private _recetaService: RecetasService) { }
 
   ngOnInit(): void {
+
+    this.obtenerTodas()
+
+    this.cols = [
+            { field: 'idReceta', header: 'ID' },
+            { field: 'descripcion', header: 'Descripcion' },
+            { field: 'nombre', header: 'Nombre' },
+            { field: 'calorias', header: 'Calorias' },
+            { field: 'usuario.username', header: 'Usuario' }
+        ];
   }
 
+  obtenerTodas(){
+    this._recetaService.todasRecetas().subscribe( res => {
+      this.datos = res;
+      console.log(this.datos);
+    });
+  }
 }
+

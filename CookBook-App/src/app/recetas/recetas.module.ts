@@ -9,6 +9,9 @@ import { CenasComponent } from './pages/cenas/cenas.component';
 import { ComidasComponent } from './pages/comidas/comidas.component';
 import { DesayunosComponent } from './pages/desayunos/desayunos.component';
 import { NiniosComponent } from './pages/ninios/ninios.component';
+import { VeganosComponent } from './pages/veganos/veganos.component';
+import { SharedModule } from '../shared/shared.module';
+
 
 
 @NgModule({
@@ -19,11 +22,25 @@ import { NiniosComponent } from './pages/ninios/ninios.component';
     DesayunosComponent,
     NiniosComponent,
     RecetasComponent,
-    VerUnaComponent
+    VerUnaComponent,
+    VeganosComponent
+
   ],
   imports: [
     CommonModule,
     RecetasRoutingModule,
+    SharedModule
+
+  ],
+  exports:[
+    AlergenosComponent,
+    CenasComponent,
+    ComidasComponent,
+    DesayunosComponent,
+    NiniosComponent,
+    RecetasComponent,
+    VerUnaComponent,
+    VeganosComponent
   ]
 })
 export class RecetasModule { }

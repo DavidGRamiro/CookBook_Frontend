@@ -16,6 +16,11 @@ import { FaqsComponent } from './pages/faqs/faqs.component';
   imports: [
     CommonModule,
     AboutRoutingModule
+  ],
+  exports:[
+    AboutComponent,
+    ContactoComponent,
+    FaqsComponent
   ]
 })
 export class AboutModule { }
