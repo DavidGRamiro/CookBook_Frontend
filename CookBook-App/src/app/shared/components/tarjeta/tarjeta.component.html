@@ -1,6 +1,6 @@
-<p-card header="{{ receta.nombre }}" subheader="{{ receta.usuario.username }}" [style]="{ width: '280px', height:'380px'}">
+<p-card header="{{ receta.nombre }}" subheader="{{ receta.usuario.username }}" [style]="{ width: '300px', height:'480px'}">
   <ng-template pTemplate="header">
-    <img alt="Card" src="https://primefaces.org/cdn/primeng/images/usercard.png" />
+    <img [src] =receta.imagen style="width:100%">
   </ng-template>
     <p>
       {{ receta.descripcion }}
@@ -10,3 +10,4 @@
 <!-- </ng-template> -->
 </p-card>
 
+<!-- alt="Card" src="https://primefaces.org/cdn/primeng/images/usercard.png" -->

@@ -41,3 +41,11 @@ export interface Usuario {
   fechaRegistro: Date;
   username:      string;
 }
+
+export interface Comentario {
+  idComentario:     number;
+  fechaPublicacion: Date;
+  textoComentario:  string;
+  receta:           Receta;
+  usuario:          Usuario;
+}

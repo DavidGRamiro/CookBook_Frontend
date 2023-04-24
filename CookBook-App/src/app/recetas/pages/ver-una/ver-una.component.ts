@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { RecetasService } from '../../services/recetas-service.service';
-import { Receta } from '../../interface/recetas.interface';
+import { Comentario, Receta } from '../../interface/recetas.interface';
 import { ActivatedRoute } from '@angular/router';
 import { switchMap } from 'rxjs';
 import { MessageService } from 'primeng/api';
@@ -13,6 +13,7 @@ import { MessageService } from 'primeng/api';
 export class VerUnaComponent implements OnInit {
 
   public receta!: Receta;
+  public comentario!: Comentario[];
   termino!: number;
   value: number = 0;
 
@@ -24,11 +25,20 @@ export class VerUnaComponent implements OnInit {
                         .pipe(
                           switchMap( ({ id }) => this._recetasService.obtenerUnaReceta(id)))
                           .subscribe( response => this.receta = response)
+
+
   }
 
   constructor( private _recetasService: RecetasService,
               private _activateRoute : ActivatedRoute,
               private _msg: MessageService ){}
+
+
+  obtenerComentarios( variable : number){
+    this._recetasService.obtenerComentarios(variable).subscribe( response =>{
+      this.comentario = response;
+    })
+  }
 
   //Funciona para mostrar el mensaje personalizado <p-toast>
   addFav(){

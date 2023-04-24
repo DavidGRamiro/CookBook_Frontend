@@ -50,10 +50,29 @@
   <div>
     <p>Receta realizada por <strong>{{ receta.usuario.username }}</strong></p>
   </div>
+<p-divider></p-divider>
+<div class ="containner mt-2">
+  <h3>¿ Que dicen los usuarios de esta receta ?</h3>
+  <div>
 
-
-
+    <p-button class ="mt-5 mb-5" label ="Ver comentarios" (click)="obtenerComentarios(receta.idReceta)"></p-button>
+  </div>
+  <ol *ngFor="let comentario of comentario">
+    <li >
+      <strong>{{ comentario.usuario.username  }}</strong> dijo: <i>{{ comentario.textoComentario }}</i>
+    </li>
+  </ol>
 </div>
+
+<div class ="d-grid gap-2 d-md-flex justify-content-md-end">
+  <button pButton pRipple label="Ver todas las recetas" [routerLink]="['/recetas/todas']" class="p-button-success"></button>
+</div>
+
+
+
+
+
+
 <p-toast></p-toast>
 
 

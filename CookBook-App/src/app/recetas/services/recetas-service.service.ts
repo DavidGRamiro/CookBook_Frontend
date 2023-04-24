@@ -1,7 +1,7 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Categoria, Receta } from '../interface/recetas.interface';
+import { Categoria, Comentario, Receta } from '../interface/recetas.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -45,6 +45,13 @@ export class RecetasService {
     const url = `${ this.endPoint }${ this.common }/una`
     const params = new HttpParams().set('idReceta', id);
     return this._http.get<Receta>(url,{ params })
+  }
+
+  //Obtener los comentarios de una receta por su ID.
+  obtenerComentarios( id:number): Observable<Comentario[]>{
+    const url = `${ this.endPoint }${ this.common }/comentarios`
+    const params = new HttpParams().set('idReceta', id)
+    return this._http.get<Comentario[]>(url, { params })
   }
 
 }
