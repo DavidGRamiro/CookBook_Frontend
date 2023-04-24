@@ -1,0 +1,13 @@
+<div class="container">
+  <div class ="row">
+    <div class ="col-md-4">
+      <p-card header="{{ categoria.nombre }}" [style]="{ width: '270px', 'border-radius': '1rem'}">
+          <ng-template pTemplate="header">
+            <a [routerLink]="['/categorias', categoria.nombre.toLowerCase()]">
+              <img alt="Card" src="https://primefaces.org/cdn/primeng/images/usercard.png" />
+            </a>
+            </ng-template>
+      </p-card>
+    </div>
+  </div>
+</div>
