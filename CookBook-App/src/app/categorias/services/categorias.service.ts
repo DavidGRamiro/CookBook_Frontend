@@ -19,4 +19,10 @@ export class CategoriasService {
      const url = `${this.endPoint}/recetas/categorias`;
      return this._http.get<Categoria[]>(url);
     }
+
+    //Una categoría
+    getUna(idCategoria:number):Observable<Categoria> {
+      const url = `${this.endPoint}/recetas/categorias/${idCategoria}`;
+      return this._http.get<Categoria>(url);
+    }
 }
