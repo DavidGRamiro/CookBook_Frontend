@@ -9,7 +9,7 @@ import { CardModule } from 'primeng/card';
 import { PasswordModule } from 'primeng/password';
 import { ToastModule } from 'primeng/toast';
 import { TableModule } from 'primeng/table';
-
+import { RatingModule } from 'primeng/rating';
 
 @NgModule({
   exports: [
@@ -21,7 +21,8 @@ import { TableModule } from 'primeng/table';
     CardModule,
     PasswordModule,
     ToastModule,
-    TableModule
+    TableModule,
+    RatingModule
   ]
 })
 
