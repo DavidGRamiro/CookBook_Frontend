@@ -12,7 +12,7 @@ import { SharedModule } from '../shared/shared.module';
   declarations: [
   VerTodasComponent,
   VerUnaComponent,
-  PostresComponent, //FIXME: Susceptible a cambio.
+  PostresComponent//FIXME: Susceptible a cambio.
 ],
   imports: [
     CommonModule,

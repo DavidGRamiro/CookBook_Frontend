@@ -1,10 +1,5 @@
-<table>
-  <tr>
-    <th>Nombre</th>
-    <th>Descripción</th>
-  </tr>
-  <tr *ngFor="let categoria of categorias">
-    <td>{{categoria.nombre}}</td>
-    <td>{{categoria.descripcion}}</td>
-  </tr>
-</table>
+<div class ="mx-auto d-flex justify-content-around m-5">
+  <div *ngFor="let categoria of datos">
+      <app-tarjeta-categoria [categoria]="categoria"></app-tarjeta-categoria>
+  </div>
+</div>
