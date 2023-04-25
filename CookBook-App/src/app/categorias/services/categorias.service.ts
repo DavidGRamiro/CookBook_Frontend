@@ -14,10 +14,9 @@ export class CategoriasService {
     private endPoint:string = 'http://localhost:8080';
 
     //Hay que tipar también la llamada
-    getTodasCategoias():Observable<Categoria[]> {
-
-     const url = `${this.endPoint}/recetas/categorias`;
-     return this._http.get<Categoria[]>(url);
+    getTodasCategorias():Observable<Categoria[]> {
+      const url = `${this.endPoint}/recetas/categorias`;
+      return this._http.get<Categoria[]>(url);
     }
 
     //Una categoría

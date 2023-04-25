@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { RecetasService } from '../../services/recetas-service.service';
+import { RecetasService } from '../../services/recetas.service';
 import { Comentario, Receta } from '../../interface/recetas.interface';
 import { ActivatedRoute } from '@angular/router';
 import { switchMap } from 'rxjs';

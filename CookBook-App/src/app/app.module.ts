@@ -11,7 +11,6 @@ import { SharedModule } from './shared/shared.module';
 import { RecetasModule } from './recetas/recetas.module';
 import { UsuarioModule } from './usuario/usuario.module';
 import { PlanesModule } from './planes/planes.module';
-import { VerTodasComponent } from './categorias/pages/ver-todas/ver-todas.component';
 import { CategoriasModule } from './categorias/categorias.module';
 
 @NgModule({

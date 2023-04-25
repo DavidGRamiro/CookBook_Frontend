@@ -10,6 +10,7 @@ import { FooterComponent } from './pages/footer/footer.component';
 import { TablaComponent } from './components/tabla/tabla.component';
 import { MenuComponent } from './pages/menu/menu.component';
 import { TarjetaComponent } from './components/tarjeta/tarjeta.component';
+import { TarjetaCategoriaComponent } from './components/tarjeta-categoria/tarjeta-categoria.component';
 
 
 @NgModule({
@@ -20,6 +21,7 @@ import { TarjetaComponent } from './components/tarjeta/tarjeta.component';
     TablaComponent,
     MenuComponent,
     TarjetaComponent,
+    TarjetaCategoriaComponent
   ],
   imports: [
     CommonModule,
@@ -32,7 +34,8 @@ import { TarjetaComponent } from './components/tarjeta/tarjeta.component';
     MainComponent,
     TablaComponent,
     MenuComponent,
-    TarjetaComponent
+    TarjetaComponent,
+    TarjetaCategoriaComponent
   ]
 })
 export class SharedModule { }

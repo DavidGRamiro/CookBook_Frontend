@@ -20,7 +20,7 @@ export class VerTodasComponent implements OnInit {
   constructor(private _categoriasService:CategoriasService) {}
 
   loquesea(){
-    this._categoriasService.getTodasCategoias()
+    this._categoriasService.getTodasCategorias()
     .subscribe(response =>{
       this.categorias = response
       console.table(this.categorias)

@@ -5,11 +5,9 @@ import { VerTodasComponent } from './pages/ver-todas/ver-todas.component';
 const routes: Routes = [
   {
     path: '',
-      children: [
-        {
-          path: 'todas',
-          component: VerTodasComponent
-        }
+      children:
+      [
+        { path: 'todas', component: VerTodasComponent }
       ]
   }
 ];

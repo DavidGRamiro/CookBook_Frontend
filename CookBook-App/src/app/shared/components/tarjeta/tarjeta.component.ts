@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { Receta, Usuario } from 'src/app/recetas/interface/recetas.interface';
+import { Receta } from 'src/app/recetas/interface/recetas.interface';
 
 @Component({
   selector: 'app-tarjeta',
