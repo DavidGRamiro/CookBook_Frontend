@@ -1,1 +1,78 @@
-<p>ver-una works!</p>
+
+<div class="container mt-5 mb-5">
+
+  <div class="row justify-content-center">
+    <div class="col-sm mx-auto text-center">
+      <h4 class ="m-4">{{ receta.descripcion }}</h4>
+      <div class="mx-auto">
+        <img [src]= receta.imagen style="width: 80%;" >
+      </div>
+      <div class ="mt-2" style="display: flex; justify-content: flex-end;">
+        <p-button icon="pi pi-bookmark"  (click)="addFav()" styleClass="p-button-rounded p-button-warning p-button-outlined"></p-button>
+        <p-button icon="pi pi-heart"  (click)="addLike()" styleClass="p-button-rounded p-button-danger p-button-outlined ml-2"></p-button>
+        <p-button icon="pi pi-send" styleClass="p-button-rounded p-button-success p-button-outlined ml-2"></p-button>
+      </div>
+    </div>
+    <!-- FIXME: Hay que hacer el rating con formularios reactivos -->
+    <p-rating  [cancel]="false"></p-rating>
+
+    <p-divider></p-divider>
+  </div>
+  <div>
+    <h4> ¿Qué ingredientes necesito?</h4>
+      <div>
+        <ul>
+          <li *ngFor="let item of receta.recetasConIngredientes">
+              {{ item.ingrediente.nombre}}
+          </li>
+        </ul>
+      </div>
+  </div>
+
+  <div>
+    <h4>Pasos de preparacion</h4>
+    <p-divider></p-divider>
+
+    <h3>{{ receta.instrucciones }}</h3>
+
+  </div>
+  <p-divider></p-divider>
+
+  <div>
+    <h5>Macronutrientes</h5>
+    <ul>
+      <li>{{ receta.calorias }} calorias</li>
+      <li>{{ receta.carbohidratos }}g carbohidratos</li>
+      <li>{{ receta.grasas }}g grasas</li>
+      <li>{{ receta.proteinas }}g proteinas</li>
+    </ul>
+  </div>
+  <div>
+    <p>Receta realizada por <strong>{{ receta.usuario.username }}</strong></p>
+  </div>
+<p-divider></p-divider>
+<div class ="containner mt-2">
+  <h3>¿ Que dicen los usuarios de esta receta ?</h3>
+  <div>
+
+    <p-button class ="mt-5 mb-5" label ="Ver comentarios" (click)="obtenerComentarios(receta.idReceta)"></p-button>
+  </div>
+  <ol *ngFor="let comentario of comentario">
+    <li >
+      <strong>{{ comentario.usuario.username  }}</strong> dijo: <i>{{ comentario.textoComentario }}</i>
+    </li>
+  </ol>
+</div>
+
+<div class ="d-grid gap-2 d-md-flex justify-content-md-end">
+  <button pButton pRipple label="Ver todas las recetas" [routerLink]="['/recetas/todas']" class="p-button-success"></button>
+</div>
+
+
+
+
+
+
+<p-toast></p-toast>
+
+

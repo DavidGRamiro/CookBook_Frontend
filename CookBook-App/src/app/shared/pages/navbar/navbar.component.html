@@ -1,9 +1,18 @@
-<h3>ESTO ES EL COMPONENTE NAVBAR</h3>
-<div>
 
-  <ul *ngFor="let items of menu">
-    <li>
-      <a [routerLink] ="items.ruta"> {{ items.item }}</a>
-    </li>
-  </ul>
+<div class ="card">
+  <p-menubar [model]="menuItems">
+    <ng-template pTemplate="start">
+      <!-- FIXME: -->
+      <!-- <img src="assets\images\CB.png" height="50" width="50" class="mr-2" /> -->
+    </ng-template>
+    <ng-template pTemplate="end">
+      <div *ngIf="loggin == true; else noLogueado">
+        <h2>Bienvenido</h2>
+      </div>
+      <ng-template #noLogueado>
+        <p-button label="Inicar sesión" styleClass="p-button p-button-rounded success" icon="pi pi-user" routerLink="auth/login"></p-button>
+      </ng-template>
+    </ng-template>
+  </p-menubar>
 </div>
+

@@ -9,6 +9,11 @@ import { CenasComponent } from './pages/cenas/cenas.component';
 import { ComidasComponent } from './pages/comidas/comidas.component';
 import { DesayunosComponent } from './pages/desayunos/desayunos.component';
 import { NiniosComponent } from './pages/ninios/ninios.component';
+import { VeganosComponent } from './pages/veganos/veganos.component';
+import { SharedModule } from '../shared/shared.module';
+import { PrimeNGModule } from '../library/prime-ng/prime-ng.module';
+import { MessageService } from 'primeng/api';
+
 
 
 @NgModule({
@@ -19,11 +24,27 @@ import { NiniosComponent } from './pages/ninios/ninios.component';
     DesayunosComponent,
     NiniosComponent,
     RecetasComponent,
-    VerUnaComponent
+    VerUnaComponent,
+    VeganosComponent
+
   ],
   imports: [
     CommonModule,
     RecetasRoutingModule,
-  ]
+    SharedModule,
+    PrimeNGModule
+
+  ],
+  exports:[
+    AlergenosComponent,
+    CenasComponent,
+    ComidasComponent,
+    DesayunosComponent,
+    NiniosComponent,
+    RecetasComponent,
+    VerUnaComponent,
+    VeganosComponent
+  ],
+  providers:[MessageService]
 })
 export class RecetasModule { }

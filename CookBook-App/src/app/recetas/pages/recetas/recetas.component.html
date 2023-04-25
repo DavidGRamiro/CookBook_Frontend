@@ -1,11 +1,16 @@
 
+<!--
+<div class="containner m-6 " >
+  <h2 class ="text-center mb-3">Listado de todas las recetas disponibles</h2>
+  <app-tabla [columnas]="cols" [data]="datos"></app-tabla>
+</div> -->
 
-<h2>Página de todas las recetas</h2>
+  <!-- <div  class="d-flex justify-content-around mt-6 mx-1"> -->
 
-<div>
-  <ul *ngFor="let receta of menuReceta">
-    <li>
-      <a [routerLink] ='receta.ruta '>{{ receta.categoria }}</a>
-    </li>
-  </ul>
-</div>
+<div class ="mx-auto d-flex justify-content-around m-5">
+    <div *ngFor="let receta of datos">
+        <app-tarjeta [receta]="receta"></app-tarjeta>
+    </div>
+  </div>
+
+

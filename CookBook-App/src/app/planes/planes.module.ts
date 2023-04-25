@@ -6,7 +6,6 @@ import { SaludableComponent } from './pages/saludable/saludable.component';
 import { GanarPesoComponent } from './pages/ganar-peso/ganar-peso.component';
 import { PerderPesoComponent } from './pages/perder-peso/perder-peso.component';
 import { PlanesComponent } from './pages/planes/planes.component';
-import { PrimeNgModule } from '../library/prime-ng/prime-ng.module';
 
 
 @NgModule({
@@ -20,6 +19,12 @@ import { PrimeNgModule } from '../library/prime-ng/prime-ng.module';
     CommonModule,
     PlanesRoutingModule,
 
+  ],
+  exports:[
+    SaludableComponent,
+    GanarPesoComponent,
+    PerderPesoComponent,
+    PlanesComponent
   ]
 })
 export class PlanesModule { }

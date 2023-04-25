@@ -1,1 +1,125 @@
-<p>login works!</p>
+
+
+<!-- <div class="containner text-center ">
+  <div class="row">
+    <div id="izquierdo" class="col">
+        <h1>HOLA</h1>
+        <form [formGroup]="formLogin" id="formularioLogin">
+          <div class="content-center">
+            <!-- Para el input email -->
+            <!-- <div class="row">
+              <div class="col">
+                <input pInputText id="userEmail" formControlName="email"/>
+                <label htmlFor="userEmail">Email</label>
+              </div>
+            </div>
+            <!-- Para el input contraseña -->
+            <!-- <div class="row">
+              <div class="col">
+                <input pInputText id="password" formControlName="password"/>
+                <label htmlFor="userEmail">Email</label>
+              </div>
+          </div> -->
+
+          <!-- <div class="justify-content-center mt-5 mb-6" >
+            <p-button styleClass="p-button-success" label="Inicar sesión" [loading]="loading" (click)="load()" (click)="validarUsuario()"></p-button>
+          </div>
+          <p-divider></p-divider>
+          <h5 class="mt-5 mb-6">Si todavía no eres usuario, create una cuenta </h5>
+          <div class=" justify-content-center" >
+            <p-button styleClass="p-button-warning" label="Registrarse" (click) ="navegarRegistro()"></p-button>
+          </div>
+
+        </div>
+        </form>
+    </div>
+    <div id="derecho"class="col">
+      <h1>Hola</h1>
+    </div>
+  </div>
+</div>  -->
+
+<div class="container w-75 bg-primary mt-5 rounded shadow">
+  <div class="row align-items-stretch">
+    <div class="col bg d-none d-lg-block col-md-5 col-lg-5 col-xl-6 rounded p-5">
+
+    </div>
+    <div class="col bg-white p-5 rounded-end">
+
+      <div class="text-end">
+        <img src="FIXME: importar imagen" alt="FIXME: Importar imagen" width="48">
+      </div>
+
+      <h2 class ="fw-bold text-center py-5">Bienvenido</h2>
+
+      <!-- Formulario de login -->
+
+      <form [formGroup]="formLogin" id="formularioLogin">
+
+        <div class="mb-4">
+          <label for="email" class ="form-label"> Correo electrónico</label>
+          <input type="email" class ="form-control" name="Email">
+        </div>
+        <div class="mb-4">
+          <label for="password" class ="form-label"> Contraseña</label>
+          <input type="password" class ="form-control" name="Contraseña">
+        </div>
+        <div class="mb-4 form-check">
+          <input type="checkbox" name="terminos" class ="form-check-input">
+          <label for="terminos" class ="form-check-label">Términos y condiciones</label>
+        </div>
+
+        <!-- Para el boton de submit -->
+        <div class="d-grid">
+          <button type ="submit" class="btn btn-primary">Iniciar sesión</button>
+        </div>
+
+        <!-- Recuperar contraseña y registro -->
+        <div class="my-3">
+          <span>¿No tienes cuenta? <a href="#">Registrate</a></span><br>
+          <span><a href="#">Recuperar contraseña</a></span>
+        </div>
+      </form>
+
+      <!-- Login con redes sociales  -->
+      <div class="container w-100 my-5">
+        <div class="row text-center">
+          <div class="col-12">Iniciar sesión</div>
+        </div>
+
+        <div class="row">
+          <div class="col">
+            <button class="btn btn-outline-primary w-100 my-1">
+              <div class="row align-items-center">
+                <div class="col-2 d-none d-md-block">
+                  <!-- <img src="FIXME:IMAGEN" width="32" alt="face"> -->
+                </div>
+                <div class="col-10 text-center">FACEEBOK</div>
+              </div>
+            </button>
+          </div>
+          <div class="col">
+            <button class="btn btn-outline-danger w-100 my-1">
+              <div class="row align-items-center">
+                <div class="col-2 d-none d-md-block">
+                  <!-- <img src="FIXME:Imagen"  width="32" alt="face"> -->
+                </div>
+                <div class="col-10 text-center">GOOGLE</div>
+              </div>
+            </button>
+          </div>
+        </div>
+
+      </div>
+
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
