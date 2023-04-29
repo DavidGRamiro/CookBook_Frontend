@@ -2,11 +2,12 @@ import { Component, OnInit } from '@angular/core';
 
 //Interfaces
 import { listaPerfil } from '../../interface/perfil.lista.interface';
-import { Usuario } from '../../interface/usuario.interface';
+
 import { UsuarioService } from '../../services/usuario.service';
 import { ActivatedRoute } from '@angular/router';
 import { switchMap } from 'rxjs';
 import { Receta } from 'src/app/recetas/interface/recetas.interface';
+import { Usuario } from '../../interface/usuario.interface';
 @Component({
   selector: 'app-perfil',
   templateUrl: './perfil.component.html',
