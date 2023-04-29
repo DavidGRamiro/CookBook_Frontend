@@ -11,6 +11,7 @@ import { TablaComponent } from './components/tabla/tabla.component';
 import { MenuComponent } from './pages/menu/menu.component';
 import { TarjetaComponent } from './components/tarjeta/tarjeta.component';
 import { TarjetaCategoriaComponent } from './components/tarjeta-categoria/tarjeta-categoria.component';
+import { FomularioRecetaComponent } from './components/fomulario-receta/fomulario-receta.component';
 
 
 @NgModule({
@@ -21,7 +22,8 @@ import { TarjetaCategoriaComponent } from './components/tarjeta-categoria/tarjet
     TablaComponent,
     MenuComponent,
     TarjetaComponent,
-    TarjetaCategoriaComponent
+    TarjetaCategoriaComponent,
+    FomularioRecetaComponent
   ],
   imports: [
     CommonModule,
@@ -35,7 +37,8 @@ import { TarjetaCategoriaComponent } from './components/tarjeta-categoria/tarjet
     TablaComponent,
     MenuComponent,
     TarjetaComponent,
-    TarjetaCategoriaComponent
+    TarjetaCategoriaComponent,
+    FomularioRecetaComponent
   ]
 })
 export class SharedModule { }

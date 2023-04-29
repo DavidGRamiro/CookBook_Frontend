@@ -1,6 +1,33 @@
+@import url('https://fonts.googleapis.com/css2?family=Fira+Sans:wght@100&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap');
 
-.bg{
-  background-color: white;
+h2{
+  font-family: 'Fira Sans', sans-serif;
+  font-size: 48px;
+}
+label, p, a, span{
+  font-family: 'Open Sans';
+  font-weight: bolder;
 }
 
+#navegar{
+  color: blue;
+  font-weight: bolder;
+  cursor: pointer
+}
+
+.form-control:focus {
+  box-shadow: 2px 2px 0px 0.5px #fcdd87;
+}
+
+.btn-custom {
+  background-color: #abc17c;
+  border-radius: 50px;
+  color: #FFFFFF;
+}
+.btn-custom:hover,
+.btn-custom:focus {
+  background-color: #6f873a;
+  color: #FFFFFF;
+}
 
