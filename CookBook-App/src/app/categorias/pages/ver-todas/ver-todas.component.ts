@@ -23,7 +23,6 @@ export class VerTodasComponent implements OnInit {
     this._categoriasService.getTodasCategorias()
     .subscribe(response =>{
       this.datos = response
-      console.table(this.datos)
     }
       )
   }

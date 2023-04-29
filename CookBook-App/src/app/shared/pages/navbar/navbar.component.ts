@@ -47,6 +47,9 @@ export class NavbarComponent implements OnInit {
         { label: 'Mi perfil', routerLink: 'user' },
         { label: 'Notificaciones', routerLink: 'user/notificaciones' }
       ]
+    },
+    {
+      label: 'Subir receta' , routerLink: 'alta'
     }
   ]
 

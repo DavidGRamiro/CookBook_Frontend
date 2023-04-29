@@ -33,7 +33,6 @@ export class RecetasComponent implements OnInit {
   obtenerTodas(){
     this._recetaService.todasRecetas().subscribe( res => {
       this.datos = res;
-      console.log(this.datos);
     });
   }
 }
