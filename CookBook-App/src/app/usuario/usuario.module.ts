@@ -5,7 +5,7 @@ import { UsuarioRoutingModule } from './usuario-routing.module';
 import { MisRecetasComponent } from './pages/mis-recetas/mis-recetas.component';
 import { NotificacionesComponent } from './pages/notificaciones/notificaciones.component';
 import { PerfilComponent } from './pages/perfil/perfil.component';
-
+import { PrimeNGModule } from '../library/prime-ng/prime-ng.module';
 
 
 @NgModule({
@@ -17,6 +17,8 @@ import { PerfilComponent } from './pages/perfil/perfil.component';
   imports: [
     CommonModule,
     UsuarioRoutingModule,
+    PrimeNGModule
+
   ],
   exports:[
     MisRecetasComponent,

@@ -1,0 +1,22 @@
+:host {
+  display: block;
+  padding: 2rem;
+}
+
+img {
+  border-radius: 50%;
+  box-shadow: 0 0 1rem rgba(0, 0, 0, 0.2);
+}
+
+h1 {
+  font-size: 2rem;
+  margin-top: 0;
+}
+
+button {
+  margin-left: 1rem;
+}
+
+img {
+  max-width: 200px;
+}

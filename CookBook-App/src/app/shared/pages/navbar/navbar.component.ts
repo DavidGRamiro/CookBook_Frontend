@@ -20,11 +20,9 @@ export class NavbarComponent implements OnInit {
       ]
     },
     {
-      label: 'Planes de alimentación',
+      label: 'Planes',
       items: [
-        { label: 'Perder peso', routerLink: 'planes/perdida' },
-        { label: 'Ganar peso', routerLink: 'planes/ganar' },
-        { label: 'Saludable', routerLink: 'planes/saludable' }
+        { label: 'Todos los planes', routerLink: 'planes/todos'}
       ]
     },
     {
