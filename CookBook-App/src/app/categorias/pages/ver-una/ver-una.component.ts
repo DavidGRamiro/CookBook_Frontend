@@ -20,9 +20,16 @@ export class VerUnaComponent {
   ngOnInit(): void {
       this._activatedRoute.params
       .pipe(
-        switchMap( ({ idCategoria }) => this._categoriaService.recetasPorCategoria(idCategoria)))
-        .subscribe( response => this.datos = response)
+        switchMap( ({ categoria }) =>
+        this._categoriaService.getRecetasPorCategoria(categoria)))
+        .subscribe( response => this.datos = response);
+
+        this._activatedRoute.params
+        .subscribe( ({ categoria }) => this.categoria = this.capitalizeFirstLetter(categoria));
 
       }
 
+      capitalizeFirstLetter(str: string): string {
+        return str.charAt(0).toUpperCase() + str.slice(1).toLowerCase();
       }
+}

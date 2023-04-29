@@ -15,22 +15,14 @@ export class NavbarComponent implements OnInit {
     {
       label: 'Recetas',
       items: [
-        { label: 'Desayunos', routerLink: 'recetas/desayunos' },
-        { label: 'Comidas', routerLink: 'recetas/comidas' },
-        { label: 'Cenas', routerLink: 'recetas/cenas' },
-        { label: 'Vegano', routerLink: 'recetas/veganos' },
-        { label: 'Para niños', routerLink: 'recetas/ninios' },
-        { label: 'Alérgenos', routerLink: 'recetas/alergenos' },
         { label: 'Categorias', routerLink: 'categorias/todas' },
         { label: 'Todas las recetas', routerLink: 'recetas/todas' },
       ]
     },
     {
-      label: 'Planes de alimentación',
+      label: 'Planes',
       items: [
-        { label: 'Perder peso', routerLink: 'planes/perdida' },
-        { label: 'Ganar peso', routerLink: 'planes/ganar' },
-        { label: 'Saludable', routerLink: 'planes/saludable' }
+        { label: 'Todos los planes', routerLink: 'planes/todos'}
       ]
     },
     {

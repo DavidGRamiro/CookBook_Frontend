@@ -20,16 +20,15 @@ export class CategoriasService {
       return this._http.get<Categoria[]>(url);
     }
 
-    //Una categoría
-    getUna(id:number):Observable<Categoria> {
-      const url = `${this.endPoint}/recetas/categorias/${id}`
-      const params = new HttpParams().set('idCategoria', id)
-      return this._http.get<Categoria>(url, { params });
+    getUnaCategoria(categoria: string):Observable<Categoria>{
+      const url = `${this.endPoint}/recetas/porCategoria`;
+      const params = new HttpParams().set('categoria', categoria);
+      return this._http.get<Categoria>(url, {params});
     }
 
-    recetasPorCategoria( idCategoria: number): Observable<Receta[]>{
-      const url = `${ this.endPoint }${ this.common }/porIdCategoria`
-      const params = new HttpParams().set('idCategoria', idCategoria)
+    getRecetasPorCategoria( categoria: string): Observable<Receta[]>{
+      const url = `${ this.endPoint }${ this.common }/porCategoria`
+      const params = new HttpParams().set('categoria', categoria)
       return this._http.get<Receta[]>(url, { params })
     }
 }

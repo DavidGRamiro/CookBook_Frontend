@@ -1,7 +1,7 @@
 
 <p-card header="{{ receta.nombre }}" subheader="{{ receta.usuario.username }}" [style]="{ width: '300px', height:'480px'}">
   <ng-template pTemplate="header">
-    <img [src] =receta.imagen style="width:100%" alt="Receta">
+    <img [src] =receta.imagen alt="Receta">
   </ng-template>
     <p>
       {{ receta.descripcion }}

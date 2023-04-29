@@ -2,18 +2,14 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { PlanesRoutingModule } from './planes-routing.module';
-import { SaludableComponent } from './pages/saludable/saludable.component';
-import { GanarPesoComponent } from './pages/ganar-peso/ganar-peso.component';
-import { PerderPesoComponent } from './pages/perder-peso/perder-peso.component';
-import { PlanesComponent } from './pages/planes/planes.component';
+import { VerTodosComponent } from './pages/ver-todos/ver-todos.component';
+import { VerUnoComponent } from './pages/ver-uno/ver-uno.component';
 
 
 @NgModule({
   declarations: [
-    SaludableComponent,
-    GanarPesoComponent,
-    PerderPesoComponent,
-    PlanesComponent
+    VerTodosComponent,
+    VerUnoComponent
   ],
   imports: [
     CommonModule,
@@ -21,10 +17,8 @@ import { PlanesComponent } from './pages/planes/planes.component';
 
   ],
   exports:[
-    SaludableComponent,
-    GanarPesoComponent,
-    PerderPesoComponent,
-    PlanesComponent
+    VerTodosComponent,
+    VerUnoComponent
   ]
 })
 export class PlanesModule { }
