@@ -1,1 +1,22 @@
-<p>mi-perfil works!</p>
+<h1>Mi perfil</h1>
+
+<div class="perfil-container">
+  <div class="imagen-usuario">
+    <!-- Aquí puedes mostrar la imagen del usuario -->
+    <img [src]="usuario.imagen" alt="Imagen del usuario">
+  </div>
+  <div class="datos-usuario">
+    <!-- Aquí puedes mostrar el nombre del usuario y el plan contratado -->
+    <h1>{{ usuario.username }}</h1>
+    <p>Plan contratado: {{ usuario.plan.nombre }}</p>
+  </div>
+  <div class="recetas-favoritas">
+    <!-- Aquí puedes mostrar la lista de recetas favoritas del usuario -->
+    <h2>Recetas favoritas</h2>
+    <ul>
+      <li *ngFor="let receta of recetasFavoritas">
+        <a [routerLink]="['/recetas', receta.idReceta]">{{ receta.nombre }}</a>
+      </li>
+    </ul>
+  </div>
+</div>

@@ -10,6 +10,7 @@ const routes: Routes = [
     path: '',
     children: [
       { path: '', component: PerfilComponent },
+      { path: ':idUsuario', component: PerfilComponent},
       { path: 'notificaciones', component: NotificacionesComponent },
       { path: 'misrecetas', component: MisRecetasComponent },
       { path: 'logout', component: LogoutComponent },

@@ -3,10 +3,10 @@ import { listaPlanes } from '../../interfaces/lista-planes.interface';
 
 @Component({
   selector: 'app-planes',
-  templateUrl: './planes.component.html',
-  styleUrls: ['./planes.component.css']
+  templateUrl: './ver-todos.component.html',
+  styleUrls: ['./ver-todos.component.css']
 })
-export class PlanesComponent {
+export class VerTodosComponent {
 
   listaPlanes: listaPlanes[] = [
     { item: 'Perder peso', ruta: 'perdida'},

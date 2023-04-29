@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { PlanesComponent } from './planes.component';
+import { VerTodosComponent } from './ver-todos.component';
 
-describe('PlanesComponent', () => {
-  let component: PlanesComponent;
-  let fixture: ComponentFixture<PlanesComponent>;
+describe('VerTodosComponent', () => {
+  let component: VerTodosComponent;
+  let fixture: ComponentFixture<VerTodosComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ PlanesComponent ]
+      declarations: [ VerTodosComponent ]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(PlanesComponent);
+    fixture = TestBed.createComponent(VerTodosComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

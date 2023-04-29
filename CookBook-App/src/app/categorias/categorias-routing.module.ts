@@ -9,7 +9,7 @@ const routes: Routes = [
       children:
       [
         { path: 'todas', component: VerTodasComponent },
-        { path: ':idCategoria', component: VerUnaComponent },
+        { path: ':categoria', component: VerUnaComponent },
         { path: '**', redirectTo: 'todas' }
       ]
   }

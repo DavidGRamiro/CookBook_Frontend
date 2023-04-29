@@ -30,7 +30,7 @@ import { CategoriasModule } from './categorias/categorias.module';
     PlanesModule,
     RecetasModule,
     UsuarioModule,
-    CategoriasModule
+    CategoriasModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

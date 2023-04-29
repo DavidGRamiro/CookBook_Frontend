@@ -1,20 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { NiniosComponent } from './ninios.component';
+import { VerUnoComponent } from './ver-uno.component';
 
-describe('NiniosComponent', () => {
-  let component: NiniosComponent;
-  let fixture: ComponentFixture<NiniosComponent>;
+describe('VerUnoComponent', () => {
+  let component: VerUnoComponent;
+  let fixture: ComponentFixture<VerUnoComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ NiniosComponent ]
+      declarations: [ VerUnoComponent ]
     })
     .compileComponents();
-  });
 
-  beforeEach(() => {
-    fixture = TestBed.createComponent(NiniosComponent);
+    fixture = TestBed.createComponent(VerUnoComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
