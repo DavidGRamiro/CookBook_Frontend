@@ -18,6 +18,7 @@ export class LoginComponent implements OnInit {
   //La respuesta de nuestras peticiones la almacenamos en este objeto.
   usuarioRecibido! : Usuario;
 
+  //Formulario reactivo
   formLogin : FormGroup = this._fb.group(
     {
       email: ['', [Validators.required, Validators.email]],
@@ -46,23 +47,9 @@ export class LoginComponent implements OnInit {
     }
   }
 
+  //Navegacion al componente de registro
   navegarRegistro(){
     this._router.navigateByUrl("auth/registro")
   }
 
-  //Funcion asociada al botón submit que muestra una animación tipo spinner
-  load(){
-    this.loading = true;
-    setTimeout(() => {
-      this.loading = false;
-    }, 1500);
-  }
-
 }
-
-
-
-
-
-
-
