@@ -9,7 +9,7 @@ import { RouterModule, Routes } from '@angular/router';
 // entra por vacío, y hara un redirect a login. Si pone algo, por ejemplo auth/ registro, le llevara al componente de registro.
 
 const routes: Routes = [
-  { path: 'home', loadChildren: () => import('./shared/shared.module').then(m => m.SharedModule) },
+  { path: 'home', loadChildren: () => import('./home/home.module').then(m => m.HomeModule) },
   { path: 'auth', loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule) },
   { path: 'recetas', loadChildren: () => import('./recetas/recetas.module').then(m => m.RecetasModule) },
   { path: 'user', loadChildren: () => import('./usuario/usuario.module').then(m => m.UsuarioModule) },
