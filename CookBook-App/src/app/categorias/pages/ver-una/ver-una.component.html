@@ -1,6 +1,6 @@
 
-<h1 class="text-center">{{categoria}}</h1>
-<div class ="mx-auto d-flex justify-content-around m-5">
+<h1 class="titulo-seccion">{{categoria}}</h1>
+<div class ="contenedor d-flex flex-wrap justify-content-center">
   <div *ngFor="let receta of datos">
       <app-tarjeta [receta]="receta"></app-tarjeta>
   </div>
