@@ -88,7 +88,6 @@ export class FomularioRecetaComponent implements OnInit{
   }
 
 
-
   //FIXME: Llamar a una funcion de busqueda por usuario.
   obtenerUsuario(){
     this._authService.obtenerUno(this.user).subscribe( response => {
