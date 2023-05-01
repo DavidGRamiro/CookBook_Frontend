@@ -12,6 +12,7 @@ import { MenuComponent } from './pages/menu/menu.component';
 import { TarjetaComponent } from './components/tarjeta/tarjeta.component';
 import { TarjetaCategoriaComponent } from './components/tarjeta-categoria/tarjeta-categoria.component';
 import { FomularioRecetaComponent } from './components/fomulario-receta/fomulario-receta.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -29,6 +30,8 @@ import { FomularioRecetaComponent } from './components/fomulario-receta/fomulari
     CommonModule,
     SharedRoutingModule,
     PrimeNGModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   exports:[
     NavbarComponent,

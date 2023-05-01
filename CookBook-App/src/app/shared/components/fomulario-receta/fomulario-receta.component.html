@@ -1,91 +1,63 @@
-
-<div class="container">
-  <h3>Formulario de alta de receta</h3>
-  <form>
-  <div class="row">
-    <div class="col">
-
-        <!-- Para la tabla de recetas -->
-
-    <div class ="form-group w-8">
-      <label for="nombre">Nombre de la receta</label>
-      <input type="text" class ="form-control" name="nombreReceta">
-    </div>
-    <div class ="form-group w-8">
-      <label for="descripcion">Breve descripción de la receta</label>
-      <input type="text" class ="form-control" name="descripcion">
-    </div>
-    <div class ="form-group w-2">
-      <label for="tiempo_preparacion">Tiempo de preparación (Minutos)</label>
-      <input type="number" class ="form-control" name="tiempo_preparacion">
-    </div>
-    <div class ="form-group w-2">
-      <label for="tiempo_cocion">Tiempo de coción (Minutos)</label>
-      <input type="number" class ="form-control" name="tiempo_cocion">
-    </div>
-    <div class ="form-group w-2">
-      <label for="calorias">Calorias</label>
-      <input type="number" class ="form-control" name="calorias">
-    </div>
-    <div class ="form-group w-2">
-      <label for="proteinas"> Proteinas</label>
-      <input type="number" class ="form-control" name="proteinas">
-    </div>
-    <div class ="form-group w-2">
-      <label for="grasas">Grasas</label>
-      <input type="number" class ="form-control" name="grasas">
-    </div>
-    <div class ="form-group w-2">
-      <label for="carbohidratos">Carbohidratos</label>
-      <input type="number" class ="form-control" name="carbohidratos">
-    </div>
-    <div class ="form-group w-10">
-      <label for="carbohidratos">Instrucciones</label>
-      <textarea class="form-control" rows="5"></textarea>
-    </div>
-    <div class="input-group mt-2">
-      <span> <h4>Subir imagen</h4>
-      <div class="custom-file">
-        <input type="file"  accept=".jpg,.png," class="custom-file-input" id="img">
-        <label class="custom-file-label" for="img"></label>
+<div class="row">
+  <div class="col">
+    <form [formGroup]="recetaForm" (ngSubmit)="onSubmit()">
+      <div class="p-field">
+        <label for="nombre">Nombre</label><br>
+        <input type="text" id="nombre" formControlName="nombre" class="p-inputtext" />
       </div>
-      <div class="input-group-append">
-        <button class="btn btn-outline-secondary" type="button">Subir</button>
+      <div class="p-field">
+        <label for="descripcion">Descripción</label><br>
+        <input type="text" id="descripcion" formControlName="descripcion" class="p-inputtext" />
       </div>
-      </span>
-    </div>
-
-    </div>
-    <!-- <Segunda columna -->
-
-    <div class="col">
-
-      <div class ="form-group w-2">
-        <label for="idUsuario">ID Usuario</label>
-        <input type="number" value="100" class ="form-control" name="idUsuario" readonly="true">
+      <div class="p-field">
+        <label for="calorias">Calorías</label><br>
+        <input type="number" id="calorias" formControlName="calorias" class="p-inputtext" />
       </div>
-
-      <!-- Seleccionar ingredientes -->
-      <div class="col">
-        <h2>Ingredientes</h2>
-
-        <div class="row">
-          <div class="form-check" *ngFor="let item of ingredientes">
-            <input class="form-check-input" type="checkbox" value="" id="{{ item.idIngrediente }}">
-            <label class="form-check-label" for="defaultCheck1">{{ item.nombre }}</label>
-          </div>
+      <div class="p-field">
+        <label for="carbohidratos">Carbohidratos</label><br>
+        <input type="number" id="carbohidratos" formControlName="carbohidratos" class="p-inputtext" />
+      </div>
+      <div class="p-field">
+        <label for="grasas">Grasas</label><br>
+        <input type="number" id="grasas" formControlName="grasas" class="p-inputtext" />
+      </div>
+      <div class="p-field">
+        <label for="proteinas">Proteínas</label><br>
+        <input type="number" id="proteinas" formControlName="proteinas" class="p-inputtext" />
+      </div>
+      <div class="p-field">
+        <label for="tiempoPreparacion">Tiempo de preparación (minutos)</label><br>
+        <input type="number" id="tiempoPreparacion" formControlName="tiempoPreparacion" class="p-inputtext" />
+      </div>
+      <div class="p-field">
+        <label for="tiempoCoccion">Tiempo de cocción (minutos)</label><br>
+        <input type="number" id="tiempoCoccion" formControlName="tiempoCoccion" class="p-inputtext" />
+      </div>
+      <div class="p-field">
+        <label for="instrucciones">Instrucciones</label><br>
+        <textarea id="instrucciones" formControlName="instrucciones" class="p-inputtext"></textarea>
+      </div>
+      <div class="p-field">
+        <label for="usuario">Usuario</label><br>
+        <input type="text" id="usuario" formControlName="usuario" class="p-inputtext" />
+      </div>
+      <h4>Ingrediente</h4><br>
+      <div formArrayName="recetasConIngredientes">
+        <div *ngFor="let receta of recetasIngredientes.controls; let i=index" [formGroupName]="i">
+            <div class="p-field">
+              <label for="cantidad">Cantidad</label><br>
+              <input type="number" id="cantidad" formControlName="cantidad" class="p-inputtext" />
+            </div>
+            <div class="p-field" formGroupName="ingrediente">
+              <label>Ingrediente</label><br>
+              <p-multiSelect [options]="ingredientes" formControlName="idIngrediente" optionLabel="nombre"></p-multiSelect>
+            </div>
         </div>
       </div>
-    </div>
-    <div class="col">
-      <h2>Validar formulario</h2>
-
-      <button type="submit" class="btn btn-primary" >Subir receta</button>
-
-    </div>
-
+      <button type="submit">Guardar</button>
+    </form>
 
 
   </div>
-  </form>
 </div>
+

@@ -10,6 +10,7 @@ import { PasswordModule } from 'primeng/password';
 import { ToastModule } from 'primeng/toast';
 import { TableModule } from 'primeng/table';
 import { RatingModule } from 'primeng/rating';
+import { MultiSelectModule } from 'primeng/multiselect';
 
 @NgModule({
   exports: [
@@ -22,7 +23,8 @@ import { RatingModule } from 'primeng/rating';
     PasswordModule,
     ToastModule,
     TableModule,
-    RatingModule
+    RatingModule,
+    MultiSelectModule
   ]
 })
 
