@@ -18,7 +18,7 @@ const routes: Routes = [
   { path: 'planes', loadChildren: () => import('./planes/planes.module').then(m => m.PlanesModule) },
   { path: 'about', loadChildren: () => import('./about/about.module').then(m => m.AboutModule) },
   { path: 'categorias', loadChildren: () => import('./categorias/categorias.module').then(m => m.CategoriasModule)},
-  { path: 'alta', component: FormularioRecipeComponent },
+  { path: 'alta', component: FormularioRecipeComponent},
   { path: '**', redirectTo: 'home' }
 ];
 
