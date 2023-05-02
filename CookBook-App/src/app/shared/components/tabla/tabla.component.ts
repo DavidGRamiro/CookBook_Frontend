@@ -24,15 +24,15 @@ export class TablaComponent implements OnInit{
   }
 
 
-  exportPdf() {
-    import('jspdf').then((jsPDF) => {
-        import('jspdf-autotable').then((x) => {
-            const doc = new jsPDF.default('p', 'px', 'a4');
-            (doc as any).autoTable(this.exportColumns, this.data);
-            doc.save('products.pdf');
-        });
-    });
-}
+//   exportPdf() {
+//     import('jspdf').then((jsPDF) => {
+//         import('jspdf-autotable').then((x) => {
+//             const doc = new jsPDF.default('p', 'px', 'a4');
+//             (doc as any).autoTable(this.exportColumns, this.data);
+//             doc.save('products.pdf');
+//         });
+//     });
+// }
 
 
 }

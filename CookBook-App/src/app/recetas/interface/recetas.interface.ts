@@ -16,30 +16,31 @@ export interface Receta {
   instrucciones:          string;
   nombre:                 string;
   proteinas:              number;
-  tiempoCoccion:          number | null;
+  tiempoCoccion:          number;
   tiempoPreparacion:      number;
   recetasConIngredientes: RecetasConIngrediente[];
   usuario:                Usuario;
 }
 
 export interface RecetasConIngrediente {
-  idRecetaIncrediente: number;
-  cantidad:            number;
-  unidadMedida:        string;
-  ingrediente:         Ingrediente ;
+  idRecetaIncrediente?: number;
+  cantidad?:            number;
+  unidadMedida?:        string;
+  ingrediente:          Ingrediente;
+  receta:               Receta;
 }
 
 export interface Ingrediente {
   idIngrediente: number;
-  descripcion:   string;
-  nombre:        string | null | undefined;
+  descripcion?:   string;
+  nombre?:        string | null | undefined;
 }
 
 export interface Usuario {
-  idUsuario:     number;
+  idUsuario?:     number | undefined;
   email:         string;
   fechaRegistro: Date;
-  imagen:        string;
+  imagen?:        string;
   password:      string;
   username:      string;
   plan:          Plan;
@@ -57,3 +58,4 @@ export interface Comentario {
   receta:           Receta;
   usuario:          Usuario;
 }
+

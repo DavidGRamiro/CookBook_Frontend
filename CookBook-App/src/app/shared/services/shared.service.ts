@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
-import { Ingrediente } from '../interfaces/share.interface';
+import { Ingrediente, RecetasConIngrediente } from '../interfaces/share.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -18,5 +18,12 @@ export class SharedService {
   obtenerTodos(): Observable<Ingrediente[]> {
     const url = `${ this.endPoint }${ this.common }/ingredientes`;
     return this._http.get<Ingrediente[]>(url)
+  }
+
+  // Da de alta un RecetasConIngrediente en la BBDD
+  altaRecetaConIngrediente( RecetasConIngrediente: RecetasConIngrediente ): Observable<RecetasConIngrediente>{
+    const url = `${ this.endPoint }/ingredientes/altaIngredienteEnReceta`
+    console.log(RecetasConIngrediente);
+    return this._http.post<RecetasConIngrediente>(url,RecetasConIngrediente);
   }
 }

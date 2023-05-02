@@ -33,7 +33,7 @@ export class PerfilComponent implements OnInit{
           .pipe(
             switchMap( ({ idUsuario } )=>
             this._usuarioService.getUserById(idUsuario)))
-          .subscribe( response => this.usuario = response);
+          // .subscribe( response => this.usuario = response);
     //Recuperamos las recetas favoritas del usuario.
     this._activatedRoute.params.pipe(
       switchMap( ({ idUsuario } )=>

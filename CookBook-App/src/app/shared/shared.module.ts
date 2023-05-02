@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { SharedRoutingModule } from './shared-routing.module';
 import { PrimeNGModule } from '../library/prime-ng/prime-ng.module';
+import { DropdownModule } from 'primeng/dropdown';
 
 import { MainComponent } from './pages/main/main.component';
 import { NavbarComponent } from './pages/navbar/navbar.component';
@@ -12,6 +13,8 @@ import { MenuComponent } from './pages/menu/menu.component';
 import { TarjetaComponent } from './components/tarjeta/tarjeta.component';
 import { TarjetaCategoriaComponent } from './components/tarjeta-categoria/tarjeta-categoria.component';
 import { FomularioRecetaComponent } from './components/fomulario-receta/fomulario-receta.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormularioRecipeComponent } from './components/formulario-recipe/formulario-recipe.component';
 
 
 @NgModule({
@@ -23,12 +26,16 @@ import { FomularioRecetaComponent } from './components/fomulario-receta/fomulari
     MenuComponent,
     TarjetaComponent,
     TarjetaCategoriaComponent,
-    FomularioRecetaComponent
+    FomularioRecetaComponent,
+    FormularioRecipeComponent
   ],
   imports: [
     CommonModule,
     SharedRoutingModule,
     PrimeNGModule,
+    FormsModule,
+    ReactiveFormsModule,
+    DropdownModule
   ],
   exports:[
     NavbarComponent,
