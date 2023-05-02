@@ -13,23 +13,28 @@
       <h2 class ="fw-bold text-center py-5">Bienvenido a CookBook</h2>
 
       <!-- Formulario de login -->
-      <form [formGroup]="formLogin" id="formularioLogin" (ngSubmit)="validarUsuario()">
+      <form [formGroup]="formLogin" id="formularioLogin" (ngSubmit)="validarUsuario()" autocomplete="off">
 
         <div class="mb-4">
           <label for="email" class ="form-label"> Correo electrónico</label>
           <input type="email" class ="form-control bg-warning-subtle border-warning" name="Email" formControlName="email">
+            <span *ngIf="validarCampo('email')"
+                  class ="form-text text-danger  ">
+              Introduce un email válido
+            </span>
         </div>
         <div class="mb-4">
           <label for="password" class ="form-label"> Contraseña</label>
-          <input type="password" class ="form-control bg-warning-subtle border-warning" name="Contraseña" formControlName="password">
+          <input type="password" class ="form-control bg-warning-subtle border-warning" name="Contraseña" formControlName="password" >
+            <span class ="form-text text-danger" *ngIf="validarCampo('password')">
+              La contraseña es obligatoria
+            </span>
+            <span class ="form-text text-danger" *ngIf="login == false">
+              Contraseña incorrecta
+            </span>
         </div>
-        <div class="mb-4 form-check">
-          <input type="checkbox" name="terminos" class ="form-check-input">
-          <label for="terminos" class ="form-check-label">Términos y condiciones</label>
-        </div>
-
         <!-- Para el boton de submit -->
-        <div class="d-grid">
+        <div class="d-grid m-5">
           <button type ="submit" class="btn btn-custom" id="submit">Iniciar sesión</button>
         </div>
 
@@ -76,7 +81,3 @@
     </div>
   </div>
 </div>
-
-
-
-
