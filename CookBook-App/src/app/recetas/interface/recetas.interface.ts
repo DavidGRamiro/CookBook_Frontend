@@ -16,7 +16,7 @@ export interface Receta {
   instrucciones:          string;
   nombre:                 string;
   proteinas:              number;
-  tiempoCoccion:          number | null;
+  tiempoCoccion:          number;
   tiempoPreparacion:      number;
   recetasConIngredientes: RecetasConIngrediente[];
   usuario:                Usuario;
@@ -27,6 +27,7 @@ export interface RecetasConIngrediente {
   cantidad?:            number;
   unidadMedida?:        string;
   ingrediente:          Ingrediente;
+  receta:               Receta;
 }
 
 export interface Ingrediente {

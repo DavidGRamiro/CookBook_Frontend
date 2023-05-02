@@ -1,16 +1,6 @@
-
-<!--
-<div class="containner m-6 " >
-  <h2 class ="text-center mb-3">Listado de todas las recetas disponibles</h2>
-  <app-tabla [columnas]="cols" [data]="datos"></app-tabla>
-</div> -->
-
-  <!-- <div  class="d-flex justify-content-around mt-6 mx-1"> -->
-
-<div class ="mx-auto d-flex justify-content-around m-5">
+<h1 class="titulo-seccion">Todas las recetas</h1>
+<div class ="contenedor d-flex flex-wrap justify-content-center">
     <div *ngFor="let receta of datos">
         <app-tarjeta [receta]="receta"></app-tarjeta>
     </div>
   </div>
-
-

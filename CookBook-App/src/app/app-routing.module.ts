@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { FomularioRecetaComponent } from './shared/components/fomulario-receta/fomulario-receta.component';
+import { FormularioRecipeComponent } from './shared/components/formulario-recipe/formulario-recipe.component';
 
 // Aquí gestionaremos las llamadas a las rutas hijas por lazyload.
 // Este archivo es el que va a gestionar las rutas padres sobre las hijas.
@@ -10,14 +11,14 @@ import { FomularioRecetaComponent } from './shared/components/fomulario-receta/f
 // entra por vacío, y hara un redirect a login. Si pone algo, por ejemplo auth/ registro, le llevara al componente de registro.
 
 const routes: Routes = [
-  { path: 'home', loadChildren: () => import('./shared/shared.module').then(m => m.SharedModule) },
+  { path: 'home', loadChildren: () => import('./home/home.module').then(m => m.HomeModule) },
   { path: 'auth', loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule) },
   { path: 'recetas', loadChildren: () => import('./recetas/recetas.module').then(m => m.RecetasModule) },
   { path: 'user', loadChildren: () => import('./usuario/usuario.module').then(m => m.UsuarioModule) },
   { path: 'planes', loadChildren: () => import('./planes/planes.module').then(m => m.PlanesModule) },
   { path: 'about', loadChildren: () => import('./about/about.module').then(m => m.AboutModule) },
   { path: 'categorias', loadChildren: () => import('./categorias/categorias.module').then(m => m.CategoriasModule)},
-  { path: 'alta', component: FomularioRecetaComponent },
+  { path: 'alta', component: FormularioRecipeComponent},
   { path: '**', redirectTo: 'home' }
 ];
 

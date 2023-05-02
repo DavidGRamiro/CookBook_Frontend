@@ -1,3 +1,104 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap');
+
 img {
-  width:100%;
+width: 100%;
+height: 225px; /* ajusta el valor de acuerdo a tus necesidades */
+object-fit: cover;
+border-radius: 1rem 1rem 0 0;
 }
+
+.container{
+  padding: 1rem;
+  display: flex;
+  justify-content: center;
+}
+.col-md-4 {
+  display: flex;
+  align-items: center;
+}
+
+::ng-deep .p-card .p-card-body{
+  padding: 0.5rem 1rem;
+}
+
+::ng-deep .p-card .p-card-title{
+  text-align: left;
+  font-family: 'Open Sans';
+  font-weight: bold;
+  font-size: 22px;
+  margin: 0 0 0.5rem 0;
+  max-height: 75px;
+}
+/*::ng-deep p{
+  font-family: 'Open Sans', sans-serif;
+  font-size: 14px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  max-width: 200px;
+}*/
+
+.icon-container {
+  position: relative;
+  display: flex;
+  width: 0;
+  height: 0;
+  bottom: 220px;
+  left: 235px;
+  font-size: 20px;
+  color: #FFC10D;
+  flex-direction: row;
+  align-items: baseline;
+}
+.icon-container i {
+  color: #FFC10D;
+}
+
+.icon-container .time {
+  margin-left: 4px;
+}
+::ng-deep .p-card .p-card-content{
+  padding: 0px;
+}
+
+.avatar-container {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  overflow: hidden;
+  }
+
+  .avatar {
+  width: 100%;
+  height: auto;
+  }
+
+  .header-container {
+  display: flex;
+  justify-content: flex-start;
+  align-items: baseline;
+  gap: 0.5rem;
+  }
+
+  .header-info {
+  display: flex;
+  flex-direction: column;
+  }
+
+  .username {
+  font-size: 14px;
+  color: #999;
+  }
+
+  .recipe-image {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 0 0 1rem 1rem;
+  }
+
+
+
+
