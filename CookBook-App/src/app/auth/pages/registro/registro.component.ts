@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
-import { FormBuilder, Validators } from '@angular/forms';
+import { CheckboxRequiredValidator, FormBuilder, Validators } from '@angular/forms';
 import { Usuario } from '../../interface/auth.interface';
 import { Router } from '@angular/router';
+import { ValidatorService } from '../../services/validator.service';
 
 @Component({
   selector: 'app-registro',
@@ -15,20 +16,30 @@ export class RegistroComponent implements OnInit {
 
   formRegistro = this._fb.group(
     {
-      username: ['', [Validators.required]],
-      email: ['', [Validators.required, Validators.email]],
+      username: ['David', [Validators.required, Validators.pattern(this._validatorService.firstNameAndLastnamePattern) ]],
+      email: ['', [Validators.required, Validators.pattern(this._validatorService.emailPattern)]],
       password: ['', [Validators.required]],
+      password2: ['', [Validators.required]],
+      terminos: [ ,[Validators.required]],
+      privacidad: [ ,[Validators.required]]
     }
   )
 
-  constructor( private _authService: AuthService,
+  constructor(private _authService: AuthService,
               private _fb : FormBuilder,
-              private _router: Router) { }
+              private _router: Router,
+              private _validatorService: ValidatorService) { }
 
   ngOnInit(): void {
   }
 
+  campoValido(campo : string){
+    this._validatorService.campoValido(this.formRegistro, campo);
+  }
+
   procesarRegistro(){
+
+    this.formRegistro.markAllAsTouched();
 
     if(this.formRegistro.valid){
       this._authService.altaUsuario({

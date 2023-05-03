@@ -17,7 +17,7 @@ export interface Receta {
   nombre:    string;
   descripcion: string;
   tiempoPreparacion: number | undefined;
-  tiempoCoccion: number | undefined;
+  tiempoCoccion: number | null;
   instrucciones: string;
   usuario: Usuario;
 }
