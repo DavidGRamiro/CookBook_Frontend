@@ -1,6 +1,9 @@
-<!--<div class ="row mt-3">
-  <div class="col-md-3" *ngFor="let receta of datos">
+<router-outlet></router-outlet>
+
+
+<h1 class="titulo-seccion">{{categoria}}</h1>
+<div class ="contenedor d-flex flex-wrap justify-content-center">
+  <div *ngFor="let receta of datos">
       <app-tarjeta [receta]="receta"></app-tarjeta>
   </div>
 </div>
--->

@@ -25,8 +25,6 @@ export class VerUnaComponent implements OnInit {
                         .pipe(
                           switchMap( ({ id }) => this._recetasService.obtenerUnaReceta(id)))
                           .subscribe( response => this.receta = response)
-
-
   }
 
   constructor( private _recetasService: RecetasService,

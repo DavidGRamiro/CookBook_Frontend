@@ -9,8 +9,8 @@ import { CategoriasService } from '../../services/categorias.service';
 })
 export class VerTodasComponent implements OnInit {
 
-  categoriaRecibida! : Categoria;
-  categorias!: Categoria[];
+  public datos!: Categoria[];
+
   //Todo lo que metamos aqui, la primera vez que se cargue el componente
   ngOnInit(): void {
     this.loquesea();
@@ -22,8 +22,7 @@ export class VerTodasComponent implements OnInit {
   loquesea(){
     this._categoriasService.getTodasCategorias()
     .subscribe(response =>{
-      this.categorias = response
-      console.table(this.categorias)
+      this.datos = response
     }
       )
   }

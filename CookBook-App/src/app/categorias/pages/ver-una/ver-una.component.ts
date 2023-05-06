@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
-import { Categoria } from '../../interfaces/categorias.interface';
+import { Receta } from '../../interfaces/categorias.interface';
 import { CategoriasService } from '../../services/categorias.service';
 import { ActivatedRoute } from '@angular/router';
+import { switchMap } from 'rxjs';
 
 @Component({
   selector: 'app-ver-una',
@@ -10,27 +11,25 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class VerUnaComponent {
 
-  public datos!: Categoria;
+  public datos!: Receta[];
   public categoria!: string;
 
   constructor(private _categoriaService: CategoriasService,
-    private _ruta: ActivatedRoute) {   }
+              private _activatedRoute: ActivatedRoute) {   }
 
   ngOnInit(): void {
-    this._ruta.params.subscribe( params => {
-      this.categoria = params['get']('id');
-      this.obtenerUna(this.categoria);
-    }
+      this._activatedRoute.params
+      .pipe(
+        switchMap( ({ categoria }) =>
+        this._categoriaService.getRecetasPorCategoria(categoria)))
+        .subscribe( response => this.datos = response);
 
-    );
+        this._activatedRoute.params
+        .subscribe( ({ categoria }) => this.categoria = this.capitalizeFirstLetter(categoria));
 
-  }
+      }
 
-  obtenerUna(idCategoria: string){
-    this._categoriaService.getUna(+idCategoria).subscribe( res => {
-      this.datos = res;
-    });
-  }
-
-
+      capitalizeFirstLetter(str: string): string {
+        return str.charAt(0).toUpperCase() + str.slice(1).toLowerCase();
+      }
 }

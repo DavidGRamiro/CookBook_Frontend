@@ -1,11 +1,11 @@
-
+<app-navbar></app-navbar>
 <div class="container mt-5 mb-5">
 
   <div class="row justify-content-center">
     <div class="col-sm mx-auto text-center">
       <h4 class ="m-4">{{ receta.descripcion }}</h4>
       <div class="mx-auto">
-        <img [src]= receta.imagen style="width: 80%;" >
+        <img [src]= receta.imagen style="width: 80%;" alt="receta">
       </div>
       <div class ="mt-2" style="display: flex; justify-content: flex-end;">
         <p-button icon="pi pi-bookmark"  (click)="addFav()" styleClass="p-button-rounded p-button-warning p-button-outlined"></p-button>

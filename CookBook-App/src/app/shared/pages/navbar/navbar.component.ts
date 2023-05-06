@@ -1,5 +1,8 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { MenuItem } from 'primeng/api';
+import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { MenuItem, MessageService } from 'primeng/api';
+import { Usuario } from 'src/app/auth/interface/auth.interface';
+import { ValidatorService } from 'src/app/auth/services/validator.service';
 
 @Component({
   selector: 'app-navbar',
@@ -9,50 +12,88 @@ import { MenuItem } from 'primeng/api';
 export class NavbarComponent implements OnInit {
 
 
-  @Input() loggin!: boolean;
+  public isLoggedIn: boolean =false;
+  public usuarioLogueado : Usuario = {
+    username: '',
+    password: '',
+    email: '',
+    idUsuario: 0,
+    imagen: '',
+  }
+
+  items!: MenuItem[];
+
+  ngOnInit(): void {
+  }
+
+  constructor(private _validator: ValidatorService,
+              private _msg : MessageService,
+              private _router: Router) {
+
+    this._validator.isLoggedIn$.subscribe( data => {
+      this.isLoggedIn = data
+    })
+
+    this.isLoggedIn = localStorage.getItem('isLoggedIn') === 'true' ? true : false;
+
+    if(localStorage.getItem('user') != null){
+      const userString = localStorage.getItem('user');
+      if(userString != null){
+        this.usuarioLogueado = JSON.parse(userString)
+      }
+
+
+    }
+  }
 
   public menuItems: MenuItem[] = [
     {
       label: 'Recetas',
       items: [
-        { label: 'Desayunos', routerLink: 'recetas/desayunos' },
-        { label: 'Comidas', routerLink: 'recetas/comidas' },
-        { label: 'Cenas', routerLink: 'recetas/cenas' },
-        { label: 'Vegano', routerLink: 'recetas/veganos' },
-        { label: 'Para niños', routerLink: 'recetas/ninios' },
-        { label: 'Alérgenos', routerLink: 'recetas/alergenos' },
-        { label: 'Categorias', routerLink: 'categorias/todas' },
-        { label: 'Todas las recetas', routerLink: 'recetas/todas' },
+        { label: 'Categorias', routerLink: '/categorias/todas' },
+        { label: 'Todas las recetas', routerLink: '/recetas/todas' },
       ]
     },
     {
-      label: 'Planes de alimentación',
+      label: 'Planes',
       items: [
-        { label: 'Perder peso', routerLink: 'planes/perdida' },
-        { label: 'Ganar peso', routerLink: 'planes/ganar' },
-        { label: 'Saludable', routerLink: 'planes/saludable' }
+        { label: 'Todos los planes', routerLink: '/planes/todos'}
       ]
     },
     {
       label: 'Acerca de',
       items: [
-        { label: 'Quiénes somos', routerLink: 'about' },
-        { label: 'FAQs', routerLink: 'about/faqs' },
-        { label: 'Contacto', routerLink: 'about/contacto' }
+        { label: 'Quiénes somos', routerLink: '/about' },
+        { label: 'FAQs', routerLink: '/about/faqs' },
+        { label: 'Contacto', routerLink: '/about/contacto' }
       ]
     },
     {
       label: 'Perfil',
       items: [
-        { label: 'Mi perfil', routerLink: 'user' },
-        { label: 'Notificaciones', routerLink: 'user/notificaciones' }
+        { label: 'Mi perfil', routerLink: '/user' },
+        { label: 'Notificaciones', routerLink: '/user/notificaciones' }
       ]
+    },
+    {
+      label: 'Subir receta' , routerLink: '/alta'
     }
   ]
 
-  constructor() { }
+  navegarPerfil(){
+    this._router.navigateByUrl("/user/perfil")
 
-  ngOnInit(): void {
+  }
+
+  cerrarSesion(){
+    localStorage.removeItem('isLoggedIn');
+    localStorage.removeItem('user');
+    this._router.navigateByUrl("/home")
+  }
+
+  // FIXME: No funciona el mensaje que quiero mostrar para la confirmación de cerrar sesión.
+  showMensaje() {
+    this._msg.add({ severity: 'info', summary: 'Cerrar sesión', detail: '¿Estás seguro de que quieres cerrar sesión?', sticky: true });
   }
 
 }

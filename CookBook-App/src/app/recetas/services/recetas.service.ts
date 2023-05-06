@@ -53,4 +53,10 @@ export class RecetasService {
     const params = new HttpParams().set('idReceta', id)
     return this._http.get<Comentario[]>(url, { params })
   }
+
+  // Da de alta una receta.
+  altaReceta( receta: Receta ): Observable<Receta>{
+    const url = `${ this.endPoint }${ this.common }/alta`
+    return this._http.post<Receta>(url,receta);
+  }
 }

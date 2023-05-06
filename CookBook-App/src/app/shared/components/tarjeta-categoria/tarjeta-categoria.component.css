@@ -1,9 +1,14 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap');
+
 ::ng-deep .p-card .p-card-content{
   padding: 0;
 }
 
 ::ng-deep .p-card-title{
   text-align: center;
+  font-family: 'Open Sans';
+  font-weight: bold;
+  font-size: 20px;
 }
 
 img {
@@ -11,4 +16,8 @@ img {
   width: 100%;
   object-fit: cover;
   border-radius: 1rem 1rem 0 0;
+}
+
+.container{
+  padding: 1rem;
 }

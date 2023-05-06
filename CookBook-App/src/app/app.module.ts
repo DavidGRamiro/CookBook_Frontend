@@ -12,6 +12,9 @@ import { RecetasModule } from './recetas/recetas.module';
 import { UsuarioModule } from './usuario/usuario.module';
 import { PlanesModule } from './planes/planes.module';
 import { CategoriasModule } from './categorias/categorias.module';
+import { HomeModule } from './home/home.module';
+import { HomeRoutingModule } from './home/home-routing.module';
+import { MessageService } from 'primeng/api';
 
 @NgModule({
   declarations: [
@@ -30,9 +33,11 @@ import { CategoriasModule } from './categorias/categorias.module';
     PlanesModule,
     RecetasModule,
     UsuarioModule,
-    CategoriasModule
+    CategoriasModule,
+    HomeModule,
+    HomeRoutingModule
   ],
-  providers: [],
+  providers: [MessageService],
   bootstrap: [AppComponent]
 })
 

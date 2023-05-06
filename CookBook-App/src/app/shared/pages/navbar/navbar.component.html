@@ -5,14 +5,21 @@
       <!-- FIXME: -->
       <!-- <img src="assets\images\CB.png" height="50" width="50" class="mr-2" /> -->
     </ng-template>
-    <ng-template pTemplate="end">
-      <div *ngIf="loggin == true; else noLogueado">
-        <h2>Bienvenido</h2>
+    <ng-template pTemplate="end" *ngIf="isLoggedIn; else noLogueado">
+      <div class="row">
+        <div class="col">
+          <p-button icon="pi pi-sign-out"
+                    styleClass="p-button-rounded p-button-danger p-button-outlined"
+                    (click)="cerrarSesion()"
+                    [style]="{'cursor': 'pointer'}"></p-button><br>
+        </div>
+        <div class="col">
+          <p-avatar image="{{ usuarioLogueado.imagen }}" styleClass="mr-2" size="large" shape="circle" (click) ="navegarPerfil()"></p-avatar>
+        </div>
       </div>
-      <ng-template #noLogueado>
-        <p-button label="Inicar sesión" styleClass="p-button p-button-rounded success" icon="pi pi-user" routerLink="auth/login"></p-button>
-      </ng-template>
+    </ng-template>
+    <ng-template #noLogueado>
+      <p-button label="Login" styleClass="p-button p-button-rounded success" icon="pi pi-user" routerLink="/auth/login"></p-button>
     </ng-template>
   </p-menubar>
 </div>
-

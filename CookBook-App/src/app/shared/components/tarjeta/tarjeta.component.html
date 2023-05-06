@@ -1,14 +1,25 @@
-
-<p-card header="{{ receta.nombre }}" subheader="{{ receta.usuario.username }}" [style]="{ width: '300px', height:'480px'}">
-  <ng-template pTemplate="header">
-    <img [src] =receta.imagen style="width:100%">
-  </ng-template>
-    <p>
-      {{ receta.descripcion }}
-    </p>
-<!-- <ng-template pTemplate="footer"> -->
-    <p-button label="Ver receta" icon="pi pi-check" [routerLink]="['/recetas', receta.idReceta]"></p-button>
-<!-- </ng-template> -->
-</p-card>
+<div class ="container">
+  <div class ="row">
+    <div class ="col-md-4">
+      <p-card header="{{ receta.nombre }}" [style]="{ width: '300px', 'max-height':'350px','border-radius': '1rem'}">
+        <ng-template pTemplate="header">
+            <a [routerLink]="['/recetas', receta.idReceta]">
+              <img [src] =receta.imagen alt={{receta.nombre}}/>
+            </a>
+            <div class="icon-container">
+              <i class="fas fa-clock"></i>
+              <p class="time">{{ tiempoTotal }}'</p>
+            </div>
+            </ng-template>
+            <div class="header-container">
+              <div class="avatar-container">
+                <img [src] =receta.usuario.imagen alt={{receta.usuario.username}} class="avatar"/>
+              </div>
+              <p class="username">{{ receta.usuario.username }}</p>
+            </div>
+      </p-card>
+    </div>
+  </div>
+</div>
 
 
