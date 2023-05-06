@@ -6,7 +6,9 @@ import { HomeRoutingModule } from './home-routing.module';
 import { FeaturedComponent } from './components/featured/featured.component';
 import { ObjetivosComponent } from './components/objetivos/objetivos.component';
 import { AcercaComponent } from './components/acerca/acerca.component';
-import { ButtonModule } from 'primeng/button';
+import { PrimeNGModule } from '../library/prime-ng/prime-ng.module';
+import { SharedModule } from '../shared/shared.module';
+
 
 
 
@@ -21,7 +23,9 @@ import { ButtonModule } from 'primeng/button';
   imports: [
     CommonModule,
     HomeRoutingModule,
-    ButtonModule
+    // Componentes de PrimeNG
+    PrimeNGModule,
+    SharedModule
   ],
   exports:[
     IndexComponent

@@ -14,6 +14,7 @@ import { PlanesModule } from './planes/planes.module';
 import { CategoriasModule } from './categorias/categorias.module';
 import { HomeModule } from './home/home.module';
 import { HomeRoutingModule } from './home/home-routing.module';
+import { MessageService } from 'primeng/api';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,7 @@ import { HomeRoutingModule } from './home/home-routing.module';
     HomeModule,
     HomeRoutingModule
   ],
-  providers: [],
+  providers: [MessageService],
   bootstrap: [AppComponent]
 })
 

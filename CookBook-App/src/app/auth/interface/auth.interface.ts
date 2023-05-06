@@ -4,7 +4,8 @@ export interface Usuario {
   fechaRegistro?: Date;
   password:       string | null | undefined;
   username?:      string | null | undefined;
-  plan?: Plan
+  plan?: Plan,
+  imagen?: string | null | undefined
 
 }
 
