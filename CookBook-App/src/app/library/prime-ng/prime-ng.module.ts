@@ -12,6 +12,9 @@ import { TableModule } from 'primeng/table';
 import { RatingModule } from 'primeng/rating';
 import { MultiSelectModule } from 'primeng/multiselect';
 import { MessagesModule } from 'primeng/messages';
+import { DropdownModule } from 'primeng/dropdown';
+import { SpeedDialModule } from 'primeng/speeddial';
+import { AvatarModule } from 'primeng/avatar';
 
 @NgModule({
   exports: [
@@ -26,7 +29,11 @@ import { MessagesModule } from 'primeng/messages';
     TableModule,
     RatingModule,
     MultiSelectModule,
-    MessagesModule
+    MessagesModule,
+    DropdownModule,
+    SpeedDialModule,
+    AvatarModule
+
 
   ]
 })

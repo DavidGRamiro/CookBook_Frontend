@@ -1,8 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
 import { Usuario } from '../../interface/auth.interface';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { MessageService } from 'primeng/api';
 import { Router } from '@angular/router';
 import { ValidatorService } from '../../services/validator.service';
 
@@ -13,9 +12,8 @@ import { ValidatorService } from '../../services/validator.service';
 })
 export class LoginComponent implements OnInit {
 
+  isLoggedIn : boolean = false;
   login! : boolean;
-  loading: boolean = false;
-  //La respuesta de nuestras peticiones la almacenamos en este objeto.
   usuarioRecibido! : Usuario;
   password!: string;
 
@@ -32,17 +30,17 @@ export class LoginComponent implements OnInit {
               private _router: Router,
               private _validator: ValidatorService) { }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
+  //Método de validación de campos cumplementados.
   validarCampo( campo: string ) {
     return this._validator.campoValido(this.formLogin, campo)
   }
 
 
+
   //Validacion del usuario introducido con los que tenemos en BBDD
   validarUsuario(){
-
     this.formLogin.markAllAsTouched();
 
     if(this.formLogin.valid){
@@ -51,7 +49,16 @@ export class LoginComponent implements OnInit {
         password: this.formLogin.value.password
         }).subscribe( res =>{
                 this.usuarioRecibido = res;
+                //Variable para mostrar el mensaje de error en el los inputs de login
                 this.login = true;
+                // Variable asociada al servicio de validaciones para saber si se ha logueado
+                this.isLoggedIn = true;
+                this._validator.setLoggedIn(this.isLoggedIn)
+                // Almacenamos la variable en el localStorage, para que si se recarga el navegador siga conectado
+                // Tambien almacenamos el objeto usuario para poder acceder a sus datos en cualquier momento
+                localStorage.setItem('isLoggedIn', JSON.stringify(this.isLoggedIn));
+                localStorage.setItem('user', JSON.stringify(this.usuarioRecibido))
+                // Navegamos a la pagina principal si el loggin es correcto.
                 this._router.navigateByUrl("/home")
           },
           err => {

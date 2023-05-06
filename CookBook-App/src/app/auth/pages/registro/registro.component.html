@@ -12,60 +12,81 @@
       <h2 class ="fw-bold text-center py-5">Forma parte de CookBook</h2>
 
       <!-- Formulario de login -->
-      <form [formGroup]="formRegistro" id="formularioRegistro" (ngSubmit)="procesarRegistro()">
+      <form [formGroup]="formRegistro" id="formularioRegistro">
 
-        <div class="mb-4">
-          <label for="username" class ="form-label">Nombre completo</label>
+        <div class="mb-2">
+          <label for="username" class ="form-label">Nombre y apellido</label>
           <input type="text" class ="form-control bg-warning-subtle border-warning" name="username" formControlName="username">
-          <span class ="text text-danger" *ngIf="campoValido('username')">
-            Error
+          <span class ="form-text text-danger " *ngIf="campoValido('username')">
+            Nombre y apellidos no tiene formato válido
           </span>
         </div>
-        <div class="mb-4">
+        <div class="mb-2">
           <label for="email" class ="form-label"> Correo electrónico</label>
           <input type="email" class ="form-control bg-warning-subtle border-warning" name="Email" formControlName="email">
           <span *ngIf="campoValido('email')"
-                  class ="form-text text-danger  ">
+                  class ="form-text text-danger">
               Introduce un email válido
             </span>
+            <span *ngIf="emailUtilizado == true"
+                  class ="form-text text-danger">
+              Este email ya está en uso.
+            </span>
         </div>
-        <div class="mb-4">
+        <div class="mb-2">
           <label for="password" class ="form-label"> Contraseña</label>
-          <input type="password" class ="form-control bg-warning-subtle border-warning" name="Contraseña" formControlName="password">
+          <p-password [style]="{'width':'100%'}" [inputStyle]="{'width':'100%', 'background-color':'#fff3cd', 'border-radius':'7px'}" [toggleMask]="true" formControlName="password">
+            <ng-template pTemplate="header">
+                <h6>Elige una contraseña</h6>
+            </ng-template>
+            <ng-template pTemplate="footer">
+                <p-divider></p-divider>
+                <p class="mt-2">Sugerencias</p>
+                <ul class="pl-2 ml-2 mt-0" style="line-height: 1.5">
+                    <li>Al menos una letra mayúscula.</li>
+                    <li>Al menos un caracter especial.</li>
+                    <li>Incluye al menos un número.</li>
+                    <li>Mínimo 8 carácteres.</li>
+                </ul>
+            </ng-template>
+        </p-password>
+        <span class ="form-text text-danger " *ngIf="campoValido('password')">
+          La contraseña es obligatoria.
+        </span>
         </div>
-        <div class="mb-4">
-          <label for="password" class ="form-label">Confirmar contraseña</label>
-          <input type="password" class ="form-control bg-warning-subtle border-warning" name="Contraseña" formControlName="password2">
+        <div class="mb-2">
+          <label for="password" class ="form-label">Confirmar contraseña</label><br>
+          <p-password  [style]="{'width':'100%'}" [inputStyle]="{'width':'100%', 'background-color':'#fff3cd', 'border-radius':'7px'}"  [feedback]="false" [toggleMask]="true" formControlName="password2"></p-password>
+          <span class ="form-text text-danger " *ngIf="passwordCoinciden == false">
+            Las constraseñas no coinciden.
+          </span>
         </div>
         <div class="row">
           <div class="col">
-            <div class="mb-4 form-check">
+            <div class="mb-2 form-check">
               <input type="checkbox" name="terminos" class ="form-check-input" formControlName="terminos">
               <label for="terminos" class ="form-check-label">Términos y condiciones</label>
+              <span class ="form-text text-danger " *ngIf="campoValido('terminos')">
+                Debes aceptar términos y condiciones.
+              </span>
             </div>
           </div>
           <div class="col">
-            <div class="mb-4 form-check">
+            <div class="mb-2 form-check">
               <input type="checkbox" name="terminos" class ="form-check-input" formControlName="privacidad">
               <label for="terminos" class ="form-check-label">Política de privacidad</label>
+              <span class ="form-text text-danger " *ngIf="campoValido('privacidad')">
+                Debes aceptar la politica de privacidad.
+              </span>
             </div>
           </div>
         </div>
 
         <!-- Para el boton de submit -->
         <div class="d-grid">
-          <button type ="submit" class="btn btn-custom mb-5" id="submit">Registrarme</button>
+          <button type ="submit" (click)="procesarRegistro()" (click)="verificarEmailRepetido()" class="btn btn-custom mb-5" id="submit">Registrarme</button>
         </div>
       </form>
     </div>
   </div>
 </div>
-
-
-
-<h4>Formulario Valido</h4>
-<pre>{{ formRegistro.valid | json }}</pre>
-<h4>Estado Formulario</h4>
-<pre>{{ formRegistro.status | json }}</pre>
-<h4>Nombre</h4>
-<pre>{{ formRegistro.controls['username'].errors  | json}}</pre>
