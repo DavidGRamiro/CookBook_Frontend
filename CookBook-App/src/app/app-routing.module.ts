@@ -1,6 +1,5 @@
-import { NgModule } from '@angular/core';
+import { Component, NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { FomularioRecetaComponent } from './shared/components/fomulario-receta/fomulario-receta.component';
 import { FormularioRecipeComponent } from './shared/components/formulario-recipe/formulario-recipe.component';
 
 // Aquí gestionaremos las llamadas a las rutas hijas por lazyload.

@@ -13,7 +13,7 @@
       <h2 class ="fw-bold text-center py-5">Bienvenido a CookBook</h2>
 
       <!-- Formulario de login -->
-      <form [formGroup]="formLogin" id="formularioLogin" (ngSubmit)="validarUsuario()" autocomplete="off">
+      <form [formGroup]="formLogin" id="formularioLogin" autocomplete="off">
 
         <div class="mb-4">
           <label for="email" class ="form-label"> Correo electrónico</label>
@@ -35,7 +35,7 @@
         </div>
         <!-- Para el boton de submit -->
         <div class="d-grid m-5">
-          <button type ="submit" class="btn btn-custom" id="submit">Iniciar sesión</button>
+          <button type ="submit" class="btn btn-custom" (click)="validarUsuario()" id="submit">Iniciar sesión</button>
         </div>
 
         <!-- Recuperar contraseña y registro -->

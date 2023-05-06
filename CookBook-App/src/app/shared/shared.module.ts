@@ -12,9 +12,9 @@ import { TablaComponent } from './components/tabla/tabla.component';
 import { MenuComponent } from './pages/menu/menu.component';
 import { TarjetaComponent } from './components/tarjeta/tarjeta.component';
 import { TarjetaCategoriaComponent } from './components/tarjeta-categoria/tarjeta-categoria.component';
-import { FomularioRecetaComponent } from './components/fomulario-receta/fomulario-receta.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FormularioRecipeComponent } from './components/formulario-recipe/formulario-recipe.component';
+import { MessageService } from 'primeng/api';
 
 
 @NgModule({
@@ -26,7 +26,6 @@ import { FormularioRecipeComponent } from './components/formulario-recipe/formul
     MenuComponent,
     TarjetaComponent,
     TarjetaCategoriaComponent,
-    FomularioRecetaComponent,
     FormularioRecipeComponent
   ],
   imports: [
@@ -35,7 +34,6 @@ import { FormularioRecipeComponent } from './components/formulario-recipe/formul
     PrimeNGModule,
     FormsModule,
     ReactiveFormsModule,
-    DropdownModule
   ],
   exports:[
     NavbarComponent,
@@ -45,7 +43,8 @@ import { FormularioRecipeComponent } from './components/formulario-recipe/formul
     MenuComponent,
     TarjetaComponent,
     TarjetaCategoriaComponent,
-    FomularioRecetaComponent
-  ]
+    FormularioRecipeComponent
+  ],
+  providers: [MessageService]
 })
 export class SharedModule { }
