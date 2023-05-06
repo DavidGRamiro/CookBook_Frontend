@@ -1,23 +1,54 @@
-<form [formGroup]="formulario" (ngSubmit)="onSubmit()">
+<form [formGroup]="recetaFormulario" (ngSubmit)="onSubmitReceta()">
   <div class="p-field">
-    <label for="receta">Selecciona una receta</label>
-    <p-dropdown id="receta" formControlName="receta" [options]="recetas" optionLabel="nombre" (onChange)="seleccionarReceta($event.value)"></p-dropdown>
+    <label for="nombre">Nombre</label>
+    <input type="text" id="nombre" formControlName="nombre" class="p-inputtext" />
   </div>
-  <h4>Añadir ingredientes</h4>
   <div class="p-field">
-    <label for="ingrediente">Selecciona un ingrediente</label>
-    <p-dropdown id="ingrediente" formControlName="ingrediente" [options]="ingredientes" optionLabel="nombre" (onChange)="seleccionarIngrediente($event.value)"></p-dropdown>
+    <label for="descripcion">Descripción</label>
+    <input type="text" id="descripcion" formControlName="descripcion" class="p-inputtext" />
   </div>
-  <div *ngIf="ingredienteSeleccionado">
-    <div class="p-field">
-      <label for="cantidad">Cantidad</label>
-      <input type="number" id="cantidad" formControlName="cantidad" class="p-inputtext" />
-    </div>
-    <div class="p-field">
-      <label for="unidadMedida">Unidad de medida</label>
-      <input type="text" id="unidadMedida" formControlName="unidadMedida" class="p-inputtext" />
-    </div>
-    <button type="button" (click)="agregarIngredienteAReceta()">Agregar ingrediente</button>
+  <div class="p-field">
+    <label for="categoria">Categoria</label>
+    <p-dropdown id="categoria" formControlName="categoria" [options]="categorias" optionLabel="nombre" (onChange)="seleccionarCategoria($event.value)"></p-dropdown>
   </div>
-  <button type="submit">Guardar</button>
+  <div class="p-field">
+    <label for="tiempoPreparacion">Tiempo de preparación</label>
+    <input type="number" id="tiempoPreparacion" formControlName="tiempoPreparacion" class="p-inputtext" />
+  </div>
+  <div class="p-field">
+    <label for="tiempoCoccion">Tiempo de cocción</label>
+    <input type="number" id="tiempoCoccion" formControlName="tiempoCoccion" class="p-inputtext" />
+  </div>
+  <div class="p-field">
+    <label for="instrucciones">Instrucciones</label>
+    <input type="text" id="instrucciones" formControlName="instrucciones" class="p-inputtext" />
+  </div>
+
+<button type="button" (click)="guardarReceta()">Guardar Receta</button>
+<button type="submit" (click)="onSubmitReceta()">Enviar a bbdd</button>
 </form>
+
+<button (click)="mostrarFormularioIngredientes()">Añadir ingredientes</button>
+<div *ngIf="mostrarNuevoIngrediente">
+  <form [formGroup]="formulario" (ngSubmit)="onSubmitIngredientes()">
+    <h4>Añadir ingredientes</h4>
+    <div class="p-field">
+      <label for="ingrediente">Selecciona un ingrediente</label>
+      <p-dropdown id="ingrediente" formControlName="ingrediente" [options]="ingredientes" optionLabel="nombre" (onChange)="seleccionarIngrediente($event.value)"></p-dropdown>
+    </div>
+    <div *ngIf="ingredienteSeleccionado">
+      <div class="p-field">
+        <label for="cantidad">Cantidad</label>
+        <input type="number" id="cantidad" formControlName="cantidad" class="p-inputtext" />
+      </div>
+      <div class="p-field">
+        <label for="unidadMedida">Unidad de medida</label>
+        <input type="text" id="unidadMedida" formControlName="unidadMedida" class="p-inputtext" />
+      </div>
+      <button type="button" (click)="agregarIngredienteAReceta()">Agregar ingrediente</button>
+    </div>
+    <button type="button" (click)="agregarTodos()">Guardar Ingredientes</button>
+    <button type="submit" (click)="onSubmitIngredientes()">Enviar a bbdd</button>
+  </form>
+</div>
+

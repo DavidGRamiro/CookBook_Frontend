@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
-import { Ingrediente, RecetasConIngrediente } from '../interfaces/share.interface';
+import { Categoria, Ingrediente, Receta, RecetasConIngrediente } from '../interfaces/share.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -25,5 +25,18 @@ export class SharedService {
     const url = `${ this.endPoint }/ingredientes/altaIngredienteEnReceta`
     console.log(RecetasConIngrediente);
     return this._http.post<RecetasConIngrediente>(url,RecetasConIngrediente);
+  }
+
+  //Obtener todas las categorias
+  obtenerCategorias(): Observable<Categoria[]>{
+    const url = `${ this.endPoint }${ this.common }/categorias`;
+    return this._http.get<Categoria[]>(url);
+  }
+
+
+  // Da de alta una receta.
+  altaReceta( receta: Receta ): Observable<Receta>{
+    const url = `${ this.endPoint }${ this.common }/alta`
+    return this._http.post<Receta>(url,receta);
   }
 }
