@@ -81,7 +81,7 @@ export class NavbarComponent implements OnInit {
   ]
 
   navegarPerfil(){
-    this._router.navigateByUrl("/user/perfil")
+    this._router.navigateByUrl("/user/" + this.usuarioLogueado.idUsuario)
 
   }
 

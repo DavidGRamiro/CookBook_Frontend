@@ -19,6 +19,9 @@ border-radius: 1rem 1rem 0 0;
 
 ::ng-deep .p-card .p-card-body{
   padding: 0.5rem 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 ::ng-deep .p-card .p-card-title{
@@ -54,6 +57,7 @@ border-radius: 1rem 1rem 0 0;
 }
 .icon-container i {
   color: #FFC10D;
+  font-size: 1rem;
 }
 
 .icon-container .time {

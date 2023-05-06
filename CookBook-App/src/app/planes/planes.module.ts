@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { PlanesRoutingModule } from './planes-routing.module';
 import { VerTodosComponent } from './pages/ver-todos/ver-todos.component';
 import { VerUnoComponent } from './pages/ver-uno/ver-uno.component';
+import { SharedModule } from '../shared/shared.module';
 
 
 @NgModule({
@@ -14,6 +15,7 @@ import { VerUnoComponent } from './pages/ver-uno/ver-uno.component';
   imports: [
     CommonModule,
     PlanesRoutingModule,
+    SharedModule
 
   ],
   exports:[
