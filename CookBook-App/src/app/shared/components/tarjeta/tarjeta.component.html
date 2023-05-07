@@ -4,8 +4,15 @@
       <p-card header="{{ receta.nombre }}" [style]="{ width: '300px', 'max-height':'350px','min-height':'350px','border-radius': '1rem'}">
         <ng-template pTemplate="header">
             <a [routerLink]="['/recetas', receta.idReceta]">
-              <img [src] =receta.imagen alt={{receta.nombre}}/>
+              <div class="blur-div"></div>
+              <div class="img-container">
+                <img class="recipe-img" [src] =receta.imagen alt={{receta.nombre}}/>
+              </div>
             </a>
+            <div class="icon-container-ing">
+              <i class="fa fa-carrot"></i>
+              <p class="ingredientes">{{ ingredientes }}</p>
+            </div>
             <div class="icon-container">
               <i class="pi pi-clock" ></i>
               <p class="time">{{ tiempoTotal }}'</p>
@@ -16,6 +23,7 @@
                 <img [src] =receta.usuario.imagen alt={{receta.usuario.username}} class="avatar"/>
               </div>
               <p class="username">{{ receta.usuario.username }}</p>
+
             </div>
       </p-card>
     </div>
