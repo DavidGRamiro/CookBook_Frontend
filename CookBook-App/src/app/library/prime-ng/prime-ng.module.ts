@@ -15,6 +15,7 @@ import { MessagesModule } from 'primeng/messages';
 import { DropdownModule } from 'primeng/dropdown';
 import { SpeedDialModule } from 'primeng/speeddial';
 import { AvatarModule } from 'primeng/avatar';
+import { TabViewModule } from 'primeng/tabview';
 
 @NgModule({
   exports: [
@@ -32,8 +33,9 @@ import { AvatarModule } from 'primeng/avatar';
     MessagesModule,
     DropdownModule,
     SpeedDialModule,
-    AvatarModule
-
+    AvatarModule,
+    TabViewModule
+    
 
   ]
 })

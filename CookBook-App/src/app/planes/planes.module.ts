@@ -5,7 +5,7 @@ import { PlanesRoutingModule } from './planes-routing.module';
 import { VerTodosComponent } from './pages/ver-todos/ver-todos.component';
 import { VerUnoComponent } from './pages/ver-uno/ver-uno.component';
 import { SharedModule } from '../shared/shared.module';
-
+import { PrimeNGModule } from '../library/prime-ng/prime-ng.module';
 
 @NgModule({
   declarations: [
@@ -15,7 +15,8 @@ import { SharedModule } from '../shared/shared.module';
   imports: [
     CommonModule,
     PlanesRoutingModule,
-    SharedModule
+    SharedModule,
+    PrimeNGModule
 
   ],
   exports:[

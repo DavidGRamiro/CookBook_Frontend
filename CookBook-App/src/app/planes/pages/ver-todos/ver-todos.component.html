@@ -2,11 +2,12 @@
 <h1>Planes disponibles</h1>
 
 <div>
-  <ul>
-    <li *ngFor="let items of listaPlanes">
-      <a [routerLink]="items.ruta">{{ items.item }}</a>
-    </li>
-  </ul>
+  <p-tabView>
+    <p-tabPanel *ngFor="let item of listaPlanes" [header]="item.nombre">
+      <p>{{ item.descripcion }}</p>
+      <img [src]="item.imagen">
+    </p-tabPanel>
+  </p-tabView>
 </div>
 
 <app-footer></app-footer>
