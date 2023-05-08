@@ -1,10 +1,39 @@
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap');
-
-img {
-width: 100%;
-height: 225px; /* ajusta el valor de acuerdo a tus necesidades */
-object-fit: cover;
-border-radius: 1rem 1rem 0 0;
+.image-container {
+  position: relative;
+  overflow: hidden;
+}
+.recipe-img {
+  width: 100%;
+  height: 225px; /* ajusta el valor de acuerdo a tus necesidades */
+  object-fit: cover;
+  border-radius: 1rem 1rem 0 0;
+}
+/*.blur-layer::before {
+  position: relative;
+  display: flex;
+  width: 300px;
+  height: 40px;
+  bottom: 225px;
+  /* left: 235px;
+  font-size: 20px;
+  color: #FFC10D;
+  flex-direction: row;
+  align-items: baseline;
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  border-radius: 1rem 1rem 0 0;
+  z-index: 1;
+}
+*/
+.blur-div {
+  position: absolute;
+  height: 40px;
+  width: 300px;
+  background: linear-gradient(rgba(255, 255, 255, 0.612), rgba(255, 255, 255, 0));
+  backdrop-filter: blur(1px);
+  -webkit-backdrop-filter: blur(1px);
+  border-radius: 1rem 1rem 0 0;
 }
 
 .container{
@@ -19,6 +48,9 @@ border-radius: 1rem 1rem 0 0;
 
 ::ng-deep .p-card .p-card-body{
   padding: 0.5rem 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 ::ng-deep .p-card .p-card-title{
@@ -48,14 +80,33 @@ border-radius: 1rem 1rem 0 0;
   bottom: 220px;
   left: 235px;
   font-size: 20px;
-  color: #FFC10D;
+  color: black;
   flex-direction: row;
   align-items: baseline;
 }
-.icon-container i {
-  color: #FFC10D;
+.icon-container-ing{
+  position: relative;
+  display: flex;
+  width: 0;
+  height: 0;
+  bottom: 220px;
+  left:190px;
+  font-size: 20px;
+  color: black;
+  flex-direction: row;
+  align-items: baseline;
 }
-
+.icon-container-ing i{
+  color: black;
+  font-size: 1.10rem;
+}
+.icon-container i {
+  color: black;
+  font-size: 1.10rem;
+}
+.icon-container-ing .ingredientes {
+  margin-left: 4px;
+}
 .icon-container .time {
   margin-left: 4px;
 }
@@ -92,12 +143,9 @@ border-radius: 1rem 1rem 0 0;
   color: #999;
   }
 
-  .recipe-image {
-  width: 100%;
-  height: 200px;
-  object-fit: cover;
-  border-radius: 0 0 1rem 1rem;
-  }
+
+
+
 
 
 

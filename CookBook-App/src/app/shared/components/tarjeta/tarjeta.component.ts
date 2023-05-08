@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Receta } from 'src/app/recetas/interface/recetas.interface';
+import { SharedService } from '../../services/shared.service';
 
 @Component({
   selector: 'app-tarjeta',
@@ -10,6 +11,7 @@ export class TarjetaComponent implements OnInit {
 
   @Input() receta!: Receta;
   tiempoTotal!: number;
+  ingredientes!: number;
 
   // Funcion que calcula el tiempo total de coccion
   calcularTiempoTotal(){
@@ -28,8 +30,20 @@ export class TarjetaComponent implements OnInit {
     }
     return tiempo;
   }
-  constructor() { }
+
+  //Funcion que recoge cuantos ingredientes se necesitan para la receta
+  calcularIngredientes(){
+    // LLamamos al servicio para que nos devuelva el array de ingredientes
+    this._sharedService.obtenerIngredientesDeReceta(this.receta.idReceta).subscribe( response => {
+      this.ingredientes = response.length;
+      console.log(this.receta.nombre);
+      console.log(response);
+    });
+  }
+
+  constructor(private _sharedService: SharedService) { }
   ngOnInit(): void {
       this.tiempoTotal = this.calcularTiempoTotal();
+      this.calcularIngredientes();
   }
 }

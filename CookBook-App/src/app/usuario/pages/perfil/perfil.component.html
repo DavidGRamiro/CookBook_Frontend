@@ -9,7 +9,7 @@
   <div class="datos-usuario">
     <!-- Aquí se muestra el nombre del usuario y el plan contratado -->
     <h3>{{ usuario.username }}</h3>
-    <p>Plan contratado: {{ usuario.plan.nombre }}</p>
+    <p>Plan contratado: {{ usuario?.plan?.nombre }}</p>
   </div>
   <div class="recetas-favoritas">
     <!-- Aquí se muestra la lista de recetas favoritas del usuario -->
@@ -21,3 +21,6 @@
     </ul>
   </div>
 </div>
+
+<app-footer></app-footer>
+
