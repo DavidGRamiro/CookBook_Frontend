@@ -2,9 +2,9 @@
 <div id="main">
 <h1 class="titulo-seccion">Planes disponibles</h1>
 <div class ="contenedor d-flex flex-wrap justify-content-center">
-  <p-card *ngFor="let plan of listaPlanes" [header]="plan.nombre" >
+  <p-card *ngFor="let plan of listaPlanes" [header]="plan.nombre" [style]="{ width: '20em' }">
     <ng-template pTemplate="header">
-        <img alt="Card" [src]="plan.imagen" height="300em" />
+        <img alt="Card" [src]="plan.imagen"  />
         
     </ng-template>
     <p>{{ plan.descripcion }}</p>

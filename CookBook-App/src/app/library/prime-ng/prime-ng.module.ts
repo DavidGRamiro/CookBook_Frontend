@@ -15,7 +15,12 @@ import { MessagesModule } from 'primeng/messages';
 import { DropdownModule } from 'primeng/dropdown';
 import { SpeedDialModule } from 'primeng/speeddial';
 import { AvatarModule } from 'primeng/avatar';
+import { TooltipModule } from 'primeng/tooltip';
+import { TabMenuModule } from 'primeng/tabmenu';
+import { ChipModule } from 'primeng/chip';
 import { TabViewModule } from 'primeng/tabview';
+import { InputNumberModule } from 'primeng/inputnumber';
+import { EditorModule } from 'primeng/editor';
 
 @NgModule({
   exports: [
@@ -34,8 +39,12 @@ import { TabViewModule } from 'primeng/tabview';
     DropdownModule,
     SpeedDialModule,
     AvatarModule,
-    TabViewModule
-    
+    TooltipModule,
+    TabMenuModule,
+    ChipModule,
+    TabViewModule,
+    InputNumberModule,
+    EditorModule
 
   ]
 })

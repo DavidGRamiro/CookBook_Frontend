@@ -14,8 +14,18 @@ export class VerUnaComponent implements OnInit {
 
   public receta!: Receta;
   public comentario!: Comentario[];
-  termino!: number;
-  value: number = 0;
+  // Variables para la modificación de las cantidades
+  carbohidratos! : number;
+  proteinas!: number;
+  grasas!: number;
+  calorias!: number;
+  //Variable para la modificación de las cantidades.
+  cantidad: number = 0;
+
+  instruciones: string[] = [];
+  //Asociada al ngModel del input
+  valor: number = 1;
+
 
   ngOnInit(): void {
 
@@ -24,18 +34,52 @@ export class VerUnaComponent implements OnInit {
     this._activateRoute.params
                         .pipe(
                           switchMap( ({ id }) => this._recetasService.obtenerUnaReceta(id)))
-                          .subscribe( response => this.receta = response)
+                          .subscribe( response => {
+                            this.receta = response
+
+                            if(this.receta != null){
+                              this.dividirCadena()
+                              this.actualizarMacros();
+                            }
+                            })
+
   }
 
   constructor( private _recetasService: RecetasService,
               private _activateRoute : ActivatedRoute,
               private _msg: MessageService ){}
 
-
+  // Obtiene los comentarios de cada receta.
   obtenerComentarios( variable : number){
     this._recetasService.obtenerComentarios(variable).subscribe( response =>{
-      this.comentario = response;
+    return this.comentario = response;
     })
+  }
+
+  //Dividir la cadena en subCadenas referente a las instrucciones de la receta.
+  dividirCadena(){
+    let cadena = this.receta.instrucciones;
+    let subCadena = cadena.split(".")
+    this.instruciones = subCadena;
+  }
+
+  // Función que actualiza los datos de los macronutrientes en función de la cantidad de raciones que se quieran hacer.
+  actualizarMacros(){
+    this.carbohidratos = this.receta.carbohidratos;
+    this.proteinas = this.receta.proteinas;
+    this.grasas = this.receta.grasas;
+    this.calorias = this.receta.calorias;
+
+    this.cantidad = this.receta.recetasConIngredientes[0].cantidad != null ? this.receta.recetasConIngredientes[0].cantidad : 0;
+
+    return [
+
+        this.carbohidratos = Math.round(this.carbohidratos) * this.valor,
+        this.proteinas = Math.round(this.proteinas)* this.valor,
+        this.grasas = Math.round(this.grasas) * this.valor,
+        this.calorias = Math.round(this.calorias) * this.valor,
+        this.cantidad = this.cantidad * this.valor
+      ]
   }
 
   //Funciona para mostrar el mensaje personalizado <p-toast>

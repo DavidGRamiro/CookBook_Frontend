@@ -13,7 +13,7 @@ import { Receta } from 'src/app/recetas/interface/recetas.interface';
 export class VerRecetasComponent implements OnInit {
 
   public recetasPorPlan: Receta[] = [];
-  public idPlan: number = 3;
+  public idPlan! : number;
 
   ngOnInit(): void {
     this.idPlan = this._activateRoute.snapshot.params["idPlan"]

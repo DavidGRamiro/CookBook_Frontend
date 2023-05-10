@@ -9,12 +9,20 @@
       <div class="row">
         <div class="col">
           <p-button icon="pi pi-sign-out"
+                    pTooltip="Cerrar sesión"
+                    [showDelay]="500"
                     styleClass="p-button-rounded p-button-danger p-button-outlined"
                     (click)="cerrarSesion()"
                     [style]="{'cursor': 'pointer'}"></p-button><br>
         </div>
         <div class="col">
-          <p-avatar image="{{ usuarioLogueado.imagen }}" styleClass="mr-2" size="large" shape="circle" (click) ="navegarPerfil()"></p-avatar>
+          <p-avatar image="{{ usuarioLogueado.imagen }}"
+                    pTooltip="Mi perfil"
+                    [showDelay]="500"
+                    styleClass="mr-2"
+                    size="large"
+                    shape="circle"
+                    (click) ="navegarPerfil()"></p-avatar>
         </div>
       </div>
     </ng-template>

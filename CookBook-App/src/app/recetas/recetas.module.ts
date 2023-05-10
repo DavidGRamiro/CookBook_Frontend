@@ -7,6 +7,7 @@ import { VerUnaComponent } from './pages/ver-una/ver-una.component';
 import { SharedModule } from '../shared/shared.module';
 import { PrimeNGModule } from '../library/prime-ng/prime-ng.module';
 import { MessageService } from 'primeng/api';
+import { FormsModule } from '@angular/forms';
 
 
 
@@ -20,7 +21,8 @@ import { MessageService } from 'primeng/api';
     CommonModule,
     RecetasRoutingModule,
     SharedModule,
-    PrimeNGModule
+    PrimeNGModule,
+    FormsModule
 
   ],
   exports:[
