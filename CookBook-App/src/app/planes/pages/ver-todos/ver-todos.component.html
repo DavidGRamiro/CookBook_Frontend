@@ -1,21 +1,16 @@
 <app-navbar></app-navbar>
 <div id="main">
-<h1>Planes disponibles</h1>
+<h1 class="titulo-seccion">Planes disponibles</h1>
+<div class ="contenedor d-flex flex-wrap justify-content-center">
+  <p-card *ngFor="let plan of listaPlanes" [header]="plan.nombre" >
+    <ng-template pTemplate="header">
+        <img alt="Card" [src]="plan.imagen" height="300em" />
+        
+    </ng-template>
+    <p>{{ plan.descripcion }}</p>
+    <p-button [routerLink]="['/planes', plan.id]" label="Ver Recetas"></p-button>
+  </p-card>
 
-<div>
-  <p-tabView>
-    <p-tabPanel *ngFor="let plan of listaPlanes" [header]="plan.nombre">
-      <p>{{ plan.descripcion }}</p>
-      <img [src]="plan.imagen">
-      <br><br>
-      <p-button class ="mt-5 mb-5" label ="Ver recetas recomendadas" (click)="obtenerRecetasPorPlan(plan.id)"></p-button>
-      <div class ="contenedor d-flex flex-wrap justify-content-center">
-        <div *ngFor="let receta of recetasPorPlan">
-          <app-tarjeta [receta]="receta"></app-tarjeta>
-        </div>      
-      </div>
-    </p-tabPanel>
-  </p-tabView>
 </div>
 
 </div>
