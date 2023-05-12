@@ -21,6 +21,8 @@ import { ChipModule } from 'primeng/chip';
 import { TabViewModule } from 'primeng/tabview';
 import { InputNumberModule } from 'primeng/inputnumber';
 import { EditorModule } from 'primeng/editor';
+import { InputTextareaModule } from 'primeng/inputtextarea';
+import { PaginatorModule } from 'primeng/paginator';
 
 @NgModule({
   exports: [
@@ -44,7 +46,9 @@ import { EditorModule } from 'primeng/editor';
     ChipModule,
     TabViewModule,
     InputNumberModule,
-    EditorModule
+    EditorModule,
+    InputTextareaModule,
+    PaginatorModule
 
   ]
 })

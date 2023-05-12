@@ -4,6 +4,8 @@ import { Comentario, Receta } from '../../interface/recetas.interface';
 import { ActivatedRoute } from '@angular/router';
 import { switchMap } from 'rxjs';
 import { MessageService } from 'primeng/api';
+import { Usuario } from 'src/app/auth/interface/auth.interface';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-ver-una',
@@ -14,17 +16,22 @@ export class VerUnaComponent implements OnInit {
 
   public receta!: Receta;
   public comentario!: Comentario[];
+  public usuarioLogueado : Usuario | undefined;
   // Variables para la modificación de las cantidades
   carbohidratos! : number;
   proteinas!: number;
   grasas!: number;
   calorias!: number;
-  //Variable para la modificación de las cantidades.
   cantidad: number = 0;
 
   instruciones: string[] = [];
   //Asociada al ngModel del input
   valor: number = 1;
+
+  //Para la paginacion de los comentarios
+  pageSize = 5;
+  totalRecords = 100;
+  first = 0;
 
 
   ngOnInit(): void {
@@ -42,12 +49,19 @@ export class VerUnaComponent implements OnInit {
                               this.actualizarMacros();
                             }
                             })
+    localStorage.getItem('user') != null ? this.usuarioLogueado = JSON.parse(localStorage.getItem('user')!) : null;
 
   }
 
   constructor( private _recetasService: RecetasService,
               private _activateRoute : ActivatedRoute,
-              private _msg: MessageService ){}
+              private _msg: MessageService,
+              private _fb : FormBuilder ){}
+
+  //Formulario para el alta de un nuevo comentario
+  formComentario : FormGroup = this._fb.group({
+    textoComentario: ['', [Validators.required]]
+  })
 
   // Obtiene los comentarios de cada receta.
   obtenerComentarios( variable : number){
@@ -73,13 +87,35 @@ export class VerUnaComponent implements OnInit {
     this.cantidad = this.receta.recetasConIngredientes[0].cantidad != null ? this.receta.recetasConIngredientes[0].cantidad : 0;
 
     return [
-
         this.carbohidratos = Math.round(this.carbohidratos) * this.valor,
         this.proteinas = Math.round(this.proteinas)* this.valor,
         this.grasas = Math.round(this.grasas) * this.valor,
         this.calorias = Math.round(this.calorias) * this.valor,
         this.cantidad = this.cantidad * this.valor
       ]
+  }
+
+  subirComentario(){
+    //Verificamos que el formulario tiene contenido. Si no, mostramos mensaje de error
+    if(this.formComentario.valid){
+    //Accedemos al valor del formlario en formato JSON
+    const comentario = this.formComentario.getRawValue();
+    console.log(comentario);
+
+      if(this.usuarioLogueado != undefined){
+        //Hacemos la petición la back.
+        this._recetasService.altaComentario( comentario ,this.receta.idReceta, this.usuarioLogueado.idUsuario ?? 0).subscribe( data => {
+              this.comentario.push(data);
+              this._msg.add({ severity: 'info', summary: '¡ Gracias !', detail: 'Tu comentario ayuda a seguir mejorando' });
+              //Borramos el contenido del formulario una vez subido el comentario.
+              this.formComentario.reset();
+        },
+        error => {
+          this._msg.add({ severity: 'warn', summary: '¡Ops!', detail: 'Parece que algo ha salido mal' });
+        })
+      }
+    }else
+      this._msg.add({ severity:'warn', summary: '¡ Atención !', detail: 'El comentario no puede ir vacío' })
   }
 
   //Funciona para mostrar el mensaje personalizado <p-toast>

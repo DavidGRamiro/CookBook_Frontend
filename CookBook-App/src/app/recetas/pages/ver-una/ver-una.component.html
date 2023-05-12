@@ -1,76 +1,6 @@
 <app-navbar></app-navbar>
 
-<!-- <div class="container mt-5 mb-5">
 
-  <div class="row justify-content-center">
-    <div class="col-sm mx-auto text-center">
-      <h4 class ="m-4">{{ receta.descripcion }}</h4>
-      <div class="mx-auto">
-        <img [src]= receta.imagen style="width: 80%;" alt="receta">
-      </div>
-      <div class ="mt-2" style="display: flex; justify-content: flex-end;">
-        <p-button icon="pi pi-bookmark"  (click)="addFav()" styleClass="p-button-rounded p-button-warning p-button-outlined"></p-button>
-        <p-button icon="pi pi-heart"  (click)="addLike()" styleClass="p-button-rounded p-button-danger p-button-outlined ml-2"></p-button>
-        <p-button icon="pi pi-send" styleClass="p-button-rounded p-button-success p-button-outlined ml-2"></p-button>
-      </div>
-    </div>
-    FIXME: Hay que hacer el rating con formularios reactivos
-    <p-rating  [cancel]="false"></p-rating>
-
-    <p-divider></p-divider>
-  </div>
-  <div>
-    <h4> ¿Qué ingredientes necesito?</h4>
-      <div>
-        <ul>
-          <li *ngFor="let item of receta.recetasConIngredientes">
-              {{ item.ingrediente.nombre}}
-          </li>
-        </ul>
-      </div>
-  </div>
-
-  <div>
-    <h4>Pasos de preparacion</h4>
-    <p-divider></p-divider>
-
-    <h3>{{ receta.instrucciones }}</h3>
-
-  </div>
-  <p-divider></p-divider>
-
-  <div>
-    <h5>Macronutrientes</h5>
-    <ul>
-      <li>{{ receta.calorias }} calorias</li>
-      <li>{{ receta.carbohidratos }}g carbohidratos</li>
-      <li>{{ receta.grasas }}g grasas</li>
-      <li>{{ receta.proteinas }}g proteinas</li>
-    </ul>
-  </div>
-  <div>
-    <p>Receta realizada por <strong>{{ receta.usuario.username }}</strong></p>
-  </div>
-<p-divider></p-divider>
-<div class ="containner mt-2">
-  <h3>¿ Que dicen los usuarios de esta receta ?</h3>
-  <div>
-
-    <p-button class ="mt-5 mb-5" label ="Ver comentarios" (click)="obtenerComentarios(receta.idReceta)"></p-button>
-  </div>
-  <ol *ngFor="let comentario of comentario">
-    <li >
-      <strong>{{ comentario.usuario.username  }}</strong> dijo: <i>{{ comentario.textoComentario }}</i>
-    </li>
-  </ol>
-</div>
-
-<div class ="d-grid gap-2 d-md-flex justify-content-md-end">
-  <button pButton pRipple label="Ver todas las recetas" [routerLink]="['/recetas/todas']" class="p-button-success"></button>
-</div>
-
-<p-toast></p-toast>
- -->
 <div class="container mt-5 mb-5">
   <div class="row">
     <!-- Primer bloque, que recoge la imagen y los ingredientes que necesita la receta -->
@@ -120,11 +50,11 @@
           <div class ="text-center">
             <!-- Botón para imcrementar el numero de raciones -->
             <p-inputNumber [(ngModel)]="valor" (ngModelChange)="actualizarMacros()"
-                          [showButtons]="true"
+                          [showButtons]="false"
                           inputId="stacked"
                           [min] ="1"  [max]="10"
-                          [inputStyle]="{ 'width':'50%','background-color':'#fff3cd', 'border-radius':'3px'}"
-                          [style]="{'width':'50%'}"> </p-inputNumber>
+                          [inputStyle]="{ 'width':'50%', 'height': '50%','background-color':'#fff3cd', 'border-radius':'3px'}"
+                          [style]="{'width':'50%' ,'height': '50%',}"> </p-inputNumber>
           </div>
         </div>
       </div>
@@ -132,25 +62,26 @@
         <h4 class ="text-center">Comentarios de usuarios</h4>
         <div class="card">
           <p-tabView (click)="obtenerComentarios(receta.idReceta)">
-              <p-tabPanel header="Deja tu opinion">
-
-                <p-editor  [style]="{ height: '320px' }">
-                  <ng-template pTemplate="header">
-                      <span class="ql-formats">
-                          <button type="button" class="ql-bold" aria-label="Bold"></button>
-                          <button type="button" class="ql-italic" aria-label="Italic"></button>
-                          <button type="button" class="ql-underline" aria-label="Underline"></button>
-                      </span>
+                <p-tabPanel header="Deja tu opinion" *ngIf="usuarioLogueado; else noLogin">
+                    <form [formGroup]="formComentario" id="formularioComentario">
+                        <span class="p-float-label mt-3">
+                          <textarea id="float-input" rows="5" cols="80%" pInputTextarea  [autoResize]="true" formControlName="textoComentario"></textarea>
+                          <label for="float-input">Escribe aquí tu comentario</label>
+                        </span>
+                      <button type="submit" (click)="subirComentario()">Subir comentario</button>
+                    </form>
+                  </p-tabPanel>
+                  <ng-template #noLogin>
+                    <p-tabPanel header="Deja tu opinion">
+                      <p>Para poder comentar debes estar logueado</p>
+                    </p-tabPanel>
                   </ng-template>
-              </p-editor>
-
-              </p-tabPanel>
-              <p-tabPanel header="Comentarios de usuarios" >
-                  <p *ngFor=" let comentario of comentario">
-                    <p-avatar image="{{ comentario.usuario.imagen }}" styleClass="mr-2" shape="circle"></p-avatar>
-                    {{ comentario.textoComentario }}
-
-                  </p>
+              <p-tabPanel header="Comentarios de usuarios">
+                <p *ngFor="let comentario of comentario | slice:first:first + pageSize">
+                  <p-avatar image="{{ comentario.usuario.imagen }}" styleClass="mr-2" shape="circle"></p-avatar>
+                  {{ comentario.textoComentario }}
+                </p>
+                <p-paginator [first]="first" [rows]="pageSize" [totalRecords]="totalRecords" (onPageChange)="first = $event.first"></p-paginator>
               </p-tabPanel>
           </p-tabView>
       </div>
@@ -159,4 +90,5 @@
   </div>
 </div>
 
+<p-toast></p-toast>
 <app-footer></app-footer>
