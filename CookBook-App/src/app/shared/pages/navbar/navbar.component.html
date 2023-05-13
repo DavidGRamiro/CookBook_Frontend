@@ -3,7 +3,7 @@
   <p-menubar [model]="menuItems">
     <ng-template pTemplate="start">
       <!-- FIXME: -->
-      <!-- <img src="assets\images\CB.png" height="50" width="50" class="mr-2" /> -->
+      <img routerLink="/home" src="assets\images\CookBook.png"  width="70" class="mr-2" /> 
     </ng-template>
     <ng-template pTemplate="end" *ngIf="isLoggedIn; else noLogueado">
       <div class="row">
