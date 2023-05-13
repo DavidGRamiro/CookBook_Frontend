@@ -2,25 +2,56 @@
 
 <h1 class="titulo-seccion">Mi perfil</h1>
 <div class="contenedor">
-  <div class="imagen-usuario">
-    <!-- Aquí se muestra la imagen del usuario -->
-    <img [src]="usuario.imagen" alt="Imagen del usuario">
+
+  <div class="contenido-perfil">
+    <div class="imagen-usuario" *ngIf="usuario.imagen; else noImagen">
+      <!-- Aquí se muestra la imagen del usuario -->
+      <img [src]="usuario.imagen" alt="Imagen del usuario" />
+    </div>
+    <ng-template #noImagen>
+      <img src="assets/img/usuario.png" alt="Imagen del usuario" />
+    </ng-template>
+    <div class="nombre-usuario">
+      <!-- Aquí se muestra el nombre del usuario -->
+      <h2>{{ usuario.username }}</h2>
   </div>
-  <div class="datos-usuario">
-    <!-- Aquí se muestra el nombre del usuario y el plan contratado -->
-    <h3>{{ usuario.username }}</h3>
+  <div class="menu-perfil">
+    <p-menubar [model]="listaPerfil"></p-menubar>
+  </div>
+  <div class="datos-plan">
     <p>Plan contratado: {{ usuario.plan?.nombre }}</p>
+    <p>Fecha de inicio: {{ usuarioConPlan.fechaInicio }}</p>
+    <p>Estado: {{ usuarioConPlan.estado }}</p>
+    <p-progressBar [value]="usuarioConPlan.progreso"></p-progressBar>
   </div>
-  <div class="recetas-favoritas">
+
+
+  <app-notificaciones [notificaciones]="notificaciones"></app-notificaciones>
+
+  <div *ngIf="recetasFavoritas" class="recetas-favoritas">
     <!-- Aquí se muestra la lista de recetas favoritas del usuario -->
     <h3>Recetas favoritas</h3>
-    <ul>
-      <li *ngFor="let receta of recetasFavoritas">
-        <a [routerLink]="['/recetas', receta.idReceta]">{{ receta.nombre }}</a>
-      </li>
-    </ul>
+    <p-listbox
+      [(ngModel)]="recetaSeleccionada"
+      optionLabel="name"
+      [options]="recetasFavoritas"
+      [listStyle]="{ 'max-height': '250px' }"
+    >
+      <ng-template let-receta pTemplate="item">
+        <div class="ui-helper-clearfix">
+          <div>{{ receta.nombre }}</div>
+        </div>
+      </ng-template>
+    </p-listbox>
+    <div *ngIf="recetaSeleccionada">
+      <app-tarjeta [receta]="recetaSeleccionada"></app-tarjeta>
+    </div>
+  </div>
+
+  <div *ngIf="!recetasFavoritas">
+    <!-- Mostrar un indicador de carga o un mensaje mientras se obtienen los datos -->
+    <p>Cargando recetas favoritas...</p>
   </div>
 </div>
 
 <app-footer></app-footer>
-

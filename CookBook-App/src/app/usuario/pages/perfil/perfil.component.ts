@@ -1,13 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 
 //Interfaces
-import { listaPerfil } from '../../interface/perfil.lista.interface';
-
+import { MenuItem } from 'primeng/api'; // Importa MenuItem para el menú de perfil
 import { UsuarioService } from '../../services/usuario.service';
-import { ActivatedRoute } from '@angular/router';
-import { switchMap } from 'rxjs';
+import { Router } from '@angular/router';
 import { Receta } from 'src/app/recetas/interface/recetas.interface';
 import { Usuario } from '../../interface/usuario.interface';
+import { ValidatorService } from 'src/app/auth/services/validator.service';
+import { UsuarioConPlan } from '../../interface/usuarioconplan.interface';
+import { Notificacion } from '../../interface/notificacion.interface';
+
 @Component({
   selector: 'app-perfil',
   templateUrl: './perfil.component.html',
@@ -15,36 +17,97 @@ import { Usuario } from '../../interface/usuario.interface';
 })
 export class PerfilComponent implements OnInit{
 
-  listaPerfil : listaPerfil[] = [
-    { item: 'Mis recetas', ruta: 'misrecetas'},
-    { item: 'Notificaciones', ruta: 'notificaciones'},
-    { item: 'Mi perfil', ruta: 'perfil'},
-    { item: 'Cerrar sesión', ruta: 'logout' }
-  ]
-
+  listaPerfil: MenuItem[] = [
+    {
+      label: 'Mi plan',
+      icon: 'pi pi-fw pi-calendar',
+      routerLink: 'mi-plan'
+    },
+    {
+      label: 'Mis recetas favoritas',
+      icon: 'pi pi-fw pi-heart',
+      routerLink: 'mis-recetas-favoritas'
+    },
+    {
+      label: 'Mis recetas',
+      icon: 'pi pi-fw pi-book',
+      routerLink: 'mis-recetas'
+    },
+    {
+      label: 'Notificaciones',
+      icon: 'pi pi-fw pi-bell',
+      routerLink: 'notificaciones'
+    },
+    {
+      label: 'Editar perfil',
+      icon: 'pi pi-fw pi-user-edit',
+      routerLink: 'editar-perfil'
+    },
+    {
+      label: 'Cerrar sesión',
+      icon: 'pi pi-fw pi-sign-out',
+      routerLink: 'cerrar-sesion'
+    }
+  ];
+  public isLoggedIn: boolean =false;
   usuario!: Usuario;
   recetasFavoritas!: Receta[];
-
-
-  ngOnInit(): void {
-    //Recupera el id del usuario dependiendo de la ruta en la que nos encontremos.
-    //Llamamos al servicio y le mandamos por parámetro el id del usuario que queremos recuperar.
-    this._activatedRoute.params
-          .pipe(
-            switchMap( ({ idUsuario } )=>
-            this._usuarioService.getUserById(idUsuario)))
-      .subscribe( response => this.usuario = response);
-    //Recuperamos las recetas favoritas del usuario.
-    this._activatedRoute.params.pipe(
-      switchMap( ({ idUsuario } )=>
-      this._usuarioService.getRecetasFavoritas(idUsuario)))
-    .subscribe( response => this.recetasFavoritas = response
-    )
-
-  }
+  recetaSeleccionada!: Receta;
+  usuarioConPlan!: UsuarioConPlan;
+  notificaciones!: Notificacion[];
 
   constructor( private _usuarioService: UsuarioService,
-              private _activatedRoute : ActivatedRoute,
-     ) { }
+    private router: Router,
+    private _validator: ValidatorService
+) { }
+
+  ngOnInit(): void {
+
+    //Verificams si el usuario ha iniciado sesión
+    this._validator.isLoggedIn$.subscribe( data => {
+      this.isLoggedIn = data
+    })
+
+    this.isLoggedIn = localStorage.getItem('isLoggedIn') === 'true' ? true : false;
+     console.log(this.isLoggedIn)
+    if (!this.isLoggedIn) {
+      // si el usuario no ha iniciado sesion la pagina /user/perfil no es accesible, redirigir a /login
+      this.router.navigate(['/login']);
+    } else {
+    if(localStorage.getItem('user') != null){
+      const userString = localStorage.getItem('user');
+      if(userString != null){
+        this.usuario = JSON.parse(userString)
+      }
+    }
+    /// El usuario ha iniciado sesión, continuar con la lógica actual del componente
+      this._usuarioService.getRecetasFavoritas(this.usuario.idUsuario)
+      .subscribe( recetas => {
+        this.recetasFavoritas = recetas;
+      }
+      )
+    console.log(this.recetasFavoritas)
+      this.listaPerfil = this.listaPerfil.map(
+        item => {
+          item.routerLink = `/usuario/perfil/${item.routerLink}`
+          return item;
+        }
+      )
+
+    this._usuarioService.getPlandeUsuario(this.usuario.idUsuario)
+     .subscribe( usuarioConPlan => {
+        this.usuarioConPlan = usuarioConPlan;
+      }
+      )
+
+      this._usuarioService.getNotificaciones(this.usuario.idUsuario)
+      .subscribe((notificaciones) => {
+        this.notificaciones = notificaciones;
+        console.log(this.notificaciones)
+      }
+      )
+
+    }
+  }
 }
 

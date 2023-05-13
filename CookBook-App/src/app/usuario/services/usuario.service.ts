@@ -2,6 +2,8 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Receta, Usuario } from 'src/app/recetas/interface/recetas.interface';
+import { UsuarioConPlan } from '../interface/usuarioconplan.interface';
+import { Notificacion } from '../interface/notificacion.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -26,5 +28,26 @@ export class UsuarioService {
     const url = `${ this.endPoint }/favoritos/porIdUsuario`
     const params = new HttpParams().set('idUsuario', idUsuario)
     return this._http.get<Receta[]>(url, { params })
+  }
+
+  //Peticion para obtener el estado de un plan de un usuario.
+  getPlandeUsuario(idUsuario: number): Observable<UsuarioConPlan>{
+    const url = `${ this.endPoint }${ this.common }/conPlan`
+    const params = new HttpParams().set('idUsuario', idUsuario)
+    return this._http.get<UsuarioConPlan>(url, { params })
+  }
+
+  //Recogemos las notificaciones de un usuario.
+  getNotificaciones(idUsuario: number): Observable<Notificacion[]>{
+    const url = `${ this.endPoint }${ this.common }/notificaciones`
+    const params = new HttpParams().set('idUsuario', idUsuario)
+    return this._http.get<Notificacion[]>(url, { params })
+  }
+
+  //Método post para actualizar el estado de una notificacion a leida
+  updateNotificacion(idNotificacion: number): Observable<Notificacion>{
+    const url = `${ this.endPoint }${ this.common }/notificacion`
+    const params = new HttpParams().set('idNotificacion', idNotificacion)
+    return this._http.post<Notificacion>(url, { params })
   }
 }

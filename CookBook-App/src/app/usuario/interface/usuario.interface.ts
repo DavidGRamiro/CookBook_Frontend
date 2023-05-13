@@ -1,5 +1,5 @@
 export interface Usuario {
-  idUsuario?:     number ;
+  idUsuario:     number ;
   email:          string | null | undefined;
   fechaRegistro?: Date;
   password:       string | null | undefined;

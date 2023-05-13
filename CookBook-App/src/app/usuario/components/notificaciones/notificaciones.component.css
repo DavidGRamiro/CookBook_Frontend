@@ -1,0 +1,54 @@
+
+.notificaciones {
+  position: relative;
+}
+
+.notificaciones-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.notificaciones-count {
+  background-color: #ff0000;
+  color: #ffffff;
+  font-size: 12px;
+  padding: 4px;
+  border-radius: 50%;
+  position: absolute;
+}
+
+.notificaciones-panel {
+  width: 300px;
+  max-height: 400px;
+  overflow-y: auto;
+  border: 1px solid #dddddd;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.notificaciones-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.notificaciones-list li {
+  padding: 10px;
+  border-bottom: 1px solid #dddddd;
+}
+
+.notificacion-titulo {
+  font-weight: bold;
+  margin: 0;
+}
+
+.notificacion-mensaje {
+  margin: 5px 0;
+  color: #888888;
+}
+
+.notificacion-fecha {
+  margin: 0;
+  color: #aaaaaa;
+  font-size: 12px;
+}

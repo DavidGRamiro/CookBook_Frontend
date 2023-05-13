@@ -1,0 +1,25 @@
+<div class="notificaciones">
+  <button class="notificaciones-btn" (click)="toggleNotificaciones()">
+    <i class="pi pi-bell"></i>
+    <span class="notificaciones-count">{{ notificaciones.length }}</span>
+  </button>
+  <ul class="notificaciones-list">
+    <li *ngFor="let notificacion of notificaciones">
+      <p-panel [toggleable]="true" [collapsed]="!notificacion.leida" class="notificacion-panel" (onBeforeToggle)="marcarNotificacionLeida(notificacion)">
+        <ng-template pTemplate="header">
+          <div class="notificacion-header">
+            <div class="notificacion-indicador" [class.leida]="notificacion.leida"></div>
+            <div class="notificacion-titulo">{{ notificacion.mensaje }}</div>
+          </div>
+        </ng-template>
+        <ng-template pTemplate="content">
+          <div class="notificacion-contenido">
+            <p class="notificacion-mensaje">{{ notificacion.mensaje }}</p>
+            <p class="notificacion-fecha">{{ calcularTiempoTranscurrido(notificacion.fechaHora) }}</p>
+          </div>
+        </ng-template>
+      </p-panel>
+    </li>
+  </ul>
+</div>
+
