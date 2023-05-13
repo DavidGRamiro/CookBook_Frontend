@@ -1,0 +1,6 @@
+<p-sidebar [(visible)]="sidebarVisible"  position="right">
+  <h4 class ="mb-3">Panel de administrador</h4>
+    <p-menu [model]="sideBarMenu"></p-menu>
+</p-sidebar>
+
+<p-button type="button" class="mr-2" (click)="sidebarVisible = true" icon="pi pi-user-plus"></p-button>
