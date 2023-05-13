@@ -23,6 +23,8 @@ import { InputNumberModule } from 'primeng/inputnumber';
 import { EditorModule } from 'primeng/editor';
 import { InputTextareaModule } from 'primeng/inputtextarea';
 import { PaginatorModule } from 'primeng/paginator';
+import { SidebarModule } from 'primeng/sidebar';
+import { MenuModule } from 'primeng/menu';
 
 @NgModule({
   exports: [
@@ -48,7 +50,9 @@ import { PaginatorModule } from 'primeng/paginator';
     InputNumberModule,
     EditorModule,
     InputTextareaModule,
-    PaginatorModule
+    PaginatorModule,
+    SidebarModule,
+    MenuModule
 
   ]
 })

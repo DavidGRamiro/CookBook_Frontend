@@ -73,7 +73,10 @@
                   </p-tabPanel>
                   <ng-template #noLogin>
                     <p-tabPanel header="Deja tu opinion">
-                      <p>Para poder comentar debes estar logueado</p>
+                      <span class="alert text text-danger ">
+                        <p>Para poder comentar debes estar registrado</p>
+                      </span>
+                      <p-button label="Registrate ahora" icon ="pi pi-sign-in" iconPos="right" routerLink="/auth/registro"></p-button>
                     </p-tabPanel>
                   </ng-template>
               <p-tabPanel header="Comentarios de usuarios">

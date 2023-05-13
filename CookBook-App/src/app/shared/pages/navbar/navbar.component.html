@@ -24,6 +24,11 @@
                     shape="circle"
                     (click) ="navegarPerfil()"></p-avatar>
         </div>
+        <div class="col">
+          <div *ngIf="usuarioLogueado.idUsuario == 100">
+            <app-admin-menu></app-admin-menu>
+          </div>
+        </div>
       </div>
     </ng-template>
     <ng-template #noLogueado>

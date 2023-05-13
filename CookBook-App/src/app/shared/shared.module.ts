@@ -15,6 +15,7 @@ import { TarjetaCategoriaComponent } from './components/tarjeta-categoria/tarjet
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FormularioRecipeComponent } from './components/formulario-recipe/formulario-recipe.component';
 import { MessageService } from 'primeng/api';
+import { AdminMenuComponent } from './pages/admin-menu/admin-menu.component';
 
 
 @NgModule({
@@ -26,7 +27,8 @@ import { MessageService } from 'primeng/api';
     MenuComponent,
     TarjetaComponent,
     TarjetaCategoriaComponent,
-    FormularioRecipeComponent
+    FormularioRecipeComponent,
+    AdminMenuComponent
   ],
   imports: [
     CommonModule,
