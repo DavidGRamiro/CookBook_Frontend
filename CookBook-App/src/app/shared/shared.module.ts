@@ -16,6 +16,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FormularioRecipeComponent } from './components/formulario-recipe/formulario-recipe.component';
 import { MessageService } from 'primeng/api';
 import { AdminMenuComponent } from './pages/admin-menu/admin-menu.component';
+import { TarjetaPlanComponent } from './components/tarjeta-plan/tarjeta-plan.component';
 
 
 @NgModule({
@@ -29,6 +30,7 @@ import { AdminMenuComponent } from './pages/admin-menu/admin-menu.component';
     TarjetaCategoriaComponent,
     FormularioRecipeComponent,
     AdminMenuComponent
+    TarjetaPlanComponent
   ],
   imports: [
     CommonModule,
