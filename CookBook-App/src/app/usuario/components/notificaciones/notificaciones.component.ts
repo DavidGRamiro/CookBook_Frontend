@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Notificacion } from '../../interface/notificacion.interface';
 import { UsuarioService } from '../../services/usuario.service';
+import { DateTime } from 'luxon';
 
 @Component({
   selector: 'app-notificaciones',
@@ -15,22 +16,25 @@ export class NotificacionesComponent implements OnInit{
     constructor(private _usuarioService: UsuarioService) { }
 
     ngOnInit(): void {
-      console.log(this.notificaciones);
     }
-    calcularTiempoTranscurrido(fecha: Date): string {
-      const ahora = new Date();
-      const fechaHora = new Date(fecha);
-      const diferencia = ahora.getTime() - fechaHora.getTime();
-      const minutos = Math.floor(diferencia / 60000); // Calcula los minutos transcurridos
-      const horas = Math.floor(minutos / 60); // Calcula las horas transcurridas
-      if (minutos < 60) {
-        return `Hace ${minutos} minutos`;
+
+    calcularTiempoTranscurrido(fecha: Date) {
+      const ahora = DateTime.local();
+      const fechaHora = DateTime.fromJSDate(fecha);
+      const diferencia = ahora.diff(fechaHora, ['minutes']).minutes;
+      const horas = Math.floor(diferencia / 60);
+
+      if (fechaHora > ahora) {
+        return 'Fecha en el futuro';
+      } else if (diferencia < 60) {
+        return `Hace ${diferencia} minutos`;
       } else if (horas < 24) {
         return `Hace ${horas} horas`;
       } else {
-        return fechaHora.toLocaleDateString(); // Si han pasado más de 24 horas, muestra la fecha completa
+        return fechaHora.toLocaleString(DateTime.DATE_FULL);
       }
     }
+
 
     toggleNotificaciones() {
       const notificaciones = document.getElementById('notificaciones');

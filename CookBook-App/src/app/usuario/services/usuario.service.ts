@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { Receta, Usuario } from 'src/app/recetas/interface/recetas.interface';
 import { UsuarioConPlan } from '../interface/usuarioconplan.interface';
 import { Notificacion } from '../interface/notificacion.interface';
+import { NotificacionDTO } from '../interface/notificaciondto.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -50,4 +51,12 @@ export class UsuarioService {
     const params = new HttpParams().set('idNotificacion', idNotificacion)
     return this._http.post<Notificacion>(url, { params })
   }
+
+  //Método para crear una notificación
+  createNotificacion(notificacion: Notificacion): Observable<Notificacion>{
+    const url = `${ this.endPoint }/notificaciones/crear`
+    return this._http.post<Notificacion>(url, notificacion)
+  }
+
+
 }

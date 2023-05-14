@@ -9,6 +9,7 @@ import { Usuario } from '../../interface/usuario.interface';
 import { ValidatorService } from 'src/app/auth/services/validator.service';
 import { UsuarioConPlan } from '../../interface/usuarioconplan.interface';
 import { Notificacion } from '../../interface/notificacion.interface';
+import { DateTime } from 'luxon';
 
 @Component({
   selector: 'app-perfil',
@@ -56,6 +57,7 @@ export class PerfilComponent implements OnInit{
   usuarioConPlan!: UsuarioConPlan;
   notificaciones!: Notificacion[];
 
+
   constructor( private _usuarioService: UsuarioService,
     private router: Router,
     private _validator: ValidatorService
@@ -86,7 +88,6 @@ export class PerfilComponent implements OnInit{
         this.recetasFavoritas = recetas;
       }
       )
-    console.log(this.recetasFavoritas)
       this.listaPerfil = this.listaPerfil.map(
         item => {
           item.routerLink = `/usuario/perfil/${item.routerLink}`
@@ -97,6 +98,7 @@ export class PerfilComponent implements OnInit{
     this._usuarioService.getPlandeUsuario(this.usuario.idUsuario)
      .subscribe( usuarioConPlan => {
         this.usuarioConPlan = usuarioConPlan;
+        console.log(this.usuarioConPlan)
       }
       )
 
@@ -108,6 +110,19 @@ export class PerfilComponent implements OnInit{
       )
 
     }
+  }
+  enviarNotificacion() {
+let   notificacion: Notificacion = {
+      usuario: this.usuario,
+      mensaje: 'Mensaje de ejemplo',
+      leida: false
+    };
+    console.log(notificacion)
+    this._usuarioService.createNotificacion(notificacion)
+    .subscribe( notificacion => {
+      console.log(notificacion)
+    }
+    )
   }
 }
 
