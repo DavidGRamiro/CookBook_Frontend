@@ -28,7 +28,7 @@ import { TarjetaPlanComponent } from './components/tarjeta-plan/tarjeta-plan.com
     TarjetaComponent,
     TarjetaCategoriaComponent,
     FormularioRecipeComponent,
-    AdminMenuComponent
+    AdminMenuComponent,
     TarjetaPlanComponent
   ],
   imports: [
