@@ -23,7 +23,7 @@
       "ES2022",
       "dom"
     ],
-    "types": ["luxon"]
+    "types": ["luxon", "jest", "mocha"]
   },
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,

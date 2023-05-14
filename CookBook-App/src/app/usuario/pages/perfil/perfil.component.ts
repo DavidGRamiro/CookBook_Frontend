@@ -112,15 +112,20 @@ export class PerfilComponent implements OnInit{
     }
   }
   enviarNotificacion() {
+    let time = DateTime.now().toISO(); // Obtiene la fecha actual en formato ISO-8601
+    const nowTimestamp = DateTime.now().toJSDate(); // Obtiene la fecha actual como un objeto Date
+
 let   notificacion: Notificacion = {
       usuario: this.usuario,
       mensaje: 'Mensaje de ejemplo',
+      fechaHora: nowTimestamp,
       leida: false
     };
     console.log(notificacion)
     this._usuarioService.createNotificacion(notificacion)
     .subscribe( notificacion => {
       console.log(notificacion)
+      window.location.reload();
     }
     )
   }

@@ -44,12 +44,23 @@ export class UsuarioService {
     const params = new HttpParams().set('idUsuario', idUsuario)
     return this._http.get<Notificacion[]>(url, { params })
   }
+  //Método para obtener una notificación por su ID
+  getNotificacionById(idNotificacion: number): Observable<NotificacionDTO>{
+    const url = `${ this.endPoint }/notificaciones/una`
+    const params = new HttpParams().set('idNotificacion', idNotificacion)
+    return this._http.get<NotificacionDTO>(url, { params })
+  }
 
   //Método post para actualizar el estado de una notificacion a leida
-  updateNotificacion(idNotificacion: number): Observable<Notificacion>{
+  marcarNotificacionLeida(idNotificacion: number): Observable<Notificacion>{
     const url = `${ this.endPoint }${ this.common }/notificacion`
     const params = new HttpParams().set('idNotificacion', idNotificacion)
     return this._http.post<Notificacion>(url, { params })
+  }
+  //Metodo para actualizar una notificacion
+  updateNotificacion(notificacion: NotificacionDTO): Observable<NotificacionDTO>{
+    const url = `${ this.endPoint }/notificaciones/actualizar`
+    return this._http.put<NotificacionDTO>(url, notificacion)
   }
 
   //Método para crear una notificación
@@ -58,5 +69,11 @@ export class UsuarioService {
     return this._http.post<Notificacion>(url, notificacion)
   }
 
+  //Eliminar una notificación
+  deleteNotificacion(idNotificacion: number): Observable<boolean>{
+    const url = `${ this.endPoint }/notificaciones/eliminar`
+    const params = new HttpParams().set('idNotificacion', idNotificacion)
+    return this._http.delete<boolean>(url, { params })
+  }
 
 }
