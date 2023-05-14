@@ -25,7 +25,10 @@ import { InputTextareaModule } from 'primeng/inputtextarea';
 import { PaginatorModule } from 'primeng/paginator';
 import { SidebarModule } from 'primeng/sidebar';
 import { MenuModule } from 'primeng/menu';
-
+import { ConfirmPopupModule } from 'primeng/confirmpopup';
+import { DynamicDialogModule } from 'primeng/dynamicdialog';
+import { DialogModule } from 'primeng/dialog';
+import { ChartModule } from 'primeng/chart';
 @NgModule({
   exports: [
     CommonModule,
@@ -52,8 +55,11 @@ import { MenuModule } from 'primeng/menu';
     InputTextareaModule,
     PaginatorModule,
     SidebarModule,
-    MenuModule
-
+    MenuModule,
+    ConfirmPopupModule,
+    DynamicDialogModule,
+    DialogModule,
+    ChartModule
   ]
 })
 

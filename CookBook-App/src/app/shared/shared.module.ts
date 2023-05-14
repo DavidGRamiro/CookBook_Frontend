@@ -14,7 +14,6 @@ import { TarjetaComponent } from './components/tarjeta/tarjeta.component';
 import { TarjetaCategoriaComponent } from './components/tarjeta-categoria/tarjeta-categoria.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FormularioRecipeComponent } from './components/formulario-recipe/formulario-recipe.component';
-import { MessageService } from 'primeng/api';
 import { AdminMenuComponent } from './pages/admin-menu/admin-menu.component';
 
 
@@ -47,6 +46,6 @@ import { AdminMenuComponent } from './pages/admin-menu/admin-menu.component';
     TarjetaCategoriaComponent,
     FormularioRecipeComponent
   ],
-  providers: [MessageService]
+  providers: []
 })
 export class SharedModule { }

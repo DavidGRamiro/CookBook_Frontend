@@ -67,4 +67,17 @@ export class RecetasService {
                                   .set('idUsuario', idUsuario);
     return this._http.post<Comentario>(url, comentario, { params });
   }
+
+  //Elimina una receta por su ID.
+  eliminarReceta( idReceta: number): Observable<void>{
+    const url = `${this.endPoint}${this.common}/eliminar`
+    const params = new HttpParams().set('idReceta',idReceta);
+    return this._http.delete<void>(url, { params });
+  }
+
+  //Actualiza una receta por su ID.
+  editarReceta( receta : Receta){
+    const url = `${this.endPoint}${this.common}/update`
+    return this._http.put<Receta>(url,receta);
+  }
 }

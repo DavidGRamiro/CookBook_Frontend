@@ -148,9 +148,10 @@ export class FormularioRecipeComponent implements OnInit{
     if (this.recetaFormulario.valid) {
       //Si el formulario es valido, se crea un insert en la BBDD
       this._sharedService.altaReceta(this.receta).subscribe(resp => {
-        console.log(resp);
         this.recetaEnviada = resp;
-      }
+        console.log('Receta dada de alta', this.recetaEnviada);
+      },
+      error => { console.log('Error al dar de alta',error);}
       );
     }
   }

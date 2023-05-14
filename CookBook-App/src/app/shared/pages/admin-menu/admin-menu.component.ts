@@ -10,7 +10,6 @@ export class AdminMenuComponent implements OnInit{
 
   sidebarVisible: boolean = false;
 
-
   ngOnInit(): void {
   }
 
@@ -45,7 +44,7 @@ export class AdminMenuComponent implements OnInit{
     {
       label: 'Estadísticas',
       icon: 'pi pi-fw pi-chart-bar',
-      routerLink: ['/estadisticas']
+      routerLink: ['/admin/estadisticas']
     }
   ]
 
