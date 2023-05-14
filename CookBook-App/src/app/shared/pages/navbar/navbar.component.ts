@@ -80,9 +80,12 @@ export class NavbarComponent implements OnInit {
     }
   ]
 
-  navegarPerfil(){
-    this._router.navigateByUrl("/user/" + this.usuarioLogueado.idUsuario)
-
+  navegarPerfil(): void {
+    if (this.isLoggedIn) {
+      this._router.navigateByUrl('/user/perfil');
+    } else {
+      this._router.navigateByUrl('/login');
+    }
   }
 
   cerrarSesion(){

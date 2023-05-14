@@ -2,8 +2,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap');
 
 .contenedor{
-  margin-top: 2em;
-  margin-bottom: 4em;
 
   display: flex;
   flex-direction: column;
@@ -16,11 +14,10 @@
   text-align: center;
   margin: 40px 0 0 0;
 }
-h3{
+h2{
   font-family: 'Fira Sans', sans-serif;
   font-size: 40px;
   font-weight: bold;
-  text-align: center;
 }
 p{
   font-family: 'Open Sans', sans-serif;
@@ -38,12 +35,12 @@ p{
   border-radius: 50%;
 }
 
-.datos-usuario {
+.datos-plan {
   margin-top: 20px;
   text-align: center;
 }
 
-.datos-usuario h1 {
+.nombre-usuario h2 {
   font-size: 24px;
   margin-bottom: 10px;
 }
