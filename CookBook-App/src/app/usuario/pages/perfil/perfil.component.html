@@ -19,7 +19,7 @@
     <p-menubar [model]="listaPerfil"></p-menubar>
   </div>
   <div class="datos-plan">
-    <p>Plan contratado: {{ usuario.plan?.nombre }}</p>
+    <p>Plan contratado: {{ usuario.plan.nombre }}</p>
     <p>Fecha de inicio: {{ usuarioConPlan.fechaInicio }}</p>
     <p>Estado: {{ usuarioConPlan.estado }}</p>
     <p-progressBar [value]="usuarioConPlan.progreso"></p-progressBar>
