@@ -1,54 +1,62 @@
-<form [formGroup]="recetaFormulario" (ngSubmit)="onSubmitReceta()">
-  <div class="p-field">
-    <label for="nombre">Nombre</label>
-    <input type="text" id="nombre" formControlName="nombre" class="p-inputtext" />
-  </div>
-  <div class="p-field">
-    <label for="descripcion">Descripción</label>
-    <input type="text" id="descripcion" formControlName="descripcion" class="p-inputtext" />
-  </div>
-  <div class="p-field">
-    <label for="categoria">Categoria</label>
-    <p-dropdown id="categoria" formControlName="categoria" [options]="categorias" optionLabel="nombre" (onChange)="seleccionarCategoria($event.value)"></p-dropdown>
-  </div>
-  <div class="p-field">
-    <label for="tiempoPreparacion">Tiempo de preparación</label>
-    <input type="number" id="tiempoPreparacion" formControlName="tiempoPreparacion" class="p-inputtext" />
-  </div>
-  <div class="p-field">
-    <label for="tiempoCoccion">Tiempo de cocción</label>
-    <input type="number" id="tiempoCoccion" formControlName="tiempoCoccion" class="p-inputtext" />
-  </div>
-  <div class="p-field">
-    <label for="instrucciones">Instrucciones</label>
-    <input type="text" id="instrucciones" formControlName="instrucciones" class="p-inputtext" />
-  </div>
+<app-navbar></app-navbar>
+<div class="container">
+  <h1 class="titulo-seccion">Crea una receta</h1>
+    <form [formGroup]="recetaFormulario" (ngSubmit)="onSubmitReceta()" class="contenedor">
+      <div class="columna">
+        <div class="form-group">
+          <label for="nombre">Nombre</label>
+          <input type="text" id="nombre" formControlName="nombre" class="form-control" />
+        </div>
+        <div class="form-group">
+          <label for="descripcion">Descripción</label>
+          <input type="text" id="descripcion" formControlName="descripcion" class="form-control" />
+        </div>
+        <div class="form-group">
+          <label for="categoria">Categoria</label>
+          <p-dropdown id="categoria" formControlName="categoria" [options]="categorias" optionLabel="nombre" (onChange)="seleccionarCategoria($event.value)"></p-dropdown>
+        </div>
+      </div>
+      <div class="columna">
+        <div class="form-group">
+          <label for="tiempoPreparacion">Tiempo de preparación</label>
+          <input type="number" id="tiempoPreparacion" formControlName="tiempoPreparacion" class="form-control" />
+        </div>
+        <div class="form-group">
+          <label for="tiempoCoccion">Tiempo de cocción</label>
+          <input type="number" id="tiempoCoccion" formControlName="tiempoCoccion" class="form-control" />
+        </div>
+        <div class="form-group">
+          <label for="instrucciones">Instrucciones</label>
+          <input type="text" id="instrucciones" formControlName="instrucciones" class="form-control" />
+        </div>
+      </div>
+    </form>
+  <button type="submit" class="btn btn-primary" (click)="guardarReceta()" (click)="onSubmitReceta()" (click)="mostrarFormularioIngredientes()">Añadir ingredientes</button>
 
-<button type="button" (click)="guardarReceta()">Guardar Receta</button>
-<button type="submit" (click)="onSubmitReceta()">Enviar a bbdd</button>
-</form>
-
-<button (click)="mostrarFormularioIngredientes()">Añadir ingredientes</button>
-<div *ngIf="mostrarNuevoIngrediente">
-  <form [formGroup]="formulario" (ngSubmit)="onSubmitIngredientes()">
+  <div *ngIf="mostrarNuevoIngrediente" >
     <h4>Añadir ingredientes</h4>
-    <div class="p-field">
-      <label for="ingrediente">Selecciona un ingrediente</label>
-      <p-dropdown id="ingrediente" formControlName="ingrediente" [options]="ingredientes" optionLabel="nombre" (onChange)="seleccionarIngrediente($event.value)"></p-dropdown>
-    </div>
-    <div *ngIf="ingredienteSeleccionado">
-      <div class="p-field">
-        <label for="cantidad">Cantidad</label>
-        <input type="number" id="cantidad" formControlName="cantidad" class="p-inputtext" />
+    <form [formGroup]="formulario" (ngSubmit)="onSubmitIngredientes()" class="contenedor">
+        <div class="columna">
+          <div class="form-group">
+            <label for="ingrediente">Selecciona un ingrediente</label>
+            <p-dropdown id="ingrediente" formControlName="ingrediente" [options]="ingredientes" optionLabel="nombre" (onChange)="seleccionarIngrediente($event.value)"></p-dropdown>
+          </div>
+        <div *ngIf="ingredienteSeleccionado" >
+          <div class="form-group">
+            <label for="cantidad">Cantidad</label>
+            <input type="number" id="cantidad" formControlName="cantidad" class="form-control" />
+          </div>
+          <div class="form-group">
+            <label for="unidadMedida">Unidad de medida</label>
+            <input type="text" id="unidadMedida" formControlName="unidadMedida" class="form-control" />
+          </div>
+          <button type="button" class="btn btn-primary" (click)="agregarIngredienteAReceta()">Agregar ingrediente</button>
+        </div>
       </div>
-      <div class="p-field">
-        <label for="unidadMedida">Unidad de medida</label>
-        <input type="text" id="unidadMedida" formControlName="unidadMedida" class="p-inputtext" />
-      </div>
-      <button type="button" (click)="agregarIngredienteAReceta()">Agregar ingrediente</button>
-    </div>
-    <button type="button" (click)="agregarTodos()">Guardar Ingredientes</button>
-    <button type="submit" (click)="onSubmitIngredientes()">Enviar a bbdd</button>
-  </form>
-</div>
 
+    </form>
+
+    <button type="submit" class="btn btn-primary" (click)="agregarTodos()" (click)="onSubmitIngredientes()">Guardar Receta</button>
+  </div>
+</div>
+<app-footer></app-footer>
