@@ -15,6 +15,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FormularioRecipeComponent } from './components/formulario-recipe/formulario-recipe.component';
 import { AdminMenuComponent } from './pages/admin-menu/admin-menu.component';
 import { TarjetaPlanComponent } from './components/tarjeta-plan/tarjeta-plan.component';
+import { CarouselRecetasComponent } from './components/carousel-recetas/carousel-recetas.component';
 
 
 @NgModule({
@@ -28,7 +29,8 @@ import { TarjetaPlanComponent } from './components/tarjeta-plan/tarjeta-plan.com
     TarjetaCategoriaComponent,
     FormularioRecipeComponent,
     AdminMenuComponent,
-    TarjetaPlanComponent
+    TarjetaPlanComponent,
+    CarouselRecetasComponent
   ],
   imports: [
     CommonModule,
@@ -45,7 +47,8 @@ import { TarjetaPlanComponent } from './components/tarjeta-plan/tarjeta-plan.com
     MenuComponent,
     TarjetaComponent,
     TarjetaCategoriaComponent,
-    FormularioRecipeComponent
+    FormularioRecipeComponent,
+    CarouselRecetasComponent
   ],
   providers: []
 })

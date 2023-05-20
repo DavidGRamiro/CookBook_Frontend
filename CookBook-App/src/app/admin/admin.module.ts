@@ -7,12 +7,15 @@ import { PrimeNGModule } from '../library/prime-ng/prime-ng.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { EstadisticasComponent } from './components/estadisticas/estadisticas.component';
 import { SharedModule } from '../shared/shared.module';
+import { UsuariosAdminComponent } from './components/usuarios-admin/usuarios-admin.component';
+import { UsuarioModule } from '../usuario/usuario.module';
 
 
 @NgModule({
   declarations: [
     EditRecetaComponent,
     EstadisticasComponent,
+    UsuariosAdminComponent,
   ],
   imports: [
     CommonModule,
@@ -20,10 +23,10 @@ import { SharedModule } from '../shared/shared.module';
     PrimeNGModule,
     ReactiveFormsModule,
     FormsModule,
-    SharedModule
+    SharedModule,
+    UsuarioModule
   ],
   exports: [
-    EditRecetaComponent
   ]
 })
 export class AdminModule { }

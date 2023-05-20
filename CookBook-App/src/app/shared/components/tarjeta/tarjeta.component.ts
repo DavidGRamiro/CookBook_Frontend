@@ -92,8 +92,8 @@ export class TarjetaComponent implements OnInit {
     })
   }
 
+  //Modal asociado a un componente para poder editar la receta.
   editarReceta(){
-
     this._dialogService.open( EditRecetaComponent, { data: { receta: this.receta },
                                                     header: 'Panel de actualización de receta' ,
                                                     width: '50%',})

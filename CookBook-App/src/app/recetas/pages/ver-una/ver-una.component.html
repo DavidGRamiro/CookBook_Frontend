@@ -64,10 +64,10 @@
           <p-tabView (click)="obtenerComentarios(receta.idReceta)">
                 <p-tabPanel header="Deja tu opinion" *ngIf="usuarioLogueado; else noLogin">
                     <form [formGroup]="formComentario" id="formularioComentario">
-                        <span class="p-float-label mt-3">
-                          <textarea id="float-input" rows="5" cols="80%" pInputTextarea  [autoResize]="true" formControlName="textoComentario"></textarea>
-                          <label for="float-input">Escribe aquí tu comentario</label>
-                        </span>
+                        <div>
+                          <textarea id="float-input" rows="5" cols="80%" pInputTextarea  [autoResize]="true" formControlName="textoComentario"
+                                    placeholder="Escribe aquí tu comentario"></textarea>
+                        </div>
                       <button type="submit" (click)="subirComentario()">Subir comentario</button>
                     </form>
                   </p-tabPanel>
@@ -80,10 +80,15 @@
                     </p-tabPanel>
                   </ng-template>
               <p-tabPanel header="Comentarios de usuarios">
-                <p *ngFor="let comentario of comentario | slice:first:first + pageSize">
-                  <p-avatar image="{{ comentario.usuario.imagen }}" styleClass="mr-2" shape="circle"></p-avatar>
-                  {{ comentario.textoComentario }}
-                </p>
+                <div *ngFor="let comentario of comentario | slice:first:first + pageSize">
+                  <div>
+                    <p-avatar image="{{ comentario.usuario.imagen }}" styleClass="mr-2" shape="circle"></p-avatar>
+                    {{ comentario.textoComentario }}
+                    <span  class ="icon-right" *ngIf="usuarioLogueado?.idUsuario === 100">
+                      <i class="pi pi-trash" (click)="eliminarComentario(comentario.idComentario)" style="color:red; cursor: pointer;"></i>
+                    </span>
+                  </div>
+                </div>
                 <p-paginator [first]="first" [rows]="pageSize" [totalRecords]="totalRecords" (onPageChange)="first = $event.first"></p-paginator>
               </p-tabPanel>
           </p-tabView>

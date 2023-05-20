@@ -23,7 +23,7 @@ export class RegistroComponent implements OnInit {
     {
       username: ['', [Validators.required, Validators.pattern(this._validatorService.firstNameAndLastnamePattern)]],
       email: ['', [Validators.required, Validators.pattern(this._validatorService.emailPattern)]],
-      password: ['', [Validators.required], Validators.minLength(8)],
+      password: ['', [Validators.required]], //FIXME: Error en validaciones asincronas
       password2: ['', [Validators.required]],
       terminos: [ true,[Validators.required]],
       privacidad: [true,[Validators.required]]
@@ -71,6 +71,7 @@ export class RegistroComponent implements OnInit {
         email: this.formRegistro.value.email,
         password: this.formRegistro.value.password
       }).subscribe(response => {
+        console.log(response);
         if(this.passwordCoinciden=== true){
           this.usuarioRecibido = response
           this._router.navigateByUrl("home")

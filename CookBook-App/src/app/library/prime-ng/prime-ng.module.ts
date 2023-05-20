@@ -29,6 +29,10 @@ import { ConfirmPopupModule } from 'primeng/confirmpopup';
 import { DynamicDialogModule } from 'primeng/dynamicdialog';
 import { DialogModule } from 'primeng/dialog';
 import { ChartModule } from 'primeng/chart';
+import { CarouselModule } from 'primeng/carousel';
+import { DataViewModule } from 'primeng/dataview';
+import { TagModule } from 'primeng/tag';
+import { AutoCompleteModule } from 'primeng/autocomplete';
 @NgModule({
   exports: [
     CommonModule,
@@ -59,7 +63,12 @@ import { ChartModule } from 'primeng/chart';
     ConfirmPopupModule,
     DynamicDialogModule,
     DialogModule,
-    ChartModule
+    ChartModule,
+    CarouselModule,
+    DataViewModule,
+    TagModule,
+    AutoCompleteModule
+
   ]
 })
 

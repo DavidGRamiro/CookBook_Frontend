@@ -6,6 +6,7 @@ import { switchMap } from 'rxjs';
 import { MessageService } from 'primeng/api';
 import { Usuario } from 'src/app/auth/interface/auth.interface';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { UsuarioService } from 'src/app/usuario/services/usuario.service';
 
 @Component({
   selector: 'app-ver-una',
@@ -55,6 +56,7 @@ export class VerUnaComponent implements OnInit {
 
   constructor( private _recetasService: RecetasService,
               private _activateRoute : ActivatedRoute,
+              private _userService : UsuarioService,
               private _msg: MessageService,
               private _fb : FormBuilder ){}
 
@@ -124,5 +126,22 @@ export class VerUnaComponent implements OnInit {
   }
   addLike(){
     this._msg.add({ severity: 'success', summary: 'Me encanta !', detail: '¡ Has dado me gusta a esta receta !'});
+  }
+
+
+  //Elimina un solo comentario de un usuario.
+  eliminarComentario( idComentario : number){
+    if(idComentario != null && idComentario != undefined){
+      this._userService.eliminarComentario(idComentario).subscribe( data => {
+        this._msg.add({ severity: 'info', summary: 'El comentario ha sido eliminado'})
+
+      },
+      error => {
+        this._msg.add({ severity: 'error', summary: 'No se ha podido eliminar el comentario' })
+      }
+      )
+    }else{
+      this._msg.add({ severity: 'warning', summary: 'No existe el comentario' })
+    }
   }
 }

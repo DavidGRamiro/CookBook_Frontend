@@ -1,5 +1,8 @@
 <app-navbar></app-navbar>
 <h1 class="titulo-seccion">Todas las recetas</h1>
+<div class ="text-center">
+  <p-autoComplete [(ngModel)]="seleccionReceta" [suggestions]="filtroReceta" (completeMethod)="autoCompletadoReceta($event)" field="nombre"></p-autoComplete>
+</div>
 <div class ="contenedor d-flex flex-wrap justify-content-center">
     <div *ngFor="let receta of datos">
         <app-tarjeta [receta]="receta"></app-tarjeta>
