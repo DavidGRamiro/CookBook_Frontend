@@ -72,24 +72,24 @@ export class UsuarioService {
   }
 
   //Eliminar un usuario
-  deleteUsuario(idUsuario: number){
-    const url = `${ this.endPoint }${ this.common }/eliminar`
+  deleteUsuario(idUsuario: number): Observable<any>{
+    const url = `${ this.endPoint }${ this.common }/eliminar/uno`
     const params = new HttpParams().set('idUsuario', idUsuario)
-    return this._http.delete(url, { params, responseType: 'text' })
+    return this._http.delete(url, { params })
   }
 
   //Eliminar todos los comentarios asociados a un usuario
-  deleteComentariosUsuarios( idUsuario : number){
+  deleteComentariosUsuarios( idUsuario : number): Observable<any>{
     const url = `${ this.endPoint }${ this.common }/eliminar/comentarios`
     const params = new HttpParams().set('idUsuario', idUsuario);
-    return this._http.delete(url, { params, responseType: 'text' })
+    return this._http.delete(url, { params})
   }
 
   //Eliminar un comentario de usuario
   eliminarComentario( idComentario: number){
     const url = `${this.endPoint}${this.common}/eliminar/uno`;
     const params = new HttpParams().set('idComentario', idComentario);
-    return this._http.delete(url, { params, responseType: 'text' })
+    return this._http.delete(url, { params, responseType:  'arraybuffer' })
   }
 
   //Metodo para actualizar una notificacion
