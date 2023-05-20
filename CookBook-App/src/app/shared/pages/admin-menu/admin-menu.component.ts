@@ -29,7 +29,7 @@ export class AdminMenuComponent implements OnInit{
     {
       label: 'Usuarios',
       icon: 'pi pi-fw pi-users',
-      routerLink: ['/usuarios']
+      routerLink: ['/admin/usuarios']
     },
     {
       label: 'Ajustes',
