@@ -11,6 +11,7 @@ import { ListboxModule } from 'primeng/listbox';
 import { ProgressBarModule } from 'primeng/progressbar';
 import { PanelModule } from 'primeng/panel';
 import { BadgeModule } from 'primeng/badge';
+import { SingleNotificacionComponent } from './components/single-notificacion/single-notificacion.component';
 
 
 
@@ -18,7 +19,8 @@ import { BadgeModule } from 'primeng/badge';
   declarations: [
     MisRecetasComponent,
     NotificacionesComponent,
-    PerfilComponent
+    PerfilComponent,
+    SingleNotificacionComponent
   ],
   imports: [
     CommonModule,

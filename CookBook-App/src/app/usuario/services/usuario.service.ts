@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { Comentario, Receta, Usuario } from 'src/app/recetas/interface/recetas.interface';
 import { UsuarioConPlan } from '../interface/usuarioconplan.interface';
 import { Notificacion } from '../interface/notificacion.interface';
+import { NotificacionDTO } from '../interface/notificaciondto.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -43,9 +44,15 @@ export class UsuarioService {
     const params = new HttpParams().set('idUsuario', idUsuario)
     return this._http.get<Notificacion[]>(url, { params })
   }
+  //Método para obtener una notificación por su ID
+  getNotificacionById(idNotificacion: number): Observable<NotificacionDTO>{
+    const url = `${ this.endPoint }/notificaciones/una`
+    const params = new HttpParams().set('idNotificacion', idNotificacion)
+    return this._http.get<NotificacionDTO>(url, { params })
+  }
 
-  //Método post para actualizar el estado de una notificacion ya leida
-  updateNotificacion(idNotificacion: number): Observable<Notificacion>{
+  //Método post para actualizar el estado de una notificacion a leida
+  marcarNotificacionLeida(idNotificacion: number): Observable<Notificacion>{
     const url = `${ this.endPoint }${ this.common }/notificacion`
     const params = new HttpParams().set('idNotificacion', idNotificacion)
     return this._http.post<Notificacion>(url, { params })
@@ -76,6 +83,25 @@ export class UsuarioService {
     const url = `${this.endPoint}${this.common}/eliminar/uno`;
     const params = new HttpParams().set('idComentario', idComentario);
     return this._http.delete(url, { params, responseType: 'text' })
+  }
+
+  //Metodo para actualizar una notificacion
+  updateNotificacion(notificacion: NotificacionDTO): Observable<NotificacionDTO>{
+    const url = `${ this.endPoint }/notificaciones/actualizar`
+    return this._http.put<NotificacionDTO>(url, notificacion)
+  }
+
+  //Método para crear una notificación
+  createNotificacion(notificacion: Notificacion): Observable<Notificacion>{
+    const url = `${ this.endPoint }/notificaciones/crear`
+    return this._http.post<Notificacion>(url, notificacion)
+  }
+
+  //Eliminar una notificación
+  deleteNotificacion(idNotificacion: number): Observable<boolean>{
+    const url = `${ this.endPoint }/notificaciones/eliminar`
+    const params = new HttpParams().set('idNotificacion', idNotificacion)
+    return this._http.delete<boolean>(url, { params })
   }
 
 }

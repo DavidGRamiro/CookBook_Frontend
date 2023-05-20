@@ -1,9 +1,9 @@
 import { Usuario } from "./usuario.interface";
 
-export interface Notificacion{
-  id:        number;
-  idUsuario: Usuario;
-  mensaje:   string;
-  fechaHora: Date;
-  leida:     boolean;
+export interface Notificacion {
+  idNotificacion?: number;
+  usuario:        Usuario;
+  mensaje:        string;
+  fechaHora:      Date;
+  leida:          boolean;
 }

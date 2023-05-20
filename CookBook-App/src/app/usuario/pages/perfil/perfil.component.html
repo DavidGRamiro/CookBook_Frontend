@@ -14,44 +14,49 @@
     <div class="nombre-usuario">
       <!-- Aquí se muestra el nombre del usuario -->
       <h2>{{ usuario.username }}</h2>
-  </div>
-  <div class="menu-perfil">
-    <p-menubar [model]="listaPerfil"></p-menubar>
-  </div>
-  <div class="datos-plan">
-    <p>Plan contratado: {{ usuario.plan?.nombre }}</p>
-    <p>Fecha de inicio: {{ usuarioConPlan.fechaInicio }}</p>
-    <p>Estado: {{ usuarioConPlan.estado }}</p>
-    <p-progressBar [value]="usuarioConPlan.progreso"></p-progressBar>
-  </div>
-
-
-  <app-notificaciones [notificaciones]="notificaciones"></app-notificaciones>
-
-  <div *ngIf="recetasFavoritas" class="recetas-favoritas">
-    <!-- Aquí se muestra la lista de recetas favoritas del usuario -->
-    <h3>Recetas favoritas</h3>
-    <p-listbox
-      [(ngModel)]="recetaSeleccionada"
-      optionLabel="name"
-      [options]="recetasFavoritas"
-      [listStyle]="{ 'max-height': '250px' }"
-    >
-      <ng-template let-receta pTemplate="item">
-        <div class="ui-helper-clearfix">
-          <div>{{ receta.nombre }}</div>
+    </div>
+    <div class="menu-perfil">
+      <p-menubar [model]="listaPerfil"></p-menubar>
+    </div>
+    <div *ngIf="componenteActivo === 'notificaciones'">
+      <app-notificaciones [notificaciones]="notificaciones"></app-notificaciones>
+    </div>
+    <div *ngIf="componenteActivo === 'mis-recetas-favoritas'">
+      <div *ngIf="recetasFavoritas" class="recetas-favoritas">
+        <!-- Aquí se muestra la lista de recetas favoritas del usuario -->
+        <h3>Recetas favoritas</h3>
+        <p-listbox [(ngModel)]="recetaSeleccionada" optionLabel="name" [options]="recetasFavoritas"
+          [listStyle]="{ 'max-height': '250px' }">
+          <ng-template let-receta pTemplate="item">
+            <div class="ui-helper-clearfix">
+              <div>{{ receta.nombre }}</div>
+            </div>
+          </ng-template>
+        </p-listbox>
+        <div *ngIf="recetaSeleccionada">
+          <app-tarjeta [receta]="recetaSeleccionada"></app-tarjeta>
         </div>
-      </ng-template>
-    </p-listbox>
-    <div *ngIf="recetaSeleccionada">
-      <app-tarjeta [receta]="recetaSeleccionada"></app-tarjeta>
+      </div>
+
+      <div *ngIf="!recetasFavoritas">
+        <!-- Mostrar un indicador de carga o un mensaje mientras se obtienen los datos -->
+        <p>Cargando recetas favoritas...</p>
+      </div>
+    </div>
+    <div *ngIf="componenteActivo === 'mi-plan'">
+      <div class="datos-plan">
+        <p>Plan contratado: {{ usuario.plan.nombre }}</p>
+        <p>Fecha de inicio: {{ usuarioConPlan.fechaInicio }}</p>
+        <p>Estado: {{ usuarioConPlan.estado }}</p>
+        <p-progressBar [value]="usuarioConPlan.progreso"></p-progressBar>
+      </div>
     </div>
   </div>
 
-  <div *ngIf="!recetasFavoritas">
-    <!-- Mostrar un indicador de carga o un mensaje mientras se obtienen los datos -->
-    <p>Cargando recetas favoritas...</p>
-  </div>
-</div>
+  <!--Creamos un formulario de prueba para las notificaciones-->
+  <form (ngSubmit)="enviarNotificacion()" #notificacionForm="ngForm">
+    <button type="submit" class="btn btn-primary">
+      Enviar
+    </button>
 
-<app-footer></app-footer>
+    <app-footer></app-footer>

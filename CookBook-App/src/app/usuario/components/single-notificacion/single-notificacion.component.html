@@ -1,0 +1,13 @@
+<div class="contenedor">
+  <div class="notification" (click)="toggleNotificacion()">
+    <h4 class="notification-title">{{ notificacion.mensaje }}</h4>
+    <div class="notification-toggle">
+      <p class="notification-timestamp">{{ calcularTiempoTranscurrido(notificacion.fechaHora) }}</p>
+      <div class="notification-status" *ngIf="!notificacion.leida"></div>
+    </div>
+  </div>
+  <div class="notification-details" *ngIf="mostrarDetalles">
+    <p class="notification-message">{{ notificacion.mensaje }}</p>
+    <button class="delete-button" (click)="eliminarNotificacion()">X</button>
+  </div>
+</div>

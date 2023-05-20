@@ -3,8 +3,8 @@ import { Usuario } from "./usuario.interface";
 
 export interface UsuarioConPlan {
   id:          number;
-  idUsuario:   Usuario;
-  idPlan:      Plan;
+  usuario:   Usuario;
+  plan:      Plan;
   progreso:    number;
   fechaInicio: Date;
   estado:      string;

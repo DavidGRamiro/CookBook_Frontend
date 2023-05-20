@@ -9,6 +9,7 @@ import { Usuario } from '../../interface/usuario.interface';
 import { ValidatorService } from 'src/app/auth/services/validator.service';
 import { UsuarioConPlan } from '../../interface/usuarioconplan.interface';
 import { Notificacion } from '../../interface/notificacion.interface';
+import { DateTime } from 'luxon';
 
 @Component({
   selector: 'app-perfil',
@@ -21,40 +22,43 @@ export class PerfilComponent implements OnInit{
     {
       label: 'Mi plan',
       icon: 'pi pi-fw pi-calendar',
-      routerLink: 'mi-plan'
+      command: () => this.cambiarComponenteActivo('mi-plan')
     },
     {
       label: 'Mis recetas favoritas',
       icon: 'pi pi-fw pi-heart',
-      routerLink: 'mis-recetas-favoritas'
+      command: () => this.cambiarComponenteActivo('mis-recetas-favoritas')
     },
     {
       label: 'Mis recetas',
       icon: 'pi pi-fw pi-book',
-      routerLink: 'mis-recetas'
+      command: () => this.cambiarComponenteActivo('mis-recetas')
     },
     {
       label: 'Notificaciones',
       icon: 'pi pi-fw pi-bell',
-      routerLink: 'notificaciones'
+      command: () => this.cambiarComponenteActivo('notificaciones')
     },
     {
       label: 'Editar perfil',
       icon: 'pi pi-fw pi-user-edit',
-      routerLink: 'editar-perfil'
+      command: () => this.cambiarComponenteActivo('editar-perfil')
     },
     {
       label: 'Cerrar sesión',
       icon: 'pi pi-fw pi-sign-out',
-      routerLink: 'cerrar-sesion'
+      command: () => this.cambiarComponenteActivo('cerrar-sesion')
     }
   ];
+
   public isLoggedIn: boolean =false;
   usuario!: Usuario;
   recetasFavoritas!: Receta[];
   recetaSeleccionada!: Receta;
   usuarioConPlan!: UsuarioConPlan;
   notificaciones!: Notificacion[];
+  componenteActivo: string = '';
+
 
   constructor( private _usuarioService: UsuarioService,
     private router: Router,
@@ -86,7 +90,6 @@ export class PerfilComponent implements OnInit{
         this.recetasFavoritas = recetas;
       }
       )
-    console.log(this.recetasFavoritas)
       this.listaPerfil = this.listaPerfil.map(
         item => {
           item.routerLink = `/usuario/perfil/${item.routerLink}`
@@ -97,6 +100,7 @@ export class PerfilComponent implements OnInit{
     this._usuarioService.getPlandeUsuario(this.usuario.idUsuario)
      .subscribe( usuarioConPlan => {
         this.usuarioConPlan = usuarioConPlan;
+        console.log(this.usuarioConPlan)
       }
       )
 
@@ -108,6 +112,27 @@ export class PerfilComponent implements OnInit{
       )
 
     }
+  }
+  cambiarComponenteActivo(componente: string) {
+    this.componenteActivo = componente;
+  }
+  enviarNotificacion() {
+    let time = DateTime.now().toISO(); // Obtiene la fecha actual en formato ISO-8601
+    const nowTimestamp = DateTime.now().toJSDate(); // Obtiene la fecha actual como un objeto Date
+
+let   notificacion: Notificacion = {
+      usuario: this.usuario,
+      mensaje: 'Mensaje de ejemplo',
+      fechaHora: nowTimestamp,
+      leida: false
+    };
+    console.log(notificacion)
+    this._usuarioService.createNotificacion(notificacion)
+    .subscribe( notificacion => {
+      console.log(notificacion)
+      window.location.reload();
+    }
+    )
   }
 }
 
