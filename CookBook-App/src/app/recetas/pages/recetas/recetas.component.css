@@ -11,3 +11,6 @@
   text-align: center;
   margin: 40px auto;
 }
+button.active {
+  background-color: #ccc;
+}

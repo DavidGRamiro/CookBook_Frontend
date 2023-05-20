@@ -3,7 +3,6 @@ import { MessageService } from 'primeng/api';
 import { Usuario } from 'src/app/auth/interface/auth.interface';
 import { UsuarioService } from 'src/app/usuario/services/usuario.service';
 import { DialogService } from 'primeng/dynamicdialog';
-import { PerfilComponent } from 'src/app/usuario/pages/perfil/perfil.component';
 import { EnviarNotificacionComponent } from '../enviar-notificacion/enviar-notificacion.component';
 
 @Component({

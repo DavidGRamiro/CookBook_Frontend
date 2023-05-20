@@ -17,6 +17,11 @@ export class RecetasComponent implements OnInit {
   //Variables para el autocompletado
   public seleccionReceta: any;
   public filtroReceta!: Receta[];
+  isSearchByNameActive: boolean = false;
+  isSearchByIngredientsActive: boolean = false;
+
+
+  searchQuery!: string;
 
   constructor( private _recetaService: RecetasService) { }
 
@@ -50,7 +55,59 @@ export class RecetasComponent implements OnInit {
         filtro.push(receta)
       }
     }
-    this.filtroReceta = filtro;
+    this.datos = filtro;
+  }
+
+  searchByName(event: any) {
+    console.log(event.query);
+    if (!this.isSearchByNameActive) {
+      this.isSearchByNameActive = true;
+      this.isSearchByIngredientsActive = false;
+
+    let filtro : any[] = [];
+    let query = this.searchQuery;
+
+    for ( let i = 0; i < this.datos.length; i++ ){
+      let receta = this.datos[i];
+      if( receta.nombre.toLocaleLowerCase().indexOf(query.toLowerCase()) === 0){
+        filtro.push(receta)
+      }
+    }
+
+    this.datos = filtro;
+  }
+}
+
+  searchByIngredients(event: any) {
+    console.log(event);
+    if (!this.isSearchByIngredientsActive) {
+      this.isSearchByIngredientsActive = true;
+      this.isSearchByNameActive = false;
+
+    let filtro : any[] = [];
+    let query = this.searchQuery;
+
+    for ( let i = 0; i < this.datos.length; i++ ){
+      let receta = this.datos[i];
+      if( receta.recetasConIngredientes.length > 0 ){
+        for ( let j = 0; j < receta.recetasConIngredientes.length; j++ ){
+            let recetasConIng = receta.recetasConIngredientes[j];
+            if( recetasConIng.ingrediente.nombre
+              .toLocaleLowerCase()
+              .indexOf(query.toLowerCase()) === 0){
+              filtro.push(receta)
+            }
+            else{
+              console.log("No hay recetas con ese ingrediente");
+            }
+        }
+
+      } else {
+        console.log("No hay recetas con ingredientes");
+      }
+    }
+    this.datos = filtro;
+  }
   }
 }
 

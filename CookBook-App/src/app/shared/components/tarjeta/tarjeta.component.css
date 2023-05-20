@@ -9,28 +9,11 @@
   object-fit: cover;
   border-radius: 1rem 1rem 0 0;
 }
-/*.blur-layer::before {
-  position: relative;
-  display: flex;
-  width: 300px;
-  height: 40px;
-  bottom: 225px;
-  /* left: 235px;
-  font-size: 20px;
-  color: #FFC10D;
-  flex-direction: row;
-  align-items: baseline;
-  backdrop-filter: blur(5px);
-  -webkit-backdrop-filter: blur(5px);
-  border-radius: 1rem 1rem 0 0;
-  z-index: 1;
-}
-*/
 .blur-div {
   position: absolute;
-  height: 40px;
+  height: 54px;
   width: 300px;
-  background: linear-gradient(rgba(255, 255, 255, 0.612), rgba(255, 255, 255, 0));
+  background: linear-gradient(rgba(255, 255, 255, 0.915), rgba(255, 255, 255, 0));
   backdrop-filter: blur(1px);
   -webkit-backdrop-filter: blur(1px);
   border-radius: 1rem 1rem 0 0;
@@ -51,6 +34,12 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+
+}
+::ng-deep .p-card .p-card-content {
+  padding: 0px;
+  display: flex;
+  justify-content: space-between;
 }
 
 ::ng-deep .p-card .p-card-title{
@@ -61,16 +50,6 @@
   margin: 0 0 0.5rem 0;
   max-height: 75px;
 }
-/*::ng-deep p{
-  font-family: 'Open Sans', sans-serif;
-  font-size: 14px;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  display: -webkit-box;
-  -webkit-line-clamp: 3;
-  -webkit-box-orient: vertical;
-  max-width: 200px;
-}*/
 
 .icon-container {
   position: relative;
@@ -83,7 +62,9 @@
   color: black;
   flex-direction: row;
   align-items: baseline;
+  text-shadow: #FFC10D 1px 0 8px;
 }
+
 .icon-container-ing{
   position: relative;
   display: flex;
@@ -95,6 +76,7 @@
   color: black;
   flex-direction: row;
   align-items: baseline;
+  text-shadow: #FFC10D 1px 0 8px;
 }
 .icon-container-ing i{
   color: black;
@@ -114,16 +96,18 @@
   padding: 0px;
 }
 
-.avatar-container {
-  width: 30px;
-  height: 30px;
-  border-radius: 50%;
-  overflow: hidden;
-  }
 
   .avatar {
-  width: 100%;
-  height: auto;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    overflow: hidden;
+  }
+  .username {
+    font-size: 14px;
+    color: #999;
+    padding: 0;
+    margin: 0;
   }
 
   .header-container {
@@ -142,7 +126,11 @@
   font-size: 14px;
   color: #999;
   }
-
+.avatar-container {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
 
 
 
