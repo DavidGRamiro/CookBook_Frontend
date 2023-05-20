@@ -1,0 +1,12 @@
+<h2>Editar Perfil</h2>
+<div>
+  <label for="username">Nombre de usuario:</label>
+  <input title="username" type="text" [(ngModel)]="usuario.username" />
+</div>
+<div>
+  <label for="email">Email:</label>
+  <input title="email" type="email" [(ngModel)]="usuario.email" />
+</div>
+<!-- Agrega más campos de acuerdo a tus necesidades -->
+
+<button (click)="guardarCambios()">Guardar Cambios</button>

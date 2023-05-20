@@ -18,45 +18,33 @@
     <div class="menu-perfil">
       <p-menubar [model]="listaPerfil"></p-menubar>
     </div>
-    <div *ngIf="componenteActivo === 'notificaciones'">
-      <app-notificaciones [notificaciones]="notificaciones"></app-notificaciones>
-    </div>
-    <div *ngIf="componenteActivo === 'mis-recetas-favoritas'">
-      <div *ngIf="recetasFavoritas" class="recetas-favoritas">
-        <!-- Aquí se muestra la lista de recetas favoritas del usuario -->
-        <h3>Recetas favoritas</h3>
-        <p-listbox [(ngModel)]="recetaSeleccionada" optionLabel="name" [options]="recetasFavoritas"
-          [listStyle]="{ 'max-height': '250px' }">
-          <ng-template let-receta pTemplate="item">
-            <div class="ui-helper-clearfix">
-              <div>{{ receta.nombre }}</div>
-            </div>
-          </ng-template>
-        </p-listbox>
-        <div *ngIf="recetaSeleccionada">
-          <app-tarjeta [receta]="recetaSeleccionada"></app-tarjeta>
-        </div>
-      </div>
 
-      <div *ngIf="!recetasFavoritas">
-        <!-- Mostrar un indicador de carga o un mensaje mientras se obtienen los datos -->
-        <p>Cargando recetas favoritas...</p>
+    <ng-container [ngSwitch]="componenteActivo">
+      <div *ngSwitchCase="'mi-plan'">
+        <app-mi-plan [usuarioConPlan]="usuarioConPlan" [usuario]="usuario"></app-mi-plan>
       </div>
-    </div>
-    <div *ngIf="componenteActivo === 'mi-plan'">
-      <div class="datos-plan">
-        <p>Plan contratado: {{ usuario.plan.nombre }}</p>
-        <p>Fecha de inicio: {{ usuarioConPlan.fechaInicio }}</p>
-        <p>Estado: {{ usuarioConPlan.estado }}</p>
-        <p-progressBar [value]="usuarioConPlan.progreso"></p-progressBar>
+      <div *ngSwitchCase="'mis-recetas-fav'">
+        <app-mis-recetas-fav [recetasFavoritas]="recetasFavoritas"></app-mis-recetas-fav>
       </div>
-    </div>
-  </div>
+      <div *ngSwitchCase="'mis-recetas'">
+        <app-mis-recetas [usuario]="usuario"></app-mis-recetas>
+      </div>
+      <div *ngSwitchCase="'notificaciones'">
+        <app-notificaciones [notificaciones]="notificaciones"></app-notificaciones>
+      </div>
+      <div *ngSwitchCase="'editar-perfil'">
+        <app-editar-perfil [usuario]="usuario"></app-editar-perfil>
+      </div>
+    </ng-container>
+
+
 
   <!--Creamos un formulario de prueba para las notificaciones-->
   <form (ngSubmit)="enviarNotificacion()" #notificacionForm="ngForm">
     <button type="submit" class="btn btn-primary">
-      Enviar
+      Enviar Notificacion de prueba
     </button>
-
+  </form>
+</div>
+</div>
     <app-footer></app-footer>
