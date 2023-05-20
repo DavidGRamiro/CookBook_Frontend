@@ -3,17 +3,16 @@
 <div class="container">
   <h3 class ="text-center mt-3">Control de estadísticas</h3>
 
-  <div class="row mt-4">
-    <div class="col">
-      <h4 class ="text-center">Usuarios registrados</h4>
-      <div class="card">
-        <p-chart type="bar" [data]="basicData" [options]="basicOptions"></p-chart>
+    <div class="col m-auto" [style]="{ width:'50%' }">
+      <h4 class ="text-center">Últimas recetas</h4>
+        <p-chart type="bar" [data]="basicData" [options]="basicOptions"  ></p-chart>
     </div>
-    </div>
-    <div class="col">
-      <h4 class ="text-center">Listado de usuarios</h4>
+    <div class="col text-center mt-5">
+      <h4>Receta más comentada</h4>
+        <app-carousel-recetas></app-carousel-recetas>
     </div>
   </div>
-</div>
+
+  <app-footer></app-footer>
 
 

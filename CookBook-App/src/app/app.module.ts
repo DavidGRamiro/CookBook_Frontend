@@ -13,11 +13,9 @@ import { UsuarioModule } from './usuario/usuario.module';
 import { PlanesModule } from './planes/planes.module';
 import { CategoriasModule } from './categorias/categorias.module';
 import { HomeModule } from './home/home.module';
-import { HomeRoutingModule } from './home/home-routing.module';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { DialogService } from 'primeng/dynamicdialog';
 import { AdminModule } from './admin/admin.module';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -39,6 +37,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     CategoriasModule,
     HomeModule,
     AdminModule,
+
   ],
   providers: [
     MessageService,
