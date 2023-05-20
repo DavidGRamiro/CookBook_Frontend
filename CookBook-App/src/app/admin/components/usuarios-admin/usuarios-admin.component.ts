@@ -37,18 +37,19 @@ export class UsuariosAdminComponent implements OnInit{
 
   //Eliminamos un usuario
   eliminarUsuario(idUsuario: number){
-    //Primero se eliminan los comentarios de los usuarios
+    //Primero se eliminan los comentarios de los usuarios, si todo va bien, se elimina el usuario.
     this._usuarioService.deleteComentariosUsuarios(idUsuario).subscribe( response => {
-      //Despues se procede a eliminar el usuario en cuestión
-      this._usuarioService.deleteUsuario(idUsuario).subscribe( response => {
-        this._msg.add({severity:'success', summary:'Usuario eliminado', detail: 'El usuario se ha eliminado'})
-        setTimeout(()=> {
-          window.location.reload();
-        }, 1500)
-      }, error => {
-        this._msg.add({ severity:'warning', summary:'Usuario no eliminado', detail: 'El usuario no ha podido ser eliminado' })
-      });
+    console.log(response);
+    this._usuarioService.deleteUsuario(idUsuario).subscribe( response => {
+        this._msg.add({severity:'success', summary:'Usuario eliminado', detail:'El usuario ha sido eliminado correctamente'});
+        this.obtenerTodos();
+    }, error => {
+      console.log(error);
     })
+    }, error => {
+      console.log(error);
+    }
+    )
   }
 
   //Modal al hacer click en enviar, que redirige a un componente de usuario.
