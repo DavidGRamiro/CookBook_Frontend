@@ -1,4 +1,4 @@
-export interface Usuario {
+export  interface Usuario {
   idUsuario:     number;
   email:         string;
   fechaRegistro: Date;

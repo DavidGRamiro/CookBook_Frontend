@@ -1,0 +1,20 @@
+<div *ngIf="recetasFavoritas" class="recetas-favoritas">
+  <!-- Aquí se muestra la lista de recetas favoritas del usuario -->
+  <h3>Recetas favoritas</h3>
+  <p-listbox [(ngModel)]="recetaSeleccionada" optionLabel="name" [options]="recetasFavoritas"
+    [listStyle]="{ 'max-height': '250px' }">
+    <ng-template let-receta pTemplate="item">
+      <div class="ui-helper-clearfix">
+        <div>{{ receta.nombre }}</div>
+      </div>
+    </ng-template>
+  </p-listbox>
+  <div *ngIf="recetaSeleccionada">
+    <app-tarjeta [receta]="recetaSeleccionada"></app-tarjeta>
+  </div>
+</div>
+
+<div *ngIf="!recetasFavoritas">
+  <!-- Mostrar un indicador de carga o un mensaje mientras se obtienen los datos -->
+  <p>Cargando recetas favoritas...</p>
+</div>

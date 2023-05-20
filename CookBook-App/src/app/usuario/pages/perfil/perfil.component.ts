@@ -27,7 +27,7 @@ export class PerfilComponent implements OnInit{
     {
       label: 'Mis recetas favoritas',
       icon: 'pi pi-fw pi-heart',
-      command: () => this.cambiarComponenteActivo('mis-recetas-favoritas')
+      command: () => this.cambiarComponenteActivo('mis-recetas-fav')
     },
     {
       label: 'Mis recetas',
@@ -88,13 +88,8 @@ export class PerfilComponent implements OnInit{
       this._usuarioService.getRecetasFavoritas(this.usuario.idUsuario)
       .subscribe( recetas => {
         this.recetasFavoritas = recetas;
+        console.log(this.recetasFavoritas)
       }
-      )
-      this.listaPerfil = this.listaPerfil.map(
-        item => {
-          item.routerLink = `/usuario/perfil/${item.routerLink}`
-          return item;
-        }
       )
 
     this._usuarioService.getPlandeUsuario(this.usuario.idUsuario)
@@ -114,8 +109,10 @@ export class PerfilComponent implements OnInit{
     }
   }
   cambiarComponenteActivo(componente: string) {
+    console.log("Cambiando al componente", componente);
     this.componenteActivo = componente;
   }
+
   enviarNotificacion() {
     let time = DateTime.now().toISO(); // Obtiene la fecha actual en formato ISO-8601
     const nowTimestamp = DateTime.now().toJSDate(); // Obtiene la fecha actual como un objeto Date

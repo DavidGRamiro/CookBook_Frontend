@@ -1,7 +1,8 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Comentario, Receta, Usuario } from 'src/app/recetas/interface/recetas.interface';
+import { Receta, Comentario } from 'src/app/recetas/interface/recetas.interface';
+import { Plan, Usuario } from '../interface/usuario.interface';
 import { UsuarioConPlan } from '../interface/usuarioconplan.interface';
 import { Notificacion } from '../interface/notificacion.interface';
 import { NotificacionDTO } from '../interface/notificaciondto.interface';
@@ -36,6 +37,12 @@ export class UsuarioService {
     const url = `${ this.endPoint }${ this.common }/conPlan`
     const params = new HttpParams().set('idUsuario', idUsuario)
     return this._http.get<UsuarioConPlan>(url, { params })
+  }
+
+  getPlan(idPlan: number): Observable<Plan>{
+    const url = `${ this.endPoint }/planes/plan`
+    const params = new HttpParams().set('idPlan', idPlan)
+    return this._http.get<Plan>(url, { params })
   }
 
   //Recogemos las notificaciones de un usuario.
@@ -102,6 +109,19 @@ export class UsuarioService {
     const url = `${ this.endPoint }/notificaciones/eliminar`
     const params = new HttpParams().set('idNotificacion', idNotificacion)
     return this._http.delete<boolean>(url, { params })
+  }
+
+  //Método para recuperar todas las recetas qe ha creado un usuario
+  getRecetasByUsuario(idUsuario: number): Observable<Receta[]>{
+    const url = `${ this.endPoint }/recetas/porAutor`
+    const params = new HttpParams().set('idUsuario', idUsuario)
+    return this._http.get<Receta[]>(url, { params })
+  }
+
+  //Método para actualizar la información de un usuario
+  updateUsuario(usuario: Usuario): Observable<Usuario>{
+    const url = `${ this.endPoint }${ this.common }/actualizar`
+    return this._http.put<Usuario>(url, usuario)
   }
 
 }
