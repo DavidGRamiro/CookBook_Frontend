@@ -1,0 +1,7 @@
+<form (ngSubmit)="enviarNotificacion()" #notificacionForm="ngForm">
+  <div class="form-group">
+    <label for="mensaje">Mensaje</label>
+    <textarea id="mensaje" class="form-control" name="mensaje" [(ngModel)]="notificacion.mensaje" required maxlength="250"></textarea>
+  </div>
+  <button type="submit" class="btn btn-primary">Enviar Notificación</button>
+</form>

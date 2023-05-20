@@ -4,6 +4,7 @@ import { Usuario } from 'src/app/auth/interface/auth.interface';
 import { UsuarioService } from 'src/app/usuario/services/usuario.service';
 import { DialogService } from 'primeng/dynamicdialog';
 import { PerfilComponent } from 'src/app/usuario/pages/perfil/perfil.component';
+import { EnviarNotificacionComponent } from '../enviar-notificacion/enviar-notificacion.component';
 
 @Component({
   selector: 'app-usuarios-admin',
@@ -51,12 +52,18 @@ export class UsuariosAdminComponent implements OnInit{
   }
 
   //Modal al hacer click en enviar, que redirige a un componente de usuario.
-  mandarNotificacion(){
-    this._dialogService.open( PerfilComponent, {
-      header: 'Enviar notificación a usuario' ,
-      width: '50%',
-    })
+  mandarNotificacion(idUsuario: number) {
+    console.log(idUsuario + " Id usuario");
+    let usuario = this.listaUsuarios.find(usuario => usuario.idUsuario === idUsuario);
+    this._dialogService.open(EnviarNotificacionComponent, {
+      header: 'Enviar notificación a ' + usuario?.username,
+      width: '70%',
+      contentStyle: {"max-height": "500px", "overflow": "auto"},
+      baseZIndex: 10000,
+      data: {
+        idUsuario: idUsuario
+      }
+    });
   }
-
 }
 

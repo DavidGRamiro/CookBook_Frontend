@@ -9,6 +9,7 @@ import { EstadisticasComponent } from './components/estadisticas/estadisticas.co
 import { SharedModule } from '../shared/shared.module';
 import { UsuariosAdminComponent } from './components/usuarios-admin/usuarios-admin.component';
 import { UsuarioModule } from '../usuario/usuario.module';
+import { EnviarNotificacionComponent } from './components/enviar-notificacion/enviar-notificacion.component';
 
 
 @NgModule({
@@ -16,6 +17,7 @@ import { UsuarioModule } from '../usuario/usuario.module';
     EditRecetaComponent,
     EstadisticasComponent,
     UsuariosAdminComponent,
+    EnviarNotificacionComponent,
   ],
   imports: [
     CommonModule,
