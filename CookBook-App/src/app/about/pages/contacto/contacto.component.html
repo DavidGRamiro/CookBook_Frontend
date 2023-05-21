@@ -1,1 +1,29 @@
-<p>contacto works!</p>
+<div class="container">
+
+  <h5 class="mt-5"> ¡ Nos encantaría saber de tí !</h5>
+  <div class="container">
+    <div class="row">
+      <p>Si tienes alguna pregunta, sugerencia, o simplemente deseas ponerte en contacto con nosotros,
+        no dudes en hacerlo. Estamos aquí para ayudarte.
+      </p>
+
+      <h6 class="m-4">Puedes rellenar el siguiente formulario de contacto.</h6>
+
+      <form [formGroup]="formContacto" class="text-center">
+        <div class="flex flex-column gap-2 mb-2">
+          <label htmlFor="username">Nombre y apellidos</label>
+          <input pInputText id="username" aria-describedby="username-help" style="width: 50%; margin:auto;" formControlName="username"/>
+          <small id="username-help">Escribe tu nombre completo para dirigirnos a usted</small>
+          <label htmlFor="email">Email de conctacto</label>
+          <input pInputText id="correoEllectronico" aria-describedby="username-help" style="width: 50%; margin:auto;" formControlName="email"/>
+          <label htmlFor="texto">¡ Dinos en que podemos ayudarte !</label>
+          <textarea rows="5" cols="30" pInputTextarea formControlName="texto"></textarea>
+        </div>
+        <p-button label="Enviar" icon ="pi pi-send" iconPos="right" type ="submit" (click)="mostrarNotificacion()" style="color: #fff5d7"></p-button>
+      </form>
+
+    </div>
+  </div>
+</div>
+
+<p-toast></p-toast>
