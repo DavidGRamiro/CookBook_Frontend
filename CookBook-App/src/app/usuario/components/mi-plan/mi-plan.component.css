@@ -1,0 +1,39 @@
+.plan-card {
+  background-color: #f2f2f2;
+  padding: 40px;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: space-between;
+}
+
+.plan-card-header {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.plan-card-content {
+  margin-bottom: 20px;
+}
+
+.progreso {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.calendario {
+  display: flex;
+}
+
+/* Estilos para el progressBar */
+::ng-deep .p-progressbar-value {
+  background-color: #007bff;
+}
+
+::ng-deep .p-progressbar-label {
+  font-weight: bold;
+  color: #007bff;
+}

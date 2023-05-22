@@ -15,8 +15,10 @@ import { MiPlanComponent } from './components/mi-plan/mi-plan.component';
 import { MisRecetasFavComponent } from './components/mis-recetas-fav/mis-recetas-fav.component';
 import { EditarPerfilComponent } from './components/editar-perfil/editar-perfil.component';
 import { MisRecetasComponent } from './components/mis-recetas/mis-recetas.component';
-
-
+import { TabViewModule } from 'primeng/tabview';
+import { InputTextModule } from 'primeng/inputtext';
+import { MessagesModule } from 'primeng/messages';
+import { CalendarModule } from 'primeng/calendar';
 
 @NgModule({
   declarations: [
@@ -26,7 +28,7 @@ import { MisRecetasComponent } from './components/mis-recetas/mis-recetas.compon
     MiPlanComponent,
     MisRecetasFavComponent,
     EditarPerfilComponent,
-    MisRecetasComponent
+    MisRecetasComponent,
   ],
   imports: [
     CommonModule,
@@ -36,12 +38,12 @@ import { MisRecetasComponent } from './components/mis-recetas/mis-recetas.compon
     ListboxModule,
     ProgressBarModule,
     PanelModule,
-    BadgeModule
+    BadgeModule,
+    TabViewModule,
+    InputTextModule,
+    MessagesModule,
+    CalendarModule,
   ],
-  exports:[
-    NotificacionesComponent,
-    PerfilComponent
-  ]
+  exports: [NotificacionesComponent, PerfilComponent],
 })
-
-export class UsuarioModule { }
+export class UsuarioModule {}

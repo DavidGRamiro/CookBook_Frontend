@@ -1,42 +1,40 @@
 <app-navbar></app-navbar>
-
-<h1 class="titulo-seccion">Mi perfil</h1>
 <div class="contenedor">
-
-  <div class="contenido-perfil">
-    <div class="imagen-usuario" *ngIf="usuario.imagen; else noImagen">
-      <!-- Aquí se muestra la imagen del usuario -->
-      <img [src]="usuario.imagen" alt="Imagen del usuario" />
+  <h1 class="titulo-seccion">Mi perfil</h1>
+  <div class="contenedor-content">
+    <div class="profile-container">
+      <div class="imagen-usuario" *ngIf="usuario.imagen; else noImagen">
+        <!-- Aquí se muestra la imagen del usuario -->
+        <img [src]="usuario.imagen" alt="Imagen del usuario" />
+      </div>
+      <ng-template #noImagen>
+        <img src="assets/img/usuario.png" alt="Imagen del usuario" />
+      </ng-template>
+      <div class="nombre-usuario">
+        <!-- Aquí se muestra el nombre del usuario -->
+        <h2>{{ usuario.username }}</h2>
+        <p class="email-usuario">{{ usuario.email }}</p>
+        <button class="editar-perfil-btn" (click)="editarPerfil()">Editar perfil</button>
+      </div>
     </div>
-    <ng-template #noImagen>
-      <img src="assets/img/usuario.png" alt="Imagen del usuario" />
-    </ng-template>
-    <div class="nombre-usuario">
-      <!-- Aquí se muestra el nombre del usuario -->
-      <h2>{{ usuario.username }}</h2>
+    <div class="profile-tabs">
+      <p-tabView [activeIndex]="activeIndex" (onChange)="cambiarComponenteActivo($event.index)">
+        <p-tabPanel header="Mi plan">
+          <div *ngIf="usuarioConPlan">
+            <app-mi-plan [usuarioConPlan]="usuarioConPlan" [usuario]="usuario"></app-mi-plan>
+          </div>
+        </p-tabPanel>
+        <p-tabPanel header="Mis recetas favoritas">
+          <app-mis-recetas-fav [recetasFavoritas]="recetasFavoritas"></app-mis-recetas-fav>
+        </p-tabPanel>
+        <p-tabPanel header="Mis recetas">
+          <app-mis-recetas [usuario]="usuario"></app-mis-recetas>
+        </p-tabPanel>
+        <p-tabPanel header="Notificaciones">
+          <app-notificaciones [notificaciones]="notificaciones"></app-notificaciones>
+        </p-tabPanel>
+        </p-tabView>
     </div>
-    <div class="menu-perfil">
-      <p-menubar [model]="listaPerfil"></p-menubar>
-    </div>
-
-    <ng-container [ngSwitch]="componenteActivo">
-      <div *ngSwitchCase="'mi-plan'">
-        <app-mi-plan [usuarioConPlan]="usuarioConPlan" [usuario]="usuario"></app-mi-plan>
-      </div>
-      <div *ngSwitchCase="'mis-recetas-fav'">
-        <app-mis-recetas-fav [recetasFavoritas]="recetasFavoritas"></app-mis-recetas-fav>
-      </div>
-      <div *ngSwitchCase="'mis-recetas'">
-        <app-mis-recetas [usuario]="usuario"></app-mis-recetas>
-      </div>
-      <div *ngSwitchCase="'notificaciones'">
-        <app-notificaciones [notificaciones]="notificaciones"></app-notificaciones>
-      </div>
-      <div *ngSwitchCase="'editar-perfil'">
-        <app-editar-perfil [usuario]="usuario"></app-editar-perfil>
-      </div>
-    </ng-container>
-
   </div>
 </div>
-    <app-footer></app-footer>
+<app-footer></app-footer>

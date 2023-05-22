@@ -26,11 +26,12 @@ import { CarouselRecetasComponent } from './components/carousel-recetas/carousel
     TablaComponent,
     MenuComponent,
     TarjetaComponent,
+    TarjetaPlanComponent,
     TarjetaCategoriaComponent,
     FormularioRecipeComponent,
     AdminMenuComponent,
     TarjetaPlanComponent,
-    CarouselRecetasComponent
+    CarouselRecetasComponent,
   ],
   imports: [
     CommonModule,
@@ -39,7 +40,7 @@ import { CarouselRecetasComponent } from './components/carousel-recetas/carousel
     FormsModule,
     ReactiveFormsModule,
   ],
-  exports:[
+  exports: [
     NavbarComponent,
     FooterComponent,
     MainComponent,
@@ -47,9 +48,10 @@ import { CarouselRecetasComponent } from './components/carousel-recetas/carousel
     MenuComponent,
     TarjetaComponent,
     TarjetaCategoriaComponent,
+    TarjetaPlanComponent,
     FormularioRecipeComponent,
-    CarouselRecetasComponent
+    CarouselRecetasComponent,
   ],
-  providers: []
+  providers: [],
 })
-export class SharedModule { }
+export class SharedModule {}

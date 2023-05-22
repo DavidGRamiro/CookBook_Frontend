@@ -17,6 +17,9 @@ export class MiPlanComponent implements OnInit {
 
   ngOnInit(): void {
 
+    console.log('Starting');
+    console.log('Usuario: ' + this.usuario.email);
+    console.log('Usuario con plan: ' + this.usuarioConPlan);
     this.progreso = this.calcularProgreso();
   }
 
@@ -32,6 +35,7 @@ export class MiPlanComponent implements OnInit {
     let diasPlan = this.usuarioConPlan.plan.duracion;
     let progreso = (diasTranscurridos * 100) / diasPlan;
     progreso = Math.round(progreso);
+    console.log(progreso);
     return progreso;
   }
 

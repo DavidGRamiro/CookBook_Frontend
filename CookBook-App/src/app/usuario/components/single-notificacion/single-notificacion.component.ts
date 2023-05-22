@@ -96,6 +96,7 @@ export class SingleNotificacionComponent implements OnInit, OnDestroy{
       }
     );
   }
+
   eliminarNotificacion(): void {
     // comprobamos que la notificacion tenga id
     if (this.notificacion.idNotificacion) {

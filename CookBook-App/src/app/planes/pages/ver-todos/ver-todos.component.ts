@@ -17,12 +17,9 @@ export class VerTodosComponent implements OnInit{
   constructor( private _planService: PlanService) { }
 
   ngOnInit(): void {
-      
-    this.obtenerTodos()
-    
-
+    this.obtenerTodos();
   }
-  
+
   obtenerTodos(){
     this._planService.todosPlanes().subscribe( res => {
       this.listaPlanes = res;

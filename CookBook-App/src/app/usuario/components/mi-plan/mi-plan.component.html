@@ -1,6 +1,15 @@
 <div class="datos-plan">
-  <p>Plan contratado: {{ usuario.plan.nombre }}</p>
-  <p>Fecha de inicio: {{ usuarioConPlan.fechaInicio }}</p>
-  <p>Estado: {{ usuarioConPlan.estado }}</p>
-  <p-progressBar [value]="progreso"></p-progressBar>
+  <div class="plan-card">
+    <div class="plan-card-content">
+
+      <h3 class="plan-card-header">Plan contratado</h3>
+      <app-tarjeta-plan [plan]="usuarioConPlan.plan"></app-tarjeta-plan>
+    </div>
+    <div class="progreso">
+      <p>Fecha de inicio: {{ usuarioConPlan.fechaInicio }}</p>
+      <p>Estado: {{ usuarioConPlan.estado }}</p>
+      <p-progressBar [value]="progreso"></p-progressBar>
+    <p-calendar class="calendario" [(ngModel)]="usuarioConPlan.fechaInicio" [inline]="true" [showWeek]="true">
+    </p-calendar>
+    </div>
 </div>

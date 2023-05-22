@@ -1,1 +1,7 @@
-<p>tarjeta-plan works!</p>
+<p-card [header]="plan.nombre">
+  <ng-template pTemplate="header">
+    <img alt="Card" [src]="plan.imagen" />
+  </ng-template>
+  <p>{{ plan.descripcion }}</p>
+  <p-button class="plan-btn" [routerLink]="['/planes', plan.id]" label="Ver Recetas"></p-button>
+</p-card>
