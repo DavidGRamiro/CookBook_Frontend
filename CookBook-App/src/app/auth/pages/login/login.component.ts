@@ -14,8 +14,10 @@ export class LoginComponent implements OnInit {
 
   isLoggedIn : boolean = false;
   login! : boolean;
-  usuarioRecibido! : Usuario;
+  usuarioRecibido! : Usuario | null;
   password!: string;
+  rol: string = '';
+  token: string = '';
 
   //Formulario reactivo
   formLogin : FormGroup = this._fb.group(
@@ -44,11 +46,16 @@ export class LoginComponent implements OnInit {
     this.formLogin.markAllAsTouched();
 
     if(this.formLogin.valid){
-      this._authService.obtenerUno({
+      this._authService.login({
         email: this.formLogin.value.email,
         password: this.formLogin.value.password
         }).subscribe( res =>{
-                this.usuarioRecibido = res;
+                debugger;
+                this.usuarioRecibido = res.body ;
+                this.token = res.headers.get("Authorization") || '';
+                localStorage.setItem('token', JSON.stringify(this.token));
+                this.rol = this.usuarioRecibido?.usuarioConRoles?.[0].role.nombreRol || '';
+                localStorage.setItem('rol', this.rol);
                 //Variable para mostrar el mensaje de error en el los inputs de login
                 this.login = true;
                 // Variable asociada al servicio de validaciones para saber si se ha logueado

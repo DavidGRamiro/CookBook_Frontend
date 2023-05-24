@@ -89,9 +89,13 @@ export class NavbarComponent implements OnInit {
   }
 
   cerrarSesion(){
+    debugger;
     localStorage.removeItem('isLoggedIn');
     localStorage.removeItem('user');
-    this._router.navigateByUrl("/home")
+    localStorage.removeItem('rol');
+    localStorage.removeItem('token');
+    window.location.reload();
+    this._router.navigateByUrl("/home");
   }
 
   // FIXME: No funciona el mensaje que quiero mostrar para la confirmación de cerrar sesión.
