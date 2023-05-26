@@ -33,6 +33,8 @@ import { CarouselModule } from 'primeng/carousel';
 import { DataViewModule } from 'primeng/dataview';
 import { TagModule } from 'primeng/tag';
 import { AutoCompleteModule } from 'primeng/autocomplete';
+import { DragDropModule } from 'primeng/dragdrop';
+
 @NgModule({
   exports: [
     CommonModule,
@@ -67,7 +69,8 @@ import { AutoCompleteModule } from 'primeng/autocomplete';
     CarouselModule,
     DataViewModule,
     TagModule,
-    AutoCompleteModule
+    AutoCompleteModule,
+    DragDropModule
 
   ]
 })

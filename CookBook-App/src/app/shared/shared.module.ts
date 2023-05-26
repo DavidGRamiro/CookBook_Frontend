@@ -16,6 +16,10 @@ import { FormularioRecipeComponent } from './components/formulario-recipe/formul
 import { AdminMenuComponent } from './pages/admin-menu/admin-menu.component';
 import { TarjetaPlanComponent } from './components/tarjeta-plan/tarjeta-plan.component';
 import { CarouselRecetasComponent } from './components/carousel-recetas/carousel-recetas.component';
+import { CalendarComponent } from './components/calendar/calendar.component';
+import { DragCalendarComponent } from './components/drag-calendar/drag-calendar.component';
+import { MaterialModule } from '../library/material/material.module';
+import {DragDropModule} from '@angular/cdk/drag-drop';
 
 
 @NgModule({
@@ -32,6 +36,8 @@ import { CarouselRecetasComponent } from './components/carousel-recetas/carousel
     AdminMenuComponent,
     TarjetaPlanComponent,
     CarouselRecetasComponent,
+    CalendarComponent,
+    DragCalendarComponent
   ],
   imports: [
     CommonModule,
@@ -39,6 +45,8 @@ import { CarouselRecetasComponent } from './components/carousel-recetas/carousel
     PrimeNGModule,
     FormsModule,
     ReactiveFormsModule,
+    MaterialModule,
+    DragDropModule
   ],
   exports: [
     NavbarComponent,
@@ -51,6 +59,7 @@ import { CarouselRecetasComponent } from './components/carousel-recetas/carousel
     TarjetaPlanComponent,
     FormularioRecipeComponent,
     CarouselRecetasComponent,
+    CalendarComponent,
   ],
   providers: [],
 })
