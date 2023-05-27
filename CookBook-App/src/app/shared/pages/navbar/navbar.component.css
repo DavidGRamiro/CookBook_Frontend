@@ -73,6 +73,11 @@ card {
 ::ng-deep .p-dialog {
   width: 24rem !important;
 }
+::ng-deep .nolog-dskt.ng-star-inserted{
+display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
 
 @media screen and (max-width: 768px)  {
   .nolog-btn{
