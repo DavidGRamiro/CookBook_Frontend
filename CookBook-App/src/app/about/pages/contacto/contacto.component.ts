@@ -28,7 +28,7 @@ export class ContactoComponent implements OnInit{
       this._msg.add({ severity:'success', summary:' ¡ Lo tenemos !', detail: 'Gracias por ponete en contacto con nosotros.' })
       this.formContacto.reset()
     }else
-    this._msg.add({ severity:'error', summary:'No lo hemos recibido', detail: 'Prueba a ponerte de nuevo en contacto con nosotros' })
+    this._msg.add({ severity:'error', summary:'No hemos recibido tu mensaje', detail: 'Prueba a ponerte de nuevo en contacto con nosotros' })
 
   }
 

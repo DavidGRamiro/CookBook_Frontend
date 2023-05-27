@@ -1,5 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=Fira+Sans:wght@100&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap');
 
 h2{
   font-family: 'Fira Sans', sans-serif;
@@ -16,18 +14,19 @@ label, p, a, span{
   cursor: pointer
 }
 
-.form-control:focus {
-  box-shadow: 2px 2px 0px 0.5px #fcdd87;
-}
-
 .btn-custom {
-  background-color: #00d09c;
+  background-color: #abc17c;
   border-radius: 50px;
   color: #FFFFFF;
 }
 .btn-custom:hover,
 .btn-custom:focus {
-  background-color: #3d5656;
+  background-color: #6f873a;
   color: #FFFFFF;
 }
+
+.container{
+  margin-top: 3%;
+}
+
 

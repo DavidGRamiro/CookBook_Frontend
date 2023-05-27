@@ -3,7 +3,7 @@ import { RecetasService } from '../../services/recetas.service';
 import { Comentario, Receta } from '../../interface/recetas.interface';
 import { ActivatedRoute } from '@angular/router';
 import { switchMap } from 'rxjs';
-import { MessageService } from 'primeng/api';
+import { MenuItem, MessageService } from 'primeng/api';
 import { Usuario } from 'src/app/auth/interface/auth.interface';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { UsuarioService } from 'src/app/usuario/services/usuario.service';
@@ -18,6 +18,7 @@ export class VerUnaComponent implements OnInit {
   public receta!: Receta;
   public comentario!: Comentario[];
   public usuarioLogueado : Usuario | undefined;
+  public nombreReceta : string = '';
   // Variables para la modificación de las cantidades
   carbohidratos! : number;
   proteinas!: number;
@@ -34,6 +35,9 @@ export class VerUnaComponent implements OnInit {
   totalRecords = 100;
   first = 0;
 
+  //BreadCrumb
+  items: MenuItem[] = [];
+  home!: MenuItem;
 
   ngOnInit(): void {
 
@@ -44,6 +48,8 @@ export class VerUnaComponent implements OnInit {
                           switchMap( ({ id }) => this._recetasService.obtenerUnaReceta(id)))
                           .subscribe( response => {
                             this.receta = response
+                            this.nombreReceta = this.receta.nombre
+                            console.log(this.nombreReceta)
 
                             if(this.receta != null){
                               this.dividirCadena()
@@ -52,6 +58,8 @@ export class VerUnaComponent implements OnInit {
                             })
     localStorage.getItem('user') != null ? this.usuarioLogueado = JSON.parse(localStorage.getItem('user')!) : null;
 
+    this.items = [{ label: 'Todas las recetas', routerLink:"/recetas/todas" }, { label : 'Detalles de receta' }]
+    this.home = { icon: 'pi pi-home', routerLink : "/home" }
   }
 
   constructor( private _recetasService: RecetasService,
