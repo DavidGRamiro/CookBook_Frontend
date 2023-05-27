@@ -133,9 +133,9 @@ card {
 }
 @media screen and (max-width: 400px)  {
   ::ng-deep button.p-ripple.p-element.p-button.p-component{
-    min-width: 80px;
+    min-width: 135px;
   }
   .submenu{
-    min-width: 80px;
+    min-width: 135px;
   }
 }
