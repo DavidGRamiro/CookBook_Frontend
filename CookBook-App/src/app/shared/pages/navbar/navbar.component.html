@@ -5,8 +5,14 @@
     </ng-template>
 
     <ng-template pTemplate="end">
-      <ng-template *ngIf="isLoggedIn; else noLogueado">
-        <div class="menu-items">
+      <ng-container *ngIf="usuarioLogueado">
+        <ng-container *ngTemplateOutlet="logueado"></ng-container>
+      </ng-container>
+      <ng-container *ngIf="!usuarioLogueado">
+        <ng-container *ngTemplateOutlet="noLogueado"></ng-container>
+      </ng-container>
+      <ng-template #logueado>
+        <div class="logueado">
           <p-button class="logout-btn" icon="pi pi-sign-out" pTooltip="Cerrar sesión" [showDelay]="500"
             styleClass="p-button-rounded p-button-danger p-button-outlined logout-button" (click)="confirmarCierre()"
             [style]="{ cursor: 'pointer' }"></p-button>
