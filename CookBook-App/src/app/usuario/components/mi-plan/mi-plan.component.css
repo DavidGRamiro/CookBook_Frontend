@@ -1,0 +1,86 @@
+.datos-plan {
+  background-color: #f2f2f2;
+  padding: 40px;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: space-between;
+}
+::ng-deep .p-calendar {
+  width: 100% !important;
+  display: grid !important;
+  max-width: min-content !important;
+}
+::ng-deep .p-calendar .p-datepicker{
+  min-width: min-content !important;
+}
+::ng-deep .p-datepicker {
+  font-size: 2px;
+}
+::ng-deep .p-datepicker td  {
+  padding: 0.2rem !important;
+}
+::ng-deep .p-datepicker td > span {
+  width: 24px !important;
+  height: 24px !important;
+}
+::ng-deep .p-datepicker-header {
+  padding: 0.5rem !important;
+}
+
+.plan-card-header {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.plan-card {
+  margin-bottom: 20px;
+}
+
+.progreso {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+/* Estilos para el progressBar */
+::ng-deep .p-progressbar-value {
+  background-color: #007bff;
+}
+
+::ng-deep .p-progressbar-label {
+  font-weight: bold;
+  color: #007bff;
+}
+
+@media ((max-width: 1270px) and (min-width: 1024px)) {
+  .datos-plan {
+    display: grid;
+    justify-content: center;
+    padding: 20px;
+  }
+
+  ::ng-deep .p-calendar {
+    max-width: 200px !important;
+    margin-top: 20px;
+  }
+
+  ::ng-deep .p-datepicker td > span {
+    width: 16px !important;
+    height: 16px !important;
+  }
+}
+@media ((max-width: 1024px) and (min-width: 960px)) {
+  .datos-plan {
+    overflow-x: auto;
+    white-space: nowrap;
+    gap: 16px
+  }
+
+  .progreso {
+    flex-wrap: nowrap;
+  }
+}
+
+

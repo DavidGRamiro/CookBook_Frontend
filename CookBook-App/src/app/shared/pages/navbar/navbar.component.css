@@ -1,0 +1,55 @@
+card {
+  background-color: #f2f2f2;
+  padding: 20px;
+  border-radius: 8px;
+}
+
+.menu-logo {
+  width: 70px;
+  margin-right: 2px;
+}
+::ng-deep .p-avatar{
+  display: block !important;
+}
+::ng-deep .p-button.p-button-danger.p-button-outlined,
+.p-buttonset.p-button-danger>.p-button.p-button-outlined,
+.p-splitbutton.p-button-danger>.p-button.p-button-outlined {
+    width: 48px;
+    height: 48px;
+  }
+
+  .profile-avatar {
+    margin-right: 2px;
+  }
+
+  .menu-items {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 8px;
+  }
+  ::ng-deep .p-menubar{
+    padding: 0.5rem 2rem;
+  }
+  .login-button{
+    gap: 8px;
+  }
+  ::ng-deep .p-dialog .p-dialog-header{
+    padding: 24px 24px 0 24px;
+  }
+  ::ng-deep .p-dialog .p-dialog-content{
+    padding: 24px;
+    padding-top: 12px;
+  }
+
+  ::ng-deep .p-dialog .p-dialog-footer{
+    display: flex;
+    justify-content: space-around;
+  }
+  ::ng-deep .p-dialog .p-dialog-footer button{
+    width: 144px;
+  }
+
+  ::ng-deep .p-dialog{
+    width: 24rem !important;
+  }

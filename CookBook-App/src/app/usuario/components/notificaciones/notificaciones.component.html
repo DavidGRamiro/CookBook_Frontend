@@ -1,12 +1,5 @@
 <div class="notificaciones">
-  <button class="notificaciones-btn">
-    <i class="pi pi-bell"></i>
-    <span class="notificaciones-count">{{ notificaciones.length }}</span>
-  </button>
-  <ul class="notificaciones-list">
-    <li *ngFor="let notificacion of notificaciones">
-        <app-single-notificacion [notificacion]="notificacion"></app-single-notificacion>
-    </li>
-  </ul>
+
+<app-single-notificacion *ngFor="let notificacion of notificaciones" [notificacion]="notificacion" [notificaciones]="notificaciones"></app-single-notificacion>
 </div>
 

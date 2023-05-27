@@ -1,38 +1,58 @@
-
-<div class ="card">
+<div class="card">
   <p-menubar [model]="menuItems">
     <ng-template pTemplate="start">
-      <!-- FIXME: -->
-      <img alt="cookbook-logo" routerLink="/home" src="assets\images\CookBook.png"  width="70" class="mr-2" />
+      <img
+        alt="cookbook-logo"
+        routerLink="/home"
+        src="assets\images\CookBook.png"
+        width="70"
+        class="menu-logo mr-2"
+      />
     </ng-template>
     <ng-template pTemplate="end" *ngIf="isLoggedIn; else noLogueado">
-      <div class="row">
-        <div class="col">
-          <p-button icon="pi pi-sign-out"
-                    pTooltip="Cerrar sesión"
-                    [showDelay]="500"
-                    styleClass="p-button-rounded p-button-danger p-button-outlined"
-                    (click)="cerrarSesion()"
-                    [style]="{'cursor': 'pointer'}"></p-button><br>
-        </div>
-        <div class="col">
-          <p-avatar image="{{ usuarioLogueado.imagen }}"
-                    pTooltip="Mi perfil"
-                    [showDelay]="500"
-                    styleClass="mr-2"
-                    size="large"
-                    shape="circle"
-                    (click) ="navegarPerfil()"></p-avatar>
-        </div>
-        <div class="col">
-          <div *ngIf="usuarioLogueado.idUsuario == 100">
-            <app-admin-menu></app-admin-menu>
-          </div>
+      <div class="menu-items">
+        <p-button
+          class="logout-btn"
+          icon="pi pi-sign-out"
+          pTooltip="Cerrar sesión"
+          [showDelay]="500"
+          styleClass="p-button-rounded p-button-danger p-button-outlined logout-button"
+          (click)="confirmarCierre()"
+          [style]="{ cursor: 'pointer' }"
+        ></p-button>
+        <br />
+        <p-avatar
+          *ngIf="usuarioLogueado.idUsuario !== 100"
+          image="{{ usuarioLogueado.imagen }}"
+          pTooltip="Mi perfil"
+          [showDelay]="500"
+          class="profile-avatar"
+          size="large"
+          shape="circle"
+          (click)="navegarPerfil()"
+        ></p-avatar>
+        <div *ngIf="usuarioLogueado.idUsuario == 100" class="admin-menu">
+          <app-admin-menu></app-admin-menu>
         </div>
       </div>
     </ng-template>
     <ng-template #noLogueado>
-      <p-button label="Login" styleClass="p-button p-button-rounded success" icon="pi pi-user" routerLink="/auth/login"></p-button>
+      <button
+        class="p-button p-button-rounded success login-button"
+        routerLink="/auth/login"
+      >
+        <i class="pi pi-user"></i>
+        Login
+      </button>
     </ng-template>
   </p-menubar>
+  <p-confirmDialog #cd [style]="{width: '50vw'}">
+    <ng-template pTemplate="header">
+        <h4>Cerrar sesión</h4>
+    </ng-template>
+    <ng-template pTemplate="footer">
+        <p-button type="button" styleClass="p-button-success" icon="pi pi-check" label="Si" (click)="cd.accept()" title="Si"></p-button>
+        <p-button type="button" styleClass="p-button-danger" icon="pi pi-times"  label="No" (click)="cd.reject()" title="No"></p-button>
+    </ng-template>
+</p-confirmDialog>
 </div>

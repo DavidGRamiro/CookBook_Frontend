@@ -1,16 +1,11 @@
-export  interface Usuario {
-  idUsuario:     number;
-  email:         string;
-  fechaRegistro: Date;
-  imagen:        string;
-  password:      string;
-  username:      string;
-  plan:          Plan;
-}
+import { Plan } from './plan.interface';
 
-export interface Plan {
-  id:          number;
-  nombre:      string;
-  descripcion: string;
-  imagen:      string;
+export interface Usuario {
+  idUsuario: number;
+  email: string;
+  fechaRegistro: Date;
+  imagen: string;
+  password: string;
+  username: string;
+  plan: Plan;
 }

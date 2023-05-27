@@ -8,6 +8,6 @@
   </div>
   <div class="notification-details" *ngIf="mostrarDetalles">
     <p class="notification-message">{{ notificacion.mensaje }}</p>
-    <button class="delete-button" (click)="eliminarNotificacion()">X</button>
+    <p-button (click)="eliminarNotificacion()" icon="pi pi-times" styleClass="p-button-rounded p-button-danger p-button-text"></p-button>
   </div>
 </div>

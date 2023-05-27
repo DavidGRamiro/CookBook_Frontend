@@ -33,3 +33,11 @@ export interface Categoria {
   nombre:      string;
   imagen:      string;
 }
+
+export interface Plan {
+  id: number;
+  nombre: string;
+  descripcion: string;
+  imagen: string;
+  duracion: number;
+}

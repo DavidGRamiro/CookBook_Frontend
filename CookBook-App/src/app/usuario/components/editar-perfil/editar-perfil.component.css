@@ -1,0 +1,50 @@
+.save-btn {
+  background-color: #FFD04A;
+  color: black;
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  width: 100%;
+}
+
+.save-btn:hover {
+  background-color: #FFC10D;
+}
+
+.save-btn:focus {
+  outline: none;
+}
+
+.save-btn:active {
+  background-color: #DFA600;
+}
+
+.input {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+  gap: 4px;
+}
+
+.fila {
+  display: flex;
+  flex-direction: row;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+::ng-deep .p-input-icon-right .p-inputtext {
+  padding-right: 2rem;
+  width: 100%;
+}
+
+::ng-deep .p-password {
+  width: 100%;
+}
+
+::ng-deep .p-dialog .p-dialog-header .p-dialog-title {
+  font-size: 24px;
+}

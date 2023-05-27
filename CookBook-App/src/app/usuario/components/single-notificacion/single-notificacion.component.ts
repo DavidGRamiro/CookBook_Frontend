@@ -3,6 +3,7 @@ import { Notificacion } from '../../interface/notificacion.interface';
 import { DateTime, Interval } from 'luxon';
 import { UsuarioService } from '../../services/usuario.service';
 import { NotificacionDTO } from '../../interface/notificaciondto.interface';
+import { NotificacionService } from '../../services/notificacion.service';
 
 @Component({
   selector: 'app-single-notificacion',
@@ -12,6 +13,7 @@ import { NotificacionDTO } from '../../interface/notificaciondto.interface';
 export class SingleNotificacionComponent implements OnInit, OnDestroy{
 
     @Input() notificacion!: Notificacion;
+    @Input() notificaciones!: Notificacion[];
     notificacionDTO!: NotificacionDTO;
     mostrarDetalles = false;
     private timer: any; // Variable para almacenar el temporizador
@@ -38,7 +40,8 @@ export class SingleNotificacionComponent implements OnInit, OnDestroy{
       clearInterval(this.timer);
     }
 
-    constructor(private _usuarioService: UsuarioService) { }
+    constructor(private _usuarioService: UsuarioService, private _notificacionService: NotificacionService) { }
+
    /**
     * @description Función que calcula el tiempo transcurrido desde que se creó la notificación
     * @param fechaHora Fecha y hora de creación de la notificación
@@ -73,8 +76,11 @@ export class SingleNotificacionComponent implements OnInit, OnDestroy{
       this.marcarNotificacionLeida();
       // Actualizar el estado de la notificación en el componente padre
       this.notificacion.leida = true;
+
+      this._notificacionService.notificacionLeida();
     }
   }
+
   private marcarNotificacionLeida(): void {
     // comprobamos que la notificacion tenga id
     if (this.notificacion.idNotificacion) {
@@ -96,15 +102,23 @@ export class SingleNotificacionComponent implements OnInit, OnDestroy{
       }
     );
   }
+
   eliminarNotificacion(): void {
     // comprobamos que la notificacion tenga id
+    console.log('Notificacion a eliminar', this.notificacion)
+    console.log(this.notificaciones)
     if (this.notificacion.idNotificacion) {
       this._usuarioService.deleteNotificacion(this.notificacion.idNotificacion)
-      .subscribe((response: boolean) => {
-        console.log('Notificacion eliminada', response);
-        window.location.reload();
-      });
+        .subscribe((response: boolean) => {
+          console.log('Notificacion eliminada', response);
+          // Eliminar la notificación de la lista actual sin recargar la página
+          const index = this.notificaciones.findIndex(n => n.idNotificacion === this.notificacion.idNotificacion);
+          if (index !== -1) {
+            this.notificaciones.splice(index, 1);
+          }
+        });
     }
   }
+
 }
 

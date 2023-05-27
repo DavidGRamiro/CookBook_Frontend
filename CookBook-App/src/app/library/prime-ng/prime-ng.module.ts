@@ -35,6 +35,8 @@ import { TagModule } from 'primeng/tag';
 import { AutoCompleteModule } from 'primeng/autocomplete';
 import { PanelModule } from 'primeng/panel';
 import { BreadcrumbModule } from 'primeng/breadcrumb';
+import { DragDropModule } from 'primeng/dragdrop';
+
 @NgModule({
   exports: [
     CommonModule,
@@ -71,8 +73,8 @@ import { BreadcrumbModule } from 'primeng/breadcrumb';
     TagModule,
     AutoCompleteModule,
     PanelModule,
-    BreadcrumbModule
-
+    BreadcrumbModule,
+    DragDropModule
   ]
 })
 

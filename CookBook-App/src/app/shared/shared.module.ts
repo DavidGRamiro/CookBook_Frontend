@@ -16,6 +16,11 @@ import { FormularioRecipeComponent } from './components/formulario-recipe/formul
 import { AdminMenuComponent } from './pages/admin-menu/admin-menu.component';
 import { TarjetaPlanComponent } from './components/tarjeta-plan/tarjeta-plan.component';
 import { CarouselRecetasComponent } from './components/carousel-recetas/carousel-recetas.component';
+import { CalendarComponent } from './components/calendar/calendar.component';
+import { DragCalendarComponent } from './components/drag-calendar/drag-calendar.component';
+import { MaterialModule } from '../library/material/material.module';
+import {DragDropModule} from '@angular/cdk/drag-drop';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
 
 
 @NgModule({
@@ -26,11 +31,14 @@ import { CarouselRecetasComponent } from './components/carousel-recetas/carousel
     TablaComponent,
     MenuComponent,
     TarjetaComponent,
+    TarjetaPlanComponent,
     TarjetaCategoriaComponent,
     FormularioRecipeComponent,
     AdminMenuComponent,
     TarjetaPlanComponent,
-    CarouselRecetasComponent
+    CarouselRecetasComponent,
+    CalendarComponent,
+    DragCalendarComponent
   ],
   imports: [
     CommonModule,
@@ -38,8 +46,11 @@ import { CarouselRecetasComponent } from './components/carousel-recetas/carousel
     PrimeNGModule,
     FormsModule,
     ReactiveFormsModule,
+    MaterialModule,
+    DragDropModule,
+    ConfirmDialogModule
   ],
-  exports:[
+  exports: [
     NavbarComponent,
     FooterComponent,
     MainComponent,
@@ -47,9 +58,11 @@ import { CarouselRecetasComponent } from './components/carousel-recetas/carousel
     MenuComponent,
     TarjetaComponent,
     TarjetaCategoriaComponent,
+    TarjetaPlanComponent,
     FormularioRecipeComponent,
-    CarouselRecetasComponent
+    CarouselRecetasComponent,
+    CalendarComponent,
   ],
-  providers: []
+  providers: [],
 })
-export class SharedModule { }
+export class SharedModule {}

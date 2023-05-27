@@ -4,6 +4,9 @@
   margin-bottom: 4em;
   padding-left: 5%;
   padding-right: 5%;
+  display: flex;
+  gap: 32px;
+  justify-content: center;
 }
 
 .titulo-seccion {
@@ -22,4 +25,5 @@ p-card:hover {
     transform: scale(1.03);
 
   }
+
 

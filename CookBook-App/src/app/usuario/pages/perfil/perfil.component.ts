@@ -10,108 +10,104 @@ import { ValidatorService } from 'src/app/auth/services/validator.service';
 import { UsuarioConPlan } from '../../interface/usuarioconplan.interface';
 import { Notificacion } from '../../interface/notificacion.interface';
 import { DateTime } from 'luxon';
+import { DialogService } from 'primeng/dynamicdialog';
+import { EditarPerfilComponent } from '../../components/editar-perfil/editar-perfil.component';
+import { NotificacionService } from '../../services/notificacion.service';
 
 @Component({
   selector: 'app-perfil',
   templateUrl: './perfil.component.html',
-  styleUrls: ['./perfil.component.css']
+  styleUrls: ['./perfil.component.css'],
 })
-export class PerfilComponent implements OnInit{
-
-  listaPerfil: MenuItem[] = [
-    {
-      label: 'Mi plan',
-      icon: 'pi pi-fw pi-calendar',
-      command: () => this.cambiarComponenteActivo('mi-plan')
-    },
-    {
-      label: 'Mis recetas favoritas',
-      icon: 'pi pi-fw pi-heart',
-      command: () => this.cambiarComponenteActivo('mis-recetas-fav')
-    },
-    {
-      label: 'Mis recetas',
-      icon: 'pi pi-fw pi-book',
-      command: () => this.cambiarComponenteActivo('mis-recetas')
-    },
-    {
-      label: 'Notificaciones',
-      icon: 'pi pi-fw pi-bell',
-      command: () => this.cambiarComponenteActivo('notificaciones')
-    },
-    {
-      label: 'Editar perfil',
-      icon: 'pi pi-fw pi-user-edit',
-      command: () => this.cambiarComponenteActivo('editar-perfil')
-    },
-    {
-      label: 'Cerrar sesión',
-      icon: 'pi pi-fw pi-sign-out',
-      command: () => this.cambiarComponenteActivo('cerrar-sesion')
-    }
-  ];
-
-  public isLoggedIn: boolean =false;
+export class PerfilComponent implements OnInit {
+  public isLoggedIn: boolean = false;
   usuario!: Usuario;
   recetasFavoritas!: Receta[];
   recetaSeleccionada!: Receta;
   usuarioConPlan!: UsuarioConPlan;
   notificaciones!: Notificacion[];
-  componenteActivo: string = '';
+  notificacionesNuevas!: Notificacion[];
+  activeIndex = 0;
 
-
-  constructor( private _usuarioService: UsuarioService,
+  constructor(
+    private _usuarioService: UsuarioService,
     private router: Router,
-    private _validator: ValidatorService
-) { }
+    private _validator: ValidatorService,
+    private _dialogService: DialogService,
+    private _notificacionService: NotificacionService
+  ) {}
 
   ngOnInit(): void {
-
     //Verificams si el usuario ha iniciado sesión
-    this._validator.isLoggedIn$.subscribe( data => {
-      this.isLoggedIn = data
-    })
+    this._validator.isLoggedIn$.subscribe((data) => {
+      this.isLoggedIn = data;
+    });
 
-    this.isLoggedIn = localStorage.getItem('isLoggedIn') === 'true' ? true : false;
-     console.log(this.isLoggedIn)
-    if (!this.isLoggedIn) {
+    this.isLoggedIn =
+      localStorage.getItem('isLoggedIn') === 'true' ? true : false;
+    console.log(this.isLoggedIn);
+    if (this.isLoggedIn) {
+      if (localStorage.getItem('user') != null) {
+        const userString = localStorage.getItem('user');
+        if (userString != null) {
+          this.usuario = JSON.parse(userString);
+        }
+      }
+      /// El usuario ha iniciado sesión, continuar con la lógica actual del componente
+      this._usuarioService
+        .getRecetasFavoritas(this.usuario.idUsuario)
+        .subscribe((recetas) => {
+          this.recetasFavoritas = recetas;
+          console.log(this.recetasFavoritas);
+        });
+
+      this._usuarioService
+        .getPlandeUsuario(this.usuario.idUsuario)
+        .subscribe((usuarioConPlan) => {
+          this.usuarioConPlan = usuarioConPlan;
+          console.log('Usuario con plan' + this.usuarioConPlan);
+        });
+
+      this._usuarioService
+        .getNotificaciones(this.usuario.idUsuario)
+        .subscribe((notificaciones) => {
+          this.notificaciones = notificaciones;
+          console.log(this.notificaciones);
+          this.calcularnotificacionesNuevas(this.notificaciones);
+        });
+
+      this._notificacionService.notificacionLeida$.subscribe(() => {
+        this.calcularnotificacionesNuevas(this.notificaciones);
+      });
+    } else {
       // si el usuario no ha iniciado sesion la pagina /user/perfil no es accesible, redirigir a /login
       this.router.navigate(['/login']);
-    } else {
-    if(localStorage.getItem('user') != null){
-      const userString = localStorage.getItem('user');
-      if(userString != null){
-        this.usuario = JSON.parse(userString)
-      }
-    }
-    /// El usuario ha iniciado sesión, continuar con la lógica actual del componente
-      this._usuarioService.getRecetasFavoritas(this.usuario.idUsuario)
-      .subscribe( recetas => {
-        this.recetasFavoritas = recetas;
-        console.log(this.recetasFavoritas)
-      }
-      )
-
-    this._usuarioService.getPlandeUsuario(this.usuario.idUsuario)
-     .subscribe( usuarioConPlan => {
-        this.usuarioConPlan = usuarioConPlan;
-        console.log(this.usuarioConPlan)
-      }
-      )
-
-      this._usuarioService.getNotificaciones(this.usuario.idUsuario)
-      .subscribe((notificaciones) => {
-        this.notificaciones = notificaciones;
-        console.log(this.notificaciones)
-      }
-      )
-
     }
   }
-  cambiarComponenteActivo(componente: string) {
-    console.log("Cambiando al componente", componente);
-    this.componenteActivo = componente;
+  calcularnotificacionesNuevas(notificaciones: Notificacion[]) {
+    this.notificacionesNuevas = notificaciones.filter(
+      (notificacion) => notificacion.leida === false
+    );
+    console.log(this.notificacionesNuevas);
   }
 
+  cambiarComponenteActivo(index: number) {
+    console.log('Cambiando al componente', index);
+    this.activeIndex = index;
+  }
+
+  editarPerfil() {
+    //Abrimos un dialogo para editar el perfil
+    console.log('Editar perfil');
+    this._dialogService.open(EditarPerfilComponent, {
+      header: 'Editar perfil ',
+      width: '70%',
+      contentStyle: { 'max-height': '500px', overflow: 'auto' },
+      baseZIndex: 10000,
+      data: {
+        usuario: this.usuario,
+      },
+    });
+  }
 }
 

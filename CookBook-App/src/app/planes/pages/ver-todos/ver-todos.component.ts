@@ -22,7 +22,6 @@ export class VerTodosComponent implements OnInit{
   ngOnInit(): void {
 
     this.obtenerTodos()
-
     this.items = [{ label: 'Planes' }]
     this.home = { icon: 'pi pi-home', routerLink: '/home' }
   }
