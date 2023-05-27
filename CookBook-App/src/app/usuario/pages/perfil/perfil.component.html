@@ -4,26 +4,24 @@
   <div class="contenedor-content">
     <div class="profile-container">
       <div class="imagen-usuario" *ngIf="usuario.imagen; else noImagen">
-        <!-- Aquí se muestra la imagen del usuario -->
         <img [src]="usuario.imagen" alt="Imagen del usuario" />
       </div>
       <ng-template #noImagen>
         <img src="assets/img/usuario.png" alt="Imagen del usuario" />
       </ng-template>
       <div class="nombre-usuario">
-        <!-- Aquí se muestra el nombre del usuario -->
         <h2>{{ usuario.username }}</h2>
         <p class="email-usuario">{{ usuario.email }}</p>
         <button class="editar-perfil-btn" (click)="editarPerfil()">Editar perfil</button>
       </div>
     </div>
     <div class="profile-tabs">
-      <p-tabView [activeIndex]="activeIndex" (onChange)="cambiarComponenteActivo($event.index)">
+      <p-tabView styleClass="tabview-custom" [activeIndex]="activeIndex" (onChange)="cambiarComponenteActivo($event.index)">
         <p-tabPanel>
           <ng-template pTemplate="header">
             <div class="tab-header">
-              <span class="tab-title">Mi plan </span>
               <i class="pi pi-calendar"></i>
+              <span class="tab-title">Mi plan</span>
             </div>
           </ng-template>
           <div *ngIf="usuarioConPlan">
@@ -33,8 +31,8 @@
         <p-tabPanel>
           <ng-template pTemplate="header">
             <div class="tab-header">
-              <span class="tab-title">Mis recetas favoritas </span>
               <i class="pi pi-heart"></i>
+              <span class="tab-title">Mis recetas favoritas</span>
             </div>
           </ng-template>
           <app-mis-recetas-fav [recetasFavoritas]="recetasFavoritas"></app-mis-recetas-fav>
@@ -42,8 +40,8 @@
         <p-tabPanel>
           <ng-template pTemplate="header">
             <div class="tab-header">
-              <span class="tab-title">Mis recetas </span>
               <i class="pi pi-book"></i>
+              <span class="tab-title">Mis recetas</span>
             </div>
           </ng-template>
           <app-mis-recetas [usuario]="usuario"></app-mis-recetas>
@@ -51,12 +49,12 @@
         <p-tabPanel>
           <ng-template pTemplate="header">
             <div class="tab-header">
-              <span class="tab-title">Notificaciones </span>
               <i class="pi pi-bell text-m" pBadge value="{{ notificacionesNuevas.length }}" [badgeDisabled]="notificacionesNuevas.length == 0"></i>
+              <span class="tab-title">Notificaciones</span>
             </div>
           </ng-template>
           <app-notificaciones [notificaciones]="notificaciones"></app-notificaciones>
-          <div *ngIf="notificacionesNuevas.length == 0">
+          <div *ngIf="notificacionesNuevas.length == 0" class="no-notificaciones">
             <p class="text-m">No tienes notificaciones nuevas</p>
           </div>
         </p-tabPanel>

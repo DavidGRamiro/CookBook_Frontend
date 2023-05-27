@@ -2,8 +2,16 @@
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap');
 
 .contenedor {
-  padding: 64px;
+  padding: 20px;
 }
+
+.profile-container {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
 .titulo-seccion {
   font-family: 'Fira Sans', sans-serif;
   font-size: 56px;
@@ -11,6 +19,7 @@
   text-align: center;
   margin: 0;
 }
+
 .contenedor-content {
   display: flex;
   flex-direction: row;
@@ -18,7 +27,8 @@
   padding: 24px 32px;
   gap: 24px;
 }
-p{
+
+p {
   font-family: 'Open Sans', sans-serif;
   font-size: 20px;
   font-weight: bold;
@@ -36,6 +46,7 @@ p{
   flex-direction: column;
   width: 70%;
 }
+
 .imagen-usuario {
   margin-top: 20px;
 }
@@ -44,20 +55,21 @@ p{
   max-width: 300px;
   border-radius: 50%;
 }
+
 .nombre-usuario h2 {
   font-size: 32px;
 }
 
-  .editar-perfil-btn {
-    background-color: #FFD04A;
-    color: black;
-    border: none;
-    padding: 10px 20px;
-    font-size: 16px;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-    width: 100%;
+.editar-perfil-btn {
+  background-color: #ffd04a;
+  color: black;
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  width: 100%;
 }
 
 .email-usuario {
@@ -65,7 +77,7 @@ p{
 }
 
 .editar-perfil-btn:hover {
-  background-color: #FFC10D;
+  background-color: #ffc10d;
 }
 
 .editar-perfil-btn:focus {
@@ -73,15 +85,54 @@ p{
 }
 
 .editar-perfil-btn:active {
-  background-color: #DFA600;
+  background-color: #dfa600;
 }
 
 ::ng-deep .p-badge {
-  background: #FFC107;
+  background: #ffc107;
   color: #212529;
   font-size: 0.70rem;
   font-weight: 700;
   min-width: 1rem;
   height: 1rem;
   line-height: 1rem;
+}
+
+@media (max-width: 767px) {
+  .profile-container {
+    flex-direction: column;
+  }
+
+  .nombre-usuario {
+    margin-top: 20px;
+  }
+}
+
+@media (max-width: 479px) {
+  .contenedor-content {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+}
+
+@media (max-width: 959px) {
+  ::ng-deep .p-tabview-nav-content {
+    overflow-x: scroll;
+    white-space: nowrap;
+  }
+
+  ::ng-deep .p-tabview-nav .p-tabview-nav-next,
+  ::ng-deep .p-tabview-nav .p-tabview-nav-prev {
+    display: none;
+  }
+
+  ::ng-deep .p-tabview-nav .p-tabview-nav-list {
+    display: flex;
+  }
+
+  ::ng-deep .p-tabview-nav .p-tabview-nav-list .p-tabview-nav-item {
+    flex: 0 0 auto;
+    white-space: nowrap;
+  }
 }
