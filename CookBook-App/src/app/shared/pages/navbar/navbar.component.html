@@ -5,10 +5,10 @@
     </ng-template>
 
     <ng-template pTemplate="end">
-      <ng-container *ngIf="usuarioLogueado">
+      <ng-container *ngIf="isLoggedIn">
         <ng-container *ngTemplateOutlet="logueado"></ng-container>
       </ng-container>
-      <ng-container *ngIf="!usuarioLogueado">
+      <ng-container *ngIf="!isLoggedIn">
         <ng-container *ngTemplateOutlet="noLogueado"></ng-container>
       </ng-container>
       <ng-template #logueado>
