@@ -33,6 +33,8 @@ import { CarouselModule } from 'primeng/carousel';
 import { DataViewModule } from 'primeng/dataview';
 import { TagModule } from 'primeng/tag';
 import { AutoCompleteModule } from 'primeng/autocomplete';
+import { PanelModule } from 'primeng/panel';
+import { BreadcrumbModule } from 'primeng/breadcrumb';
 import { DragDropModule } from 'primeng/dragdrop';
 
 @NgModule({
@@ -70,8 +72,9 @@ import { DragDropModule } from 'primeng/dragdrop';
     DataViewModule,
     TagModule,
     AutoCompleteModule,
+    PanelModule,
+    BreadcrumbModule,
     DragDropModule
-
   ]
 })
 

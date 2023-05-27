@@ -1,4 +1,6 @@
 <app-navbar></app-navbar>
+<p-breadcrumb class="max-w-full" [model]="items" [home]="home" [style]="{'border': 'none'}"></p-breadcrumb>
+
 <h1 class="titulo-seccion">Todas las recetas</h1>
 <div class="text-center">
   <button [ngClass]="{'active': isSearchByNameActive}" (click)="searchByName($event)">Buscar por nombre</button>

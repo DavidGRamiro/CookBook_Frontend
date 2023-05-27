@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Receta } from '../../interface/recetas.interface';
 import { RecetasService } from '../../services/recetas.service';
+import { MenuItem } from 'primeng/api';
 
 
 @Component({
@@ -20,6 +21,10 @@ export class RecetasComponent implements OnInit {
   isSearchByNameActive: boolean = false;
   isSearchByIngredientsActive: boolean = false;
 
+  //BreadCrumb
+  items: MenuItem[] = [];
+  home!: MenuItem;
+
 
   searchQuery!: string;
 
@@ -35,6 +40,9 @@ export class RecetasComponent implements OnInit {
             { field: 'calorias', header: 'Calorias' },
             { field: 'usuario.username', header: 'Usuario' }
         ];
+
+    this.items = [{ label: 'Todas las recetas' }]
+    this.home = { icon: 'pi pi-home', routerLink: '/home' }
   }
 
   //Recuperamos del servicio todas la recetas registradas
