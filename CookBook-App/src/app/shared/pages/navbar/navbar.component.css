@@ -88,6 +88,10 @@ display: flex;
   ::ng-deep button.p-ripple.p-element.p-button.p-component{
     min-width: 160px;
   }
+  ::ng-deep button.p-ripple.p-element.p-button-rounded.p-button-danger.p-button-outlined.logout-button.p-button.p-component.p-button-icon-only{
+   width: 48px !important;
+   min-width: 48px !important;
+  }
   .submenu{
     min-width: 160px;
     position: absolute;
