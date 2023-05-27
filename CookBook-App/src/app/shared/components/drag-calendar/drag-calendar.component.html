@@ -1,97 +1,133 @@
-<h1>Calendar</h1>
-
-<div class="example-container">
-    <h2>Recetas</h2>
-    <div
-      cdkDropList  #todoList="cdkDropList" [cdkDropListData]="todo" [cdkDropListConnectedTo]="[mondayList,tuesdayList, wednesayList, thursdayList, fridayList, saturdayList, sundayList]" 
-      class="example-list"
-      (cdkDropListDropped)="drop($event)">
-      <div class="example-box" *ngFor="let receta of todo" cdkDrag>
-        {{receta.nombre}}
-
-
+<div id="calendarBox" class="row">
+  <div class="container"></div>
+<div class="col-1"></div>
+<div class="col">
+    <h2 class="row">Calendario</h2>
+  <div id="calendarWeek" class="row">
+    <div class="col-sm">
+      <!-- Recetas LUNES-->
+      <div class="example-container">
+        <h4>Lunes</h4>
+        <div cdkDropList #mondayList="cdkDropList" [cdkDropListData]="monday"
+          [cdkDropListConnectedTo]="[todoList, mondayList,tuesdayList, wednesayList, thursdayList, fridayList, saturdayList, sundayList]"
+          class="example-list" (cdkDropListDropped)="drop($event)">
+          <div class="example-box">
+            <app-tarjeta-calendar *ngFor="let receta of monday" cdkDrag [receta]="receta"></app-tarjeta-calendar>
+          </div>
+        </div>
       </div>
+    </div>
 
+    <div class="col-sm">
+      <!-- Recetas MARTES-->
+      <div class="example-container">
+        <h4>Martes</h4>
+        <div cdkDropList #tuesdayList="cdkDropList" [cdkDropListData]="tuesday"
+          [cdkDropListConnectedTo]="[todoList, mondayList,tuesdayList, wednesayList, thursdayList, fridayList, saturdayList, sundayList]"
+          class="example-list" (cdkDropListDropped)="drop($event)">
+          <div class="example-box">
+            <app-tarjeta-calendar *ngFor="let receta of tuesday" cdkDrag [receta]="receta"></app-tarjeta-calendar>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-sm">
+      <!-- Recetas MIERCOLES-->
+      <div class="example-container">
+        <h4>Miércoles</h4>
+        <div cdkDropList #wednesayList="cdkDropList" [cdkDropListData]="wednesday"
+          [cdkDropListConnectedTo]="[todoList, mondayList,tuesdayList, wednesayList, thursdayList, fridayList, saturdayList, sundayList]"
+          class="example-list" (cdkDropListDropped)="drop($event)">
+          <div class="example-box">
+            <app-tarjeta-calendar *ngFor="let receta of wednesday" cdkDrag [receta]="receta"></app-tarjeta-calendar>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="col-sm">
+      <!-- Recetas JUEVES-->
+      <div class="example-container">
+        <h4>Jueves</h4>
+        <div cdkDropList #thursdayList="cdkDropList" [cdkDropListData]="thursday"
+          [cdkDropListConnectedTo]="[todoList, mondayList,tuesdayList, wednesayList, thursdayList, fridayList, saturdayList, sundayList]"
+          class="example-list" (cdkDropListDropped)="drop($event)">
+          <div class="example-box">
+            <app-tarjeta-calendar *ngFor="let receta of thursday" cdkDrag [receta]="receta"></app-tarjeta-calendar>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-sm">
+      <!-- Recetas VIERNES-->
+      <div class="example-container">
+        <h4>Viernes</h4>
+        <div cdkDropList #fridayList="cdkDropList" [cdkDropListData]="friday"
+          [cdkDropListConnectedTo]="[todoList, mondayList,tuesdayList, wednesayList, thursdayList, fridayList, saturdayList, sundayList]"
+          class="example-list" (cdkDropListDropped)="drop($event)">
+          <div class="example-box">
+            <app-tarjeta-calendar *ngFor="let receta of friday" cdkDrag [receta]="receta"></app-tarjeta-calendar>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-sm">
+      <!-- Recetas SABADO-->
+      <div class="example-container">
+        <h4>Sábado</h4>
+        <div cdkDropList #saturdayList="cdkDropList" [cdkDropListData]="saturday"
+          [cdkDropListConnectedTo]="[todoList, mondayList,tuesdayList, wednesayList, thursdayList, fridayList, saturdayList, sundayList]"
+          class="example-list" (cdkDropListDropped)="drop($event)">
+          <div class="example-box">
+            <app-tarjeta-calendar *ngFor="let receta of saturday" cdkDrag [receta]="receta"></app-tarjeta-calendar>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-sm">
+      <!-- Recetas DOMINGO-->
+      <div class="example-container">
+        <h4>Domingo</h4>
+        <div cdkDropList #sundayList="cdkDropList" [cdkDropListData]="sunday"
+          [cdkDropListConnectedTo]="[todoList, mondayList,tuesdayList, wednesayList, thursdayList, fridayList, saturdayList, sundayList]"
+          class="example-list" (cdkDropListDropped)="drop($event)">
+          <div class="example-box">
+            <app-tarjeta-calendar *ngFor="let receta of sunday" cdkDrag [receta]="receta"></app-tarjeta-calendar>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
+
+  <p-button>Guardar Calendario</p-button>
+
+  </div>
+  <div class="col">
+    <!-- Recetas TODAS-->
+  <div id="recetasBox" class="container">
+    <h2 class="row">Recetas</h2>
+    <div id="Recetas" class="row">
+      <div class="example-container">
+        <div cdkDropList #todoList="cdkDropList" [cdkDropListData]="todo"
+          [cdkDropListConnectedTo]="[mondayList,tuesdayList, wednesayList, thursdayList, fridayList, saturdayList, sundayList]"
+          class="example-list" (cdkDropListDropped)="drop($event)">
+          <div class="example-box">
+            <app-tarjeta-calendar *ngFor="let receta of todo" cdkDrag [receta]="receta">
+            </app-tarjeta-calendar>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+  </div>
+
+
   
-  <div class="example-container">
-    <h2>Lunes</h2>
-    <div
-      cdkDropList
-      #mondayList="cdkDropList" [cdkDropListData]="monday" [cdkDropListConnectedTo]="[todoList, mondayList,tuesdayList, wednesayList, thursdayList, fridayList, saturdayList, sundayList]"
-      class="example-list"
-      (cdkDropListDropped)="drop($event)">
-      <div class="example-box" *ngFor="let receta of monday" cdkDrag>
-        {{receta.nombre}}
-    </div>
-  </div>
-
-  <div class="example-container">
-    <h2>Martes</h2>
-  <div
-      cdkDropList
-      #tuesdayList="cdkDropList" [cdkDropListData]="tuesday" [cdkDropListConnectedTo]="[todoList, mondayList,tuesdayList, wednesayList, thursdayList, fridayList, saturdayList, sundayList]"
-      class="example-list"
-      (cdkDropListDropped)="drop($event)">
-      <div class="example-box" *ngFor="let receta of tuesday" cdkDrag>
-        {{receta.nombre}}
-    </div>
-  </div>
-
-
-  <div class="example-container">
-    <h2>Miércoles</h2>
-  <div
-  cdkDropList #wednesayList="cdkDropList" [cdkDropListData]="wednesday" [cdkDropListConnectedTo]="[todoList, mondayList,tuesdayList, wednesayList, thursdayList, fridayList, saturdayList, sundayList]"
-  class="example-list"
-  (cdkDropListDropped)="drop($event)">
-  <div class="example-box" *ngFor="let receta of wednesday" cdkDrag>
-    {{receta.nombre}}
-</div>
-</div>
-
-
-<div class="example-container">
-  <h2>Jueves</h2>
-<div
-cdkDropList #thursdayList="cdkDropList" [cdkDropListData]="thursday" [cdkDropListConnectedTo]="[todoList, mondayList,tuesdayList, wednesayList, thursdayList, fridayList, saturdayList, sundayList]"
-class="example-list"
-(cdkDropListDropped)="drop($event)">
-<div class="example-box" *ngFor="let receta of thursday" cdkDrag>
-  {{receta.nombre}}
-</div>
-</div>
-
-<div class="example-container">
-  <h2>Viernes</h2>
-<div
-cdkDropList #fridayList="cdkDropList" [cdkDropListData]="friday" [cdkDropListConnectedTo]="[todoList, mondayList,tuesdayList, wednesayList, thursdayList, fridayList, saturdayList, sundayList]"
-class="example-list"
-(cdkDropListDropped)="drop($event)">
-<div class="example-box" *ngFor="let receta of friday" cdkDrag>
-  {{receta.nombre}}
-</div>
-</div>
-
-<div class="example-container">
-  <h2>Sábado</h2>
-<div
-cdkDropList #saturdayList="cdkDropList" [cdkDropListData]="saturday" [cdkDropListConnectedTo]="[todoList, mondayList,tuesdayList, wednesayList, thursdayList, fridayList, saturdayList, sundayList]"
-class="example-list"
-(cdkDropListDropped)="drop($event)">
-<div class="example-box" *ngFor="let receta of saturday" cdkDrag>
-  {{receta.nombre}}
-</div>
-</div>
-
-<div class="example-container">
-  <h2>Domingo</h2>
-<div
-cdkDropList #sundayList="cdkDropList" [cdkDropListData]="sunday" [cdkDropListConnectedTo]="[todoList, mondayList,tuesdayList, wednesayList, thursdayList, fridayList, saturdayList, sundayList]"
-class="example-list"
-(cdkDropListDropped)="drop($event)">
-<div class="example-box" *ngFor="let receta of sunday" cdkDrag>
-  {{receta.nombre}}
-</div>
-</div>
+  

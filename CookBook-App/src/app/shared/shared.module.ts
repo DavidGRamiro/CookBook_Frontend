@@ -20,6 +20,7 @@ import { CalendarComponent } from './components/calendar/calendar.component';
 import { DragCalendarComponent } from './components/drag-calendar/drag-calendar.component';
 import { MaterialModule } from '../library/material/material.module';
 import {DragDropModule} from '@angular/cdk/drag-drop';
+import { TarjetaCalendarComponent } from './components/tarjeta-calendar/tarjeta-calendar.component';
 
 
 @NgModule({
@@ -37,7 +38,8 @@ import {DragDropModule} from '@angular/cdk/drag-drop';
     TarjetaPlanComponent,
     CarouselRecetasComponent,
     CalendarComponent,
-    DragCalendarComponent
+    DragCalendarComponent,
+    TarjetaCalendarComponent
   ],
   imports: [
     CommonModule,

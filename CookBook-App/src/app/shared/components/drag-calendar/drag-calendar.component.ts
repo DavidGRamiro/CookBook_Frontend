@@ -23,7 +23,6 @@ export class DragCalendarComponent implements OnInit {
   constructor(private _recetaService : RecetasService) { }
 
   ngOnInit(): void {
-    debugger
     this.monday = [];
     this.tuesday = [];
     this.wednesday = [];
