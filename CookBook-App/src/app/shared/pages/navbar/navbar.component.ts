@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { MenuItem, MessageService } from 'primeng/api';
+import { ConfirmationService, MenuItem, MessageService } from 'primeng/api';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { Usuario } from 'src/app/auth/interface/auth.interface';
 import { ValidatorService } from 'src/app/auth/services/validator.service';
 
@@ -28,6 +29,7 @@ export class NavbarComponent implements OnInit {
 
   constructor(private _validator: ValidatorService,
               private _msg : MessageService,
+              private _confirmationService : ConfirmationService,
               private _router: Router) {
 
     this._validator.isLoggedIn$.subscribe( data => {
@@ -87,16 +89,32 @@ export class NavbarComponent implements OnInit {
       this._router.navigateByUrl('/login');
     }
   }
+  public confirmarCierre() {
+    console.log('Modal abierto');
+      this._confirmationService.confirm({
+        message: '¿Seguro que quiere cerrar sesión?',
+        icon: 'pi pi-exclamation-triangle',
+        accept: () => {
+          this._msg.add({ severity: 'success', summary: 'Cerrando sesión', detail: 'Has cerrado sesión' });
+          this.cerrarSesion();
+        },
+        reject: () => {
+          this._msg.add({ severity: 'info', summary: 'Cancelado', detail: 'Has cancelado el cierre de sesión' });
+        }
+      });
+  }
 
-  cerrarSesion(){
+  private cerrarSesion() {
+    localStorage.clear();
     localStorage.removeItem('isLoggedIn');
     localStorage.removeItem('user');
-    this._router.navigateByUrl("/home")
+    console.log('Sesión cerrada');
+    if (window.location.pathname === '/user/perfil') {
+      this._router.navigateByUrl('/home');
+    }else{
+    window.location.reload();
+    }
   }
-
-  // FIXME: No funciona el mensaje que quiero mostrar para la confirmación de cerrar sesión.
-  showMensaje() {
-    this._msg.add({ severity: 'info', summary: 'Cerrar sesión', detail: '¿Estás seguro de que quieres cerrar sesión?', sticky: true });
-  }
-
 }
+
+

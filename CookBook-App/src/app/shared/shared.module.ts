@@ -20,6 +20,7 @@ import { CalendarComponent } from './components/calendar/calendar.component';
 import { DragCalendarComponent } from './components/drag-calendar/drag-calendar.component';
 import { MaterialModule } from '../library/material/material.module';
 import {DragDropModule} from '@angular/cdk/drag-drop';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
 
 
 @NgModule({
@@ -46,7 +47,8 @@ import {DragDropModule} from '@angular/cdk/drag-drop';
     FormsModule,
     ReactiveFormsModule,
     MaterialModule,
-    DragDropModule
+    DragDropModule,
+    ConfirmDialogModule
   ],
   exports: [
     NavbarComponent,

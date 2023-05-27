@@ -34,10 +34,22 @@ card {
   .login-button{
     gap: 8px;
   }
-  .admin-menu {
-    /* Estilos para el menú de administrador */
+  ::ng-deep .p-dialog .p-dialog-header{
+    padding: 24px 24px 0 24px;
+  }
+  ::ng-deep .p-dialog .p-dialog-content{
+    padding: 24px;
+    padding-top: 12px;
   }
 
-  .login-button {
-    /* Estilos para el botón de inicio de sesión */
+  ::ng-deep .p-dialog .p-dialog-footer{
+    display: flex;
+    justify-content: space-around;
+  }
+  ::ng-deep .p-dialog .p-dialog-footer button{
+    width: 144px;
+  }
+
+  ::ng-deep .p-dialog{
+    width: 24rem !important;
   }
