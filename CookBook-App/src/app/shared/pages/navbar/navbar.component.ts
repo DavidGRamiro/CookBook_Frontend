@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ConfirmationService, MenuItem, MessageService } from 'primeng/api';
-import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { Usuario } from 'src/app/auth/interface/auth.interface';
 import { ValidatorService } from 'src/app/auth/services/validator.service';
 
@@ -23,6 +22,8 @@ export class NavbarComponent implements OnInit {
   }
 
   items!: MenuItem[];
+  registerItems!: MenuItem[];
+  displayMenu: boolean = false;
 
   ngOnInit(): void {
   }
@@ -68,7 +69,17 @@ export class NavbarComponent implements OnInit {
       ]
     }
   ]
-
+  public registerMenuItems: MenuItem[] = [
+    {
+      label: 'Inicia sesión', routerLink: '/auth/login', icon: "pi pi-user"
+    },
+    {
+      label: 'Registrate', routerLink: '/auth/registro', icon: "pi pi-plus"
+    }
+  ]
+    public showMobileMenu(){
+      this.displayMenu = !this.displayMenu;
+    }
   navegarPerfil(): void {
     if (this.isLoggedIn) {
       this._router.navigateByUrl('/user/perfil');
