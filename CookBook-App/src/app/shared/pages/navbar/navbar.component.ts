@@ -57,10 +57,7 @@ export class NavbarComponent implements OnInit {
       ]
     },
     {
-      label: 'Planes',
-      items: [
-        { label: 'Todos los planes', routerLink: '/planes/todos'}
-      ]
+      label: 'Planes', routerLink: '/planes/todos'
     },
     {
       label: 'Acerca de',
@@ -69,16 +66,6 @@ export class NavbarComponent implements OnInit {
         { label: 'FAQs', routerLink: '/about/faqs' },
         { label: 'Contacto', routerLink: '/about/contacto' }
       ]
-    },
-    {
-      label: 'Perfil',
-      items: [
-        { label: 'Mi perfil', routerLink: '/user' },
-        { label: 'Notificaciones', routerLink: '/user/notificaciones' }
-      ]
-    },
-    {
-      label: 'Subir receta' , routerLink: '/alta'
     }
   ]
 
