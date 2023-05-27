@@ -6,6 +6,16 @@
   flex-direction: row-reverse;
   justify-content: space-between;
 }
+::ng-deep .p-calendar {
+  width: 100%;
+  display: flex;
+}
+::ng-deep {
+  .p-datepicker td>span {
+          width: 20px !important;
+          height: 20px !important;
+      }
+}
 
 .plan-card-header {
   font-size: 18px;
@@ -22,10 +32,6 @@
   display: flex;
   flex-direction: column;
   gap: 8px;
-}
-
-.calendario {
-  display: flex;
 }
 
 /* Estilos para el progressBar */

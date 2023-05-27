@@ -75,3 +75,13 @@ p{
 .editar-perfil-btn:active {
   background-color: #DFA600;
 }
+
+::ng-deep .p-badge {
+  background: #FFC107;
+  color: #212529;
+  font-size: 0.70rem;
+  font-weight: 700;
+  min-width: 1rem;
+  height: 1rem;
+  line-height: 1rem;
+}

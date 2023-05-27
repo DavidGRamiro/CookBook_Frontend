@@ -19,21 +19,48 @@
     </div>
     <div class="profile-tabs">
       <p-tabView [activeIndex]="activeIndex" (onChange)="cambiarComponenteActivo($event.index)">
-        <p-tabPanel header="Mi plan">
+        <p-tabPanel>
+          <ng-template pTemplate="header">
+            <div class="tab-header">
+              <span class="tab-title">Mi plan </span>
+              <i class="pi pi-calendar"></i>
+            </div>
+          </ng-template>
           <div *ngIf="usuarioConPlan">
             <app-mi-plan [usuarioConPlan]="usuarioConPlan" [usuario]="usuario"></app-mi-plan>
           </div>
         </p-tabPanel>
-        <p-tabPanel header="Mis recetas favoritas">
+        <p-tabPanel>
+          <ng-template pTemplate="header">
+            <div class="tab-header">
+              <span class="tab-title">Mis recetas favoritas </span>
+              <i class="pi pi-heart"></i>
+            </div>
+          </ng-template>
           <app-mis-recetas-fav [recetasFavoritas]="recetasFavoritas"></app-mis-recetas-fav>
         </p-tabPanel>
-        <p-tabPanel header="Mis recetas">
+        <p-tabPanel>
+          <ng-template pTemplate="header">
+            <div class="tab-header">
+              <span class="tab-title">Mis recetas </span>
+              <i class="pi pi-book"></i>
+            </div>
+          </ng-template>
           <app-mis-recetas [usuario]="usuario"></app-mis-recetas>
         </p-tabPanel>
-        <p-tabPanel header="Notificaciones">
+        <p-tabPanel>
+          <ng-template pTemplate="header">
+            <div class="tab-header">
+              <span class="tab-title">Notificaciones </span>
+              <i class="pi pi-bell text-m" pBadge value="{{ notificacionesNuevas.length }}" [badgeDisabled]="notificacionesNuevas.length == 0"></i>
+            </div>
+          </ng-template>
           <app-notificaciones [notificaciones]="notificaciones"></app-notificaciones>
+          <div *ngIf="notificacionesNuevas.length == 0">
+            <p class="text-m">No tienes notificaciones nuevas</p>
+          </div>
         </p-tabPanel>
-        </p-tabView>
+      </p-tabView>
     </div>
   </div>
 </div>
