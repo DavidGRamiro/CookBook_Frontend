@@ -103,6 +103,9 @@ display: flex;
     border-radius: 3%;
     box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
 }
+::ng-deep .p-button.p-ripple.p-element.p-button.p-component{
+  border-radius: 30px;
+}
 .lista{
   margin: 0;
   padding: 0;
