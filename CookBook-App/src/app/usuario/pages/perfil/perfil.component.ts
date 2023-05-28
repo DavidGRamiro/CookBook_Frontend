@@ -101,7 +101,7 @@ export class PerfilComponent implements OnInit {
     console.log('Editar perfil');
     this._dialogService.open(EditarPerfilComponent, {
       header: 'Editar perfil ',
-      width: '70%',
+      width: '70% !important',
       contentStyle: { 'max-height': '500px', overflow: 'auto' },
       baseZIndex: 10000,
       data: {

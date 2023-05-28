@@ -21,7 +21,7 @@ import { DragCalendarComponent } from './components/drag-calendar/drag-calendar.
 import { MaterialModule } from '../library/material/material.module';
 import {DragDropModule} from '@angular/cdk/drag-drop';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
-
+import { SplitButtonModule } from 'primeng/splitbutton';
 
 @NgModule({
   declarations: [
@@ -38,7 +38,7 @@ import { ConfirmDialogModule } from 'primeng/confirmdialog';
     TarjetaPlanComponent,
     CarouselRecetasComponent,
     CalendarComponent,
-    DragCalendarComponent
+    DragCalendarComponent,
   ],
   imports: [
     CommonModule,
@@ -48,7 +48,8 @@ import { ConfirmDialogModule } from 'primeng/confirmdialog';
     ReactiveFormsModule,
     MaterialModule,
     DragDropModule,
-    ConfirmDialogModule
+    ConfirmDialogModule,
+    SplitButtonModule
   ],
   exports: [
     NavbarComponent,
