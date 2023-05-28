@@ -1,6 +1,5 @@
-<app-navbar></app-navbar>
-<div class="container">
-  <h1 class="titulo-seccion">Crea una receta</h1>
+
+
     <form [formGroup]="recetaFormulario" (ngSubmit)="onSubmitReceta()" class="contenedor">
       <div class="columna">
         <div class="form-group">
@@ -57,6 +56,3 @@
     </form>
 
     <button type="submit" class="btn btn-primary" (click)="agregarTodos()" (click)="onSubmitIngredientes()">Guardar Receta</button>
-  </div>
-</div>
-<app-footer></app-footer>
