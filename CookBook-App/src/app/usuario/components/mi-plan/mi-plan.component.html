@@ -1,6 +1,7 @@
 <div class="datos-plan">
+  <h2>Plan contratado</h2>
+  <div class="datos-container">
   <div class="plan-card">
-    <h3 class="plan-card-header">Plan contratado</h3>
     <app-tarjeta-plan [plan]="usuarioConPlan.plan"></app-tarjeta-plan>
   </div>
   <div class="progreso">
@@ -13,5 +14,6 @@
       <p-calendar class="calendario" [(ngModel)]="rangeDates" selectionMode="range" [inline]="true" [showWeek]="true">
       </p-calendar>
     </div>
+  </div>
   </div>
 </div>
