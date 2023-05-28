@@ -3,6 +3,7 @@ import { Usuario } from '../../interface/usuario.interface';
 import { UsuarioService } from '../../services/usuario.service';
 import { Message, MessageService } from 'primeng/api';
 import { DynamicDialogConfig } from 'primeng/dynamicdialog';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-editar-perfil',
@@ -19,7 +20,8 @@ export class EditarPerfilComponent implements OnInit {
   constructor(
     private _config: DynamicDialogConfig,
     private _usuarioService: UsuarioService,
-    private _messageService: MessageService
+    private _messageService: MessageService,
+    private _router: Router
   ) {
     this.usuario = this._config.data.usuario;
   }
@@ -41,16 +43,21 @@ export class EditarPerfilComponent implements OnInit {
       this.showError = true;
       return;
     }
+    console.log(this.usuario.imagen)
+    this.usuario.imagen = this.usuario.imagen.substring(31, this.usuario.imagen.length);
+    console.log(this.usuario.imagen);
     this._usuarioService
       .updateUsuario(this.usuario)
       .subscribe((usuario: Usuario) => {
         console.log(usuario);
+        this.usuario = usuario;
       });
     this._messageService.add({
       severity: 'success',
       summary: 'Cambios guardados',
       detail: 'Los cambios se han guardado correctamente',
     });
+
   }
   // Esta función crea el nuevo nombre de archivo basado en el nombre de usuario y la extensión del archivo
   createNewFileName(username: string, oldFileName: string): string {

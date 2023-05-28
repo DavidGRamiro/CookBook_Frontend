@@ -34,7 +34,8 @@ export class PerfilComponent implements OnInit {
     private router: Router,
     private _validator: ValidatorService,
     private _dialogService: DialogService,
-    private _notificacionService: NotificacionService
+    private _notificacionService: NotificacionService,
+    private _router: Router
   ) {}
 
   ngOnInit(): void {
@@ -107,7 +108,14 @@ export class PerfilComponent implements OnInit {
       data: {
         usuario: this.usuario,
       },
+    }).onClose.subscribe(() => {
+      this._usuarioService.getUserById(this.usuario.idUsuario)
+        .subscribe((usuario) => {
+          this.usuario = usuario;
+          console.log(this.usuario);
+        });
     });
   }
+
 }
 
