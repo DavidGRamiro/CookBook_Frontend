@@ -14,6 +14,7 @@ export class EditarPerfilComponent implements OnInit {
   repeatPassword!: string;
   mensaje!: Message[];
   showError: boolean = false;
+  maxFileSize: number = 3000000;
 
   constructor(
     private _config: DynamicDialogConfig,
@@ -50,5 +51,34 @@ export class EditarPerfilComponent implements OnInit {
       summary: 'Cambios guardados',
       detail: 'Los cambios se han guardado correctamente',
     });
+  }
+  // Esta función crea el nuevo nombre de archivo basado en el nombre de usuario y la extensión del archivo
+  createNewFileName(username: string, oldFileName: string): string {
+    const fileExtension = oldFileName.split('.').pop();
+    username = username.replace(/\s/g, '-');
+    username = username.toLowerCase();
+    let newFileName = `${username}.${fileExtension}`;
+    console.log(newFileName);
+    return newFileName;
+  }
+
+  upload(event: any) {
+    console.log('upload');
+    console.log(event.files);
+    if (event.files.length > 0) {
+      console.log(event.files[0].name);
+      let nuevoNombre = this.createNewFileName( this.usuario.username, event.files[0].name);
+      let newFile = new File([event.files[0]], nuevoNombre, {type: event.files[0].type});
+      console.log(newFile);
+
+      this._usuarioService
+        .saveImagePerfil( this.usuario.idUsuario, newFile)
+        .subscribe((usuario: Usuario) => {
+          console.log(usuario);
+          this.usuario = usuario;
+        }
+
+      );
+    }
   }
 }

@@ -15,7 +15,26 @@
   </div>
   <div class="input">
     <label for="repeatPass">Repetir Contraseña</label>
-    <input pInputText id="repeatPass" [(ngModel)]="repeatPassword" type="password" />
+    <input
+      pInputText
+      id="repeatPass"
+      [(ngModel)]="repeatPassword"
+      type="password"
+    />
+  </div>
+</div>
+<div>
+  <div class="card flex justify-content-center">
+    <p-toast></p-toast>
+    <p-fileUpload
+      mode="basic"
+      chooseLabel="Choose"
+      url="https://www.primefaces.org/cdn/api/upload.php"
+      name="demo[]"
+      accept="image/*"
+      [maxFileSize]="maxFileSize"
+      (onUpload)="upload($event)"
+    ></p-fileUpload>
   </div>
 </div>
 <div class="error" *ngIf="showError">
