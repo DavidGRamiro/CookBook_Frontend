@@ -1,15 +1,23 @@
 <app-navbar></app-navbar>
-<p-breadcrumb class="max-w-full" [model]="items" [home]="home" [style]="{'border': 'none'}"></p-breadcrumb>
+<p-breadcrumb
+  class="max-w-full"
+  [model]="items"
+  [home]="home"
+  [style]="{ border: 'none' }"
+></p-breadcrumb>
 
 <h1 class="titulo-seccion">Todas las recetas</h1>
 <div class="text-center">
-  <button [ngClass]="{'active': isSearchByNameActive}" (click)="searchByName($event)">Buscar por nombre</button>
-  <button [ngClass]="{'active': isSearchByIngredientsActive}" (click)="searchByIngredients($event)">Buscar por ingredientes</button>
-  <p-autoComplete [(ngModel)]="searchQuery" [suggestions]="filtroReceta" (completeMethod)="autoCompletadoReceta($event)" field="nombre"></p-autoComplete>
+  <p-dropdown [options]="searchOptions" [(ngModel)]="selectedSearchOption"></p-dropdown>
+
+  <span class="p-input-icon-left">
+    <i class="pi pi-search"></i>
+    <input pInputText [(ngModel)]="searchQuery" type="text" placeholder="Buscar" (input)="buscarReceta($event)">
+  </span>
 </div>
-<div class ="contenedor d-flex flex-wrap justify-content-center">
-    <div *ngFor="let receta of datos">
-        <app-tarjeta [receta]="receta"></app-tarjeta>
-    </div>
+<div class="contenedor d-flex flex-wrap justify-content-center">
+  <div *ngFor="let receta of datos">
+    <app-tarjeta [receta]="receta"></app-tarjeta>
   </div>
+</div>
 <app-footer></app-footer>
