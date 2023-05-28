@@ -51,8 +51,8 @@ export class RecetasComponent implements OnInit {
   }
 
   buscarReceta(event: any) {
-    let query = this.searchQuery.toLowerCase().trim();
-    let selectedOption = this.selectedSearchOption;
+    const query = this.searchQuery.toLowerCase().trim();
+    const selectedOption = this.selectedSearchOption;
 
     if (query.length === 0) {
       this.obtenerTodas();
@@ -60,14 +60,32 @@ export class RecetasComponent implements OnInit {
     }
 
     this.datos = this.datos.filter((receta: Receta) => {
-      let nombre = receta.nombre.toLowerCase();
+      const nombre = receta.nombre.toLowerCase();
 
       if (selectedOption === 'nombre') {
         return nombre.includes(query);
       }
 
+      if (selectedOption === 'ingredientes') {
+        return this.buscarPorIngredientes(receta, query);
+      }
+
       return false;
     });
+  }
+
+  private buscarPorIngredientes(receta: Receta, query: string): boolean {
+    if (receta.recetasConIngredientes.length > 0) {
+      for (let i = 0; i < receta.recetasConIngredientes.length; i++) {
+        const recetaIng = receta.recetasConIngredientes[i];
+        const ingrediente = recetaIng.ingrediente.nombre.toLowerCase();
+        if (ingrediente.includes(query)) {
+          return true;
+        }
+      }
+    }
+
+    return false;
   }
 
   //Recuperamos del servicio todas la recetas registradas
