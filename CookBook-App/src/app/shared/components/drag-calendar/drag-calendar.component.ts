@@ -78,15 +78,22 @@ export class DragCalendarComponent implements OnInit {
     ];
 
     const isExist = (event.container.data as Receta[]).includes(element);
-    const isTodo = (event.container.id == "todoList")
+    const isTodo = (event.container.id == "todoList") && !(event.previousContainer.id == "todoList")
 
-    if (!isExist)
+    if (!isExist){
       copyArrayItem(
         event.previousContainer.data,
         event.container.data,
         event.previousIndex,
         event.currentIndex
       )
+    }else if(event.container == event.previousContainer){
+      transferArrayItem(event.previousContainer.data,
+        event.container.data,
+        event.previousIndex,
+        event.currentIndex);
+    }
+
 
     if(isTodo){
       event.previousContainer.data.splice(event.previousIndex, 1)

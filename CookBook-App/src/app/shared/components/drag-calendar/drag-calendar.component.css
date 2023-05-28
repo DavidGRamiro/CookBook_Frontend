@@ -1,5 +1,9 @@
 *{font-size: large;}
 
+.container-fluid col{
+  margin-left: 2em;
+  margin-right: 2em;
+}
 
 h1{
   padding-top: 5%;
@@ -30,16 +34,25 @@ h1{
     flex-direction: column;
   }
   
-  .example-list {
+  #calendarWeek .example-list {
     /* border: solid 1px #ccc; */
-    min-height: 80px;
-    min-width: 400px;
+    min-height: 5em;
+    width: 13em;
     border-radius: 4px;
     overflow: hidden;
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
   }
+
+
+
+  #recetasBox .example-list{
+    min-height: 2em;
+    width: 16em;
+    overflow: auto;
+  }
+
 
   app-tarjeta-calendar{
     margin: 0.1em;

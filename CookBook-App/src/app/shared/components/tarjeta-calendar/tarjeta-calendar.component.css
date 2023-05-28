@@ -25,7 +25,7 @@ i{
         display: flex;
         align-items: center;
         padding: 0.5rem;
-        width: 100%;
+        width: auto;
         border-bottom: 1px solid var(--surface-d);
         border-radius: 25px;
         background-color: #fcdd87;
@@ -66,7 +66,7 @@ i{
             flex-wrap: wrap;
     
             .image-container {
-                width: 100%;
+                width: auto;
                 text-align: center;
             }
     
