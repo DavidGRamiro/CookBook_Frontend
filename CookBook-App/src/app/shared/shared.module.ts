@@ -19,6 +19,8 @@ import { CarouselRecetasComponent } from './components/carousel-recetas/carousel
 import { DragCalendarComponent } from './components/drag-calendar/drag-calendar.component';
 import { MaterialModule } from '../library/material/material.module';
 import {DragDropModule} from '@angular/cdk/drag-drop';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
+import { SplitButtonModule } from 'primeng/splitbutton';
 import { TarjetaCalendarComponent } from './components/tarjeta-calendar/tarjeta-calendar.component';
 
 
@@ -36,8 +38,8 @@ import { TarjetaCalendarComponent } from './components/tarjeta-calendar/tarjeta-
     AdminMenuComponent,
     TarjetaPlanComponent,
     CarouselRecetasComponent,
+    TarjetaCalendarComponent,
     DragCalendarComponent,
-    TarjetaCalendarComponent
   ],
   imports: [
     CommonModule,
@@ -46,7 +48,9 @@ import { TarjetaCalendarComponent } from './components/tarjeta-calendar/tarjeta-
     FormsModule,
     ReactiveFormsModule,
     MaterialModule,
-    DragDropModule
+    DragDropModule,
+    ConfirmDialogModule,
+    SplitButtonModule
   ],
   exports: [
     NavbarComponent,

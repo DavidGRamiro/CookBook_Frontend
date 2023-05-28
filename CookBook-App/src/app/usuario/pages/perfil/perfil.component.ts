@@ -12,6 +12,7 @@ import { Notificacion } from '../../interface/notificacion.interface';
 import { DateTime } from 'luxon';
 import { DialogService } from 'primeng/dynamicdialog';
 import { EditarPerfilComponent } from '../../components/editar-perfil/editar-perfil.component';
+import { NotificacionService } from '../../services/notificacion.service';
 
 @Component({
   selector: 'app-perfil',
@@ -25,13 +26,16 @@ export class PerfilComponent implements OnInit {
   recetaSeleccionada!: Receta;
   usuarioConPlan!: UsuarioConPlan;
   notificaciones!: Notificacion[];
+  notificacionesNuevas!: Notificacion[];
   activeIndex = 0;
 
   constructor(
     private _usuarioService: UsuarioService,
     private router: Router,
     private _validator: ValidatorService,
-    private _dialogService: DialogService
+    private _dialogService: DialogService,
+    private _notificacionService: NotificacionService,
+    private _router: Router
   ) {}
 
   ngOnInit(): void {
@@ -70,28 +74,48 @@ export class PerfilComponent implements OnInit {
         .subscribe((notificaciones) => {
           this.notificaciones = notificaciones;
           console.log(this.notificaciones);
+          this.calcularnotificacionesNuevas(this.notificaciones);
         });
+
+      this._notificacionService.notificacionLeida$.subscribe(() => {
+        this.calcularnotificacionesNuevas(this.notificaciones);
+      });
     } else {
       // si el usuario no ha iniciado sesion la pagina /user/perfil no es accesible, redirigir a /login
       this.router.navigate(['/login']);
     }
   }
+  calcularnotificacionesNuevas(notificaciones: Notificacion[]) {
+    this.notificacionesNuevas = notificaciones.filter(
+      (notificacion) => notificacion.leida === false
+    );
+    console.log(this.notificacionesNuevas);
+  }
+
   cambiarComponenteActivo(index: number) {
     console.log('Cambiando al componente', index);
     this.activeIndex = index;
   }
+
   editarPerfil() {
     //Abrimos un dialogo para editar el perfil
     console.log('Editar perfil');
     this._dialogService.open(EditarPerfilComponent, {
       header: 'Editar perfil ',
-      width: '70%',
+      width: '70% !important',
       contentStyle: { 'max-height': '500px', overflow: 'auto' },
       baseZIndex: 10000,
       data: {
         usuario: this.usuario,
       },
+    }).onClose.subscribe(() => {
+      this._usuarioService.getUserById(this.usuario.idUsuario)
+        .subscribe((usuario) => {
+          this.usuario = usuario;
+          console.log(this.usuario);
+        });
     });
   }
+
 }
 

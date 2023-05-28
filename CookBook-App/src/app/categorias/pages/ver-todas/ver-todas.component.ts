@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Categoria } from '../../interfaces/categorias.interface';
 import { CategoriasService } from '../../services/categorias.service';
+import { MenuItem } from 'primeng/api';
 
 @Component({
   selector: 'app-ver-todas',
@@ -11,15 +12,22 @@ export class VerTodasComponent implements OnInit {
 
   public datos!: Categoria[];
 
-  //Todo lo que metamos aqui, la primera vez que se cargue el componente
+  //BreadCrumb
+  items: MenuItem[] = [];
+  home!: MenuItem;
+
+
   ngOnInit(): void {
-    this.loquesea();
+    this.cargaCategorias()
+
+    this.items = [{ label: 'Categorias'} ]
+    this.home = { icon: 'pi pi-home', routerLink: '/home' }
   }
 
-  //CRT+ espacio te da todas las opciones
-  constructor(private _categoriasService:CategoriasService) {}
+  constructor( private _categoriasService:CategoriasService ) {}
 
-  loquesea(){
+  //Cargamos todas las categorias que tenemos disponibles
+  cargaCategorias(){
     this._categoriasService.getTodasCategorias()
     .subscribe(response =>{
       this.datos = response

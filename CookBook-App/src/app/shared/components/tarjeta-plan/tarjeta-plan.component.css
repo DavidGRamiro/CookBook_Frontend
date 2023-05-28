@@ -11,7 +11,7 @@
   width: 300px;
 }
 
-::ng-deep .p-button {
+::ng-deep .p-button .plan-btn {
   background-color: #FFD04A;
   color: black;
   border: none;

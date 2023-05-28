@@ -12,6 +12,10 @@ export class MiPlanComponent implements OnInit {
   @Input() usuario!: Usuario;
   @Input() usuarioConPlan!: UsuarioConPlan;
   progreso: number = 0;
+  dateFormat: string = 'dd/MM/yyyy';
+  fechaFin: Date = new Date();
+  fechaInicio: Date = new Date();
+  rangeDates: Date[] = [new Date(), new Date()];
 
   constructor(private _usuarioService: UsuarioService) { }
 
@@ -35,7 +39,14 @@ export class MiPlanComponent implements OnInit {
     let diasPlan = this.usuarioConPlan.plan.duracion;
     let progreso = (diasTranscurridos * 100) / diasPlan;
     progreso = Math.round(progreso);
+    //Calcular rango de fechas
+    let fechaFin = new Date(fechaInicio);
+    fechaFin.setDate(fechaFin.getDate() + diasPlan);
+    this.rangeDates = [fechaInicio, fechaFin];
+    this.fechaFin = fechaFin;
+    this.fechaInicio = fechaInicio;
     console.log(progreso);
+
     return progreso;
   }
 

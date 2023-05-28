@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { MenuItem, MessageService } from 'primeng/api';
+import { ConfirmationService, MenuItem, MessageService } from 'primeng/api';
 import { Usuario } from 'src/app/auth/interface/auth.interface';
 import { ValidatorService } from 'src/app/auth/services/validator.service';
 
@@ -22,12 +22,15 @@ export class NavbarComponent implements OnInit {
   }
 
   items!: MenuItem[];
+  registerItems!: MenuItem[];
+  displayMenu: boolean = false;
 
   ngOnInit(): void {
   }
 
   constructor(private _validator: ValidatorService,
               private _msg : MessageService,
+              private _confirmationService : ConfirmationService,
               private _router: Router) {
 
     this._validator.isLoggedIn$.subscribe( data => {
@@ -55,10 +58,7 @@ export class NavbarComponent implements OnInit {
       ]
     },
     {
-      label: 'Planes',
-      items: [
-        { label: 'Todos los planes', routerLink: '/planes/todos'}
-      ]
+      label: 'Planes', routerLink: '/planes/todos'
     },
     {
       label: 'Acerca de',
@@ -67,19 +67,19 @@ export class NavbarComponent implements OnInit {
         { label: 'FAQs', routerLink: '/about/faqs' },
         { label: 'Contacto', routerLink: '/about/contacto' }
       ]
-    },
-    {
-      label: 'Perfil',
-      items: [
-        { label: 'Mi perfil', routerLink: '/user' },
-        { label: 'Notificaciones', routerLink: '/user/notificaciones' }
-      ]
-    },
-    {
-      label: 'Subir receta' , routerLink: '/alta'
     }
   ]
-
+  public registerMenuItems: MenuItem[] = [
+    {
+      label: 'Inicia sesión', routerLink: '/auth/login', icon: "pi pi-user"
+    },
+    {
+      label: 'Registrate', routerLink: '/auth/registro', icon: "pi pi-plus"
+    }
+  ]
+    public showMobileMenu(){
+      this.displayMenu = !this.displayMenu;
+    }
   navegarPerfil(): void {
     if (this.isLoggedIn) {
       this._router.navigateByUrl('/user/perfil');
@@ -87,16 +87,32 @@ export class NavbarComponent implements OnInit {
       this._router.navigateByUrl('/login');
     }
   }
+  public confirmarCierre() {
+    console.log('Modal abierto');
+      this._confirmationService.confirm({
+        message: '¿Seguro que quiere cerrar sesión?',
+        icon: 'pi pi-exclamation-triangle',
+        accept: () => {
+          this._msg.add({ severity: 'success', summary: 'Cerrando sesión', detail: 'Has cerrado sesión' });
+          this.cerrarSesion();
+        },
+        reject: () => {
+          this._msg.add({ severity: 'info', summary: 'Cancelado', detail: 'Has cancelado el cierre de sesión' });
+        }
+      });
+  }
 
-  cerrarSesion(){
+  private cerrarSesion() {
+    localStorage.clear();
     localStorage.removeItem('isLoggedIn');
     localStorage.removeItem('user');
-    this._router.navigateByUrl("/home")
+    console.log('Sesión cerrada');
+    if (window.location.pathname === '/user/perfil') {
+      this._router.navigateByUrl('/home');
+    }else{
+    window.location.reload();
+    }
   }
-
-  // FIXME: No funciona el mensaje que quiero mostrar para la confirmación de cerrar sesión.
-  showMensaje() {
-    this._msg.add({ severity: 'info', summary: 'Cerrar sesión', detail: '¿Estás seguro de que quieres cerrar sesión?', sticky: true });
-  }
-
 }
+
+

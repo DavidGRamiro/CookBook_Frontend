@@ -19,6 +19,7 @@ import { TabViewModule } from 'primeng/tabview';
 import { InputTextModule } from 'primeng/inputtext';
 import { MessagesModule } from 'primeng/messages';
 import { CalendarModule } from 'primeng/calendar';
+import { FileUploadModule } from 'primeng/fileupload';
 
 @NgModule({
   declarations: [
@@ -43,6 +44,7 @@ import { CalendarModule } from 'primeng/calendar';
     InputTextModule,
     MessagesModule,
     CalendarModule,
+    FileUploadModule,
   ],
   exports: [NotificacionesComponent, PerfilComponent],
 })

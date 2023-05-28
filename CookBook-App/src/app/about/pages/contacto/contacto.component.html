@@ -19,7 +19,7 @@
           <label htmlFor="texto">¡ Dinos en que podemos ayudarte !</label>
           <textarea rows="5" cols="30" pInputTextarea formControlName="texto"></textarea>
         </div>
-        <p-button label="Enviar" icon ="pi pi-send" iconPos="right" type ="submit" (click)="mostrarNotificacion()" style="color: #fff5d7"></p-button>
+        <p-button class="btn-cta" icon="pi pi-send" iconPos="right" [style]="{'background-color': '#92e3a9', 'border': 'none', 'margin-top': '30px', 'border-radius':'10px', 'font-weight':'bold','font-size':'16px' }" label="Contactar" styleClass="p-button p-button-rounded success" pTooltip="Ponerse en contacto" (click)="mostrarNotificacion()"></p-button>
       </form>
 
     </div>

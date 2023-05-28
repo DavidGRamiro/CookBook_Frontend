@@ -23,7 +23,7 @@ export class RegistroComponent implements OnInit {
     {
       username: ['', [Validators.required, Validators.pattern(this._validatorService.firstNameAndLastnamePattern)]],
       email: ['', [Validators.required, Validators.pattern(this._validatorService.emailPattern)]],
-      password: ['', [Validators.required]], //FIXME: Error en validaciones asincronas
+      password: ['', [Validators.required]],
       password2: ['', [Validators.required]],
       terminos: [ true,[Validators.required]],
       privacidad: [true,[Validators.required]]
@@ -36,31 +36,32 @@ export class RegistroComponent implements OnInit {
               private _validatorService: ValidatorService) { }
 
   ngOnInit(): void {
-
   }
 
+  //Validación del campo introducido, para dar retroalimentación al usuario
   campoValido(campo : string){
     let campoSinEspacio = campo.trim()
     return this._validatorService.campoValido(this.formRegistro, campoSinEspacio);
   }
 
+  //Petición al back, en el momento de hacer un registro, comprueba que el email no esta en uso.
   verificarEmailRepetido(){
     if(this.formRegistro.controls['email'].value != null){
       this.emailForm = this.formRegistro.controls['email'].value
       this._authService.buscarEmail(this.emailForm).subscribe(response => {
-
         return response == null ? this.emailUtilizado = false : this.emailUtilizado = true
       })
-
     }
   }
 
+  //Controlamos que las dos contraseás sean iguales en ambos campos.
   verficarPasswords(){
   return this.formRegistro.controls['password'].value === this.formRegistro.controls['password2'].value
         ? this.passwordCoinciden = true
         : this.passwordCoinciden = false;
   }
 
+  //Procedemos a hacer el registro del usuario, solo si todos los campos son válidos.
   procesarRegistro(){
     this.formRegistro.markAllAsTouched();
     this.verficarPasswords();
@@ -82,8 +83,4 @@ export class RegistroComponent implements OnInit {
       })
     }
   }
-
-
-
-
 }
