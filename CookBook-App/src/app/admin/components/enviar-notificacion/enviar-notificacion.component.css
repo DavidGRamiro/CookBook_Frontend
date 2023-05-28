@@ -1,0 +1,25 @@
+.form-group {
+  margin-bottom: 20px;
+}
+
+label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+
+.btn-primary {
+  background-color: #007bff;
+  color: #fff;
+  border-color: #007bff;
+}
+
+.btn-primary:hover {
+  background-color: #0069d9;
+  border-color: #0062cc;
+}

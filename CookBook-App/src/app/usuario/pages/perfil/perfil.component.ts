@@ -1,50 +1,113 @@
 import { Component, OnInit } from '@angular/core';
 
 //Interfaces
-import { listaPerfil } from '../../interface/perfil.lista.interface';
-
+import { MenuItem } from 'primeng/api'; // Importa MenuItem para el menú de perfil
 import { UsuarioService } from '../../services/usuario.service';
-import { ActivatedRoute } from '@angular/router';
-import { switchMap } from 'rxjs';
+import { Router } from '@angular/router';
 import { Receta } from 'src/app/recetas/interface/recetas.interface';
 import { Usuario } from '../../interface/usuario.interface';
+import { ValidatorService } from 'src/app/auth/services/validator.service';
+import { UsuarioConPlan } from '../../interface/usuarioconplan.interface';
+import { Notificacion } from '../../interface/notificacion.interface';
+import { DateTime } from 'luxon';
+import { DialogService } from 'primeng/dynamicdialog';
+import { EditarPerfilComponent } from '../../components/editar-perfil/editar-perfil.component';
+import { NotificacionService } from '../../services/notificacion.service';
+
 @Component({
   selector: 'app-perfil',
   templateUrl: './perfil.component.html',
-  styleUrls: ['./perfil.component.css']
+  styleUrls: ['./perfil.component.css'],
 })
-export class PerfilComponent implements OnInit{
-
-  listaPerfil : listaPerfil[] = [
-    { item: 'Mis recetas', ruta: 'misrecetas'},
-    { item: 'Notificaciones', ruta: 'notificaciones'},
-    { item: 'Mi perfil', ruta: 'perfil'},
-    { item: 'Cerrar sesión', ruta: 'logout' }
-  ]
-
+export class PerfilComponent implements OnInit {
+  public isLoggedIn: boolean = false;
   usuario!: Usuario;
   recetasFavoritas!: Receta[];
+  recetaSeleccionada!: Receta;
+  usuarioConPlan!: UsuarioConPlan;
+  notificaciones!: Notificacion[];
+  notificacionesNuevas!: Notificacion[];
+  activeIndex = 0;
 
+  constructor(
+    private _usuarioService: UsuarioService,
+    private router: Router,
+    private _validator: ValidatorService,
+    private _dialogService: DialogService,
+    private _notificacionService: NotificacionService
+  ) {}
 
   ngOnInit(): void {
-    //Recupera el id del usuario dependiendo de la ruta en la que nos encontremos.
-    //Llamamos al servicio y le mandamos por parámetro el id del usuario que queremos recuperar.
-    this._activatedRoute.params
-          .pipe(
-            switchMap( ({ idUsuario } )=>
-            this._usuarioService.getUserById(idUsuario)))
-          // .subscribe( response => this.usuario = response);
-    //Recuperamos las recetas favoritas del usuario.
-    this._activatedRoute.params.pipe(
-      switchMap( ({ idUsuario } )=>
-      this._usuarioService.getRecetasFavoritas(idUsuario)))
-    .subscribe( response => this.recetasFavoritas = response
-    )
+    //Verificams si el usuario ha iniciado sesión
+    this._validator.isLoggedIn$.subscribe((data) => {
+      this.isLoggedIn = data;
+    });
 
+    this.isLoggedIn =
+      localStorage.getItem('isLoggedIn') === 'true' ? true : false;
+    console.log(this.isLoggedIn);
+    if (this.isLoggedIn) {
+      if (localStorage.getItem('user') != null) {
+        const userString = localStorage.getItem('user');
+        if (userString != null) {
+          this.usuario = JSON.parse(userString);
+        }
+      }
+      /// El usuario ha iniciado sesión, continuar con la lógica actual del componente
+      this._usuarioService
+        .getRecetasFavoritas(this.usuario.idUsuario)
+        .subscribe((recetas) => {
+          this.recetasFavoritas = recetas;
+          console.log(this.recetasFavoritas);
+        });
+
+      this._usuarioService
+        .getPlandeUsuario(this.usuario.idUsuario)
+        .subscribe((usuarioConPlan) => {
+          this.usuarioConPlan = usuarioConPlan;
+          console.log('Usuario con plan' + this.usuarioConPlan);
+        });
+
+      this._usuarioService
+        .getNotificaciones(this.usuario.idUsuario)
+        .subscribe((notificaciones) => {
+          this.notificaciones = notificaciones;
+          console.log(this.notificaciones);
+          this.calcularnotificacionesNuevas(this.notificaciones);
+        });
+
+      this._notificacionService.notificacionLeida$.subscribe(() => {
+        this.calcularnotificacionesNuevas(this.notificaciones);
+      });
+    } else {
+      // si el usuario no ha iniciado sesion la pagina /user/perfil no es accesible, redirigir a /login
+      this.router.navigate(['/login']);
+    }
+  }
+  calcularnotificacionesNuevas(notificaciones: Notificacion[]) {
+    this.notificacionesNuevas = notificaciones.filter(
+      (notificacion) => notificacion.leida === false
+    );
+    console.log(this.notificacionesNuevas);
   }
 
-  constructor( private _usuarioService: UsuarioService,
-              private _activatedRoute : ActivatedRoute,
-     ) { }
+  cambiarComponenteActivo(index: number) {
+    console.log('Cambiando al componente', index);
+    this.activeIndex = index;
+  }
+
+  editarPerfil() {
+    //Abrimos un dialogo para editar el perfil
+    console.log('Editar perfil');
+    this._dialogService.open(EditarPerfilComponent, {
+      header: 'Editar perfil ',
+      width: '70% !important',
+      contentStyle: { 'max-height': '500px', overflow: 'auto' },
+      baseZIndex: 10000,
+      data: {
+        usuario: this.usuario,
+      },
+    });
+  }
 }
 

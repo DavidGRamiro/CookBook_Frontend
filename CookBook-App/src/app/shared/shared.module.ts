@@ -3,7 +3,6 @@ import { CommonModule } from '@angular/common';
 
 import { SharedRoutingModule } from './shared-routing.module';
 import { PrimeNGModule } from '../library/prime-ng/prime-ng.module';
-import { DropdownModule } from 'primeng/dropdown';
 
 import { MainComponent } from './pages/main/main.component';
 import { NavbarComponent } from './pages/navbar/navbar.component';
@@ -14,8 +13,15 @@ import { TarjetaComponent } from './components/tarjeta/tarjeta.component';
 import { TarjetaCategoriaComponent } from './components/tarjeta-categoria/tarjeta-categoria.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FormularioRecipeComponent } from './components/formulario-recipe/formulario-recipe.component';
-import { MessageService } from 'primeng/api';
-
+import { AdminMenuComponent } from './pages/admin-menu/admin-menu.component';
+import { TarjetaPlanComponent } from './components/tarjeta-plan/tarjeta-plan.component';
+import { CarouselRecetasComponent } from './components/carousel-recetas/carousel-recetas.component';
+import { CalendarComponent } from './components/calendar/calendar.component';
+import { DragCalendarComponent } from './components/drag-calendar/drag-calendar.component';
+import { MaterialModule } from '../library/material/material.module';
+import {DragDropModule} from '@angular/cdk/drag-drop';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
+import { SplitButtonModule } from 'primeng/splitbutton';
 
 @NgModule({
   declarations: [
@@ -25,8 +31,14 @@ import { MessageService } from 'primeng/api';
     TablaComponent,
     MenuComponent,
     TarjetaComponent,
+    TarjetaPlanComponent,
     TarjetaCategoriaComponent,
-    FormularioRecipeComponent
+    FormularioRecipeComponent,
+    AdminMenuComponent,
+    TarjetaPlanComponent,
+    CarouselRecetasComponent,
+    CalendarComponent,
+    DragCalendarComponent,
   ],
   imports: [
     CommonModule,
@@ -34,8 +46,12 @@ import { MessageService } from 'primeng/api';
     PrimeNGModule,
     FormsModule,
     ReactiveFormsModule,
+    MaterialModule,
+    DragDropModule,
+    ConfirmDialogModule,
+    SplitButtonModule
   ],
-  exports:[
+  exports: [
     NavbarComponent,
     FooterComponent,
     MainComponent,
@@ -43,8 +59,11 @@ import { MessageService } from 'primeng/api';
     MenuComponent,
     TarjetaComponent,
     TarjetaCategoriaComponent,
-    FormularioRecipeComponent
+    TarjetaPlanComponent,
+    FormularioRecipeComponent,
+    CarouselRecetasComponent,
+    CalendarComponent,
   ],
-  providers: [MessageService]
+  providers: [],
 })
-export class SharedModule { }
+export class SharedModule {}

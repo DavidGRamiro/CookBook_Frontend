@@ -1,0 +1,51 @@
+<h4>Editar {{receta.nombre}}</h4>
+
+<form  [formGroup]="formEditarReceta" id="formularioEdicion">
+  <div class="row">
+
+    <div class="col">
+      <label for="nombre">Nombre</label>
+      <input type="text" id="nombre" name="nombre" class="form-control"  formControlName="nombre">
+    </div>
+    <div class="col">
+      <label for="descripcion">Descripción</label>
+      <input type="text" id="descripcion" name="descripcion" class="form-control" formControlName="descripcion" >
+    </div>
+    <label for="Instrucciones">Instrucciones</label>
+    <textarea id="Instrucciones" name="Instrucciones" rows="4" cols="20" class="form-control" formControlName="instrucciones"></textarea>
+  </div>
+  <div class="row">
+    <div class="col">
+      <label for="tiempoPreparacion">Tiempo de preparación</label>
+      <input type="number" id="tiempoPreparacion" name="tiempoPreparacion" class="form-control"   formControlName="tiempoPreparacion" >
+    </div>
+    <div class="col">
+      <label for="tiempoCoccion">Tiempo de cocción</label>
+      <input type="number" id="tiempoCoccion" name="tiempoCoccion" class="form-control" formControlName="tiempoCoccion">
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
+      <label for ="calorias">Calorias</label>
+      <input type="number" id="calorias" name="calorias" class="form-control" formControlName="calorias">
+    </div>
+    <div class="col">
+      <label for ="proteinas">Proteinas</label>
+      <input type="number" id="proteinas" name="proteinas" class="form-control" formControlName="proteinas">
+    </div>
+    <div class="col">
+      <label for ="grasas">Grasas</label>
+      <input type="number" id="grasas" name="grasas"  class="form-control" formControlName="grasas">
+    </div>
+    <div class="col">
+      <label for ="carbohidratos">Carbohidratos</label>
+      <input type="number" id="carbohidratos" name="carbohidratos"  class="form-control" formControlName="carbohidratos">
+    </div>
+  </div>
+  <div>
+    <h4>Actualizar receta</h4>
+    <button type="submit" class="btn btn-primary" (click)="actualizarReceta()">Actualizar</button>
+  </div>
+</form>
+
+<p-toast></p-toast>

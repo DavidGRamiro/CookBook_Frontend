@@ -1,25 +1,40 @@
 <div class ="container">
   <div class ="row">
     <div class ="col-md-4">
-      <p-card header="{{ receta.nombre }}" [style]="{ width: '300px', 'max-height':'350px','border-radius': '1rem'}">
+      <p-card header="{{ receta.nombre }}" [style]="{ width: '300px','min-height':'350px','border-radius': '1rem'}">
         <ng-template pTemplate="header">
             <a [routerLink]="['/recetas', receta.idReceta]">
-              <img [src] =receta.imagen alt={{receta.nombre}}/>
+              <div class="blur-div"></div>
+              <div class="img-container">
+                <img class="recipe-img" [src] =receta.imagen alt={{receta.nombre}}/>
+              </div>
             </a>
-            <div class="icon-container">
-              <i class="fas fa-clock"></i>
-              <p class="time">{{ tiempoTotal }}'</p>
+            <div class="icon-container-ing">
+              <i class="fa fa-carrot" ></i>
+              <p class="ingredientes" >{{ ingredientes }}</p>
             </div>
-            </ng-template>
-            <div class="header-container">
+            <div class="icon-container">
+              <i class="pi pi-clock"  ></i>
+              <p class="time"  >{{ tiempoTotal }}'</p>
+            </div>
+          </ng-template>
+          <ng-template pTemplate="body">
               <div class="avatar-container">
                 <img [src] =receta.usuario.imagen alt={{receta.usuario.username}} class="avatar"/>
+                <p class="username">{{ receta.usuario.username }}</p>
               </div>
-              <p class="username">{{ receta.usuario.username }}</p>
-            </div>
+              <div class ="admin-container" *ngIf ="idAdministrador == 100">
+                <p-button icon="pi pi-pencil"  (onClick)="editarReceta()" styleClass="p-button-rounded p-button-warning p-button-text"></p-button>
+                <p-button icon="pi pi-trash"  (onClick)=" eliminarReceta($event)" styleClass="p-button-rounded p-button-danger p-button-text"></p-button>
+              </div>
+          </ng-template>
       </p-card>
     </div>
   </div>
 </div>
+
+<p-toast></p-toast>
+<p-confirmPopup></p-confirmPopup>
+
 
 

@@ -1,25 +1,80 @@
-
-<div class ="card">
-  <p-menubar [model]="menuItems">
+<div class="card">
+  <p-menubar [model]="menuItems" class="menu-responsive">
     <ng-template pTemplate="start">
-      <!-- FIXME: -->
-      <!-- <img src="assets\images\CB.png" height="50" width="50" class="mr-2" /> -->
+      <img alt="cookbook-logo" routerLink="/home" src="assets\images\CookBook.png" width="70" class="menu-logo mr-2" />
     </ng-template>
-    <ng-template pTemplate="end" *ngIf="isLoggedIn; else noLogueado">
-      <div class="row">
-        <div class="col">
-          <p-button icon="pi pi-sign-out"
-                    styleClass="p-button-rounded p-button-danger p-button-outlined"
-                    (click)="cerrarSesion()"
-                    [style]="{'cursor': 'pointer'}"></p-button><br>
+
+    <ng-template pTemplate="end">
+      <ng-container *ngIf="isLoggedIn">
+        <ng-container *ngTemplateOutlet="logueado"></ng-container>
+      </ng-container>
+      <ng-container *ngIf="!isLoggedIn">
+        <ng-container *ngTemplateOutlet="noLogueado"></ng-container>
+      </ng-container>
+      <ng-template #logueado>
+        <div class="logueado">
+          <p-button class="logout-btn" icon="pi pi-sign-out" pTooltip="Cerrar sesión" [showDelay]="500"
+            styleClass="p-button-rounded p-button-danger p-button-outlined logout-button" (click)="confirmarCierre()"
+            [style]="{ cursor: 'pointer' }"></p-button>
+          <br />
+          <p-avatar *ngIf="usuarioLogueado.idUsuario !== 100" image="{{ usuarioLogueado.imagen }}" pTooltip="Mi perfil"
+            [showDelay]="500" class="profile-avatar" size="large" shape="circle" (click)="navegarPerfil()"></p-avatar>
+          <div *ngIf="usuarioLogueado.idUsuario == 100" class="admin-menu">
+            <app-admin-menu></app-admin-menu>
+          </div>
         </div>
-        <div class="col">
-          <p-avatar image="{{ usuarioLogueado.imagen }}" styleClass="mr-2" size="large" shape="circle" (click) ="navegarPerfil()"></p-avatar>
-        </div>
-      </div>
     </ng-template>
     <ng-template #noLogueado>
-      <p-button label="Login" styleClass="p-button p-button-rounded success" icon="pi pi-user" routerLink="/auth/login"></p-button>
+      <button
+        class="p-button p-button-rounded success login-button"
+        routerLink="/auth/login"
+        [style]="{ 'background-color': '#92e3a9', 'border': 'none'}"
+      >
+        <i class="pi pi-user"></i>
+        Login
+      </button>
+      </ng-template>
+      <ng-template #noLogueado>
+        <div class="nolog-btn" >
+            <p-button icon="pi pi-user-plus" (onClick)="showMobileMenu()" class="p-button-rounded acceso" label="Acceso"></p-button>
+            <div class="submenu"*ngIf="displayMenu">
+                <ul class="lista">
+                  <li class="elemento">
+                    <a class="link" href="/auth/login">
+                      <span class="menu-text">Inicia sesión</span>
+                      <span class="pi pi-sign-in"></span>
+                    </a>
+                  </li>
+                  <li class="elemento">
+                    <a class="link" href="/auth/registro">
+                      <span class="menu-text">Regístrate</span><span class="pi pi-plus"></span>
+                    </a>
+                  </li>
+                </ul>
+            </div>
+          </div>
+        <div class="nolog-dskt">
+          <button class="p-button p-button-rounded success register-btn" routerLink="/auth/registro">
+            <i class="pi pi-plus"></i>
+            Registrarse
+          </button>
+          <button class="p-button p-button-rounded login-btn" routerLink="/auth/login">
+            <i class="pi pi-user"></i>
+            Login
+          </button>
+        </div>
+      </ng-template>
     </ng-template>
   </p-menubar>
 </div>
+<p-confirmDialog #cd [style]="{ width: '50vw' }">
+  <ng-template pTemplate="header">
+    <h4>Cerrar sesión</h4>
+  </ng-template>
+  <ng-template pTemplate="footer">
+    <p-button type="button" styleClass="p-button-success" icon="pi pi-check" label="Si" (click)="cd.accept()"
+      title="Si"></p-button>
+    <p-button type="button" styleClass="p-button-danger" icon="pi pi-times" label="No" (click)="cd.reject()" title="No">
+    </p-button>
+  </ng-template>
+</p-confirmDialog>

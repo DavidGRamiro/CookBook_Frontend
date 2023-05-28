@@ -1,0 +1,26 @@
+<div class="fila">
+  <div class="input">
+    <label for="username">Username</label>
+    <input pInputText id="username" [(ngModel)]="usuario.username" />
+  </div>
+  <div class="input">
+    <label for="email">Email</label>
+    <input pInputText id="email" [(ngModel)]="usuario.email" />
+  </div>
+</div>
+<div class="fila">
+  <div class="input">
+    <label for="pass">Contraseña</label>
+    <p-password [(ngModel)]="usuario.password" [toggleMask]="true"></p-password>
+  </div>
+  <div class="input">
+    <label for="repeatPass">Repetir Contraseña</label>
+    <input pInputText id="repeatPass" [(ngModel)]="repeatPassword" type="password" />
+  </div>
+</div>
+<div class="error" *ngIf="showError">
+  <p-messages [(value)]="mensaje" [enableService]="false"></p-messages>
+</div>
+<div class="fila">
+  <button class="save-btn" (click)="guardarCambios()">Guardar Cambios</button>
+</div>

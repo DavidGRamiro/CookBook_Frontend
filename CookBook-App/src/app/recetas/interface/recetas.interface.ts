@@ -32,8 +32,8 @@ export interface RecetasConIngrediente {
 
 export interface Ingrediente {
   idIngrediente: number;
-  descripcion?:   string;
-  nombre?:        string | null | undefined;
+  descripcion:   string;
+  nombre:        string;
 }
 
 export interface Usuario {

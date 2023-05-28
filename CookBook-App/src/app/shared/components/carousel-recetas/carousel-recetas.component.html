@@ -1,0 +1,25 @@
+
+    <div class ="card text-center m-auto" [style]="{ width: '50%', border: 'none' }">
+      <p-carousel [value]="recetas" [numScroll]="1" [responsiveOptions]="responsiveOptions" [circular]="true" >
+          <ng-template let-receta pTemplate="item">
+              <div class="product-item">
+                  <div class="product-item-content">
+                      <div class="mb-3">
+                          <img [src]=receta.imagen [style]="{ width: '400px'}"  [alt]="receta.nombre" class="product-image" />
+                      </div>
+                      <div>
+                          <h4 class="mb-1">{{ receta.nombre }}</h4>
+                          <div class="car-buttons mt-5">
+                              <p-button type="button" styleClass="p-button p-button-rounded mr-2" icon="pi pi-search"  [routerLink]="['/recetas', receta.idReceta]"></p-button>
+                              <p-button type="button" styleClass="p-button-success p-button-rounded mr-2" icon="pi pi-star-fill"></p-button>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </ng-template>
+      </p-carousel>
+    </div>
+
+
+
+

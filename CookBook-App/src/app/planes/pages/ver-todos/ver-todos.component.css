@@ -1,0 +1,29 @@
+
+.contenedor{
+  margin-top: 2em;
+  margin-bottom: 4em;
+  padding-left: 5%;
+  padding-right: 5%;
+  display: flex;
+  gap: 32px;
+  justify-content: center;
+}
+
+.titulo-seccion {
+  font-size: 48px;
+  font-weight: bold;
+  text-align: center;
+  margin: 20px auto;
+}
+
+p-card{
+    padding: 1%;
+    transition: transform 0.4s ease-in-out;
+}
+p-card:hover {
+    /* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.303); */
+    transform: scale(1.03);
+
+  }
+
+

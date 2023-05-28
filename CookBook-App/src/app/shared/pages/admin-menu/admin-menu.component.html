@@ -1,0 +1,10 @@
+<p-sidebar [(visible)]="sidebarVisible" position="right">
+  <ng-template pTemplate="header">Panel de Administrador</ng-template>
+  <ng-template pTemplate="content">
+    <p-menu [model]="sideBarMenu"></p-menu>
+  </ng-template>
+  <ng-template pTemplate="footer">CookBook 2023 ®</ng-template>
+</p-sidebar>
+
+<p-button type="button" class="admin-btn" (click)="sidebarVisible = true" icon="pi pi-user-plus"></p-button>
+<router-outlet></router-outlet>

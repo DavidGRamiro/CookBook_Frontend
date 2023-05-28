@@ -1,0 +1,155 @@
+card {
+  background-color: #f2f2f2;
+  padding: 20px;
+  border-radius: 8px;
+}
+
+.menu-logo {
+  width: 70px;
+  margin-right: 2px;
+}
+.logueado {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+}
+::ng-deep .p-avatar {
+  display: block !important;
+}
+::ng-deep .p-button.p-button-danger.p-button-outlined,
+.p-buttonset.p-button-danger > .p-button.p-button-outlined,
+.p-splitbutton.p-button-danger > .p-button.p-button-outlined {
+  width: 48px;
+  height: 48px;
+}
+
+.profile-avatar {
+  margin-right: 2px;
+}
+
+::ng-deep .p-menubar {
+  padding: 0.5rem 2rem;
+}
+.nolog-btn{
+  display: none;
+}
+.login-btn {
+  gap: 8px;
+  margin-left: 8px;
+}
+.register-btn {
+  gap: 8px;
+  background-color: #00d09c;
+  color: #000;
+  border-color: #00d09c;
+}
+.register-btn:hover {
+  background-color: #01be8f;
+  color: #000;
+  border-color: #01be8f;
+}
+::ng-deep .p-menubar-end.ng-star-inserted {
+  display: flex;
+  flex-direction: row;
+  gap: 8px;
+}
+::ng-deep .p-dialog .p-dialog-header {
+  padding: 24px 24px 0 24px;
+}
+::ng-deep .p-dialog .p-dialog-content {
+  padding: 24px;
+  padding-top: 12px;
+}
+
+::ng-deep .p-dialog .p-dialog-footer {
+  display: flex;
+  justify-content: space-around;
+}
+::ng-deep .p-dialog .p-dialog-footer button {
+  width: 144px;
+}
+
+::ng-deep .p-dialog {
+  width: 24rem !important;
+}
+::ng-deep .nolog-dskt.ng-star-inserted{
+display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+@media screen and (max-width: 768px)  {
+  .nolog-btn{
+    display: block;
+  }
+  ::ng-deep button.p-ripple.p-element.p-button.p-component{
+    min-width: 160px;
+  }
+  ::ng-deep button.p-ripple.p-element.p-button-rounded.p-button-danger.p-button-outlined.logout-button.p-button.p-component.p-button-icon-only{
+   width: 48px !important;
+   min-width: 48px !important;
+  }
+  .submenu{
+    min-width: 160px;
+    position: absolute;
+    background: #e9ecef;
+    cursor: pointer;
+    text-decoration: none;
+    background: #ffffff;
+    border: 0 none;
+    border-radius: 3%;
+    box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
+}
+::ng-deep .p-button.p-ripple.p-element.p-button.p-component{
+  border-radius: 30px;
+}
+.lista{
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.elemento{
+  padding: 0.75rem ;
+  color: #495057;
+  border-radius: 0;
+  transition: box-shadow 0.2s;
+  -webkit-user-select: none;
+  user-select: none;
+}
+.elemento:hover{
+  background-color: #e8e9ea;
+  color: #000;
+}
+.link{
+  cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    text-decoration: none;
+    overflow: hidden;
+    position: relative;
+    padding: 0.25rem;
+    color: #495057;
+    transition: box-shadow 0.2s;
+    -webkit-user-select: none;
+    user-select: none;
+}
+
+  ::ng-deep .nolog-btn.ng-star-inserted{
+    display: block;
+  }
+  ::ng-deep .nolog-dskt.ng-star-inserted{
+    display: none;
+  }
+}
+@media screen and (max-width: 400px)  {
+  ::ng-deep button.p-ripple.p-element.p-button.p-component{
+    min-width: 135px;
+  }
+  .submenu{
+    min-width: 135px;
+  }
+}

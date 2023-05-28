@@ -1,0 +1,18 @@
+<app-navbar></app-navbar>
+
+<div class="container">
+  <h3 class ="text-center mt-3">Control de estadísticas</h3>
+
+    <div class="col m-auto" [style]="{ width:'50%' }">
+      <h4 class ="text-center">Últimas recetas</h4>
+        <p-chart type="bar" [data]="basicData" [options]="basicOptions"  ></p-chart>
+    </div>
+    <div class="col text-center mt-5">
+      <h4>Receta más comentada</h4>
+        <app-carousel-recetas></app-carousel-recetas>
+    </div>
+  </div>
+
+  <app-footer></app-footer>
+
+
