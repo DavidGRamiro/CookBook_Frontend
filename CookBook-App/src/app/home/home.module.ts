@@ -8,6 +8,7 @@ import { ObjetivosComponent } from './components/objetivos/objetivos.component';
 import { AcercaComponent } from './components/acerca/acerca.component';
 import { PrimeNGModule } from '../library/prime-ng/prime-ng.module';
 import { SharedModule } from '../shared/shared.module';
+import { AboutModule } from '../about/about.module';
 
 
 
@@ -23,9 +24,9 @@ import { SharedModule } from '../shared/shared.module';
   imports: [
     CommonModule,
     HomeRoutingModule,
-    // Componentes de PrimeNG
     PrimeNGModule,
-    SharedModule
+    SharedModule,
+    AboutModule
   ],
   exports:[
     IndexComponent
