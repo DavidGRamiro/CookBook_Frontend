@@ -24,16 +24,6 @@
           </div>
         </div>
     </ng-template>
-    <ng-template #noLogueado>
-      <button
-        class="p-button p-button-rounded success login-button"
-        routerLink="/auth/login"
-        [style]="{ 'background-color': '#92e3a9', 'border': 'none'}"
-      >
-        <i class="pi pi-user"></i>
-        Login
-      </button>
-      </ng-template>
       <ng-template #noLogueado>
         <div class="nolog-btn" >
             <p-button icon="pi pi-user-plus" (onClick)="showMobileMenu()" class="p-button-rounded acceso" label="Acceso"></p-button>
@@ -54,11 +44,11 @@
             </div>
           </div>
         <div class="nolog-dskt">
-          <button class="p-button p-button-rounded success register-btn" routerLink="/auth/registro">
+          <button class="p-button p-button-rounded success register-btn" routerLink="/auth/registro"[style]="{ 'background-color': '#92e3a9', 'border': 'none'}">
             <i class="pi pi-plus"></i>
             Registrarse
           </button>
-          <button class="p-button p-button-rounded login-btn" routerLink="/auth/login">
+          <button class="p-button p-button-rounded login-btn" routerLink="/auth/login" >
             <i class="pi pi-user"></i>
             Login
           </button>
