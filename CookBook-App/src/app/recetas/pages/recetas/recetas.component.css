@@ -24,7 +24,7 @@ button.active {
 ::ng-deep.p-dropdown {
   width: 232px;
 }
-::ng-deep.p-inputtext {
+::ng-deep input.p-inputtext.p-component.p-element.filtro-search.ng-untouched.ng-pristine.ng-valid{
   width: 232px;
 }
 @media screen and (max-width: 665px) {

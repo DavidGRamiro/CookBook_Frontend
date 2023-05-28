@@ -13,9 +13,8 @@
       </ng-container>
       <ng-template #logueado>
         <div class="logueado">
-          <p-button class="logout-btn" icon="pi pi-sign-out" pTooltip="Cerrar sesión" [showDelay]="500"
-            styleClass="p-button-rounded p-button-danger p-button-outlined logout-button" (click)="confirmarCierre()"
-            [style]="{ cursor: 'pointer' }"></p-button>
+          <p-button class="hide-label" icon="pi pi-sign-out" pTooltip="Cerrar sesión" [showDelay]="500" label="Cerrar sesión"
+            styleClass="p-button-rounded p-button-danger logout-btn" (click)="confirmarCierre()"></p-button>
           <br />
           <p-avatar *ngIf="usuarioLogueado.idUsuario !== 100" image="{{ usuarioLogueado.imagen }}" pTooltip="Mi perfil"
             [showDelay]="500" class="profile-avatar" size="large" shape="circle" (click)="navegarPerfil()"></p-avatar>
@@ -56,6 +55,7 @@
       </ng-template>
     </ng-template>
   </p-menubar>
+
 <p-confirmDialog class="modal-logout" #cd [style]="{ width: '50vw' }">
   <ng-template pTemplate="header">
     <h4>Cerrar sesión</h4>

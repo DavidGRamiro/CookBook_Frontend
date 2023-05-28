@@ -113,6 +113,7 @@ export class PerfilComponent implements OnInit {
         .subscribe((usuario) => {
           this.usuario = usuario;
           console.log(this.usuario);
+          window.location.reload();
         });
     });
   }

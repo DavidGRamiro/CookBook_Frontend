@@ -1,4 +1,7 @@
 /* Estilos generales */
+::ng-deep .p-menubar.p-component{
+  padding: 8px 32px;
+}
 .container {
   background-color: #f2f2f2;
   padding: 20px;
@@ -19,28 +22,35 @@
 }
 
 .profile-avatar {
-  margin-right: 2px;
+  height: 48px;
+}
+.profile-avatar:hover {filter: drop-shadow(0.25px 0.25px 2px black);
 }
 
 .nolog-btn {
   display: none;
 }
 
-.login-btn,
-.register-btn {
-  gap: 8px;
+::ng-deep button.p-ripple.p-element.p-button-rounded.p-button-danger.logout-btn.p-button.p-component{
+    height: 42px;
 }
-
+::ng-deep i.pi.pi-bars {
+  font-size: 1.35rem;
+}
 .register-btn {
-  background-color: #00d09c;
-  color: #000;
-  border-color: #00d09c;
+  background-color: #92e3a9 !important;
+  border-color: #83c796 !important;
+  border: unset !important;
+  gap:8px;
 }
 
 .register-btn:hover {
-  background-color: #01be8f;
-  color: #000;
-  border-color: #01be8f;
+  background-color: #83c796 !important;
+  border-color: #83c796 !important;
+}
+
+.login-btn {
+  gap:8px;
 }
 
 .nolog-dskt.ng-star-inserted {
@@ -48,6 +58,7 @@
   flex-direction: row;
   justify-content: center;
   align-items: center;
+  gap: 8px;
 }
 
 /* Estilos para p-dialog específico */
@@ -75,18 +86,22 @@
 
 /* Estilos para pantallas pequeñas */
 @media screen and (max-width: 768px)  {
-  .nolog-btn {
-    display: block;
-  }
-
   ::ng-deep button.p-ripple.p-element.p-button.p-component {
-    min-width: 160px;
+    height: 48px;
   }
+  ::ng-deep .acceso button.p-ripple.p-element.p-button.p-component {
 
-  ::ng-deep button.p-ripple.p-element.p-button-rounded.p-button-danger.p-button-outlined.logout-button.p-button.p-component.p-button-icon-only {
-    width: 48px !important;
-    min-width: 48px !important;
+    border-radius: 30px;
+    min-width: 160px;
+    height: 42px;
   }
+  ::ng-deep button.p-ripple.p-element.p-button-rounded.p-button-danger.logout-btn.p-button.p-component{
+    height: 48px;
+    width: 48px;
+}
+::ng-deep button.p-ripple.p-element.p-button-rounded.p-button-danger.logout-btn.p-button.p-component > span.p-button-label{
+  display: none
+}
 
   .submenu {
     min-width: 160px;
@@ -98,10 +113,8 @@
     border: 0 none;
     border-radius: 3%;
     box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
-  }
-
-  ::ng-deep .p-button.p-ripple.p-element.p-button.p-component {
-    border-radius: 30px;
+    margin-top: 4px;
+    right: 33px;
   }
 
   .lista {
@@ -144,16 +157,33 @@
   }
 
   ::ng-deep .nolog-dskt.ng-star-inserted {
-    display: none;
+    display: none !important;
   }
 }
 
 @media screen and (max-width: 400px)  {
+  ::ng-deep .acceso button.p-ripple.p-element.p-button.p-component {
+    min-width: unset;
+    height: 48px;
+  }
   ::ng-deep button.p-ripple.p-element.p-button.p-component {
-    min-width: 135px;
+      width: 48px;
+      height: 48px;
+      border-radius: 26px;
+      padding: 8px;
+    padding-left: 15px;
+      min-width: unset;
+  }
+  ::ng-deep .admin-btn button.p-ripple.p-element.p-button.p-component {
+    padding-left: 8px;
+  }
+
+  ::ng-deep span.p-button-label.ng-star-inserted{
+    display: none;
   }
 
   .submenu {
-    min-width: 135px;
+    min-width: 160px;
+    right: 40px;
   }
 }

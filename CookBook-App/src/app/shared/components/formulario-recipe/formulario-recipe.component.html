@@ -32,27 +32,34 @@
     </form>
   <button type="submit" class="btn btn-primary" (click)="guardarReceta()" (click)="onSubmitReceta()" (click)="mostrarFormularioIngredientes()">Añadir ingredientes</button>
 
-  <div *ngIf="mostrarNuevoIngrediente" >
+  <div *ngIf="mostrarNuevoIngrediente">
     <h4>Añadir ingredientes</h4>
     <form [formGroup]="formulario" (ngSubmit)="onSubmitIngredientes()" class="contenedor">
-        <div class="columna">
-          <div class="form-group">
-            <label for="ingrediente">Selecciona un ingrediente</label>
-            <p-dropdown id="ingrediente" formControlName="ingrediente" [options]="ingredientes" optionLabel="nombre" (onChange)="seleccionarIngrediente($event.value)"></p-dropdown>
-          </div>
-        <div *ngIf="ingredienteSeleccionado" >
+      <div class="columna">
+        <div class="form-group">
+          <label for="ingrediente">Selecciona un ingrediente</label>
+          <p-dropdown id="ingrediente" formControlName="ingrediente" [options]="ingredientes" optionLabel="nombre"
+            (onChange)="seleccionarIngrediente($event.value)"></p-dropdown>
+        </div>
+        <div *ngIf="ingredienteSeleccionado">
           <div class="form-group">
             <label for="cantidad">Cantidad</label>
-            <input type="number" id="cantidad" formControlName="cantidad" class="form-control" />
+            <input type="number" id="cantidad" formControlName="cantidad" name="cantidad" class="form-control" />
           </div>
           <div class="form-group">
             <label for="unidadMedida">Unidad de medida</label>
-            <input type="text" id="unidadMedida" formControlName="unidadMedida" class="form-control" />
+            <input type="text" id="unidadMedida" formControlName="unidadMedida" name="unidadMedida" class="form-control" />
           </div>
           <button type="button" class="btn btn-primary" (click)="agregarIngredienteAReceta()">Agregar ingrediente</button>
         </div>
       </div>
-
     </form>
-
+    <p-chips [(ngModel)]="ingredientesEnReceta" (onRemove)="eliminarIngrediente($event)">
+      <ng-template let-ingrediente pTemplate="item">
+        <p-chip>{{ ingrediente }}</p-chip>
+      </ng-template>
+    </p-chips>
     <button type="submit" class="btn btn-primary" (click)="agregarTodos()" (click)="onSubmitIngredientes()">Guardar Receta</button>
+  </div>
+
+
