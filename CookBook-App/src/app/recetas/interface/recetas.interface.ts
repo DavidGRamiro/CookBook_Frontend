@@ -59,3 +59,13 @@ export interface Comentario {
   usuario:          Usuario;
 }
 
+export interface CalendarWeek {
+  monday: Receta[];
+  tuesday: Receta[];
+  wednesday: Receta[];
+  thursday: Receta[];
+  friday: Receta[];
+  saturday: Receta[];
+  sunday:  Receta[];
+}
+

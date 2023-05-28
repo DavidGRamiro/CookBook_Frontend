@@ -58,6 +58,10 @@ h1{
     background: white;
     font-size: 14px;
   }
+
+  .buttons p-button{
+    margin: 1%;
+  }
   
   .cdk-drag-preview {
     box-sizing: border-box;
