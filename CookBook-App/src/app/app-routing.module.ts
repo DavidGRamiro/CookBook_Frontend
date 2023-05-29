@@ -2,6 +2,7 @@ import { Component, NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { FormularioRecipeComponent } from './shared/components/formulario-recipe/formulario-recipe.component';
 import { DragCalendarComponent } from './shared/components/drag-calendar/drag-calendar.component';
+import { PlannerComponent } from './shared/pages/planner/planner.component';
 
 const routes: Routes = [
   { path: 'home', loadChildren: () => import('./home/home.module').then(m => m.HomeModule) },
@@ -13,7 +14,7 @@ const routes: Routes = [
   { path: 'categorias', loadChildren: () => import('./categorias/categorias.module').then(m => m.CategoriasModule)},
   { path: 'admin', loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule) },
   { path: 'alta', component: FormularioRecipeComponent},
-  { path: 'dragcalendar', component: DragCalendarComponent},
+  { path: 'dragcalendar', component: PlannerComponent},
   { path: '**', redirectTo: 'home' }
 ];
 

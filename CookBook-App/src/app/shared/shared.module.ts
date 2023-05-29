@@ -22,6 +22,7 @@ import {DragDropModule} from '@angular/cdk/drag-drop';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { SplitButtonModule } from 'primeng/splitbutton';
 import { TarjetaCalendarComponent } from './components/tarjeta-calendar/tarjeta-calendar.component';
+import { PlannerComponent } from './pages/planner/planner.component';
 
 
 @NgModule({
@@ -40,6 +41,7 @@ import { TarjetaCalendarComponent } from './components/tarjeta-calendar/tarjeta-
     CarouselRecetasComponent,
     TarjetaCalendarComponent,
     DragCalendarComponent,
+    PlannerComponent,
   ],
   imports: [
     CommonModule,
