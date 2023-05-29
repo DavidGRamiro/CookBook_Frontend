@@ -1,6 +1,6 @@
 <div *ngIf="recetasCreadas" class="recetas-favoritas">
   <!-- Aquí se muestra la lista de recetas favoritas del usuario -->
-  <h3>Mis Recetas</h3>
+  <h2>Mis Recetas</h2>
 
 <p-button label="Crear Receta" icon="pi pi-plus" (onClick)="crearReceta()"></p-button>
   <p-listbox [(ngModel)]="recetaSeleccionada" optionLabel="name" [options]="recetasCreadas"
