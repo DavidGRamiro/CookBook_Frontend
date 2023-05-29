@@ -1,15 +1,23 @@
 <app-navbar></app-navbar>
-<p-breadcrumb class="max-w-full" [model]="items" [home]="home" [style]="{'border': 'none'}"></p-breadcrumb>
+<p-breadcrumb
+  class="max-w-full"
+  [model]="items"
+  [home]="home"
+  [style]="{ border: 'none' }"
+></p-breadcrumb>
 
 <h1 class="titulo-seccion">Todas las recetas</h1>
-<div class="text-center">
-  <button [ngClass]="{'active': isSearchByNameActive}" (click)="searchByName($event)">Buscar por nombre</button>
-  <button [ngClass]="{'active': isSearchByIngredientsActive}" (click)="searchByIngredients($event)">Buscar por ingredientes</button>
-  <p-autoComplete [(ngModel)]="searchQuery" [suggestions]="filtroReceta" (completeMethod)="autoCompletadoReceta($event)" field="nombre"></p-autoComplete>
+<div class="filtros">
+  <p-dropdown class="searchDrop" [options]="searchOptions" [(ngModel)]="selectedSearchOption"></p-dropdown>
+
+  <span class="p-input-icon-right">
+    <input pInputText class="filtro-search"[(ngModel)]="searchQuery" type="text" placeholder="Buscar" (input)="buscarReceta($event)">
+    <i class="pi pi-search"></i>
+  </span>
 </div>
-<div class ="contenedor d-flex flex-wrap justify-content-center">
-    <div *ngFor="let receta of datos">
-        <app-tarjeta [receta]="receta"></app-tarjeta>
-    </div>
+<div class="contenedor d-flex flex-wrap justify-content-center">
+  <div *ngFor="let receta of datos">
+    <app-tarjeta [receta]="receta"></app-tarjeta>
   </div>
+</div>
 <app-footer></app-footer>

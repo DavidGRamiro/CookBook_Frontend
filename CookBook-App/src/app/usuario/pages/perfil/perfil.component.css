@@ -46,6 +46,12 @@ p {
   flex-direction: column;
   width: 70%;
 }
+.tab-header{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 8px;
+}
 
 .imagen-usuario {
   margin-top: 20px;

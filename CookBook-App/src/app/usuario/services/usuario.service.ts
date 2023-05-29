@@ -125,4 +125,13 @@ export class UsuarioService {
     return this._http.put<Usuario>(url, usuario)
   }
 
+  //Método para guardar una imagen de perfil
+  saveImagePerfil( idUsuario: number, imagen: File): Observable<Usuario>{
+    const url = `${ this.endPoint }${ this.common }/guardarImagen`
+    const formData = new FormData();
+    formData.append('imagen', imagen, imagen.name);
+    formData.append('idUsuario', idUsuario.toString());
+    return this._http.post<Usuario>(url, formData)
+  }
+
 }
