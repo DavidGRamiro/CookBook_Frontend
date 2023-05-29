@@ -1,62 +1,136 @@
-<app-navbar></app-navbar>
-<div class="container">
-  <h1 class="titulo-seccion">Crea una receta</h1>
-    <form [formGroup]="recetaFormulario" (ngSubmit)="onSubmitReceta()" class="contenedor">
-      <div class="columna">
-        <div class="form-group">
-          <label for="nombre">Nombre</label>
-          <input type="text" id="nombre" formControlName="nombre" class="form-control" />
-        </div>
-        <div class="form-group">
-          <label for="descripcion">Descripción</label>
-          <input type="text" id="descripcion" formControlName="descripcion" class="form-control" />
-        </div>
-        <div class="form-group">
-          <label for="categoria">Categoria</label>
-          <p-dropdown id="categoria" formControlName="categoria" [options]="categorias" optionLabel="nombre" (onChange)="seleccionarCategoria($event.value)"></p-dropdown>
-        </div>
-      </div>
-      <div class="columna">
-        <div class="form-group">
-          <label for="tiempoPreparacion">Tiempo de preparación</label>
-          <input type="number" id="tiempoPreparacion" formControlName="tiempoPreparacion" class="form-control" />
-        </div>
-        <div class="form-group">
-          <label for="tiempoCoccion">Tiempo de cocción</label>
-          <input type="number" id="tiempoCoccion" formControlName="tiempoCoccion" class="form-control" />
-        </div>
-        <div class="form-group">
-          <label for="instrucciones">Instrucciones</label>
-          <input type="text" id="instrucciones" formControlName="instrucciones" class="form-control" />
-        </div>
-      </div>
-    </form>
-  <button type="submit" class="btn btn-primary" (click)="guardarReceta()" (click)="onSubmitReceta()" (click)="mostrarFormularioIngredientes()">Añadir ingredientes</button>
-
-  <div *ngIf="mostrarNuevoIngrediente" >
-    <h4>Añadir ingredientes</h4>
-    <form [formGroup]="formulario" (ngSubmit)="onSubmitIngredientes()" class="contenedor">
-        <div class="columna">
-          <div class="form-group">
-            <label for="ingrediente">Selecciona un ingrediente</label>
-            <p-dropdown id="ingrediente" formControlName="ingrediente" [options]="ingredientes" optionLabel="nombre" (onChange)="seleccionarIngrediente($event.value)"></p-dropdown>
-          </div>
-        <div *ngIf="ingredienteSeleccionado" >
-          <div class="form-group">
-            <label for="cantidad">Cantidad</label>
-            <input type="number" id="cantidad" formControlName="cantidad" class="form-control" />
-          </div>
-          <div class="form-group">
-            <label for="unidadMedida">Unidad de medida</label>
-            <input type="text" id="unidadMedida" formControlName="unidadMedida" class="form-control" />
-          </div>
-          <button type="button" class="btn btn-primary" (click)="agregarIngredienteAReceta()">Agregar ingrediente</button>
-        </div>
-      </div>
-
-    </form>
-
-    <button type="submit" class="btn btn-primary" (click)="agregarTodos()" (click)="onSubmitIngredientes()">Guardar Receta</button>
+<form [formGroup]="recetaForm" (ngSubmit)="onSubmitReceta($event)">
+  <div class="columna">
+    <div class="form-group">
+      <label for="nombre">Nombre</label>
+      <input
+        type="text"
+        id="nombre"
+        formControlName="nombre"
+        class="form-control"
+      />
+    </div>
+    <div class="form-group">
+      <label for="descripcion">Descripción</label>
+      <input
+        type="text"
+        id="descripcion"
+        formControlName="descripcion"
+        class="form-control"
+      />
+    </div>
+    <div class="form-group">
+      <label for="categoria">Categoria</label>
+      <p-dropdown
+        [style]="{ width: '100%' }"
+        id="categoria"
+        formControlName="categoria"
+        [options]="categorias"
+        optionLabel="nombre"
+        (onChange)="seleccionarCategoria($event.value)"
+      ></p-dropdown>
+    </div>
   </div>
+  <div class="columna">
+    <div class="form-group">
+      <label for="tiempoPreparacion">Tiempo de preparación</label>
+      <input
+        type="number"
+        id="tiempoPreparacion"
+        formControlName="tiempoPreparacion"
+        class="form-control"
+      />
+    </div>
+    <div class="form-group">
+      <label for="tiempoCoccion">Tiempo de cocción</label>
+      <input
+        type="number"
+        id="tiempoCoccion"
+        formControlName="tiempoCoccion"
+        class="form-control"
+      />
+    </div>
+    <div class="form-group">
+      <label for="instrucciones">Instrucciones</label>
+      <input
+        type="text"
+        id="instrucciones"
+        formControlName="instrucciones"
+        class="form-control"
+      />
+    </div>
+  </div>
+</form>
+<button
+  type="submit"
+  class="btn btn-primary boton"
+  (click)="guardarReceta($event)"
+  (click)="onSubmitReceta($event)"
+>
+  Añadir ingredientes
+</button>
+
+<div *ngIf="mostrarNuevoIngrediente">
+  <h4>Añadir ingredientes</h4>
+  <form [formGroup]="ingredienteForm">
+    <div class="col-ing">
+      <div class="row-ing">
+        <div class="input-ing">
+          <label for="ingrediente">Selecciona un ingrediente</label>
+          <p-autoComplete
+            id="ingrediente"
+            formControlName="ingrediente"
+            [suggestions]="ingredientesFiltrados"
+            (completeMethod)="filtrarIngredientes($event)"
+            field="nombre"
+            (onSelect)="seleccionarIngrediente($event)"
+          >
+          </p-autoComplete>
+        </div>
+          <div class="form-group" *ngIf="ingredienteSeleccionado">
+            <label for="cantidad">Cantidad</label>
+            <input
+              type="number"
+              id="cantidad"
+              formControlName="cantidad"
+              name="cantidad"
+              class="form-control"
+            />
+          </div>
+          <div class="form-group" *ngIf="ingredienteSeleccionado">
+            <label for="unidadMedida">Unidad de medida</label>
+            <input
+              type="text"
+              id="unidadMedida"
+              formControlName="unidadMedida"
+              name="unidadMedida"
+              class="form-control"
+            />
+          </div>
+        </div>
+        <button *ngIf="ingredienteSeleccionado"
+          type="button"
+          class="btn btn-primary"
+          (click)="agregarIngredienteAReceta()"
+        >
+          Agregar ingrediente
+        </button>
+
+<div class="chip-container">
+      <div *ngFor="let ingrediente of ingredientesEnReceta" class="ing-chip">
+        <p-chip [removable]="true" (onRemove)="eliminarIngrediente(ingrediente)"
+          >{{ ingrediente.ingrediente.nombre }}
+          {{ ingrediente.cantidad }}
+          {{ ingrediente.unidadMedida }}
+        </p-chip>
+      </div>
 </div>
-<app-footer></app-footer>
+      <button
+        type="submit"
+        class="btn btn-primary"
+        (click)="onSubmitIngredientes($event)"
+      >
+        Guardar Receta
+      </button>
+    </div>
+  </form>
+</div>

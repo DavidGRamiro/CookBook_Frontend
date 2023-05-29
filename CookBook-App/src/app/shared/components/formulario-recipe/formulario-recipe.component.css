@@ -1,16 +1,51 @@
 @import url('https://fonts.googleapis.com/css2?family=Fira+Sans:wght@100&display=swap');
 
-.contenedor{
-  margin: 2em;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-evenly;
+form {
+  padding-bottom: 20px;
 }
 .columna{
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   justify-content: space-between;
+  gap: 8px;
 }
+.boton{
+  width: 100%;
+}
+h4{
+  padding-top: 16px;
+}
+.col-ing{
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.row-ing{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  gap: 8px;
+}
+.form-group{
+  width: 33%;
+}
+.input-ing{
+  display: flex;
+  flex-direction: column;
+}
+.chip-container {
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  width: 100%;
+}
+
+.ing-chip {
+  flex: 0 0 auto;
+  padding-bottom: 16px;
+  padding-top: 16px;
+}
+
 .titulo-seccion {
   font-family: 'Fira Sans', sans-serif;
   font-size: 56px;

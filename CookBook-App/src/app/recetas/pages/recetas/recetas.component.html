@@ -11,7 +11,7 @@
   <p-dropdown class="searchDrop" [options]="searchOptions" [(ngModel)]="selectedSearchOption"></p-dropdown>
 
   <span class="p-input-icon-right">
-    <input pInputText [(ngModel)]="searchQuery" type="text" placeholder="Buscar" (input)="buscarReceta($event)">
+    <input pInputText class="filtro-search"[(ngModel)]="searchQuery" type="text" placeholder="Buscar" (input)="buscarReceta($event)">
     <i class="pi pi-search"></i>
   </span>
 </div>
