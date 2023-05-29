@@ -16,12 +16,14 @@ import { FormularioRecipeComponent } from './components/formulario-recipe/formul
 import { AdminMenuComponent } from './pages/admin-menu/admin-menu.component';
 import { TarjetaPlanComponent } from './components/tarjeta-plan/tarjeta-plan.component';
 import { CarouselRecetasComponent } from './components/carousel-recetas/carousel-recetas.component';
-import { CalendarComponent } from './components/calendar/calendar.component';
 import { DragCalendarComponent } from './components/drag-calendar/drag-calendar.component';
 import { MaterialModule } from '../library/material/material.module';
 import {DragDropModule} from '@angular/cdk/drag-drop';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { SplitButtonModule } from 'primeng/splitbutton';
+import { TarjetaCalendarComponent } from './components/tarjeta-calendar/tarjeta-calendar.component';
+import { PlannerComponent } from './pages/planner/planner.component';
+
 
 @NgModule({
   declarations: [
@@ -37,8 +39,9 @@ import { SplitButtonModule } from 'primeng/splitbutton';
     AdminMenuComponent,
     TarjetaPlanComponent,
     CarouselRecetasComponent,
-    CalendarComponent,
+    TarjetaCalendarComponent,
     DragCalendarComponent,
+    PlannerComponent,
   ],
   imports: [
     CommonModule,
@@ -62,7 +65,7 @@ import { SplitButtonModule } from 'primeng/splitbutton';
     TarjetaPlanComponent,
     FormularioRecipeComponent,
     CarouselRecetasComponent,
-    CalendarComponent,
+    DragCalendarComponent
   ],
   providers: [],
 })

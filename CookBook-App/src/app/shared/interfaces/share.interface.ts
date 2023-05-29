@@ -41,3 +41,4 @@ export interface Plan {
   imagen: string;
   duracion: number;
 }
+

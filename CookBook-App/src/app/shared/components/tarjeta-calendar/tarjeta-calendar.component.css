@@ -1,3 +1,12 @@
+*{font-size: small;}
+img{
+    border-radius: 50%;
+}
+
+i{
+    margin-left: 1rem;
+    margin-right: 1rem;
+}
 :host ::ng-deep {
     .drag-column {
         padding-right: .5em;
@@ -15,9 +24,11 @@
     .product-item {
         display: flex;
         align-items: center;
-        padding: 1rem;
-        width: 100%;
+        padding: 0.5rem;
+        width: auto;
         border-bottom: 1px solid var(--surface-d);
+        border-radius: 25px;
+        background-color: #fcdd87;
     
         /* img {
             width: 75px;
@@ -55,7 +66,7 @@
             flex-wrap: wrap;
     
             .image-container {
-                width: 100%;
+                width: auto;
                 text-align: center;
             }
     
