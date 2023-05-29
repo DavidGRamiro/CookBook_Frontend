@@ -60,10 +60,10 @@ h2{
 }
 
 @media ((max-width: 1270px) and (min-width: 1024px)) {
-  .datos-plan {
-    display: grid;
-    justify-content: center;
-    padding: 20px;
+  .datos-container {
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: center;
   }
 
   ::ng-deep .p-calendar {
@@ -77,10 +77,13 @@ h2{
   }
 }
 @media ((max-width: 1024px) and (min-width: 960px)) {
-  .datos-plan {
-    overflow-x: auto;
-    white-space: nowrap;
-    gap: 16px
+  .contenedor {
+    padding: 40px 10vh;
+  }
+  .datos-container {
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: center;
   }
 
   .progreso {
@@ -88,4 +91,47 @@ h2{
   }
 }
 
+@media (max-width: 960px) {
+  .contenedor {
+    padding: 40px 10vh;
+  }
+  .datos-container {
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: center;
+  }
+
+  .progreso {
+    flex-wrap: nowrap;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .contenedor {
+    padding: 40px 10vh;
+  }
+  .datos-plan {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .progreso {
+    flex-wrap: nowrap;
+  }
+}
+
+@media screen and (max-width: 400px) {
+
+  .contenedor {
+    padding: 40px 10vh;
+  }
+  .datos-container {
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: center;
+  }
+  .progreso {
+    flex-wrap: nowrap;
+  }
+}
 
