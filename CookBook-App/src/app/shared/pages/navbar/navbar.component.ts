@@ -106,6 +106,8 @@ export class NavbarComponent implements OnInit {
     localStorage.clear();
     localStorage.removeItem('isLoggedIn');
     localStorage.removeItem('user');
+    localStorage.removeItem('rol');
+    localStorage.removeItem('token');
     console.log('Sesión cerrada');
     if (window.location.pathname === '/user/perfil') {
       this._router.navigateByUrl('/home');

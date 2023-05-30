@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams, HttpResponse } from '@angular/common/http';
 import { Usuario } from '../interface/auth.interface';
 import { Observable } from 'rxjs';
 import { Auth, FacebookAuthProvider, GoogleAuthProvider, signInWithPopup } from '@angular/fire/auth';
@@ -24,8 +24,15 @@ export class AuthService {
 
   //Petición que valida si usuario existe.
   obtenerUno( user: Usuario): Observable<Usuario>{
-    const url = `${this.endPoint}${this.common}/loginValidation`;
+    const url = `${this.endPoint}${this.common}/login`;
     return this._http.post<Usuario>(url,user);
+  }
+
+  
+  //Petición que loguea el usuario y devuelve el token
+  login( user: Usuario ): Observable<HttpResponse<Usuario>>{
+    const url = `${this.endPoint}${this.common}/login`;
+    return this._http.post<Usuario>(url,user,{ observe: 'response' });
   }
 
   //Petición de alta de nuevo usuario

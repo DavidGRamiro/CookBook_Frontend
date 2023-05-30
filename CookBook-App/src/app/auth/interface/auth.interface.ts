@@ -5,10 +5,18 @@ export interface Usuario {
   password:       string | null | undefined;
   username?:      string | null | undefined;
   plan?: Plan,
+  usuarioConRoles? : usuarioConRoles [],
   imagen?: string | null | undefined
 
 }
+export interface usuarioConRoles{
+role : Role,
+}
+export interface Role {
+  idRol: number,
+  nombreRol: string
 
+}
 export interface Plan {
   id:          number;
   nombre:      string;
