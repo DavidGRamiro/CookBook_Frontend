@@ -1,0 +1,72 @@
+.recipe-main {
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 40px;
+}
+
+.recipe-block-first {
+  background-color: #e0e0e0;
+  width: 33%;
+  border-top-left-radius: 24px;
+  border-bottom-left-radius: 24px;
+  padding: 24px;
+}
+.recipe-block-second{
+  width: 66%;
+  background-color: #ffe086;
+  border-top-right-radius: 24px;
+  border-bottom-right-radius: 24px;
+  padding: 24px;
+}
+.recipe-title {
+  text-align: center;
+}
+
+.recipe-subblock {
+  display: flex;
+  flex-direction: column;
+}
+
+.recipe-image-block {
+  text-align: center;
+}
+
+.recipe-image {
+  width: 80%;
+  border-radius: 10px;
+}
+
+.chip-block {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.instrucciones{
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+.mod-mac{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.pi .pi-trash .basura {
+  color: red;
+  cursor: pointer;
+}
+.titulo-com{
+  background-color: white;
+  margin-bottom: 0;
+}
+textarea{
+  min-height: 40px;
+  width: 100%;
+}
+
+.comentarios{
+  display: flex;
+  flex-direction: column;
+}
