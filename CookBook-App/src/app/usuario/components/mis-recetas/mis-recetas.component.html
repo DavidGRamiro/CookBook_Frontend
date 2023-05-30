@@ -2,7 +2,7 @@
   <!-- Aquí se muestra la lista de recetas favoritas del usuario -->
   <h2>Mis Recetas</h2>
 <div class="crear-btn">
-<p-button label="Crear Receta" icon="pi pi-plus" (onClick)="crearReceta()"></p-button>
+<p-button label="Crear Receta Nueva" icon="pi pi-plus" (onClick)="crearReceta()"></p-button>
 </div>
   <p-listbox [(ngModel)]="recetaSeleccionada" optionLabel="name" [options]="recetasCreadas"
     [listStyle]="{ 'max-height': '250px' }">
