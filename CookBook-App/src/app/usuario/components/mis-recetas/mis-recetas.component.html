@@ -1,5 +1,4 @@
 <div *ngIf="recetasCreadas" class="recetas-favoritas">
-  <!-- Aquí se muestra la lista de recetas favoritas del usuario -->
   <h2>Mis Recetas</h2>
 <div class="crear-btn">
 <p-button label="Crear Receta Nueva" icon="pi pi-plus" (onClick)="crearReceta()"></p-button>
@@ -18,6 +17,5 @@
 </div>
 
 <div *ngIf="!recetasCreadas">
-  <!-- Mostrar un indicador de carga o un mensaje mientras se obtienen los datos -->
   <p>Cargando rmis recetas...</p>
 </div>

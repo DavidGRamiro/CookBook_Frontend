@@ -9,6 +9,14 @@
   object-fit: cover;
   border-radius: 1rem 1rem 0 0;
 }
+
+::ng-deep .admin-container button.p-button.p-button-icon-only.p-button-rounded{
+    height: unset !important;
+}
+::ng-deep .admin-container .p-button{
+  padding: 0 !important;
+}
+
 .blur-div {
   position: absolute;
   height: 54px;
