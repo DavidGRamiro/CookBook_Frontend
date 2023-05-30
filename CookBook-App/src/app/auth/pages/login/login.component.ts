@@ -53,9 +53,10 @@ export class LoginComponent implements OnInit {
         email: this.formLogin.value.email,
         password: this.formLogin.value.password
         }).subscribe( res =>{
+          debugger;
                 this.usuarioRecibido = res.body ;
                 this.token = res.headers.get("Authorization") || '';
-                localStorage.setItem('token', JSON.stringify(this.token));
+                localStorage.setItem('token', this.token);
                 this.rol = this.usuarioRecibido?.usuarioConRoles?.[0].role.nombreRol || '';
                 localStorage.setItem('rol', this.rol);
                 //Variable para mostrar el mensaje de error en los inputs de login

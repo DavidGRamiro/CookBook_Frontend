@@ -19,6 +19,8 @@ import { AdminModule } from './admin/admin.module';
 import { initializeApp,provideFirebaseApp } from '@angular/fire/app';
 import { environment } from '../environments/environment';
 import { provideAuth,getAuth } from '@angular/fire/auth';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { AuthInterceptorInterceptor } from './auth/interceptors/auth-interceptor.interceptor';
 
 @NgModule({
   declarations: [
@@ -47,7 +49,12 @@ import { provideAuth,getAuth } from '@angular/fire/auth';
   providers: [
     MessageService,
     ConfirmationService,
-    DialogService
+    DialogService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptorInterceptor,
+      multi: true
+    }
   ],
   bootstrap: [AppComponent]
 })
