@@ -3,15 +3,23 @@
   margin-bottom: 20px;
 }
 
-::ng-deep .p-card {
+::ng-deep app-tarjeta-plan .p-card {
   border-radius: 8px;
   box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.1);
   overflow: hidden;
-  transition: transform 0.4s ease-in-out;
   width: 300px;
 }
 
-::ng-deep .p-button .plan-btn {
+::ng-deep app-tarjeta-plan .p-card .p-card-body{
+  display: flex;
+  flex-direction: column;
+}
+
+::ng-deep app-tarjeta-plan .p-ripple{
+  width: 100%;
+}
+
+::ng-deep app-tarjeta-plan .p-button .plan-btn {
   background-color: #FFD04A;
   color: black;
   border: none;
@@ -23,25 +31,26 @@
   width: 100%;
 }
 
-p-card img {
+p-card app-tarjeta-plan img {
   width: 100%;
   height: auto;
   object-fit: cover;
 }
 
-::ng-deep .p-card .p-card-content {
+::ng-deep app-tarjeta-plan .p-card .p-card-content {
   padding: 0;
 }
 
-p-card p {
+p-card app-tarjeta-plan p {
   margin-bottom: 10px;
 }
 
-p-button {
+p-button app-tarjeta-plan{
   margin-top: 10px;
 }
 
-::ng-deep .p-card:hover {
-   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.303);
-
+::ng-deep app-tarjeta-plan .p-card:hover {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.303);
+  transition: box-shadow 330ms ease-in-out;
 }
+
