@@ -2,6 +2,7 @@
   <!-- Aquí se muestra la lista de recetas favoritas del usuario -->
   <h2>Recetas favoritas</h2>
   <div class="container-fav">
+    <div class="lista">
     <p-listbox [(ngModel)]="recetaSeleccionada" optionLabel="name" [options]="recetasFavoritas"
       [listStyle]="{ 'max-height': '250px' }">
       <ng-template let-receta pTemplate="item">
@@ -10,6 +11,7 @@
         </div>
       </ng-template>
     </p-listbox>
+  </div>
     <div *ngIf="recetaSeleccionada">
       <app-tarjeta [receta]="recetaSeleccionada"></app-tarjeta>
     </div>

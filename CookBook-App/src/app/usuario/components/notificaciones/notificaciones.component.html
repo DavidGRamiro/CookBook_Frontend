@@ -1,9 +1,12 @@
 <div class="notificaciones">
   <h2>Notificaciones</h2>
 
-<app-single-notificacion *ngFor="let notificacion of notificaciones" [notificacion]="notificacion" [notificaciones]="notificaciones"></app-single-notificacion>
-<div *ngIf="notificaciones.length == 0">
-  <p class="text-m">No tienes notificaciones nuevas</p>
+  <app-single-notificacion
+    *ngFor="let notificacion of notificaciones"
+    [notificacion]="notificacion"
+    [notificaciones]="notificaciones"
+  ></app-single-notificacion>
+  <div *ngIf="notificaciones.length == 0">
+    <p class="text-m">No tienes notificaciones nuevas</p>
+  </div>
 </div>
-</div>
-

@@ -9,6 +9,14 @@
   object-fit: cover;
   border-radius: 1rem 1rem 0 0;
 }
+
+::ng-deep .admin-container button.p-button.p-button-icon-only.p-button-rounded{
+    height: unset !important;
+}
+::ng-deep .admin-container .p-button{
+  padding: 0 !important;
+}
+
 .blur-div {
   position: absolute;
   height: 54px;
@@ -29,20 +37,21 @@
   align-items: center;
 }
 
-::ng-deep .p-card .p-card-body{
+::ng-deep app-tarjeta .p-card .p-card-body{
   padding: 0.5rem 1rem;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
 
 }
-::ng-deep .p-card .p-card-content {
+::ng-deep app-tarjeta .p-card .p-card-content {
   padding: 0px;
   display: flex;
   justify-content: space-between;
+  align-items: center;
 }
 
-::ng-deep .p-card .p-card-title{
+::ng-deep app-tarjeta .p-card .p-card-title{
   text-align: left;
   font-family: 'Open Sans';
   font-weight: bold;
@@ -92,7 +101,7 @@
 .icon-container .time {
   margin-left: 4px;
 }
-::ng-deep .p-card .p-card-content{
+::ng-deep app-tarjeta .p-card .p-card-content{
   padding: 0px;
 }
 
@@ -134,7 +143,11 @@
 
 
 
+::ng-deep app-tarjeta .p-card:hover {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.303);
+  transition: box-shadow 330ms ease-in-out;
 
+}
 
 
 

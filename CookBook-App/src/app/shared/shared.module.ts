@@ -24,7 +24,6 @@ import { SplitButtonModule } from 'primeng/splitbutton';
 import { TarjetaCalendarComponent } from './components/tarjeta-calendar/tarjeta-calendar.component';
 import { PlannerComponent } from './pages/planner/planner.component';
 
-
 @NgModule({
   declarations: [
     FooterComponent,
@@ -41,7 +40,7 @@ import { PlannerComponent } from './pages/planner/planner.component';
     CarouselRecetasComponent,
     TarjetaCalendarComponent,
     DragCalendarComponent,
-    PlannerComponent,
+    PlannerComponent
   ],
   imports: [
     CommonModule,

@@ -16,14 +16,4 @@
   margin: 20px auto;
 }
 
-p-card{
-    padding: 1%;
-    transition: transform 0.4s ease-in-out;
-}
-p-card:hover {
-    /* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.303); */
-    transform: scale(1.03);
-
-  }
-
 

@@ -19,6 +19,7 @@ export class TarjetaComponent implements OnInit {
   ingredientes!: number;
   usuarioLogueado! : Usuario;
   idAdministrador: number = 0;
+  creador!: boolean;
   ref! : DialogService;
 
   constructor(private _sharedService: SharedService,
@@ -31,12 +32,20 @@ export class TarjetaComponent implements OnInit {
   ngOnInit(): void {
       this.tiempoTotal = this.calcularTiempoTotal();
       this.calcularIngredientes();
-      this.obtenerAdministrador()
+      this.obtenerAdministrador();
+      this.isUserCreador();
   }
   //Obtenemos el usuario logueado.Si es el administrador, le damos permiso para editar y borrar recetas
   obtenerAdministrador(){
     this.usuarioLogueado = JSON.parse(localStorage.getItem('user')!);
     this.usuarioLogueado.idUsuario === 100 ? this.idAdministrador = 100 : this.idAdministrador = 0;
+  }
+
+  isUserCreador(){
+    let idCreador = this.receta.usuario.idUsuario;
+    let idUsuario = this.usuarioLogueado.idUsuario;
+    this.creador = idCreador === idUsuario;
+    return this.creador;
   }
 
   // Funcion que calcula el tiempo total de coccion
