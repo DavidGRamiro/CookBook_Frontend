@@ -20,7 +20,7 @@ export class NavbarComponent implements OnInit {
     idUsuario: 0,
     imagen: '',
   }
-
+  isAdmin: boolean = false;
   items!: MenuItem[];
   registerItems!: MenuItem[];
   displayMenu: boolean = false;
@@ -44,8 +44,10 @@ export class NavbarComponent implements OnInit {
       if(userString != null){
         this.usuarioLogueado = JSON.parse(userString)
       }
-
-
+      
+      if(this.usuarioLogueado.usuarioConRoles?.find(r => r.role.nombreRol == 'admin')){
+        this.isAdmin = true;
+      }
     }
   }
 

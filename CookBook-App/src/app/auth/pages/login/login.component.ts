@@ -23,6 +23,7 @@ export class LoginComponent implements OnInit {
   token: string = '';
   userFirebase: FireBaseAuth = {} as FireBaseAuth;
   usuarioGoogle : Usuario = { email: '', username: '', password: ''};
+  error: string = '';
 
   //Formulario reactivo
   formLogin : FormGroup = this._fb.group(
@@ -53,7 +54,6 @@ export class LoginComponent implements OnInit {
         email: this.formLogin.value.email,
         password: this.formLogin.value.password
         }).subscribe( res =>{
-          debugger;
                 this.usuarioRecibido = res.body ;
                 this.token = res.headers.get("Authorization") || '';
                 localStorage.setItem('token', this.token);
@@ -73,7 +73,8 @@ export class LoginComponent implements OnInit {
           },
           err => {
             this.login = false;
-            console.log("Error de validacion")
+            this.error = err.error;
+            console.log(err.error)
           })
     }
   }

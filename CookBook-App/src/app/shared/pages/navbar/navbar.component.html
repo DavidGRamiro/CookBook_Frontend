@@ -16,9 +16,9 @@
           <p-button class="hide-label" icon="pi pi-sign-out" pTooltip="Cerrar sesión" [showDelay]="500" label="Cerrar sesión"
             styleClass="p-button-rounded p-button-danger logout-btn" (click)="confirmarCierre()"></p-button>
           <br />
-          <p-avatar *ngIf="usuarioLogueado.idUsuario !== 100" image="{{ usuarioLogueado.imagen }}" pTooltip="Mi perfil"
+          <p-avatar image="{{ usuarioLogueado.imagen }}" pTooltip="Mi perfil"
             [showDelay]="500" class="profile-avatar" size="large" shape="circle" (click)="navegarPerfil()"></p-avatar>
-          <div *ngIf="usuarioLogueado.idUsuario == 100" class="admin-menu">
+          <div *ngIf="isAdmin" class="admin-menu">
             <app-admin-menu></app-admin-menu>
           </div>
         </div>
