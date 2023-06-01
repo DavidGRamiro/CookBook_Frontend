@@ -26,6 +26,7 @@ export class FormularioRecipeComponent implements OnInit {
   mostrarNuevoIngrediente = false;
   ingredientesFiltrados!: Ingrediente[];
   usuario: Usuario;
+  unidadesMedida: string[] = ['kg', 'g', 'l', 'ml', 'mg', 'cl', 'dl'];
 
   recetaForm = this._fb.group({
     nombre: ['', Validators.required],
@@ -41,7 +42,7 @@ export class FormularioRecipeComponent implements OnInit {
   ingredienteForm = this._fb.group({
     ingrediente: ['', Validators.required],
     cantidad: [null, [Validators.required, Validators.pattern(/^\d+$/)]],
-    unidadMedida: [null, Validators.required],
+    unidadMedida: ['', Validators.required],
   });
 
   constructor(
@@ -53,7 +54,6 @@ export class FormularioRecipeComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    console.log(this.usuario);
     this.obtenerIngredientes();
     this.obtenerCategorias();
   }
@@ -66,28 +66,34 @@ export class FormularioRecipeComponent implements OnInit {
 
   private obtenerCategorias() {
     this._sharedService.obtenerCategorias().subscribe((categorias) => {
-      this.categorias = [{nombre: '-', idCategoria: 0, descripcion: '', imagen: ''}, ...categorias];
+      this.categorias = categorias;
 
     });
   }
+
   filtrarIngredientes(e: any){
     const query = e.query;
     this.ingredientesFiltrados = this.ingredientes.filter(ingrediente => {
       return ingrediente.nombre.toLowerCase().includes(query.toLowerCase());
     });
   }
+
   mostrarFormularioIngredientes() {
     this.mostrarNuevoIngrediente = true;
   }
+
   seleccionarIngrediente(ingrediente: Ingrediente): void {
     this.ingredienteSeleccionado = ingrediente;
-    console.log(this.ingredienteSeleccionado);
-    console.log(this.ingredienteForm.value);
   }
+
   seleccionarCategoria(categoria: Categoria): void {
     this.categoria = categoria;
-    console.log(this.recetaForm.value.categoria);
   }
+
+  seleccionarUnidadMedida(unidadMedida: string): void {
+    this.ingredienteForm.controls.unidadMedida.setValue(unidadMedida);
+  }
+
   agregarIngredienteAReceta() {
     if (this.ingredienteSeleccionado && this.ingredienteForm.valid) {
       const cantidad = Number(this.ingredienteForm.value.cantidad);
@@ -100,6 +106,7 @@ export class FormularioRecipeComponent implements OnInit {
           unidadMedida: unidadMedida,
           receta: this.receta,
         };
+        console.log(ingredienteAgregado)
         this.ingredientesEnReceta.push(ingredienteAgregado);
         this.ingredienteSeleccionado = null;
         this.ingredienteForm.reset();
@@ -146,6 +153,7 @@ export class FormularioRecipeComponent implements OnInit {
       }
     }
   }
+
   eliminarIngrediente(ingrediente: any) {
     const index = this.ingredientesEnReceta.indexOf(ingrediente);
     if(index !== -1) {
@@ -165,6 +173,7 @@ agregarTodos() {
     }
   }
 }
+
   onSubmitIngredientes(e: Event) {
     e.preventDefault();
     this.agregarTodos();
