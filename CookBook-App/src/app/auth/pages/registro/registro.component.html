@@ -12,14 +12,14 @@
         <form [formGroup]="formRegistro" id="formularioRegistro">
           <div class="mb-2">
             <label for="username" class ="form-label">Nombre y apellido</label>
-            <input type="text" style="border-radius: 7px;" class="form-control bg-warning-subtle border-warning" pInputText formControlName="username"/>
+            <input type="text" title="username" style="border-radius: 7px;" class="form-control bg-warning-subtle border-warning" pInputText formControlName="username"/>
             <span class ="form-text text-danger " *ngIf="campoValido('username')">
               Nombre y apellidos no tiene formato válido
             </span>
           </div>
           <div class="mb-2">
             <label for="email" class ="form-label"> Correo electrónico</label>
-            <input type="email" style ="border-radius: 7px;" pInputText class ="form-control bg-warning-subtle border-warning" name="Email" formControlName="email">
+            <input type="email" title="email" style ="border-radius: 7px;" pInputText class ="form-control bg-warning-subtle border-warning" name="Email" formControlName="email">
             <span *ngIf="campoValido('email')"
                     class ="form-text text-danger">
                 Introduce un email válido
@@ -60,7 +60,7 @@
           <div class="row">
             <div class="col">
               <div class="mb-2 form-check">
-                <input type="checkbox" name="terminos" class ="form-check-input" formControlName="terminos">
+                <input type="checkbox" title="terminos" name="terminos" class ="form-check-input" formControlName="terminos">
                 <label for="terminos" class ="form-check-label">Términos y condiciones</label>
                 <span class ="form-text text-danger " *ngIf="campoValido('terminos')">
                   Debes aceptar términos y condiciones.
@@ -69,7 +69,7 @@
             </div>
             <div class="col">
               <div class="mb-2 form-check">
-                <input type="checkbox" name="terminos" class ="form-check-input" formControlName="privacidad">
+                <input type="checkbox" name="terminos" class ="form-check-input"  title="checkbox" formControlName="privacidad">
                 <label for="terminos" class ="form-check-label">Política de privacidad</label>
                 <span class ="form-text text-danger " *ngIf="campoValido('privacidad')">
                   Debes aceptar la politica de privacidad.
