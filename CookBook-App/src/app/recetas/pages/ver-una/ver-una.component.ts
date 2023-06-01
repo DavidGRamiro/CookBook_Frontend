@@ -34,35 +34,57 @@ export class VerUnaComponent implements OnInit {
   totalRecords = 100;
   first = 0;
 
+  //variable para los favoritos
+  esFavorita: boolean = false;
+  iconoFav: string = 'pi pi-heart';
+  labelFav: string = 'Añadir a favoritos';
+
   //BreadCrumb
   items: MenuItem[] = [];
   home!: MenuItem;
 
   ngOnInit(): void {
-    //Recupera el id de la receta dependiendo de la ruta en la que nos encontremos.
-    //Llamamos al servicio y le mandamos por parámetro el id de la receta que queremos recuperar.
-    this._activateRoute.params
-      .pipe(switchMap(({ id }) => this._recetasService.obtenerUnaReceta(id)))
-      .subscribe((response) => {
-        this.receta = response;
-        this.nombreReceta = this.receta.nombre;
-        console.log(this.nombreReceta);
+      this._activateRoute.params
+        .pipe(switchMap(({ id }) => this._recetasService.obtenerUnaReceta(id)))
+        .subscribe((response) => {
+          this.receta = response;
+          this.nombreReceta = this.receta.nombre;
+          console.log(this.nombreReceta);
 
-        if (this.receta != null) {
-          this.dividirCadena();
-          this.actualizarMacros();
-        }
+          if (this.receta != null) {
+            this.dividirCadena();
+            this.actualizarMacros();
+          }
+
+          let userFromLocalStorage = localStorage.getItem('user');
+          if (userFromLocalStorage !== null) {
+            this.usuarioLogueado = JSON.parse(userFromLocalStorage);
+            //Comprobamos si la receta es favorita del usuario logueado
+            if (this.usuarioLogueado?.idUsuario != undefined) {
+              let usuario = this.usuarioLogueado.idUsuario;
+              let receta = this.receta.idReceta;
+              this._recetasService.esFavorita(usuario, receta).subscribe((data) => {
+                console.log(data);
+                this.esFavorita = data;
+                this.iconoFav = this.esFavorita
+                  ? 'pi pi-heart-fill'
+                  : 'pi pi-heart';
+                  this.labelFav = this.esFavorita
+                  ? 'Eliminar de favoritos'
+                  : 'Añadir a favoritos';
+              });
+            }
+            console.log(this.esFavorita);
+          }
       });
-    localStorage.getItem('user') != null
-      ? (this.usuarioLogueado = JSON.parse(localStorage.getItem('user')!))
-      : null;
 
-    this.items = [
-      { label: 'Todas las recetas', routerLink: '/recetas/todas' },
-      { label: 'Detalles de receta' },
-    ];
-    this.home = { icon: 'pi pi-home', routerLink: '/home' };
+      this.items = [
+        { label: 'Todas las recetas', routerLink: '/recetas/todas' },
+        { label: 'Detalles de receta' },
+      ];
+      this.home = { icon: 'pi pi-home', routerLink: '/home' };
   }
+
 
   constructor(
     private _recetasService: RecetasService,
@@ -156,32 +178,62 @@ export class VerUnaComponent implements OnInit {
     console.log(this.receta.idReceta);
     console.log(this.usuarioLogueado?.idUsuario);
     if (this.usuarioLogueado != undefined) {
-      this._recetasService
-        .addFavorita(this.usuarioLogueado.idUsuario ?? 0, this.receta.idReceta, )
-        .subscribe(
-          (data) => {
-            this._msg.add({
-              severity: 'success',
-              summary: 'Receta añadida a favoritos',
-            });
-            console.log(data);
-            //controlamos el error
-          },
-          (error) => {
-            this._msg.add({
-              severity: 'error',
-              summary: '¡Ops!',
-              detail: 'Parece que algo ha salido mal',
-            });
-          }
-        );
-    } else
+      if (this.esFavorita) {
+        // Si ya es favorita, eliminar de favoritos
+        this._recetasService
+          .eliminarFavorita(this.usuarioLogueado.idUsuario ?? 0, this.receta.idReceta)
+          .subscribe(
+            (data) => {
+              this._msg.add({
+                severity: 'success',
+                summary: 'Receta eliminada de favoritos',
+              });
+              console.log(data);
+              this.esFavorita = false;
+              this.iconoFav = 'pi pi-heart';
+              this.labelFav = 'Añadir a favoritos';
+            },
+            (error) => {
+              this._msg.add({
+                severity: 'error',
+                summary: '¡Ops!',
+                detail: 'Parece que algo ha salido mal',
+              });
+            }
+          );
+      } else {
+        // Si no es favorita, añadir a favoritos
+        this._recetasService
+          .addFavorita(this.usuarioLogueado.idUsuario ?? 0, this.receta.idReceta)
+          .subscribe(
+            (data) => {
+              this._msg.add({
+                severity: 'success',
+                summary: 'Receta añadida a favoritos',
+              });
+              console.log(data);
+              this.esFavorita = true;
+              this.iconoFav = 'pi pi-heart-fill';
+              this.labelFav = 'Eliminar de favoritos';
+
+            },
+            (error) => {
+              this._msg.add({
+                severity: 'error',
+                summary: '¡Ops!',
+                detail: 'Parece que algo ha salido mal',
+              });
+            }
+          );
+      }
+    } else {
       this._msg.add({
         severity: 'warn',
         summary: '¡ Atención !',
         detail: 'Debes iniciar sesión para añadir a favoritos',
       });
-  }
+    }
+}
 
   //Elimina un solo comentario de un usuario.
   eliminarComentario( idComentario : number){
