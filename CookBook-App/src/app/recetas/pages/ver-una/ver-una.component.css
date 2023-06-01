@@ -2,6 +2,7 @@
   display: flex;
   flex-direction: row;
   margin-bottom: 40px;
+  width: 100%;
 }
 h1{
   margin: 24px 0;
@@ -13,7 +14,9 @@ h3{
   margin: 8px 0;
   padding: 16px;
 }
-
+.add-fav-btn{
+  width: 100%;
+}
 .recipe-block-first {
   background-color: #e0e0e0;
   width: 33%;
@@ -52,7 +55,11 @@ h3{
   display: flex;
   flex-direction: row;
   justify-content: center;
+  align-items: center;
   flex-wrap: wrap;
+}
+.chip-title{
+  margin: 0 16px;
 }
 .ingredient-section{
   padding: 0 16px;
