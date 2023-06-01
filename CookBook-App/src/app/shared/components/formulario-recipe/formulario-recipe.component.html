@@ -1,7 +1,8 @@
 <form [formGroup]="recetaForm" (ngSubmit)="onSubmitReceta($event)">
+  <h3>Información de la receta</h3>
   <div class="columna">
     <div class="form-group">
-      <label for="nombre">Nombre</label>
+      <label for="nombre">Título</label>
       <input
         type="text"
         id="nombre"
@@ -27,10 +28,13 @@
         [options]="categorias"
         optionLabel="nombre"
         (onChange)="seleccionarCategoria($event.value)"
+        placeholder="Selecciona una"
       ></p-dropdown>
     </div>
   </div>
-  <div class="columna">
+  <h3>Preparación y cocción</h3>
+  <div class="fila">
+  <div class="columna-prep">
     <div class="form-group">
       <label for="tiempoPreparacion">Tiempo de preparación</label>
       <input
@@ -49,14 +53,11 @@
         class="form-control"
       />
     </div>
-    <div class="form-group">
-      <label for="instrucciones">Instrucciones</label>
-      <input
-        type="text"
-        id="instrucciones"
-        formControlName="instrucciones"
-        class="form-control"
-      />
+
+  </div>
+    <div class="form-group-full">
+      <label for="instrucciones">Instrucciones (cada línea se convertirá en un paso separado)</label>
+      <textarea id="instrucciones" formControlName="instrucciones" class="form-control"></textarea>
     </div>
   </div>
 </form>
@@ -70,7 +71,7 @@
 </button>
 
 <div *ngIf="mostrarNuevoIngrediente">
-  <h4>Añadir ingredientes</h4>
+  <h3>Ingredientes</h3>
   <form [formGroup]="ingredienteForm">
     <div class="col-ing">
       <div class="row-ing">
@@ -98,13 +99,14 @@
           </div>
           <div class="form-group" *ngIf="ingredienteSeleccionado">
             <label for="unidadMedida">Unidad de medida</label>
-            <input
-              type="text"
+            <p-dropdown
+              [style]="{ width: '100%' }"
               id="unidadMedida"
               formControlName="unidadMedida"
-              name="unidadMedida"
-              class="form-control"
-            />
+              [options]="unidadesMedida"
+              (onChange)="seleccionarUnidadMedida($event.value)"
+              placeholder="Selecciona una"
+            ></p-dropdown>
           </div>
         </div>
         <button *ngIf="ingredienteSeleccionado"
@@ -123,6 +125,16 @@
           {{ ingrediente.unidadMedida }}
         </p-chip>
       </div>
+</div>
+<div class="avatar-upload">
+  <p-fileUpload name="myfile[]" (onSelect)="upload($event)" [multiple]="false" accept="image/*" [maxFileSize]="maxFileSize">
+      <ng-template pTemplate="toolbar">
+          <div class="py-3">Sube tu avatar</div>
+      </ng-template>
+      <ng-template pTemplate="content">
+      </ng-template>
+  </p-fileUpload>
+
 </div>
       <button
         type="submit"

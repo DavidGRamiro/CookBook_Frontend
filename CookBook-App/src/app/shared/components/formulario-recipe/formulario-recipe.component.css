@@ -3,16 +3,32 @@
 form {
   padding-bottom: 20px;
 }
-.columna{
+
+label{
+  margin-top: 8px;
+}
+.fila{
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   gap: 8px;
 }
+.columna{
+  display: flex;
+  flex-direction: column;
+}
+.columna-prep{
+  display: flex;
+  flex-direction: column;
+  width: 33%;
+}
+#instrucciones{
+  height: 108px;
+}
 .boton{
   width: 100%;
 }
-h4{
+h3{
   padding-top: 16px;
 }
 .col-ing{
@@ -27,7 +43,7 @@ h4{
   gap: 8px;
 }
 .form-group{
-  width: 33%;
+  width: 100%;
 }
 .input-ing{
   display: flex;
@@ -52,4 +68,7 @@ h4{
   font-weight: bold;
   text-align: center;
   margin: 40px auto;
+}
+.form-group-full {
+  width: 100%;
 }

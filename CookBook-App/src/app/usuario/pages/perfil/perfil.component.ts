@@ -38,6 +38,7 @@ export class PerfilComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+
     //Verificams si el usuario ha iniciado sesión
     this._validator.isLoggedIn$.subscribe((data) => {
       this.isLoggedIn = data;
@@ -52,27 +53,25 @@ export class PerfilComponent implements OnInit {
         if (userString != null) {
           this.usuario = JSON.parse(userString);
         }
+        console.log(this.usuario);
       }
       /// El usuario ha iniciado sesión, continuar con la lógica actual del componente
       this._usuarioService
         .getRecetasFavoritas(this.usuario.idUsuario)
         .subscribe((recetas) => {
           this.recetasFavoritas = recetas;
-          console.log(this.recetasFavoritas);
         });
 
       this._usuarioService
         .getPlandeUsuario(this.usuario.idUsuario)
         .subscribe((usuarioConPlan) => {
           this.usuarioConPlan = usuarioConPlan;
-          console.log('Usuario con plan' + this.usuarioConPlan);
         });
 
       this._usuarioService
         .getNotificaciones(this.usuario.idUsuario)
         .subscribe((notificaciones) => {
           this.notificaciones = notificaciones;
-          console.log(this.notificaciones);
           this.calcularnotificacionesNuevas(this.notificaciones);
         });
 
@@ -88,7 +87,6 @@ export class PerfilComponent implements OnInit {
     this.notificacionesNuevas = notificaciones.filter(
       (notificacion) => notificacion.leida === false
     );
-    console.log(this.notificacionesNuevas);
   }
 
   cambiarComponenteActivo(index: number) {
@@ -108,12 +106,7 @@ export class PerfilComponent implements OnInit {
         usuario: this.usuario,
       },
     }).onClose.subscribe(() => {
-      this._usuarioService.getUserById(this.usuario.idUsuario)
-        .subscribe((usuario) => {
-          this.usuario = usuario;
-          console.log(this.usuario);
-          window.location.reload();
-        });
+      window.location.reload();
     });
   }
 

@@ -35,7 +35,8 @@ export class MisRecetasComponent implements OnInit{
       data: {
         usuario: this.usuario
       }
+    }).onClose.subscribe(() => {
+      window.location.reload();
     });
-
   }
 }

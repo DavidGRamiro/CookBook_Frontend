@@ -3,6 +3,21 @@
   padding: 24px 40px 40px 40px;
   border-radius: 8px;
 }
+.label {
+  font-size: 18px;
+  font-weight: bolder;
+  margin-bottom: 10px;
+  text-shadow: 0 0 black;
+}
+
+.value {
+  font-size: 18px;
+  font-weight: 300;
+  color: #333;
+}
+.progress-bar{
+  margin-bottom: 20px;
+}
 h2{
   margin-bottom: 36px;
 }
@@ -41,6 +56,8 @@ h2{
 
 .plan-card {
   margin-bottom: 20px;
+  display: flex;
+  align-items: center;
 }
 
 .progreso {

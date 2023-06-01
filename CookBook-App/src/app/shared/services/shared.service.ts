@@ -45,4 +45,13 @@ export class SharedService {
     const params = new HttpParams().set('idReceta', idReceta);
     return this._http.get<Ingrediente[]>(url, { params })
   }
+
+  // SUbimos la imagen para una receta
+  subirImagen( imagen: File, idReceta: number ): Observable<Receta>{
+    const url = `${ this.endPoint }/recetas/guardarImagen`;
+    const formData = new FormData();
+    formData.append('imagen', imagen);
+    formData.append('idReceta', idReceta.toString());
+    return this._http.post<Receta>(url, formData);
+  }
 }

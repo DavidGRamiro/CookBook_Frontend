@@ -5,8 +5,7 @@
   padding: 20px;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  height: 100vh ;
+  min-height: 100vh;
 }
 
 .profile-container {
@@ -14,10 +13,15 @@
   align-items: center;
   gap: 20px;
   flex-wrap: wrap;
+    margin: 0;
+    flex-direction: column;
 }
 .profile-tabs {
+  display: flex;
+  flex-direction: column;
+  width: 70%;
   min-width: 750px;
-  margin-left: 40px;
+  max-width: 60vh;
 }
 .titulo-seccion {
   font-family: 'Fira Sans', sans-serif;
@@ -31,8 +35,9 @@
   display: flex;
   flex-direction: row;
   align-items: flex-start;
+  justify-content: center;
   padding: 24px 32px;
-  gap: 24px;
+  gap: 120px;
 }
 
 p {
@@ -41,18 +46,8 @@ p {
   font-weight: bold;
 }
 
-.profile-container {
-  max-width: 800px;
-  margin: 0 auto;
-  display: flex;
-  flex-direction: column;
-}
 
-.profile-tabs {
-  display: flex;
-  flex-direction: column;
-  width: 70%;
-}
+
 .tab-header{
   display: flex;
   flex-direction: row;

@@ -23,6 +23,7 @@ import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { SplitButtonModule } from 'primeng/splitbutton';
 import { TarjetaCalendarComponent } from './components/tarjeta-calendar/tarjeta-calendar.component';
 import { PlannerComponent } from './pages/planner/planner.component';
+import { FileUploadModule } from 'primeng/fileupload';
 
 @NgModule({
   declarations: [
@@ -51,7 +52,8 @@ import { PlannerComponent } from './pages/planner/planner.component';
     MaterialModule,
     DragDropModule,
     ConfirmDialogModule,
-    SplitButtonModule
+    SplitButtonModule,
+    FileUploadModule
   ],
   exports: [
     NavbarComponent,

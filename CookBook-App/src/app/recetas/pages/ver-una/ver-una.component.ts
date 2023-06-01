@@ -81,11 +81,11 @@ export class VerUnaComponent implements OnInit {
   }
 
   //Dividir la cadena en subCadenas referente a las instrucciones de la receta.
-  dividirCadena(){
+  dividirCadena() {
     let cadena = this.receta.instrucciones;
-    let subCadena = cadena.split(".")
+    let subCadena = cadena.split(/(?<=\.)/g);
     this.instruciones = subCadena;
-  }
+}
 
   // Función que actualiza los datos de los macronutrientes en función de la cantidad de raciones que se quieran hacer.
   actualizarMacros(){
