@@ -1,19 +1,34 @@
 <div class="datos-plan">
   <h2>Plan contratado</h2>
   <div class="datos-container">
-  <div class="plan-card">
-    <app-tarjeta-plan [plan]="usuarioConPlan.plan"></app-tarjeta-plan>
-  </div>
-  <div class="progreso">
-    <p>Fecha de inicio: {{ fechaInicio.toLocaleDateString() }}</p>
-    <p>Fecha de fin: {{ fechaFin.toLocaleDateString() }}</p>
-    <p>Estado: {{ usuarioConPlan.estado }}</p>
-    <p-progressBar [value]="progreso"></p-progressBar>
-
-    <div class="card flex justify-content-center">
-      <p-calendar class="calendario" [(ngModel)]="rangeDates" selectionMode="range" [inline]="true" [showWeek]="true">
-      </p-calendar>
+    <div class="plan-card">
+      <app-tarjeta-plan [plan]="usuarioConPlan.plan"></app-tarjeta-plan>
     </div>
-  </div>
+    <div class="progreso">
+      <p>
+        <span class="label">Fecha de inicio: </span>
+        <span class="value">{{ fechaInicio.toLocaleDateString() }}</span>
+      </p>
+      <p>
+        <span class="label">Fecha de fin: </span>
+        <span class="value">{{ fechaFin.toLocaleDateString() }}</span>
+      </p>
+      <p>
+        <span class="label">Estado: </span>
+        <span class="value">{{ usuarioConPlan.estado }}</span>
+      </p>
+      <p-progressBar class="progress-bar" [value]="progreso"></p-progressBar>
+
+      <div class="card flex justify-content-center">
+        <p-calendar
+          class="calendario"
+          [(ngModel)]="rangeDates"
+          selectionMode="range"
+          [inline]="true"
+          [showWeek]="true"
+        >
+        </p-calendar>
+      </div>
+    </div>
   </div>
 </div>

@@ -126,6 +126,16 @@
         </p-chip>
       </div>
 </div>
+<div class="avatar-upload">
+  <p-fileUpload name="myfile[]" (onSelect)="upload($event)" [multiple]="false" accept="image/*" [maxFileSize]="maxFileSize">
+      <ng-template pTemplate="toolbar">
+          <div class="py-3">Sube tu avatar</div>
+      </ng-template>
+      <ng-template pTemplate="content">
+      </ng-template>
+  </p-fileUpload>
+
+</div>
       <button
         type="submit"
         class="btn btn-primary"

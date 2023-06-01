@@ -8,7 +8,7 @@ import {
 } from 'src/app/shared/interfaces/share.interface';
 import { SharedService } from '../../services/shared.service';
 import { Usuario } from 'src/app/recetas/interface/recetas.interface';
-import { DynamicDialogConfig } from 'primeng/dynamicdialog';
+import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { MessageService } from 'primeng/api';
 
 @Component({
@@ -27,11 +27,17 @@ export class FormularioRecipeComponent implements OnInit {
   ingredientesFiltrados!: Ingrediente[];
   usuario: Usuario;
   unidadesMedida: string[] = ['kg', 'g', 'l', 'ml', 'mg', 'cl', 'dl'];
+  maxFileSize: number = 3000000;
+  uploadedFile: any;
+  uploadedImageUrl!: string; // nueva variable para guardar la URL de la imagen subida
 
   recetaForm = this._fb.group({
     nombre: ['', Validators.required],
     descripcion: ['', Validators.required],
-    tiempoPreparacion: [null, [Validators.required, Validators.pattern(/^\d+$/)]],
+    tiempoPreparacion: [
+      null,
+      [Validators.required, Validators.pattern(/^\d+$/)],
+    ],
     tiempoCoccion: [null, [Validators.required, Validators.pattern(/^\d+$/)]],
     instrucciones: ['', Validators.required],
     categoria: [0, Validators.required],
@@ -48,7 +54,9 @@ export class FormularioRecipeComponent implements OnInit {
   constructor(
     private _sharedService: SharedService,
     public _config: DynamicDialogConfig,
-    private _msg: MessageService, private _fb: FormBuilder,
+    private _msg: MessageService,
+    private _fb: FormBuilder,
+    private _dialogRef: DynamicDialogRef
   ) {
     this.usuario = this._config.data.usuario;
   }
@@ -67,13 +75,12 @@ export class FormularioRecipeComponent implements OnInit {
   private obtenerCategorias() {
     this._sharedService.obtenerCategorias().subscribe((categorias) => {
       this.categorias = categorias;
-
     });
   }
 
-  filtrarIngredientes(e: any){
+  filtrarIngredientes(e: any) {
     const query = e.query;
-    this.ingredientesFiltrados = this.ingredientes.filter(ingrediente => {
+    this.ingredientesFiltrados = this.ingredientes.filter((ingrediente) => {
       return ingrediente.nombre.toLowerCase().includes(query.toLowerCase());
     });
   }
@@ -98,7 +105,7 @@ export class FormularioRecipeComponent implements OnInit {
     if (this.ingredienteSeleccionado && this.ingredienteForm.valid) {
       const cantidad = Number(this.ingredienteForm.value.cantidad);
       const unidadMedida = this.ingredienteForm.value.unidadMedida;
-      console.log(this.recetaForm.value)
+      console.log(this.recetaForm.value);
       if (!isNaN(cantidad) && unidadMedida) {
         const ingredienteAgregado: RecetasConIngrediente = {
           ingrediente: this.ingredienteSeleccionado,
@@ -106,7 +113,7 @@ export class FormularioRecipeComponent implements OnInit {
           unidadMedida: unidadMedida,
           receta: this.receta,
         };
-        console.log(ingredienteAgregado)
+        console.log(ingredienteAgregado);
         this.ingredientesEnReceta.push(ingredienteAgregado);
         this.ingredienteSeleccionado = null;
         this.ingredienteForm.reset();
@@ -145,7 +152,7 @@ export class FormularioRecipeComponent implements OnInit {
           carbohidratos: 0,
           proteinas: 0,
           grasas: 0,
-          imagen: null,
+          imagen: '',
           usuario: usuario,
         };
         console.log(this.receta);
@@ -156,37 +163,47 @@ export class FormularioRecipeComponent implements OnInit {
 
   eliminarIngrediente(ingrediente: any) {
     const index = this.ingredientesEnReceta.indexOf(ingrediente);
-    if(index !== -1) {
+    if (index !== -1) {
       this.ingredientesEnReceta.splice(index, 1);
-      this._msg.add({severity:'success', summary:'Ingrediente eliminado', detail:'Ingrediente eliminado correctamente'});
+      this._msg.add({
+        severity: 'success',
+        summary: 'Ingrediente eliminado',
+        detail: 'Ingrediente eliminado correctamente',
+      });
     }
   }
 
-agregarTodos() {
-   if (this.recetaForm.valid) {
-    if (this.ingredientesEnReceta.length > 0) {
-      //Si el formulario es valido, por cada objeto en ingredientesEnReceta, se crea un insert en la BBDD
-      this.ingredientesEnReceta.forEach((ingredientesEnReceta) => {
-        ingredientesEnReceta.receta = this.recetaEnviada;
-      });
-      console.log(this.ingredientesEnReceta);
+  agregarTodos() {
+    if (this.recetaForm.valid) {
+      if (this.ingredientesEnReceta.length > 0) {
+        //Si el formulario es valido, por cada objeto en ingredientesEnReceta, se crea un insert en la BBDD
+        this.ingredientesEnReceta.forEach((ingredientesEnReceta) => {
+          ingredientesEnReceta.receta = this.recetaEnviada;
+        });
+        console.log(this.ingredientesEnReceta);
+      }
     }
   }
-}
 
   onSubmitIngredientes(e: Event) {
     e.preventDefault();
     this.agregarTodos();
-      //Si el formulario es valido, por cada objeto en ingredientesEnReceta, se crea un insert en la BBDD
-      this.ingredientesEnReceta.forEach((ingredientesEnReceta) => {
-        this._sharedService
-          .altaRecetaConIngrediente(ingredientesEnReceta)
-          .subscribe((resp) => {
-            console.log(resp);
+    //Si el formulario es valido, por cada objeto en ingredientesEnReceta, se crea un insert en la BBDD
+    this.ingredientesEnReceta.forEach((ingredientesEnReceta) => {
+      this._sharedService
+        .altaRecetaConIngrediente(ingredientesEnReceta)
+        .subscribe((resp) => {
+          console.log(resp);
+          this._msg.add({
+            severity: 'success',
+            summary: 'Cambios guardados',
+            detail: 'Los cambios se han guardados correctamente',
           });
-      });
-      this.ingredienteForm.reset();
-    }
+          this._dialogRef.close();
+        });
+    });
+    this.ingredienteForm.reset();
+  }
 
   onSubmitReceta(e: Event) {
     e.preventDefault();
@@ -201,6 +218,53 @@ agregarTodos() {
           console.log('Error al dar de alta', error);
         }
       );
+    }
+  }
+
+  //Esta funcion crea un nuevp nombre para la foto de la receta
+  private createNewFileName(nombre: string, oldFileName: string): string {
+    const fileExtension = oldFileName.split('.').pop();
+    // Dividir el nombre en palabras y tomar las dos primeras palabras
+    let nombreArr = nombre.split(' ');
+    if (nombreArr.length > 2) {
+      nombre = nombreArr[0] + '-' + nombreArr[1];
+    }
+
+    nombre = nombre.replace(/\s/g, '-');
+    nombre = nombre.toLowerCase();
+
+    let newFileName = `${nombre}.${fileExtension}`;
+    console.log(newFileName);
+    return newFileName;
+  }
+
+  upload(event: any) {
+    console.log('upload');
+    console.log(event.files);
+    if (event.files.length > 0) {
+      this.uploadedFile = event.files[0];
+      console.log(event.files[0].name);
+      let nuevoNombre = this.createNewFileName(
+        this.receta.nombre,
+        event.files[0].name
+      );
+      let newFile = new File([event.files[0]], nuevoNombre, {
+        type: event.files[0].type,
+      });
+      console.log(newFile);
+      if (this.recetaEnviada.idReceta != null) {
+        this._sharedService
+          .subirImagen(newFile, this.recetaEnviada.idReceta)
+          .subscribe((receta: Receta) => {
+            console.log(receta);
+            this.uploadedImageUrl = receta.imagen;
+            this._msg.add({
+              severity: 'success',
+              summary: 'Imagen subida',
+              detail: 'La imagen se ha subido correctamente',
+            });
+          });
+      }
     }
   }
 }

@@ -1,8 +1,10 @@
-<div *ngIf="recetasCreadas" class="recetas-favoritas">
+<div *ngIf="recetasCreadas" class="recetas-creadas">
   <h2>Mis Recetas</h2>
 <div class="crear-btn">
 <p-button label="Crear Receta Nueva" icon="pi pi-plus" (onClick)="crearReceta()"></p-button>
 </div>
+<div class="container-creadas">
+  <div class="lista">
   <p-listbox [(ngModel)]="recetaSeleccionada" optionLabel="name" [options]="recetasCreadas"
     [listStyle]="{ 'max-height': '250px' }">
     <ng-template let-receta pTemplate="item">
@@ -11,11 +13,12 @@
       </div>
     </ng-template>
   </p-listbox>
+
+</div>
   <div *ngIf="recetaSeleccionada">
     <app-tarjeta [receta]="recetaSeleccionada"></app-tarjeta>
   </div>
-</div>
 
 <div *ngIf="!recetasCreadas">
-  <p>Cargando rmis recetas...</p>
+  <p>Todavia no ha creado ninguna receta</p>
 </div>

@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
 //Interfaces
-import { MenuItem } from 'primeng/api'; // Importa MenuItem para el menú de perfil
 import { UsuarioService } from '../../services/usuario.service';
 import { Router } from '@angular/router';
 import { Receta } from 'src/app/recetas/interface/recetas.interface';
@@ -9,7 +8,6 @@ import { Usuario } from '../../interface/usuario.interface';
 import { ValidatorService } from 'src/app/auth/services/validator.service';
 import { UsuarioConPlan } from '../../interface/usuarioconplan.interface';
 import { Notificacion } from '../../interface/notificacion.interface';
-import { DateTime } from 'luxon';
 import { DialogService } from 'primeng/dynamicdialog';
 import { EditarPerfilComponent } from '../../components/editar-perfil/editar-perfil.component';
 import { NotificacionService } from '../../services/notificacion.service';
@@ -39,6 +37,7 @@ export class PerfilComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+
     //Verificams si el usuario ha iniciado sesión
     this._validator.isLoggedIn$.subscribe((data) => {
       this.isLoggedIn = data;
@@ -53,27 +52,25 @@ export class PerfilComponent implements OnInit {
         if (userString != null) {
           this.usuario = JSON.parse(userString);
         }
+        console.log(this.usuario);
       }
       /// El usuario ha iniciado sesión, continuar con la lógica actual del componente
       this._usuarioService
         .getRecetasFavoritas(this.usuario.idUsuario)
         .subscribe((recetas) => {
           this.recetasFavoritas = recetas;
-          console.log(this.recetasFavoritas);
         });
 
       this._usuarioService
         .getPlandeUsuario(this.usuario.idUsuario)
         .subscribe((usuarioConPlan) => {
           this.usuarioConPlan = usuarioConPlan;
-          console.log('Usuario con plan' + this.usuarioConPlan);
         });
 
       this._usuarioService
         .getNotificaciones(this.usuario.idUsuario)
         .subscribe((notificaciones) => {
           this.notificaciones = notificaciones;
-          console.log(this.notificaciones);
           this.calcularnotificacionesNuevas(this.notificaciones);
         });
 
@@ -89,7 +86,6 @@ export class PerfilComponent implements OnInit {
     this.notificacionesNuevas = notificaciones.filter(
       (notificacion) => notificacion.leida === false
     );
-    console.log(this.notificacionesNuevas);
   }
 
   cambiarComponenteActivo(index: number) {
@@ -109,12 +105,7 @@ export class PerfilComponent implements OnInit {
         usuario: this.usuario,
       },
     }).onClose.subscribe(() => {
-      this._usuarioService.getUserById(this.usuario.idUsuario)
-        .subscribe((usuario) => {
-          this.usuario = usuario;
-          console.log(this.usuario);
-          window.location.reload();
-        });
+      window.location.reload();
     });
   }
 

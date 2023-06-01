@@ -23,7 +23,7 @@ export interface Receta {
   carbohidratos: number | 0;
   proteinas: number | 0;
   grasas: number | 0;
-  imagen: string | null;
+  imagen: string | '';
   categoria: Categoria;
   usuario: Usuario;
 }
