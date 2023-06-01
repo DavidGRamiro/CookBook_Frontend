@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
 //Interfaces
-import { MenuItem } from 'primeng/api'; // Importa MenuItem para el menú de perfil
 import { UsuarioService } from '../../services/usuario.service';
 import { Router } from '@angular/router';
 import { Receta } from 'src/app/recetas/interface/recetas.interface';
@@ -9,10 +8,10 @@ import { Usuario } from '../../interface/usuario.interface';
 import { ValidatorService } from 'src/app/auth/services/validator.service';
 import { UsuarioConPlan } from '../../interface/usuarioconplan.interface';
 import { Notificacion } from '../../interface/notificacion.interface';
-import { DateTime } from 'luxon';
 import { DialogService } from 'primeng/dynamicdialog';
 import { EditarPerfilComponent } from '../../components/editar-perfil/editar-perfil.component';
 import { NotificacionService } from '../../services/notificacion.service';
+import { DragCalendarComponent } from 'src/app/shared/components/drag-calendar/drag-calendar.component';
 
 @Component({
   selector: 'app-perfil',
@@ -116,6 +115,16 @@ export class PerfilComponent implements OnInit {
           window.location.reload();
         });
     });
+  }
+
+  mostrarCalendario(){
+      this._dialogService.open( DragCalendarComponent ,{
+                                                      header: 'Planning semanal' ,
+                                                      width: '80%',
+                                                      height: '80%',
+                                                      maximizable: true
+                                                    })
+
   }
 
 }

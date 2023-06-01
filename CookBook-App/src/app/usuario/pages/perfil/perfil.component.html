@@ -14,6 +14,12 @@
         <p class="email-usuario">{{ usuario.email }}</p>
         <button class="editar-perfil-btn" (click)="editarPerfil()">Editar perfil</button>
       </div>
+      <div>
+        <h3 style="font: bold;">Planificador semanal</h3>
+        <div class ="text-center">
+          <p-button (click)="mostrarCalendario()" icon="pi pi-calendar" styleClass="p-button-rounded p-button-success" ></p-button>
+        </div>
+      </div>
     </div>
     <div class="profile-tabs">
       <p-tabView styleClass="tabview-custom" [activeIndex]="activeIndex" (onChange)="cambiarComponenteActivo($event.index)">
@@ -60,3 +66,4 @@
   </div>
 </div>
 <app-footer></app-footer>
+<p-toast></p-toast>

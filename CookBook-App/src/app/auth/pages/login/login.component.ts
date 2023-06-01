@@ -5,8 +5,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ValidatorService } from '../../services/validator.service';
 import { FireBaseAuth } from '../../interface/firebase.interface';
-import { user } from '@angular/fire/auth';
-import { CdkDropListGroup } from '@angular/cdk/drag-drop';
+import { UsuarioService } from 'src/app/usuario/services/usuario.service';
+
 
 @Component({
   selector: 'app-login',
@@ -22,7 +22,7 @@ export class LoginComponent implements OnInit {
   rol: string = '';
   token: string = '';
   userFirebase: FireBaseAuth = {} as FireBaseAuth;
-  usuarioGoogle : Usuario = { email: '', username: '', password: ''};
+  usuarioGoogle : Usuario = {} as Usuario;
   error: string = '';
 
   //Formulario reactivo
@@ -36,7 +36,8 @@ export class LoginComponent implements OnInit {
   constructor(private _authService: AuthService,
               private _fb : FormBuilder,
               private _router: Router,
-              private _validator: ValidatorService) { }
+              private _validator: ValidatorService,
+              private _userService : UsuarioService) { }
 
   ngOnInit(): void {}
 
@@ -92,6 +93,7 @@ export class LoginComponent implements OnInit {
       //Comprobamos si el usuario que entra por google ya existe en nuestra BBDD
       this._authService.buscarEmail(emailUsuario!).subscribe(res => {
 
+
         if(res === null){
           console.log("No existe en BBDD")
           //Damos de alta al usuario en nuestra BBDD
@@ -102,6 +104,19 @@ export class LoginComponent implements OnInit {
 
           this._authService.altaUsuario(this.usuarioGoogle).subscribe(response => {
             console.log("Es un nuevo usuario", response)
+
+            let idUsuarioNuevo: number | undefined = response.idUsuario;
+
+            if (typeof idUsuarioNuevo === 'number') {
+
+              if(this.usuarioGoogle.imagen != undefined){
+
+                const data = { idUsuario: idUsuarioNuevo, imagen: this.usuarioGoogle.imagen }
+              this._authService.setImagenGoogle( data ).subscribe(res => {
+                console.log("Imagen actualizada");
+              });
+            }
+            }
             // Variable asociada al servicio de validaciones para saber si se ha logueado
             this.isLoggedIn = true;
             this._validator.setLoggedIn(this.isLoggedIn)
@@ -114,11 +129,33 @@ export class LoginComponent implements OnInit {
           })
         }
         else{
-          console.log("Ya existe en BBDD")
-          // Variable asociada al servicio de validaciones para saber si se ha logueado
+          // Variable asociada al servicio de validaciones para saber si se ha logueado)
+
+          console.log('YA ESTA REGISTRADO',res)
+
           this.usuarioGoogle.email = res.email
           this.usuarioGoogle.password = res.password
           this.usuarioGoogle.username = res.username
+          this.usuarioGoogle.idUsuario = res.idUsuario
+          this.usuarioGoogle.imagen = response.user.photoURL
+
+          console.log(this.usuarioGoogle)
+
+          let idUsuarioExistente: number | undefined = this.usuarioGoogle.idUsuario;
+          console.log(idUsuarioExistente)
+
+            if ( idUsuarioExistente != undefined) {
+              if(this.usuarioGoogle.imagen != undefined){
+                const imagen = this.usuarioGoogle.imagen
+                const data = { idUsuario: idUsuarioExistente, imagen: imagen }
+                this._authService.setImagenGoogle( data ).subscribe(res => {
+                  console.log("Imagen actualizada");
+                  console.log(res)
+                });
+              }
+            } else {
+              console.error('El idUsuario no es un número válido.');
+            }
 
           this.isLoggedIn = true;
           this._validator.setLoggedIn(this.isLoggedIn)

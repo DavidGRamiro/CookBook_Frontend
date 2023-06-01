@@ -1,12 +1,12 @@
 <div class="container-fluid">
-  <div id="calendarBox" class="row"> 
+  <div id="calendarBox" class="row">
   <div class="col-9">
-    <h2 >Calendario</h2>
+    <h2 class ="text-center">Calendario</h2>
     <div id="calendarWeek" class="row">
       <div class="col">
         <!-- Recetas LUNES-->
         <div class="example-container">
-          <h4>Lunes</h4>
+          <h4 class="text-center">Lunes</h4>
           <div cdkDropList #mondayList="cdkDropList" [cdkDropListData]="calendar.monday"
             [cdkDropListConnectedTo]="[todoList, mondayList,tuesdayList, wednesayList, thursdayList, fridayList, saturdayList, sundayList]"
             class="example-list" (cdkDropListDropped)="dropCopy($event)">
@@ -21,7 +21,7 @@
       <div class="col">
         <!-- Recetas MARTES-->
         <div class="example-container">
-          <h4>Martes</h4>
+          <h4 class="text-center">Martes</h4>
           <div cdkDropList #tuesdayList="cdkDropList" [cdkDropListData]="calendar.tuesday"
             [cdkDropListConnectedTo]="[todoList, mondayList,tuesdayList, wednesayList, thursdayList, fridayList, saturdayList, sundayList]"
             class="example-list" (cdkDropListDropped)="dropCopy($event)">
@@ -36,7 +36,7 @@
       <div class="col">
         <!-- Recetas MIERCOLES-->
         <div class="example-container">
-          <h4>Miércoles</h4>
+          <h4 class="text-center">Miércoles</h4>
           <div cdkDropList #wednesayList="cdkDropList" [cdkDropListData]="calendar.wednesday"
             [cdkDropListConnectedTo]="[todoList, mondayList,tuesdayList, wednesayList, thursdayList, fridayList, saturdayList, sundayList]"
             class="example-list" (cdkDropListDropped)="dropCopy($event)">
@@ -52,7 +52,7 @@
       <div class="col">
         <!-- Recetas JUEVES-->
         <div class="example-container">
-          <h4>Jueves</h4>
+          <h4 class="text-center">Jueves</h4>
           <div cdkDropList #thursdayList="cdkDropList" [cdkDropListData]="calendar.thursday"
             [cdkDropListConnectedTo]="[todoList, mondayList,tuesdayList, wednesayList, thursdayList, fridayList, saturdayList, sundayList]"
             class="example-list" (cdkDropListDropped)="dropCopy($event)">
@@ -67,7 +67,7 @@
       <div class="col">
         <!-- Recetas VIERNES-->
         <div class="example-container">
-          <h4>Viernes</h4>
+          <h4 class="text-center">Viernes</h4>
           <div cdkDropList #fridayList="cdkDropList" [cdkDropListData]="calendar.friday"
             [cdkDropListConnectedTo]="[todoList, mondayList,tuesdayList, wednesayList, thursdayList, fridayList, saturdayList, sundayList]"
             class="example-list" (cdkDropListDropped)="dropCopy($event)">
@@ -82,7 +82,7 @@
       <div class="col">
         <!-- Recetas SABADO-->
         <div class="example-container">
-          <h4>Sábado</h4>
+          <h4 class="text-center">Sábado</h4>
           <div cdkDropList #saturdayList="cdkDropList" [cdkDropListData]="calendar.saturday"
             [cdkDropListConnectedTo]="[todoList, mondayList,tuesdayList, wednesayList, thursdayList, fridayList, saturdayList, sundayList]"
             class="example-list" (cdkDropListDropped)="dropCopy($event)">
@@ -97,7 +97,7 @@
       <div class="col">
         <!-- Recetas DOMINGO-->
         <div class="example-container">
-          <h4>Domingo</h4>
+          <h4 class="text-center">Domingo</h4>
           <div cdkDropList #sundayList="cdkDropList" [cdkDropListData]="calendar.sunday"
             [cdkDropListConnectedTo]="[todoList, mondayList,tuesdayList, wednesayList, thursdayList, fridayList, saturdayList, sundayList]"
             class="example-list" (cdkDropListDropped)="dropCopy($event)">
@@ -111,8 +111,8 @@
     </div>
 
     <div class="d-flex p-2 buttons">
-      <p-button (click)="saveCalendar()">Guardar Calendario</p-button>
-      <p-button (click)="clearCalendar()">Vaciar Calendario</p-button>
+      <p-button icon="pi pi-save" (click)="saveCalendar()" label="Guardar calendario"></p-button>
+      <p-button icon ="pi pi-trash" iconPos="right" (click)="clearCalendar()" label="Vaciar calendario"></p-button>
     </div>
 
 

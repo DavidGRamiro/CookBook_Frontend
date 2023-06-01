@@ -28,7 +28,7 @@ export class AuthService {
     return this._http.post<Usuario>(url,user);
   }
 
-  
+
   //Petición que loguea el usuario y devuelve el token
   login( user: Usuario ): Observable<HttpResponse<Usuario>>{
     const url = `${this.endPoint}${this.common}/login`;
@@ -57,4 +57,14 @@ export class AuthService {
   loginByFacebook(){
     return signInWithPopup(this._fireBase, new FacebookAuthProvider)
   }
+
+  //Obtener la imagen del usuario de Google
+  setImagenGoogle( data: { idUsuario: number, imagen: string } ){
+    const url = `${this.endPoint}${this.common}/guardarImagenGoogle`;
+    return this._http.post(url, data);
+  }
+
+  //
+
+
 }

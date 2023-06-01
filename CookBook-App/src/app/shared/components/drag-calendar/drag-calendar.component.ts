@@ -2,6 +2,7 @@ import { CalendarWeek, Receta } from 'src/app/recetas/interface/recetas.interfac
 import { Component, OnInit } from '@angular/core';
 import {CdkDragDrop, copyArrayItem, moveItemInArray, transferArrayItem} from '@angular/cdk/drag-drop';
 import { RecetasService } from 'src/app/recetas/services/recetas.service';
+import { MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-drag-calendar',
@@ -9,7 +10,7 @@ import { RecetasService } from 'src/app/recetas/services/recetas.service';
   styleUrls: ['./drag-calendar.component.css']
 })
 export class DragCalendarComponent implements OnInit {
-  
+
   todo!: Receta[];
 
   calendar: CalendarWeek =  {
@@ -22,7 +23,8 @@ export class DragCalendarComponent implements OnInit {
     sunday: [],
   };
 
-  constructor(private _recetaService : RecetasService) { }
+  constructor(private _recetaService : RecetasService,
+              private _msg : MessageService) { }
 
   private initCalendar() {
     this.calendar.monday = [];
@@ -42,7 +44,7 @@ export class DragCalendarComponent implements OnInit {
     }else{
       this.calendar = JSON.parse(calendarItem);
     }
-  
+
 
 
     this._recetaService.todasRecetas().subscribe(response => {
@@ -51,14 +53,17 @@ export class DragCalendarComponent implements OnInit {
   }
 
 
- saveCalendar(){
-  localStorage.setItem("calendarWeek", JSON.stringify(this.calendar)  )
- }
+  saveCalendar(){
+    localStorage.setItem("calendarWeek", JSON.stringify(this.calendar)  )
+    this._msg.add({severity:'success', summary:'Bien hecho !', detail:'Tu planning semanal se ha actualizado'});
+  }
 
- clearCalendar(){
-  localStorage.removeItem("calendarWeek")
-  this.initCalendar()
- }
+  clearCalendar(){
+    localStorage.removeItem("calendarWeek")
+    this.initCalendar()
+    this._msg.add({severity:'info', summary:'Calendario actualizado', detail:'Comeinza de nuevo tu planing semanal'});
+
+  }
 
   drop(event: CdkDragDrop<Receta[]>) {
     if (event.previousContainer === event.container) {
@@ -100,6 +105,6 @@ export class DragCalendarComponent implements OnInit {
     }
   }
 
-  
+
 
 }
