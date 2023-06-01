@@ -30,6 +30,8 @@ export class FormularioRecipeComponent implements OnInit {
   maxFileSize: number = 3000000;
   uploadedFile: any;
   uploadedImageUrl!: string; // nueva variable para guardar la URL de la imagen subida
+  ingredientesAnadidos = false;
+  recetaGuardada: boolean = false;
 
   recetaForm = this._fb.group({
     nombre: ['', Validators.required],
@@ -101,6 +103,11 @@ export class FormularioRecipeComponent implements OnInit {
     this.ingredienteForm.controls.unidadMedida.setValue(unidadMedida);
   }
 
+  dividirCadena(instrucciones: String): String[]{
+    let subCadena = instrucciones.split(/(?<=\.)/g);
+    return subCadena.filter(instruccion => instruccion.trim() !== '');
+  }
+
   agregarIngredienteAReceta() {
     if (this.ingredienteSeleccionado && this.ingredienteForm.valid) {
       const cantidad = Number(this.ingredienteForm.value.cantidad);
@@ -111,7 +118,7 @@ export class FormularioRecipeComponent implements OnInit {
           ingrediente: this.ingredienteSeleccionado,
           cantidad: cantidad,
           unidadMedida: unidadMedida,
-          receta: this.receta,
+          receta: this.recetaEnviada,
         };
         console.log(ingredienteAgregado);
         this.ingredientesEnReceta.push(ingredienteAgregado);
@@ -188,7 +195,6 @@ export class FormularioRecipeComponent implements OnInit {
   onSubmitIngredientes(e: Event) {
     e.preventDefault();
     this.agregarTodos();
-    //Si el formulario es valido, por cada objeto en ingredientesEnReceta, se crea un insert en la BBDD
     this.ingredientesEnReceta.forEach((ingredientesEnReceta) => {
       this._sharedService
         .altaRecetaConIngrediente(ingredientesEnReceta)
@@ -207,6 +213,15 @@ export class FormularioRecipeComponent implements OnInit {
 
   onSubmitReceta(e: Event) {
     e.preventDefault();
+    if (!this.recetaForm.valid) {
+      this._msg.add({
+        severity: 'error',
+        summary: 'Error',
+        detail: 'Por favor, completa todos los campos',
+      });
+      e.preventDefault();
+      return;
+    }
     if (this.recetaForm.valid) {
       //Si el ingredienteForm es valido, se crea un insert en la BBDD
       this._sharedService.altaReceta(this.receta).subscribe(
@@ -218,6 +233,9 @@ export class FormularioRecipeComponent implements OnInit {
           console.log('Error al dar de alta', error);
         }
       );
+      this.ingredientesAnadidos = true;
+      this.recetaGuardada = true;
+      this.recetaForm.disable();
     }
   }
 

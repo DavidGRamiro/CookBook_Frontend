@@ -10,10 +10,11 @@
 }
 
 .titulo-seccion {
-  font-size: 48px;
+  font-family: 'Fira Sans', sans-serif;
+  font-size: 56px;
   font-weight: bold;
   text-align: center;
-  margin: 20px auto;
+  margin: 40px auto;
 }
 
 
