@@ -6,3 +6,9 @@
   text-align: center;
   margin: 40px auto;
 }
+.container{
+  min-height: 100vh;
+}
+.contenedor{
+  margin-bottom: 40px;
+}

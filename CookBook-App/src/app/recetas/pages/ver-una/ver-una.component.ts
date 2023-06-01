@@ -185,7 +185,7 @@ export class VerUnaComponent implements OnInit {
           .subscribe(
             (data) => {
               this._msg.add({
-                severity: 'success',
+                severity: 'error',
                 summary: 'Receta eliminada de favoritos',
               });
               console.log(data);
