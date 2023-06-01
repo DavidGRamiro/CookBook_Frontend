@@ -10,7 +10,7 @@
   </div>
   <div class="recipe-main">
     <div class="recipe-block-first">
-      <h2 class="recipe-title">{{ receta.nombre }}</h2>
+      <h1 class="recipe-title">{{ receta.nombre }}</h1>
       <div class="recipe-subblock">
         <div class="recipe-image-block">
           <img
@@ -23,16 +23,17 @@
           <p-chip
             label="{{ receta.usuario.username }}"
             image="{{ receta.usuario.imagen }}"
+            styleClass="p-chip"
           ></p-chip>
         </div>
         <p-divider></p-divider>
         <!-- Sección bajo la imagen de la receta -->
       </div>
       <div class="ingredient-section">
-        <h4>Ingredientes</h4>
+        <h2>Ingredientes</h2>
         <ul>
           <li *ngFor="let item of receta.recetasConIngredientes">
-            {{ item.ingrediente.nombre }} : {{ cantidad }}
+            <span class="ing-nombre">{{ item.ingrediente.nombre }}</span>: {{ cantidad }}
             {{ item.unidadMedida }}
           </li>
         </ul>
@@ -41,7 +42,7 @@
 
     <!-- Segundo bloque que recoge las intrucciones de la receta -->
     <div class="recipe-block-second">
-      <h3 class="titulo-inst">¿Por donde empezamos?</h3>
+      <h2 class="titulo-inst">¿Por donde empezamos?</h2>
       <div class="instrucciones">
         <ul *ngFor="let instruccion of instruciones">
           <li>{{ instruccion }} </li>
@@ -49,14 +50,14 @@
       </div>
       <div class="mod-mac">
         <div class="macros">
-          <h3>Macronutrientes</h3>
-          <p>Calorias {{ calorias }}</p>
-          <p>Grasas {{ grasas }}</p>
-          <p>Carbohidratos {{ carbohidratos }}</p>
-          <p>Proteinas {{ proteinas }}</p>
-        </div>
+          <h2>Macronutrientes</h2>
+          <p><span>Calorias: </span> <span>{{ calorias }}</span> <span> kcal</span></p>
+          <p><span>Grasas: </span> <span>{{ grasas }}</span> <span> g</span></p>
+          <p><span>Carbohidratos: </span> <span>{{ carbohidratos }}</span> <span> g</span></p>
+          <p><span>Proteinas: </span> <span>{{ proteinas }}</span> <span> g</span></p>
+      </div>
         <div class="modificar">
-          <h3>Modificar</h3>
+          <h2>Modificar</h2>
           <p>Esta receta está pensada para una ración por persona</p>
           <div class="input-mod">
             <!-- Botón para imcrementar el numero de raciones -->
@@ -81,7 +82,7 @@
       </div>
       <div class="comentarios">
 
-        <h4 class="titulo-com">Comentarios de usuarios</h4>
+        <h3 class="titulo-com">Comentarios de usuarios</h3>
         <div class="comentarios-card">
           <p-tabView (click)="obtenerComentarios(receta.idReceta)">
             <p-tabPanel
@@ -99,9 +100,9 @@
                     placeholder="Escribe aquí tu comentario"
                   ></textarea>
                 </div>
-                <button type="submit" (click)="subirComentario()">
+                <p-button type="submit" (click)="subirComentario()">
                   Subir comentario
-                </button>
+                </p-button>
               </form>
             </p-tabPanel>
             <ng-template #noLogin>
