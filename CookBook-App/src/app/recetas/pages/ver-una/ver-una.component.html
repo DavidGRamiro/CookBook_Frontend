@@ -13,27 +13,38 @@
       <h1 class="recipe-title">{{ receta.nombre }}</h1>
       <div class="recipe-subblock">
         <div class="recipe-image-block">
-          <img
-            alt="foto-receta"
-            [src]="receta.imagen"
-            class="recipe-image"
-          />
+          <img alt="foto-receta" [src]="receta.imagen" class="recipe-image" />
         </div>
         <div class="chip-block">
+          <span class="chip-title">Creada por: </span>
           <p-chip
             label="{{ receta.usuario.username }}"
             image="{{ receta.usuario.imagen }}"
             styleClass="p-chip"
           ></p-chip>
         </div>
-        <p-divider></p-divider>
+        <div class="add-fav" *ngIf="usuarioLogueado; else noLogeado">
+          <button
+            pButton
+            class="add-fav-btn"
+        (click)="addFav()"
+            type="button"
+            title="fav"
+            label="Añadir receta a favoritos"
+            class="ui-button-warning"
+          ></button>
+        </div>
+        <ng-template #noLogeado>
+          <p-divider></p-divider>
+        </ng-template>
         <!-- Sección bajo la imagen de la receta -->
       </div>
       <div class="ingredient-section">
         <h2>Ingredientes</h2>
         <ul>
           <li *ngFor="let item of receta.recetasConIngredientes">
-            <span class="ing-nombre">{{ item.ingrediente.nombre }}</span>: {{ cantidad }}
+            <span class="ing-nombre">{{ item.ingrediente.nombre }}</span
+            >: {{ cantidad }}
             {{ item.unidadMedida }}
           </li>
         </ul>
@@ -45,17 +56,28 @@
       <h2 class="titulo-inst">¿Por donde empezamos?</h2>
       <div class="instrucciones">
         <ul *ngFor="let instruccion of instruciones">
-          <li>{{ instruccion }} </li>
+          <li>{{ instruccion }}</li>
         </ul>
       </div>
       <div class="mod-mac">
         <div class="macros">
           <h2>Macronutrientes</h2>
-          <p><span>Calorias: </span> <span>{{ calorias }}</span> <span> kcal</span></p>
-          <p><span>Grasas: </span> <span>{{ grasas }}</span> <span> g</span></p>
-          <p><span>Carbohidratos: </span> <span>{{ carbohidratos }}</span> <span> g</span></p>
-          <p><span>Proteinas: </span> <span>{{ proteinas }}</span> <span> g</span></p>
-      </div>
+          <p>
+            <span>Calorias: </span> <span>{{ calorias }}</span>
+            <span> kcal</span>
+          </p>
+          <p>
+            <span>Grasas: </span> <span>{{ grasas }}</span> <span> g</span>
+          </p>
+          <p>
+            <span>Carbohidratos: </span> <span>{{ carbohidratos }}</span>
+            <span> g</span>
+          </p>
+          <p>
+            <span>Proteinas: </span> <span>{{ proteinas }}</span>
+            <span> g</span>
+          </p>
+        </div>
         <div class="modificar">
           <h2>Modificar</h2>
           <p>Esta receta está pensada para una ración por persona</p>
@@ -81,7 +103,6 @@
         </div>
       </div>
       <div class="comentarios">
-
         <h3 class="titulo-com">Comentarios de usuarios</h3>
         <div class="comentarios-card">
           <p-tabView (click)="obtenerComentarios(receta.idReceta)">
@@ -156,6 +177,5 @@
     </div>
   </div>
 </div>
-
 <p-toast></p-toast>
 <app-footer></app-footer>
