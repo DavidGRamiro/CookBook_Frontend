@@ -86,12 +86,14 @@ export class LoginComponent implements OnInit {
     this._authService.loginByGoogle().then(response => {
 
       let nombreUsuario = response.user?.displayName;
-      let emailUsuario = response.user?.email
+      let emailUsuario = response.user.email
       let passwordUsuario = response.user?.uid;
-      let imagenUsuario = response.user?.photoURL
+      let imagenUsuario = response.user.photoURL
 
       //Comprobamos si el usuario que entra por google ya existe en nuestra BBDD
       this._authService.buscarEmail(emailUsuario!).subscribe(res => {
+
+      console.log(res)
 
 
         if(res === null){
@@ -112,7 +114,7 @@ export class LoginComponent implements OnInit {
               if(this.usuarioGoogle.imagen != undefined){
 
                 const data = { idUsuario: idUsuarioNuevo, imagen: this.usuarioGoogle.imagen }
-              this._authService.setImagenGoogle( data ).subscribe(res => {
+              this._authService.setImagenGoogle(data.idUsuario, data.imagen).subscribe(res => {
                 console.log("Imagen actualizada");
               });
             }
@@ -148,7 +150,7 @@ export class LoginComponent implements OnInit {
               if(this.usuarioGoogle.imagen != undefined){
                 const imagen = this.usuarioGoogle.imagen
                 const data = { idUsuario: idUsuarioExistente, imagen: imagen }
-                this._authService.setImagenGoogle( data ).subscribe(res => {
+                this._authService.setImagenGoogle( data.idUsuario, data.imagen ).subscribe(res => {
                   console.log("Imagen actualizada");
                   console.log(res)
                 });

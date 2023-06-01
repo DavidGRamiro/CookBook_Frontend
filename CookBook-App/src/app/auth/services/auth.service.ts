@@ -59,9 +59,11 @@ export class AuthService {
   }
 
   //Obtener la imagen del usuario de Google
-  setImagenGoogle( data: { idUsuario: number, imagen: string } ){
+  setImagenGoogle( idUsuario : number ,imagenURL : string ){
     const url = `${this.endPoint}${this.common}/guardarImagenGoogle`;
-    return this._http.post(url, data);
+    const body = { idUsuario: idUsuario, imagen: imagenURL };
+    return this._http.post(url,body);
+
   }
 
   //

@@ -88,9 +88,9 @@ export class UsuarioService {
 
   //Eliminar un comentario de usuario
   eliminarComentario( idComentario: number){
-    const url = `${this.endPoint}${this.common}/eliminar/uno`;
+    const url = `${this.endPoint}${this.common}/eliminar/comentario`;
     const params = new HttpParams().set('idComentario', idComentario);
-    return this._http.delete(url, { params, responseType:  'arraybuffer' })
+    return this._http.delete(url, { params })
   }
 
   //Metodo para actualizar una notificacion

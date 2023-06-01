@@ -31,7 +31,7 @@ export class VerUnaComponent implements OnInit {
   valor: number = 1;
 
   //Para la paginacion de los comentarios
-  pageSize = 5;
+  pageSize = 4;
   totalRecords = 100;
   first = 0;
 
@@ -116,7 +116,7 @@ export class VerUnaComponent implements OnInit {
         //Hacemos la petición la back.
         this._recetasService.altaComentario( comentario ,this.receta.idReceta, this.usuarioLogueado.idUsuario ?? 0).subscribe( data => {
               this.comentario.push(data);
-              this._msg.add({ severity: 'info', summary: '¡ Gracias !', detail: 'Tu comentario ayuda a seguir mejorando' });
+              this._msg.add({ severity: 'info', summary: '¡ Gracias !', detail: 'Tu comentario nos ayuda a seguir mejorando' });
               //Borramos el contenido del formulario una vez subido el comentario.
               this.formComentario.reset();
         },
@@ -142,10 +142,13 @@ export class VerUnaComponent implements OnInit {
     if(idComentario != null && idComentario != undefined){
       this._userService.eliminarComentario(idComentario).subscribe( data => {
         this._msg.add({ severity: 'info', summary: 'El comentario ha sido eliminado'})
+        setTimeout(()=>{
+          window.location.reload()
+        },1500)
 
       },
       error => {
-        this._msg.add({ severity: 'error', summary: 'No se ha podido eliminar el comentario' })
+        this._msg.add({ severity: 'error', summary: "El comentario no ha podido ser eliminado." })
       }
       )
     }else{
