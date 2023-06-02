@@ -23,7 +23,6 @@ export class SharedService {
   // Da de alta un RecetasConIngrediente en la BBDD
   altaRecetaConIngrediente( RecetasConIngrediente: RecetasConIngrediente ): Observable<RecetasConIngrediente>{
     const url = `${ this.endPoint }/ingredientes/altaIngredienteEnReceta`
-    console.log(RecetasConIngrediente);
     return this._http.post<RecetasConIngrediente>(url,RecetasConIngrediente);
   }
 

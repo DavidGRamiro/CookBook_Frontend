@@ -46,4 +46,7 @@
 ::ng-deep .form-contacto button.p-ripple.p-element.p-button.p-button-rounded.p-component{
   font-size: 22px;
   width: 200px;
+  background-color: #92e3a9;
+  border-color: #71b083;
 }
+

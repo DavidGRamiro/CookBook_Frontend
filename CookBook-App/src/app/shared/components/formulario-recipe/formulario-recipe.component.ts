@@ -112,7 +112,6 @@ export class FormularioRecipeComponent implements OnInit {
     if (this.ingredienteSeleccionado && this.ingredienteForm.valid) {
       const cantidad = Number(this.ingredienteForm.value.cantidad);
       const unidadMedida = this.ingredienteForm.value.unidadMedida;
-      console.log(this.recetaForm.value);
       if (!isNaN(cantidad) && unidadMedida) {
         const ingredienteAgregado: RecetasConIngrediente = {
           ingrediente: this.ingredienteSeleccionado,
@@ -120,7 +119,6 @@ export class FormularioRecipeComponent implements OnInit {
           unidadMedida: unidadMedida,
           receta: this.recetaEnviada,
         };
-        console.log(ingredienteAgregado);
         this.ingredientesEnReceta.push(ingredienteAgregado);
         this.ingredienteSeleccionado = null;
         this.ingredienteForm.reset();
@@ -162,7 +160,6 @@ export class FormularioRecipeComponent implements OnInit {
           imagen: '',
           usuario: usuario,
         };
-        console.log(this.receta);
         this.mostrarFormularioIngredientes();
       }
     }
@@ -187,7 +184,6 @@ export class FormularioRecipeComponent implements OnInit {
         this.ingredientesEnReceta.forEach((ingredientesEnReceta) => {
           ingredientesEnReceta.receta = this.recetaEnviada;
         });
-        console.log(this.ingredientesEnReceta);
       }
     }
   }
@@ -199,7 +195,6 @@ export class FormularioRecipeComponent implements OnInit {
       this._sharedService
         .altaRecetaConIngrediente(ingredientesEnReceta)
         .subscribe((resp) => {
-          console.log(resp);
           this._msg.add({
             severity: 'success',
             summary: 'Cambios guardados',
@@ -227,10 +222,9 @@ export class FormularioRecipeComponent implements OnInit {
       this._sharedService.altaReceta(this.receta).subscribe(
         (resp) => {
           this.recetaEnviada = resp;
-          console.log('Receta dada de alta', this.recetaEnviada);
         },
         (error) => {
-          console.log('Error al dar de alta', error);
+          console.error('Error al dar de alta', error);
         }
       );
       this.ingredientesAnadidos = true;
@@ -251,16 +245,12 @@ export class FormularioRecipeComponent implements OnInit {
     nombre = nombre.toLowerCase();
 
     let newFileName = `${nombre}.${fileExtension}`;
-    console.log(newFileName);
     return newFileName;
   }
 
   upload(event: any) {
-    console.log('upload');
-    console.log(event.files);
     if (event.files.length > 0) {
       this.uploadedFile = event.files[0];
-      console.log(event.files[0].name);
       let nuevoNombre = this.createNewFileName(
         this.receta.nombre,
         event.files[0].name
@@ -268,12 +258,10 @@ export class FormularioRecipeComponent implements OnInit {
       let newFile = new File([event.files[0]], nuevoNombre, {
         type: event.files[0].type,
       });
-      console.log(newFile);
       if (this.recetaEnviada.idReceta != null) {
         this._sharedService
           .subirImagen(newFile, this.recetaEnviada.idReceta)
           .subscribe((receta: Receta) => {
-            console.log(receta);
             this.uploadedImageUrl = receta.imagen;
             this._msg.add({
               severity: 'success',

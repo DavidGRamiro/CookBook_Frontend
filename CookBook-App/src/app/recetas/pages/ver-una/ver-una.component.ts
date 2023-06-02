@@ -49,7 +49,6 @@ export class VerUnaComponent implements OnInit {
         .subscribe((response) => {
           this.receta = response;
           this.nombreReceta = this.receta.nombre;
-          console.log(this.nombreReceta);
 
           if (this.receta != null) {
             this.dividirCadena();
@@ -64,7 +63,6 @@ export class VerUnaComponent implements OnInit {
               let usuario = this.usuarioLogueado.idUsuario;
               let receta = this.receta.idReceta;
               this._recetasService.esFavorita(usuario, receta).subscribe((data) => {
-                console.log(data);
                 this.esFavorita = data;
                 this.iconoFav = this.esFavorita
                   ? 'pi pi-heart-fill'
@@ -74,7 +72,6 @@ export class VerUnaComponent implements OnInit {
                   : 'Añadir a favoritos';
               });
             }
-            console.log(this.esFavorita);
           }
       });
 
@@ -139,7 +136,6 @@ export class VerUnaComponent implements OnInit {
     if (this.formComentario.valid) {
       //Accedemos al valor del formlario en formato JSON
       const comentario = this.formComentario.getRawValue();
-      console.log(comentario);
 
       if (this.usuarioLogueado != undefined) {
         //Hacemos la petición la back.
@@ -175,8 +171,6 @@ export class VerUnaComponent implements OnInit {
 
   //Funciona para mostrar el mensaje personalizado <p-toast>
   addFav() {
-    console.log(this.receta.idReceta);
-    console.log(this.usuarioLogueado?.idUsuario);
     if (this.usuarioLogueado != undefined) {
       if (this.esFavorita) {
         // Si ya es favorita, eliminar de favoritos
@@ -188,7 +182,6 @@ export class VerUnaComponent implements OnInit {
                 severity: 'error',
                 summary: 'Receta eliminada de favoritos',
               });
-              console.log(data);
               this.esFavorita = false;
               this.iconoFav = 'pi pi-heart';
               this.labelFav = 'Añadir a favoritos';
@@ -211,7 +204,6 @@ export class VerUnaComponent implements OnInit {
                 severity: 'success',
                 summary: 'Receta añadida a favoritos',
               });
-              console.log(data);
               this.esFavorita = true;
               this.iconoFav = 'pi pi-heart-fill';
               this.labelFav = 'Eliminar de favoritos';

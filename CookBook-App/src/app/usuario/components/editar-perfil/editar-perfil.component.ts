@@ -26,13 +26,9 @@ export class EditarPerfilComponent implements OnInit {
   ) {
     this.usuario = this._config.data.usuario;
   }
-  ngOnInit(): void {
-    console.log(this.usuario);
-    console.log(this.usuario.password);
-  }
+  ngOnInit(): void { }
 
   guardarCambios() {
-    console.log('guardando cambios');
 
     if (this.uploadedImageUrl) { // si se ha subido una imagen
       this.usuario.imagen = this.uploadedImageUrl.substring(31, this.uploadedImageUrl.length);
@@ -42,7 +38,6 @@ export class EditarPerfilComponent implements OnInit {
     .updatePerfil(this.usuario.idUsuario, this.usuario.email, this.usuario.username)
     .subscribe({
       next: (usuario: Usuario) => {
-        console.log(usuario);
         this.usuario = usuario;
         localStorage.setItem('user', JSON.stringify(usuario));
         this._messageService.add({
@@ -64,19 +59,14 @@ export class EditarPerfilComponent implements OnInit {
     username = username.replace(/\s/g, '-');
     username = username.toLowerCase();
     let newFileName = `${username}.${fileExtension}`;
-    console.log(newFileName);
     return newFileName;
   }
 
   upload(event: any) {
-    console.log('upload');
-    console.log(event.files);
     if (event.files.length > 0) {
       this.uploadedFile = event.files[0];
-      console.log(event.files[0].name);
       let nuevoNombre = this.createNewFileName( this.usuario.username, event.files[0].name);
       let newFile = new File([event.files[0]], nuevoNombre, {type: event.files[0].type});
-      console.log(newFile);
 
       this._usuarioService
         .saveImagePerfil( this.usuario.idUsuario, newFile)

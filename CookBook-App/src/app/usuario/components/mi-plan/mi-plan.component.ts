@@ -22,10 +22,6 @@ export class MiPlanComponent implements OnInit {
   constructor(private _dialogService: DialogService) { }
 
   ngOnInit(): void {
-
-    console.log('Starting');
-    console.log('Usuario: ' + this.usuario.email);
-    console.log('Usuario con plan: ' + this.usuarioConPlan);
     this.progreso = this.calcularProgreso();
   }
 
@@ -47,7 +43,6 @@ export class MiPlanComponent implements OnInit {
     this.rangeDates = [fechaInicio, fechaFin];
     this.fechaFin = fechaFin;
     this.fechaInicio = fechaInicio;
-    console.log(progreso);
 
     return progreso;
   }

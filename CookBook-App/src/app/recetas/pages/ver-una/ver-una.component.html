@@ -29,6 +29,8 @@
             iconPos="right"
             label="{{labelFav}}"
             (click)="addFav()"
+            class="boton-fav"
+            [style]="{'background-color': '#92e3a9','border-color': '#71b083', 'border-radius': '5px'}"
           ></p-button>
         </div>
         <ng-template #noLogeado>
@@ -118,21 +120,25 @@
                     placeholder="Escribe aquí tu comentario"
                   ></textarea>
                 </div>
-                <p-button type="submit" (click)="subirComentario()">
-                  Subir comentario
+                <p-button
+                      type="submit"
+                      (click)="subirComentario()"
+                      [style]="{'background-color': '#92e3a9','border-color': '#71b083', 'border-radius': '5px'}"
+                      label="Subir comentario">
                 </p-button>
               </form>
             </p-tabPanel>
             <ng-template #noLogin>
               <p-tabPanel header="Deja tu opinion">
                 <span class="alert text text-danger">
-                  <p>Para poder comentar debes estar registrado</p>
+                  <p class="ml-3"><strong>Para poder comentar debes estar registrado</strong></p>
                 </span>
                 <p-button
                   label="Registrate ahora"
                   icon="pi pi-sign-in"
                   iconPos="right"
                   routerLink="/auth/registro"
+                  [style]="{'background-color': '#92e3a9','border-color': '#71b083', 'border-radius': '5px'}"
                 ></p-button>
               </p-tabPanel>
             </ng-template>
@@ -157,7 +163,7 @@
                     <i
                       class="pi pi-trash basura"
                       (click)="eliminarComentario(comentario.idComentario)"
-                      style="color: red;"
+                      style="color:red"
                     ></i>
                   </span>
                 </div>

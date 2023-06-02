@@ -86,7 +86,6 @@ export class SingleNotificacionComponent implements OnInit, OnDestroy{
     if (this.notificacion.idNotificacion) {
       this._usuarioService.getNotificacionById(this.notificacion.idNotificacion)
       .subscribe((notificacion: NotificacionDTO) => {
-        console.log('Notificacion obtenida', notificacion);
         this.notificacionDTO = notificacion;
         this.notificacionDTO.leida = !this.notificacionDTO.leida;
         this.actualizarNotificacion();
@@ -105,12 +104,9 @@ export class SingleNotificacionComponent implements OnInit, OnDestroy{
 
   eliminarNotificacion(): void {
     // comprobamos que la notificacion tenga id
-    console.log('Notificacion a eliminar', this.notificacion)
-    console.log(this.notificaciones)
     if (this.notificacion.idNotificacion) {
       this._usuarioService.deleteNotificacion(this.notificacion.idNotificacion)
         .subscribe((response: boolean) => {
-          console.log('Notificacion eliminada', response);
           // Eliminar la notificación de la lista actual sin recargar la página
           const index = this.notificaciones.findIndex(n => n.idNotificacion === this.notificacion.idNotificacion);
           if (index !== -1) {

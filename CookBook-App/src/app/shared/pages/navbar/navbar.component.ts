@@ -41,6 +41,9 @@ export class NavbarComponent implements OnInit {
 
     if(localStorage.getItem('user') != null){
       const userString = localStorage.getItem('user');
+      const user = localStorage.getItem('user');
+      const userJSON = JSON.parse(user!);
+      this.usuarioLogueado.imagen = userJSON.imagen;
       if(userString != null){
         this.usuarioLogueado = JSON.parse(userString)
       }
@@ -77,10 +80,12 @@ export class NavbarComponent implements OnInit {
     {
       label: 'Registrate', routerLink: '/auth/registro', icon: "pi pi-plus"
     }
-  ]
-    public showMobileMenu(){
-      this.displayMenu = !this.displayMenu;
-    }
+  ];
+
+  public showMobileMenu(){
+    this.displayMenu = !this.displayMenu;
+  }
+
   navegarPerfil(): void {
     if (this.isLoggedIn) {
       this._router.navigateByUrl('/user/perfil');
@@ -88,8 +93,9 @@ export class NavbarComponent implements OnInit {
       this._router.navigateByUrl('/login');
     }
   }
+
+
   public confirmarCierre() {
-    console.log('Modal abierto');
       this._confirmationService.confirm({
         message: '¿Seguro que quiere cerrar sesión?',
         icon: 'pi pi-exclamation-triangle',
@@ -109,8 +115,7 @@ export class NavbarComponent implements OnInit {
     localStorage.removeItem('user');
     localStorage.removeItem('rol');
     localStorage.removeItem('token');
-    console.log('Sesión cerrada');
-    if (window.location.pathname === '/user/perfil') {
+    if (window.location.pathname === '/user/perfil' || window.location.pathname === '/admin/usuarios') {
       this._router.navigateByUrl('/home');
     }else{
     window.location.reload();

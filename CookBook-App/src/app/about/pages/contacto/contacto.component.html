@@ -45,8 +45,11 @@
           styleClass="p-button p-button-rounded"
           pTooltip="Ponerse en contacto"
           (click)="mostrarNotificacion()"
+          [disabled]="!formContacto.valid"
         ></p-button>
       </form>
     </div>
   </div>
 </div>
+
+<p-toast></p-toast>

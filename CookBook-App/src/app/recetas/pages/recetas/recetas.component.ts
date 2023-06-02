@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Receta } from '../../interface/recetas.interface';
 import { RecetasService } from '../../services/recetas.service';
-import { MenuItem } from 'primeng/api';
+import { MenuItem, MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-recetas',
@@ -33,7 +33,8 @@ export class RecetasComponent implements OnInit {
 
   searchQuery!: string;
 
-  constructor(private _recetaService: RecetasService) {}
+  constructor(private _recetaService: RecetasService,
+              private _msg: MessageService) {}
 
   ngOnInit(): void {
     this.obtenerTodas();
@@ -74,6 +75,7 @@ export class RecetasComponent implements OnInit {
     });
   }
 
+
   private buscarPorIngredientes(receta: Receta, query: string): boolean {
     if (receta.recetasConIngredientes.length > 0) {
       for (let i = 0; i < receta.recetasConIngredientes.length; i++) {
@@ -111,8 +113,8 @@ export class RecetasComponent implements OnInit {
     this.datos = filtro;
   }
 
+  //Método para buscar por nombre de ingrediente
   searchByName(event: any) {
-    console.log(event.query);
     if (!this.isSearchByNameActive) {
       this.isSearchByNameActive = true;
       this.isSearchByIngredientsActive = false;
@@ -133,8 +135,8 @@ export class RecetasComponent implements OnInit {
     }
   }
 
+  //Método para buscar por nombre de ingrediente
   searchByIngredients(event: any) {
-    console.log(event);
     if (!this.isSearchByIngredientsActive) {
       this.isSearchByIngredientsActive = true;
       this.isSearchByNameActive = false;
@@ -154,11 +156,11 @@ export class RecetasComponent implements OnInit {
             ) {
               filtro.push(receta);
             } else {
-              console.log('No hay recetas con ese ingrediente');
+              this._msg.add({ severity:'warning', summary:'Recetas no encontradas', detail:'No se han encontrado recetas con estos ingredientes' })
             }
           }
         } else {
-          console.log('No hay recetas con ingredientes');
+          this._msg.add({ severity:'warning', summary:'Recetas no encontradas', detail:'No se han encontrado recetas con estos ingredientes' })
         }
       }
       this.datos = filtro;

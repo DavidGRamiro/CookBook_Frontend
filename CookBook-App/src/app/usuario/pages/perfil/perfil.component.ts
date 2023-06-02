@@ -11,7 +11,6 @@ import { Notificacion } from '../../interface/notificacion.interface';
 import { DialogService } from 'primeng/dynamicdialog';
 import { EditarPerfilComponent } from '../../components/editar-perfil/editar-perfil.component';
 import { NotificacionService } from '../../services/notificacion.service';
-import { DragCalendarComponent } from 'src/app/shared/components/drag-calendar/drag-calendar.component';
 
 @Component({
   selector: 'app-perfil',
@@ -34,7 +33,6 @@ export class PerfilComponent implements OnInit {
     private _validator: ValidatorService,
     private _dialogService: DialogService,
     private _notificacionService: NotificacionService,
-    private _router: Router
   ) {}
 
   ngOnInit(): void {
@@ -46,14 +44,12 @@ export class PerfilComponent implements OnInit {
 
     this.isLoggedIn =
       localStorage.getItem('isLoggedIn') === 'true' ? true : false;
-    console.log(this.isLoggedIn);
     if (this.isLoggedIn) {
       if (localStorage.getItem('user') != null) {
         const userString = localStorage.getItem('user');
         if (userString != null) {
           this.usuario = JSON.parse(userString);
         }
-        console.log(this.usuario);
       }
       /// El usuario ha iniciado sesión, continuar con la lógica actual del componente
       this._usuarioService
@@ -90,13 +86,11 @@ export class PerfilComponent implements OnInit {
   }
 
   cambiarComponenteActivo(index: number) {
-    console.log('Cambiando al componente', index);
     this.activeIndex = index;
   }
 
   editarPerfil() {
     //Abrimos un dialogo para editar el perfil
-    console.log('Editar perfil');
     this._dialogService.open(EditarPerfilComponent, {
       header: 'Editar perfil ',
       width: '70% !important',

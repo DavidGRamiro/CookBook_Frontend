@@ -75,7 +75,7 @@ export class LoginComponent implements OnInit {
           err => {
             this.login = false;
             this.error = err.error;
-            console.log(err.error)
+            console.error(err.error)
           })
     }
   }
@@ -93,11 +93,7 @@ export class LoginComponent implements OnInit {
       //Comprobamos si el usuario que entra por google ya existe en nuestra BBDD
       this._authService.buscarEmail(emailUsuario!).subscribe(res => {
 
-      console.log(res)
-
-
         if(res === null){
-          console.log("No existe en BBDD")
           //Damos de alta al usuario en nuestra BBDD
           this.usuarioGoogle.email = emailUsuario;
           this.usuarioGoogle.username = nombreUsuario;
@@ -105,18 +101,15 @@ export class LoginComponent implements OnInit {
           this.usuarioGoogle.imagen = imagenUsuario
 
           this._authService.altaUsuario(this.usuarioGoogle).subscribe(response => {
-            console.log("Es un nuevo usuario", response)
 
             let idUsuarioNuevo: number | undefined = response.idUsuario;
 
             if (typeof idUsuarioNuevo === 'number') {
 
               if(this.usuarioGoogle.imagen != undefined){
-
                 const data = { idUsuario: idUsuarioNuevo, imagen: this.usuarioGoogle.imagen }
-              this._authService.setImagenGoogle(data.idUsuario, data.imagen).subscribe(res => {
-                console.log("Imagen actualizada");
-              });
+                this._authService.setImagenGoogle(data.idUsuario, data.imagen).subscribe(res => {
+                });
             }
             }
             // Variable asociada al servicio de validaciones para saber si se ha logueado
@@ -131,34 +124,23 @@ export class LoginComponent implements OnInit {
           })
         }
         else{
-          // Variable asociada al servicio de validaciones para saber si se ha logueado)
-
-          console.log('YA ESTA REGISTRADO',res)
-
+          // Variables asociada al servicio de validaciones para saber si se ha logueado)
           this.usuarioGoogle.email = res.email
           this.usuarioGoogle.password = res.password
           this.usuarioGoogle.username = res.username
           this.usuarioGoogle.idUsuario = res.idUsuario
           this.usuarioGoogle.imagen = response.user.photoURL
 
-          console.log(this.usuarioGoogle)
-
           let idUsuarioExistente: number | undefined = this.usuarioGoogle.idUsuario;
-          console.log(idUsuarioExistente)
 
             if ( idUsuarioExistente != undefined) {
               if(this.usuarioGoogle.imagen != undefined){
                 const imagen = this.usuarioGoogle.imagen
                 const data = { idUsuario: idUsuarioExistente, imagen: imagen }
                 this._authService.setImagenGoogle( data.idUsuario, data.imagen ).subscribe(res => {
-                  console.log("Imagen actualizada");
-                  console.log(res)
                 });
               }
-            } else {
-              console.error('El idUsuario no es un número válido.');
             }
-
           this.isLoggedIn = true;
           this._validator.setLoggedIn(this.isLoggedIn)
           // Almacenamos la variable en el localStorage, para que si se recarga el navegador siga conectado
@@ -174,7 +156,6 @@ export class LoginComponent implements OnInit {
 
   signFacebook(){
     this._authService.loginByFacebook().then(response => {
-      console.log(response)
     })
   }
 
