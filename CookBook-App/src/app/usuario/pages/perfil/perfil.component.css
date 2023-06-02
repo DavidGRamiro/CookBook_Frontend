@@ -47,7 +47,10 @@ p {
   font-weight: bold;
 }
 
-
+::ng-deep .p-tabview-nav-content {
+  overflow-x: scroll;
+  white-space: nowrap;
+}
 
 .tab-header{
   display: flex;
@@ -107,23 +110,18 @@ p {
   line-height: 1rem;
 }
 
-@media (max-width: 1200px) {
+@media (max-width: 1800px) and (min-width: 1300px) {
   .contenedor {
     padding: 40px 10vh;
   }
 
   .contenedor-content{
-    flex-direction: column;
+    flex-direction: row;
   }
   .profile-tabs {
-    min-width: 430px;
     margin-left: 40px;
   }
 
-  ::ng-deep .p-tabview-nav-content {
-    overflow-x: scroll;
-    white-space: nowrap;
-  }
 
   ::ng-deep .p-tabview-nav .p-tabview-nav-next,
   ::ng-deep .p-tabview-nav .p-tabview-nav-prev {
@@ -139,13 +137,18 @@ p {
     white-space: nowrap;
   }
 }
-
-@media (max-width: 700px) {
+@media (max-width: 1299px) and (min-width:800px){
+  .contenedor-content{
+    flex-direction: column;
+    align-items: center;
+  }
+}
+@media (max-width: 799px) and (min-width: 500px) {
   .contenedor {
     padding: 40px 10vh;
   }
   .contenedor-content {
-    display: flex;
+    align-items: center;
     flex-direction: column;
     gap: 20px;
   }
@@ -157,15 +160,26 @@ p {
   .nombre-usuario {
     margin-top: 20px;
   }
+
+  .profile-tabs{
+    min-width: 47vh;
+  }
 }
 
-@media (max-width: 400px) {
+@media (max-width: 499px) and (min-width: 300px) {
   .contenedor {
     padding: 40px 10vh;
   }
   .contenedor-content {
-    display: flex;
+    align-items: center;
     flex-direction: column;
     gap: 20px;
+  }
+  .profile-container {
+    flex-direction: column;
+    padding: 40px 10vh;
+  }
+  .profile-tabs {
+    min-width: 46vh;
   }
 }

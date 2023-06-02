@@ -3,6 +3,7 @@
   padding: 24px 40px 40px 40px;
   border-radius: 8px;
 }
+
 .label {
   font-size: 18px;
   font-weight: bolder;
@@ -15,35 +16,44 @@
   font-weight: 300;
   color: #333;
 }
-.progress-bar{
+
+.progress-bar {
   margin-bottom: 20px;
 }
-h2{
+
+h2 {
   margin-bottom: 36px;
 }
-.datos-container{
+
+.datos-container {
   display: flex;
   flex-direction: row-reverse;
   justify-content: space-between;
 }
+
 ::ng-deep .p-calendar {
   width: 100% !important;
   display: grid !important;
   max-width: min-content !important;
 }
-::ng-deep .p-calendar .p-datepicker{
+
+::ng-deep .p-calendar .p-datepicker {
   min-width: min-content !important;
 }
+
 ::ng-deep .p-datepicker {
   font-size: 2px;
 }
-::ng-deep .p-datepicker td  {
+
+::ng-deep .p-datepicker td {
   padding: 0.2rem !important;
 }
-::ng-deep .p-datepicker td > span {
+
+::ng-deep .p-datepicker td>span {
   width: 24px !important;
   height: 24px !important;
 }
+
 ::ng-deep .p-datepicker-header {
   padding: 0.5rem !important;
 }
@@ -77,35 +87,49 @@ h2{
   color: #007bff;
 }
 
-@media ((max-width: 1270px) and (min-width: 1024px)) {
+@media (max-width: 1300px) and (min-width: 1024px) {
   .datos-container {
     display: flex;
     flex-direction: column-reverse;
     align-items: center;
+    gap: 24px;
   }
-
+  .progreso{
+    flex-wrap: nowrap;
+    min-width: 301px;
+  }
   ::ng-deep .p-calendar {
     max-width: 200px !important;
     margin-top: 20px;
   }
 
-  ::ng-deep .p-datepicker td > span {
+  ::ng-deep .p-datepicker td>span {
     width: 16px !important;
     height: 16px !important;
   }
 }
-@media ((max-width: 1024px) and (min-width: 960px)) {
+
+@media (max-width: 1024px) and (min-width: 960px) {
   .contenedor {
     padding: 40px 10vh;
   }
+  .contenedor-content {
+    align-items: center;
+  }
+
   .datos-container {
     display: flex;
     flex-direction: column-reverse;
     align-items: center;
+    gap:16px;
+  }
+
+  .contenedor-content {
+    align-items: center;
   }
 
   .progreso {
-    flex-wrap: nowrap;
+    width: 303px;
   }
 }
 
@@ -113,10 +137,12 @@ h2{
   .contenedor {
     padding: 40px 10vh;
   }
+
   .datos-container {
     display: flex;
     flex-direction: column-reverse;
     align-items: center;
+    gap: 24px;
   }
 
   .progreso {
@@ -128,6 +154,7 @@ h2{
   .contenedor {
     padding: 40px 10vh;
   }
+
   .datos-plan {
     display: flex;
     flex-direction: column;
@@ -138,19 +165,20 @@ h2{
   }
 }
 
-@media screen and (max-width: 400px) {
+@media screen and (max-width: 500px) {
 
   .contenedor {
     padding: 40px 10vh;
   }
+
   .datos-container {
     display: flex;
     flex-direction: column-reverse;
     align-items: center;
   }
+
   .progreso {
     flex-wrap: nowrap;
   }
 
 }
-
