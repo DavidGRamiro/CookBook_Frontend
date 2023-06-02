@@ -24,6 +24,7 @@ import { SplitButtonModule } from 'primeng/splitbutton';
 import { TarjetaCalendarComponent } from './components/tarjeta-calendar/tarjeta-calendar.component';
 import { PlannerComponent } from './pages/planner/planner.component';
 import { FileUploadModule } from 'primeng/fileupload';
+import { Error404Component } from './pages/error404/error404.component';
 
 @NgModule({
   declarations: [
@@ -41,7 +42,8 @@ import { FileUploadModule } from 'primeng/fileupload';
     CarouselRecetasComponent,
     TarjetaCalendarComponent,
     DragCalendarComponent,
-    PlannerComponent
+    PlannerComponent,
+    Error404Component
   ],
   imports: [
     CommonModule,
