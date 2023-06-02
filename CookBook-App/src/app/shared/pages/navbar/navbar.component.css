@@ -106,7 +106,7 @@
     padding: 8px 6vh;
   }
 
-  ::ng-deep button.p-ripple.p-element.p-button.p-component {
+  ::ng-deep .acceso button.p-ripple.p-element.p-button.p-component {
     height: 48px;
   }
   ::ng-deep .acceso button.p-ripple.p-element.p-button.p-component {
@@ -134,7 +134,6 @@
     border-radius: 3%;
     box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
     margin-top: 4px;
-    right: 33px;
   }
 
   .lista {
@@ -190,7 +189,7 @@
     min-width: unset;
     height: 48px;
   }
-  ::ng-deep button.p-ripple.p-element.p-button.p-component {
+  ::ng-deep  .acceso button.p-ripple.p-element.p-button.p-component {
       width: 48px;
       height: 48px;
       border-radius: 26px;
@@ -202,7 +201,7 @@
     padding-left: 8px;
   }
 
-  ::ng-deep span.p-button-label.ng-star-inserted{
+  ::ng-deep .acceso span.p-button-label.ng-star-inserted{
     display: none;
   }
 
