@@ -1,3 +1,13 @@
 <app-navbar></app-navbar>
+<div class="container">
+<div class="breadcrumb">
+    <p-breadcrumb
+      class="max-w-full"
+      [model]="items"
+      [home]="home"
+      [style]="{ border: 'none' }"
+    ></p-breadcrumb>
+  </div>
 <app-drag-calendar></app-drag-calendar>
+</div>
 <app-footer></app-footer>
