@@ -86,7 +86,7 @@ svg#freepik_stories-recipe-book{
   }
 }
 
-@media (max-width: 1024px) and (min-width: 200px) {
+@media (max-width: 1024px) and (min-width: 900px) {
   .recetas-group{
     flex-direction: column;
     gap:8px;
@@ -100,23 +100,73 @@ svg#freepik_stories-recipe-book{
   }
 
   svg{
-    margin-bottom: -11rem;
+    margin-bottom: -7rem;
+
   }
 }
-@media (max-width: 1024px) and (min-width: 900px) {
+@media (max-width: 899px) and (min-width: 768px) {
+  .recetas-group{
+    flex-direction: column;
+    gap:8px;
+    margin-bottom: 7rem;
+  }
   svg{
-    margin-bottom: -11rem;
+    margin-bottom: -7rem;
+    max-width: 50%;
   }
 }
-@media (max-width: 901px) and (min-width: 600px) {
+@media (max-width: 767px) and (min-width: 600px) {
+  .recetas-group{
+    flex-direction: column;
+    gap:8px;
+    margin-bottom: 7rem;
+    max-width: 48vh;
+  }
   svg{
     margin-bottom: -6em;
   }
 }
-@media (max-width: 601px) and (min-width: 300px) {
+@media (max-width: 601px) and (min-width: 450px) {
+  .recetas-group{
+    flex-direction: column;
+    gap:8px;
+    margin-bottom: 7rem;
+    max-width: 48vh;
+  }
   svg{
     margin-bottom: -4em;
   }
+  svg#freepik_stories-recetas{
+    max-width: 70%
+  }
+}
+@media (max-width: 449px) and (min-width: 350px) {
+  .recetas-group{
+    flex-direction: column;
+    gap:8px;
+    margin-bottom: 7rem;
+    max-width: 38vh;
+  }
+  svg{
+    margin-bottom: -4em;
+  }
+  svg#freepik_stories-recetas{
+    max-width: 70%
+  }
+}
+  @media (max-width: 349px) and (min-width: 250px) {
+    .recetas-group{
+      flex-direction: column;
+      gap:8px;
+      margin-bottom: 7rem;
+      max-width: 33vh;
+    }
+    svg{
+      margin-bottom: -4em;
+    }
+    svg#freepik_stories-recetas{
+      max-width: 70%
+    }
 }
 
 .recetas-disponibles{
