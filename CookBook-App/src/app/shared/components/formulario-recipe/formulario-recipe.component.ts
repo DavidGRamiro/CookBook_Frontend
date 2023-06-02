@@ -26,7 +26,7 @@ export class FormularioRecipeComponent implements OnInit {
   mostrarNuevoIngrediente = false;
   ingredientesFiltrados!: Ingrediente[];
   usuario: Usuario;
-  unidadesMedida: string[] = ['kg', 'g', 'l', 'ml', 'mg', 'cl', 'dl'];
+  unidadesMedida: string[] = ['kg', 'g', 'l', 'ml', 'mg', 'cl', 'dl', 'ud'];
   maxFileSize: number = 3000000;
   uploadedFile: any;
   uploadedImageUrl!: string; // nueva variable para guardar la URL de la imagen subida
@@ -42,7 +42,7 @@ export class FormularioRecipeComponent implements OnInit {
     ],
     tiempoCoccion: [null, [Validators.required, Validators.pattern(/^\d+$/)]],
     instrucciones: ['', Validators.required],
-    categoria: [0, Validators.required],
+    categoria: [ null, Validators.required],
   });
 
   categorias!: Categoria[];

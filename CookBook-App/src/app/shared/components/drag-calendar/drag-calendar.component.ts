@@ -37,7 +37,6 @@ export class DragCalendarComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    debugger;
     let calendarItem = localStorage.getItem('calendarWeek');
     if (!calendarItem){
       this.initCalendar();
