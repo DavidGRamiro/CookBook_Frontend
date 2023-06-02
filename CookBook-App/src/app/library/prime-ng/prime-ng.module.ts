@@ -36,6 +36,7 @@ import { AutoCompleteModule } from 'primeng/autocomplete';
 import { PanelModule } from 'primeng/panel';
 import { BreadcrumbModule } from 'primeng/breadcrumb';
 import { DragDropModule } from 'primeng/dragdrop';
+import { ScrollTopModule } from 'primeng/scrolltop';
 
 @NgModule({
   exports: [
@@ -74,7 +75,8 @@ import { DragDropModule } from 'primeng/dragdrop';
     AutoCompleteModule,
     PanelModule,
     BreadcrumbModule,
-    DragDropModule
+    DragDropModule,
+    ScrollTopModule
   ]
 })
 
