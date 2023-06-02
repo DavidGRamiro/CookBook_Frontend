@@ -2,7 +2,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap');
 
 .contenedor {
-  padding: 20px;
+  padding: 24px;
+  padding-top: 64px;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
 }
 
 .profile-container {
@@ -10,8 +14,16 @@
   align-items: center;
   gap: 20px;
   flex-wrap: wrap;
+    margin: 0;
+    flex-direction: column;
 }
-
+.profile-tabs {
+  display: flex;
+  flex-direction: column;
+  width: 70%;
+  min-width: 750px;
+  max-width: 60vh;
+}
 .titulo-seccion {
   font-family: 'Fira Sans', sans-serif;
   font-size: 56px;
@@ -24,8 +36,9 @@
   display: flex;
   flex-direction: row;
   align-items: flex-start;
+  justify-content: center;
   padding: 24px 32px;
-  gap: 24px;
+  gap: 120px;
 }
 
 p {
@@ -34,17 +47,16 @@ p {
   font-weight: bold;
 }
 
-.profile-container {
-  max-width: 800px;
-  margin: 0 auto;
-  display: flex;
-  flex-direction: column;
+::ng-deep .p-tabview-nav-content {
+  overflow-x: scroll;
+  white-space: nowrap;
 }
 
-.profile-tabs {
+.tab-header{
   display: flex;
-  flex-direction: column;
-  width: 70%;
+  flex-direction: row;
+  align-items: center;
+  gap: 8px;
 }
 
 .imagen-usuario {
@@ -98,29 +110,18 @@ p {
   line-height: 1rem;
 }
 
-@media (max-width: 767px) {
-  .profile-container {
-    flex-direction: column;
+@media (max-width: 1800px) and (min-width: 1300px) {
+  .contenedor {
+    padding: 40px 10vh;
   }
 
-  .nombre-usuario {
-    margin-top: 20px;
+  .contenedor-content{
+    flex-direction: row;
   }
-}
+  .profile-tabs {
+    margin-left: 40px;
+  }
 
-@media (max-width: 479px) {
-  .contenedor-content {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-  }
-}
-
-@media (max-width: 959px) {
-  ::ng-deep .p-tabview-nav-content {
-    overflow-x: scroll;
-    white-space: nowrap;
-  }
 
   ::ng-deep .p-tabview-nav .p-tabview-nav-next,
   ::ng-deep .p-tabview-nav .p-tabview-nav-prev {
@@ -134,5 +135,51 @@ p {
   ::ng-deep .p-tabview-nav .p-tabview-nav-list .p-tabview-nav-item {
     flex: 0 0 auto;
     white-space: nowrap;
+  }
+}
+@media (max-width: 1299px) and (min-width:800px){
+  .contenedor-content{
+    flex-direction: column;
+    align-items: center;
+  }
+}
+@media (max-width: 799px) and (min-width: 500px) {
+  .contenedor {
+    padding: 40px 10vh;
+  }
+  .contenedor-content {
+    align-items: center;
+    flex-direction: column;
+    gap: 20px;
+  }
+  .profile-container {
+    flex-direction: column;
+    padding: 40px 10vh;
+  }
+
+  .nombre-usuario {
+    margin-top: 20px;
+  }
+
+  .profile-tabs{
+    min-width: 47vh;
+  }
+}
+
+@media (max-width: 499px) and (min-width: 300px) {
+  .contenedor {
+    padding: 40px 10vh;
+  }
+  .contenedor-content {
+    align-items: center;
+    flex-direction: column;
+    gap: 20px;
+  }
+  .profile-container {
+    flex-direction: column;
+    padding: 40px 10vh;
+  }
+  .profile-tabs {
+    min-width: 46vh;
   }
 }

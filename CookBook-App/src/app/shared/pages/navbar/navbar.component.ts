@@ -20,7 +20,7 @@ export class NavbarComponent implements OnInit {
     idUsuario: 0,
     imagen: '',
   }
-
+  isAdmin: boolean = false;
   items!: MenuItem[];
   registerItems!: MenuItem[];
   displayMenu: boolean = false;
@@ -41,11 +41,16 @@ export class NavbarComponent implements OnInit {
 
     if(localStorage.getItem('user') != null){
       const userString = localStorage.getItem('user');
+      const user = localStorage.getItem('user');
+      const userJSON = JSON.parse(user!);
+      this.usuarioLogueado.imagen = userJSON.imagen;
       if(userString != null){
         this.usuarioLogueado = JSON.parse(userString)
       }
 
-
+      if(this.usuarioLogueado.usuarioConRoles?.find(r => r.role.nombreRol == 'admin')){
+        this.isAdmin = true;
+      }
     }
   }
 
@@ -64,8 +69,7 @@ export class NavbarComponent implements OnInit {
       label: 'Acerca de',
       items: [
         { label: 'Quiénes somos', routerLink: '/about' },
-        { label: 'FAQs', routerLink: '/about/faqs' },
-        { label: 'Contacto', routerLink: '/about/contacto' }
+        { label: 'FAQs', routerLink: '/about/faqs' }
       ]
     }
   ]
@@ -76,10 +80,12 @@ export class NavbarComponent implements OnInit {
     {
       label: 'Registrate', routerLink: '/auth/registro', icon: "pi pi-plus"
     }
-  ]
-    public showMobileMenu(){
-      this.displayMenu = !this.displayMenu;
-    }
+  ];
+
+  public showMobileMenu(){
+    this.displayMenu = !this.displayMenu;
+  }
+
   navegarPerfil(): void {
     if (this.isLoggedIn) {
       this._router.navigateByUrl('/user/perfil');
@@ -87,8 +93,9 @@ export class NavbarComponent implements OnInit {
       this._router.navigateByUrl('/login');
     }
   }
+
+
   public confirmarCierre() {
-    console.log('Modal abierto');
       this._confirmationService.confirm({
         message: '¿Seguro que quiere cerrar sesión?',
         icon: 'pi pi-exclamation-triangle',
@@ -106,8 +113,9 @@ export class NavbarComponent implements OnInit {
     localStorage.clear();
     localStorage.removeItem('isLoggedIn');
     localStorage.removeItem('user');
-    console.log('Sesión cerrada');
-    if (window.location.pathname === '/user/perfil') {
+    localStorage.removeItem('rol');
+    localStorage.removeItem('token');
+    if (window.location.pathname === '/user/perfil' || window.location.pathname === '/admin/usuarios') {
       this._router.navigateByUrl('/home');
     }else{
     window.location.reload();

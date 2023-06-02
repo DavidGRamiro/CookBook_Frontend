@@ -25,10 +25,6 @@ export class EstadisticasComponent implements OnInit {
 
           this.nombreUsuarios = response.map( usuario => usuario.username!);
           this.idUsuario = this.usuariosRegistrados.map(usuarios => usuarios.fechaRegistro!)
-
-          //Extraer los nombres de los usuarios
-            console.log(this.nombreUsuarios)
-            console.log(this.idUsuario)
       })
     }
 

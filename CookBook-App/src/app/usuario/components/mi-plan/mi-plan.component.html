@@ -1,17 +1,41 @@
-<div class="datos-plan">
-  <div class="plan-card">
-    <h3 class="plan-card-header">Plan contratado</h3>
-    <app-tarjeta-plan [plan]="usuarioConPlan.plan"></app-tarjeta-plan>
-  </div>
-  <div class="progreso">
-    <p>Fecha de inicio: {{ fechaInicio.toLocaleDateString() }}</p>
-    <p>Fecha de fin: {{ fechaFin.toLocaleDateString() }}</p>
-    <p>Estado: {{ usuarioConPlan.estado }}</p>
-    <p-progressBar [value]="progreso"></p-progressBar>
-
-    <div class="card flex justify-content-center">
-      <p-calendar class="calendario" [(ngModel)]="rangeDates" selectionMode="range" [inline]="true" [showWeek]="true">
-      </p-calendar>
+<div class="datos-plan" *ngIf="usuario.plan">
+  <h2>Plan contratado</h2>
+  <div class="datos-container">
+    <div *ngIf="!usuarioConPlan" class="no-plan">
+      <h4>Todavía no se te ha asignado un plan</h4>
     </div>
-  </div>
+      <div class="plan-card">
+
+        <app-tarjeta-plan [plan]="usuarioConPlan.plan"></app-tarjeta-plan>
+        <div class ="text-center">
+          <p-button (click)="mostrarCalendario()" icon="pi pi-calendar" styleClass="p-button-rounded p-button-success" label="Planificador Semanal" ></p-button>
+        </div>
+      </div>
+      <div class="progreso">
+        <p>
+          <span class="label">Fecha de inicio: </span>
+          <span class="value">{{ fechaInicio.toLocaleDateString() }}</span>
+        </p>
+        <p>
+          <span class="label">Fecha de fin: </span>
+          <span class="value">{{ fechaFin.toLocaleDateString() }}</span>
+        </p>
+        <p>
+          <span class="label">Estado: </span>
+          <span class="value">{{ usuarioConPlan.estado }}</span>
+        </p>
+        <p-progressBar class="progress-bar" [value]="progreso"></p-progressBar>
+
+        <div class="card flex justify-content-center">
+          <p-calendar
+            class="calendario"
+            [(ngModel)]="rangeDates"
+            selectionMode="range"
+            [inline]="true"
+            [showWeek]="true"
+          >
+          </p-calendar>
+        </div>
+      </div>
+    </div>
 </div>

@@ -1,0 +1,115 @@
+.recipe-main {
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 40px;
+  width: 100%;
+}
+h1{
+  margin: 24px 0;
+}
+h2{
+  margin: 16px 0;
+}
+h3{
+  margin: 8px 0;
+  padding: 16px;
+}
+
+.add-fav{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+}
+.recipe-block-first {
+  background-color: #e0e0e0;
+  width: 33%;
+  border-top-left-radius: 24px;
+  border-bottom-left-radius: 24px;
+  padding: 2rem;
+
+}
+.recipe-block-second{
+  width: 66%;
+  background-color: #ffe086;
+  border-top-right-radius: 24px;
+  border-bottom-right-radius: 24px;
+  padding: 2rem;
+}
+.recipe-title {
+  text-align: center;
+}
+
+.recipe-subblock {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.recipe-image-block {
+  text-align: center;
+}
+
+.recipe-image {
+  width: 80%;
+  border-radius: 10px;
+}
+
+.chip-block {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.chip-title{
+  margin: 0 16px;
+}
+.ingredient-section{
+  padding: 0 16px;
+}
+.instrucciones{
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+.mod-mac{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.pi .pi-trash .basura {
+  color: red;
+  cursor: pointer;
+}
+.titulo-com{
+  background-color: white;
+  margin-bottom: 0;
+}
+textarea{
+  min-height: 40px;
+  width: 100%;
+  margin-bottom: 16px;
+}
+.macros p span:first-child {
+  font-weight: bold;
+  font-size: 18px;
+
+  text-shadow: 0px 0px 0px black;
+}
+.ing-nombre{
+  font-size: 18px;
+}
+.comentarios{
+  display: flex;
+  flex-direction: column;
+}
+::ng-deep .chip-block .p-chip{
+  background-color: #ffe086;
+  color: black;
+  font-size: 16px;
+  font-weight: 500;
+  padding: 0 8px;
+}

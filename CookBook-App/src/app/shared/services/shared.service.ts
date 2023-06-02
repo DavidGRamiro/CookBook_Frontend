@@ -23,7 +23,6 @@ export class SharedService {
   // Da de alta un RecetasConIngrediente en la BBDD
   altaRecetaConIngrediente( RecetasConIngrediente: RecetasConIngrediente ): Observable<RecetasConIngrediente>{
     const url = `${ this.endPoint }/ingredientes/altaIngredienteEnReceta`
-    console.log(RecetasConIngrediente);
     return this._http.post<RecetasConIngrediente>(url,RecetasConIngrediente);
   }
 
@@ -44,5 +43,14 @@ export class SharedService {
     const url = `${ this.endPoint }/ingredientes/porIdReceta`;
     const params = new HttpParams().set('idReceta', idReceta);
     return this._http.get<Ingrediente[]>(url, { params })
+  }
+
+  // SUbimos la imagen para una receta
+  subirImagen( imagen: File, idReceta: number ): Observable<Receta>{
+    const url = `${ this.endPoint }/recetas/guardarImagen`;
+    const formData = new FormData();
+    formData.append('imagen', imagen);
+    formData.append('idReceta', idReceta.toString());
+    return this._http.post<Receta>(url, formData);
   }
 }

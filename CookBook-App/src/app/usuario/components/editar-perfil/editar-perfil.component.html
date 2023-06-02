@@ -8,15 +8,18 @@
     <input pInputText id="email" [(ngModel)]="usuario.email" />
   </div>
 </div>
-<div class="fila">
-  <div class="input">
-    <label for="pass">Contraseña</label>
-    <p-password [(ngModel)]="usuario.password" [toggleMask]="true"></p-password>
+<div>
+  <div class="avatar-upload">
+      <p-fileUpload name="myfile[]" (onSelect)="upload($event)" [multiple]="false" accept="image/*" [maxFileSize]="maxFileSize">
+          <ng-template pTemplate="toolbar">
+              <div class="py-3">Sube tu avatar</div>
+          </ng-template>
+          <ng-template pTemplate="content">
+          </ng-template>
+      </p-fileUpload>
+
   </div>
-  <div class="input">
-    <label for="repeatPass">Repetir Contraseña</label>
-    <input pInputText id="repeatPass" [(ngModel)]="repeatPassword" type="password" />
-  </div>
+
 </div>
 <div class="error" *ngIf="showError">
   <p-messages [(value)]="mensaje" [enableService]="false"></p-messages>

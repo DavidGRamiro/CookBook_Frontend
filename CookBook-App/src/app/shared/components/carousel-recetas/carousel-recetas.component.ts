@@ -19,7 +19,6 @@ export class CarouselRecetasComponent implements OnInit {
 
     this._recetaService.todasRecetas().subscribe( response => {
       this.recetas = response;
-      console.log(this.recetas)
     })
 
     this.responsiveOptions = [

@@ -1,4 +1,4 @@
-<div class="card">
+
   <p-menubar [model]="menuItems" class="menu-responsive">
     <ng-template pTemplate="start">
       <img alt="cookbook-logo" routerLink="/home" src="assets\images\CookBook.png" width="70" class="menu-logo mr-2" />
@@ -13,27 +13,16 @@
       </ng-container>
       <ng-template #logueado>
         <div class="logueado">
-          <p-button class="logout-btn" icon="pi pi-sign-out" pTooltip="Cerrar sesión" [showDelay]="500"
-            styleClass="p-button-rounded p-button-danger p-button-outlined logout-button" (click)="confirmarCierre()"
-            [style]="{ cursor: 'pointer' }"></p-button>
+          <p-button class="hide-label" icon="pi pi-sign-out" pTooltip="Cerrar sesión" [showDelay]="500" label="Cerrar sesión"
+            styleClass="p-button-rounded p-button-danger logout-btn" (click)="confirmarCierre()"></p-button>
           <br />
-          <p-avatar *ngIf="usuarioLogueado.idUsuario !== 100" image="{{ usuarioLogueado.imagen }}" pTooltip="Mi perfil"
+          <p-avatar image="{{ usuarioLogueado.imagen }}" pTooltip="Mi perfil"
             [showDelay]="500" class="profile-avatar" size="large" shape="circle" (click)="navegarPerfil()"></p-avatar>
-          <div *ngIf="usuarioLogueado.idUsuario == 100" class="admin-menu">
+          <div *ngIf="isAdmin" class="admin-menu">
             <app-admin-menu></app-admin-menu>
           </div>
         </div>
     </ng-template>
-    <ng-template #noLogueado>
-      <button
-        class="p-button p-button-rounded success login-button"
-        routerLink="/auth/login"
-        [style]="{ 'background-color': '#92e3a9', 'border': 'none'}"
-      >
-        <i class="pi pi-user"></i>
-        Login
-      </button>
-      </ng-template>
       <ng-template #noLogueado>
         <div class="nolog-btn" >
             <p-button icon="pi pi-user-plus" (onClick)="showMobileMenu()" class="p-button-rounded acceso" label="Acceso"></p-button>
@@ -54,11 +43,11 @@
             </div>
           </div>
         <div class="nolog-dskt">
-          <button class="p-button p-button-rounded success register-btn" routerLink="/auth/registro">
+          <button class="p-button p-button-rounded success register-btn" routerLink="/auth/registro"[style]="{ 'background-color': '#92e3a9', 'border': 'none'}">
             <i class="pi pi-plus"></i>
             Registrarse
           </button>
-          <button class="p-button p-button-rounded login-btn" routerLink="/auth/login">
+          <button class="p-button p-button-rounded login-btn" routerLink="/auth/login" >
             <i class="pi pi-user"></i>
             Login
           </button>
@@ -66,10 +55,9 @@
       </ng-template>
     </ng-template>
   </p-menubar>
-</div>
-<p-confirmDialog #cd [style]="{ width: '50vw' }">
+
+<p-confirmDialog class="modal-logout" #cd [style]="{ width: '50vw' }">
   <ng-template pTemplate="header">
-    <h4>Cerrar sesión</h4>
   </ng-template>
   <ng-template pTemplate="footer">
     <p-button type="button" styleClass="p-button-success" icon="pi pi-check" label="Si" (click)="cd.accept()"

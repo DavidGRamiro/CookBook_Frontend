@@ -1,8 +1,14 @@
 
 .titulo-seccion {
-    font-family: 'Fira Sans', sans-serif;
-    font-size: 56px;
-    font-weight: bold;
-    text-align: center;
-    margin: 40px auto;
-  }
+  font-family: 'Fira Sans', sans-serif;
+  font-size: 56px;
+  font-weight: bold;
+  text-align: center;
+  margin: 40px auto;
+}
+.container{
+  min-height: 100vh;
+}
+.contenedor{
+  margin-bottom: 40px;
+}

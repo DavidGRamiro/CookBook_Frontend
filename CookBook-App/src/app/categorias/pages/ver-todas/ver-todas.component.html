@@ -1,12 +1,18 @@
-
 <app-navbar></app-navbar>
-<p-breadcrumb class="max-w-full" [model]="items" [home]="home" [style]="{'border': 'none'}"></p-breadcrumb>
-
-
-<h1 class="titulo-seccion">Todas las categorias</h1>
-<div class ="contenedor d-flex flex-wrap justify-content-center">
-  <div *ngFor="let categoria of datos">
+<div class="container">
+  <div class="breadcrumb">
+    <p-breadcrumb
+      class="max-w-full"
+      [model]="items"
+      [home]="home"
+      [style]="{ border: 'none' }"
+    ></p-breadcrumb>
+  </div>
+  <h1 class="titulo-seccion">Todas las categorias</h1>
+  <div class="contenedor d-flex flex-wrap justify-content-center">
+    <div *ngFor="let categoria of datos">
       <app-tarjeta-categoria [categoria]="categoria"></app-tarjeta-categoria>
+    </div>
   </div>
 </div>
 <app-footer></app-footer>

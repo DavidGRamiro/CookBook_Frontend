@@ -12,7 +12,5 @@ export class MisRecetasFavComponent implements OnInit {
 
   constructor() { }
 
-  ngOnInit(): void {
-    console.log(this.recetasFavoritas);
-  }
+  ngOnInit(): void {  }
 }

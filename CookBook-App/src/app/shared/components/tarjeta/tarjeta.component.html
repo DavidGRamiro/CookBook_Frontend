@@ -23,7 +23,7 @@
                 <img [src] =receta.usuario.imagen alt={{receta.usuario.username}} class="avatar"/>
                 <p class="username">{{ receta.usuario.username }}</p>
               </div>
-              <div class ="admin-container" *ngIf ="idAdministrador == 100">
+              <div class ="admin-container" *ngIf ="idAdministrador == 100 || creador">
                 <p-button icon="pi pi-pencil"  (onClick)="editarReceta()" styleClass="p-button-rounded p-button-warning p-button-text"></p-button>
                 <p-button icon="pi pi-trash"  (onClick)=" eliminarReceta($event)" styleClass="p-button-rounded p-button-danger p-button-text"></p-button>
               </div>
@@ -34,7 +34,6 @@
 </div>
 
 <p-toast></p-toast>
-<p-confirmPopup></p-confirmPopup>
 
 
 

@@ -16,6 +16,11 @@ import { HomeModule } from './home/home.module';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { DialogService } from 'primeng/dynamicdialog';
 import { AdminModule } from './admin/admin.module';
+import { initializeApp,provideFirebaseApp } from '@angular/fire/app';
+import { environment } from '../environments/environment';
+import { provideAuth,getAuth } from '@angular/fire/auth';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { AuthInterceptorInterceptor } from './auth/interceptors/auth-interceptor.interceptor';
 
 @NgModule({
   declarations: [
@@ -37,12 +42,19 @@ import { AdminModule } from './admin/admin.module';
     CategoriasModule,
     HomeModule,
     AdminModule,
+    provideFirebaseApp(() => initializeApp(environment.firebase)),
+    provideAuth(() => getAuth()),
 
   ],
   providers: [
     MessageService,
     ConfirmationService,
-    DialogService
+    DialogService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptorInterceptor,
+      multi: true
+    }
   ],
   bootstrap: [AppComponent]
 })

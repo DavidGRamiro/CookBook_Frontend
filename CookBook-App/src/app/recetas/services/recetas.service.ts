@@ -80,4 +80,31 @@ export class RecetasService {
     const url = `${this.endPoint}${this.common}/update`
     return this._http.put<Receta>(url,receta);
   }
+
+  //Añadir una receta a favoritos.
+  addFavorita(idUsuario: number, idReceta: number, ): Observable<Receta>{
+    const url = `${this.endPoint}/favoritos/add`
+    let params = new HttpParams();
+    params = params.append('idUsuario', idUsuario);
+    params = params.append('idReceta', idReceta);
+    return this._http.post<Receta>(url, {}, { params: params });
+  }
+
+  eliminarFavorita(idUsuario: number, idReceta: number): Observable<boolean>{
+    const url = `${this.endPoint}/favoritos/delete`
+    let params = new HttpParams();
+    params = params.append('idUsuario', idUsuario);
+    params = params.append('idReceta', idReceta);
+    return this._http.delete<boolean>(url, { params: params });
+  }
+
+  //Verificamos si una receta es favorita o no.
+  esFavorita(idUsuario: number, idReceta: number): Observable<boolean>{
+    const url = `${this.endPoint}/favoritos/esFavorita`
+    let params = new HttpParams();
+    params = params.append('idUsuario', idUsuario);
+    params = params.append('idReceta', idReceta);
+    return this._http.get<boolean>(url, { params: params });
+  }
+
 }

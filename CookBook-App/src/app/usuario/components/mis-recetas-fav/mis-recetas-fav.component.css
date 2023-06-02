@@ -1,0 +1,19 @@
+
+.recetas-fav{
+  background-color: #f2f2f2;
+  padding: 24px 40px 40px 40px;
+  border-radius: 8px;
+}
+.container-fav{
+  display: flex;
+  justify-content: space-between;
+}
+.lista{
+  padding: 16px 0;
+}
+h2{
+  margin-bottom: 20px;
+}
+.no-fav{
+  margin-top: 24px;
+}

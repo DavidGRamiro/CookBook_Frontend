@@ -1,17 +1,20 @@
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap');
 
-::ng-deep .p-card .p-card-content{
+::ng-deep app-tarjeta-categoria .p-card-body .p-card-content{
   padding: 0;
 }
-
-::ng-deep .p-card-title{
+::ng-deep app-tarjeta-categoria p-card {
+  box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.1);
+}
+::ng-deep app-tarjeta-categoria .p-card-title{
   text-align: center;
   font-family: 'Open Sans';
   font-weight: bold;
-  font-size: 20px;
+  font-size: 1.5rem !important;
+  margin-bottom: 0px !important;
 }
 
-img {
+img{
   height: 150px;
   width: 100%;
   object-fit: cover;
@@ -20,4 +23,8 @@ img {
 
 .container{
   padding: 1rem;
+}
+::ng-deep app-tarjeta-categoria .p-card:hover {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.303);
+  transition: box-shadow 330ms ease-in-out;
 }

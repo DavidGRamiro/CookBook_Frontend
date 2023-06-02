@@ -1,19 +1,19 @@
 <app-navbar></app-navbar>
-<p-breadcrumb class="max-w-full" [model]="items" [home]="home" [style]="{'border': 'none'}"></p-breadcrumb>
-
-
-<div id="main">
-<h1 class="titulo-seccion">Planes disponibles</h1>
-<div class ="contenedor d-flex flex-wrap justify-content-center">
-  <p-card *ngFor="let plan of listaPlanes" [header]="plan.nombre" [style]="{ width: '20em' }">
-    <ng-template pTemplate="header">
-        <img alt="Card" [src]="plan.imagen"  />
-
-    </ng-template>
-    <p>{{ plan.descripcion }}</p>
-    <p-button [routerLink]="['/planes', plan.id]" label="Ver Recetas"></p-button>
-  </p-card>
-
+<div class="container">
+  <div class="breadcrumb">
+    <p-breadcrumb
+      class="max-w-full"
+      [model]="items"
+      [home]="home"
+      [style]="{ border: 'none' }"
+    ></p-breadcrumb>
+  </div>
+  <h1 class="titulo-seccion">Planes disponibles</h1>
+  <div class="contenedor d-flex flex-wrap justify-content-center">
+    <div *ngFor="let plan of listaPlanes">
+      <app-tarjeta-plan [plan]="plan"></app-tarjeta-plan>
+    </div>
+  </div>
 </div>
-</div>
+
 <app-footer></app-footer>

@@ -1,4 +1,8 @@
-card {
+/* Estilos generales */
+::ng-deep .p-menubar.p-component{
+  padding: 8px 10vh;
+}
+.container {
   background-color: #f2f2f2;
   padding: 20px;
   border-radius: 8px;
@@ -8,6 +12,7 @@ card {
   width: 70px;
   margin-right: 2px;
 }
+
 .logueado {
   display: flex;
   flex-direction: row;
@@ -15,84 +20,110 @@ card {
   align-items: center;
   gap: 8px;
 }
-::ng-deep .p-avatar {
-  display: block !important;
-}
-::ng-deep .p-button.p-button-danger.p-button-outlined,
-.p-buttonset.p-button-danger > .p-button.p-button-outlined,
-.p-splitbutton.p-button-danger > .p-button.p-button-outlined {
-  width: 48px;
-  height: 48px;
-}
 
 .profile-avatar {
-  margin-right: 2px;
+  height: 48px;
+}
+.profile-avatar:hover {filter: drop-shadow(0.25px 0.25px 2px black);
 }
 
-::ng-deep .p-menubar {
-  padding: 0.5rem 2rem;
-}
-.nolog-btn{
+.nolog-btn {
   display: none;
 }
-.login-btn {
-  gap: 8px;
-  margin-left: 8px;
+
+::ng-deep button.p-ripple.p-element.p-button-rounded.p-button-danger.logout-btn.p-button.p-component{
+    height: 42px;
+}
+::ng-deep i.pi.pi-bars {
+  font-size: 1.35rem;
 }
 .register-btn {
-  gap: 8px;
-  background-color: #00d09c;
-  color: #000;
-  border-color: #00d09c;
+  background-color: #92e3a9 !important;
+  border-color: #83c796 !important;
+  border: unset !important;
+  gap:8px;
 }
+
 .register-btn:hover {
-  background-color: #01be8f;
-  color: #000;
-  border-color: #01be8f;
+  background-color: #83c796 !important;
+  border-color: #83c796 !important;
 }
-::ng-deep .p-menubar-end.ng-star-inserted {
+
+.login-btn {
+  gap:8px;
+}
+
+.nolog-dskt.ng-star-inserted {
   display: flex;
   flex-direction: row;
+  justify-content: center;
+  align-items: center;
   gap: 8px;
 }
-::ng-deep .p-dialog .p-dialog-header {
+
+/* Estilos para p-dialog específico */
+::ng-deep .modal-logout .p-dialog-header {
   padding: 24px 24px 0 24px;
 }
-::ng-deep .p-dialog .p-dialog-content {
+
+::ng-deep .modal-logout .p-dialog-content {
   padding: 24px;
   padding-top: 12px;
 }
 
-::ng-deep .p-dialog .p-dialog-footer {
+::ng-deep .modal-logout .p-dialog-footer {
   display: flex;
   justify-content: space-around;
 }
-::ng-deep .p-dialog .p-dialog-footer button {
+
+::ng-deep .modal-logout .p-dialog-footer button {
   width: 144px;
 }
 
-::ng-deep .p-dialog {
+::ng-deep .modal-logout .p-dialog {
   width: 24rem !important;
 }
-::ng-deep .nolog-dskt.ng-star-inserted{
-display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
+@media screen and (min-width: 1700px) {
+  ::ng-deep .p-menubar.p-component{
+    padding: 8px 10vh;
+}
+}
+@media  screen and (min-width: 1300px)  {
+  ::ng-deep .p-menubar.p-component{
+    padding: 8px 10vh;
+}
 }
 
+@media screen and (max-width: 1200px)  {
+  ::ng-deep .p-menubar.p-component{
+    padding: 8px 9vh;
+  }
+}
+
+/* Estilos para pantallas pequeñas */
 @media screen and (max-width: 768px)  {
-  .nolog-btn{
-    display: block;
+  ::ng-deep .p-menubar.p-component{
+    padding: 8px 6vh;
   }
-  ::ng-deep button.p-ripple.p-element.p-button.p-component{
+
+  ::ng-deep .acceso button.p-ripple.p-element.p-button.p-component {
+    height: 48px;
+  }
+  ::ng-deep .acceso button.p-ripple.p-element.p-button.p-component {
+
+    border-radius: 30px;
     min-width: 160px;
+    height: 42px;
   }
-  ::ng-deep button.p-ripple.p-element.p-button-rounded.p-button-danger.p-button-outlined.logout-button.p-button.p-component.p-button-icon-only{
-   width: 48px !important;
-   min-width: 48px !important;
-  }
-  .submenu{
+  ::ng-deep button.p-ripple.p-element.p-button-rounded.p-button-danger.logout-btn.p-button.p-component{
+    height: 48px;
+    width: 48px;
+}
+::ng-deep button.p-ripple.p-element.p-button-rounded.p-button-danger.logout-btn.p-button.p-component > span.p-button-label{
+  display: none
+}
+
+  .submenu {
     min-width: 160px;
     position: absolute;
     background: #e9ecef;
@@ -102,29 +133,31 @@ display: flex;
     border: 0 none;
     border-radius: 3%;
     box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
-}
-::ng-deep .p-button.p-ripple.p-element.p-button.p-component{
-  border-radius: 30px;
-}
-.lista{
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
-.elemento{
-  padding: 0.75rem ;
-  color: #495057;
-  border-radius: 0;
-  transition: box-shadow 0.2s;
-  -webkit-user-select: none;
-  user-select: none;
-}
-.elemento:hover{
-  background-color: #e8e9ea;
-  color: #000;
-}
-.link{
-  cursor: pointer;
+    margin-top: 4px;
+  }
+
+  .lista {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .elemento {
+    padding: 0.75rem;
+    color: #495057;
+    border-radius: 0;
+    transition: box-shadow 0.2s;
+    -webkit-user-select: none;
+    user-select: none;
+  }
+
+  .elemento:hover {
+    background-color: #e8e9ea;
+    color: #000;
+  }
+
+  .link {
+    cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -136,20 +169,47 @@ display: flex;
     transition: box-shadow 0.2s;
     -webkit-user-select: none;
     user-select: none;
-}
+  }
 
-  ::ng-deep .nolog-btn.ng-star-inserted{
+  ::ng-deep .nolog-btn.ng-star-inserted {
     display: block;
   }
-  ::ng-deep .nolog-dskt.ng-star-inserted{
-    display: none;
+
+  ::ng-deep .nolog-dskt.ng-star-inserted {
+    display: none !important;
   }
 }
+
 @media screen and (max-width: 400px)  {
-  ::ng-deep button.p-ripple.p-element.p-button.p-component{
-    min-width: 135px;
+  ::ng-deep .p-menubar.p-component{
+    padding: 8px 3vh;
   }
-  .submenu{
-    min-width: 135px;
+
+  ::ng-deep .acceso button.p-ripple.p-element.p-button.p-component {
+    min-width: unset;
+    height: 48px;
+  }
+  ::ng-deep  .acceso button.p-ripple.p-element.p-button.p-component {
+      width: 48px;
+      height: 48px;
+      border-radius: 26px;
+      padding: 8px;
+    padding-left: 15px;
+      min-width: unset;
+  }
+  ::ng-deep .admin-btn button.p-ripple.p-element.p-button.p-component {
+    padding-left: 8px;
+  }
+
+  ::ng-deep .acceso span.p-button-label.ng-star-inserted{
+    display: none;
+  }
+
+  .submenu {
+    min-width: 160px;
+    right: 40px;
+  }
+  .logueado {
+    gap: 4px;
   }
 }

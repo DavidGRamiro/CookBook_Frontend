@@ -4,6 +4,7 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { Usuario } from '../../interface/auth.interface';
 import { Router } from '@angular/router';
 import { ValidatorService } from '../../services/validator.service';
+import { MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-registro',
@@ -33,7 +34,8 @@ export class RegistroComponent implements OnInit {
   constructor(private _authService: AuthService,
               private _fb : FormBuilder,
               private _router: Router,
-              private _validatorService: ValidatorService) { }
+              private _validatorService: ValidatorService,
+              private _msg:MessageService) { }
 
   ngOnInit(): void {
   }
@@ -72,14 +74,13 @@ export class RegistroComponent implements OnInit {
         email: this.formRegistro.value.email,
         password: this.formRegistro.value.password
       }).subscribe(response => {
-        console.log(response);
         if(this.passwordCoinciden=== true){
           this.usuarioRecibido = response
           this._router.navigateByUrl("home")
         }
       },
       error => {
-        console.log("Error de registro");
+        this._msg.add({severity:'error', summary:'Error', detail:'El usuario no se ha podido registrar'})
       })
     }
   }

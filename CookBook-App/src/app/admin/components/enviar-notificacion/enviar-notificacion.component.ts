@@ -34,7 +34,6 @@ export class EnviarNotificacionComponent implements OnInit {
 
   ngOnInit(): void {
     const idUsuario = this.idUsuario;
-    console.log(idUsuario);
 
     this.loadUsuario(idUsuario);
   }
@@ -51,7 +50,6 @@ export class EnviarNotificacionComponent implements OnInit {
 
     this.notificacion.fechaHora = nowTimestamp;
 
-    console.log(this.notificacion);
     this._usuarioService.createNotificacion(this.notificacion).subscribe((notificacion) => {
 
       //Limpia el formulario

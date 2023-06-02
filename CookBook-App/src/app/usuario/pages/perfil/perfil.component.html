@@ -32,7 +32,7 @@
           <ng-template pTemplate="header">
             <div class="tab-header">
               <i class="pi pi-heart"></i>
-              <span class="tab-title">Mis recetas favoritas</span>
+              <span class="tab-title">Mis favoritas</span>
             </div>
           </ng-template>
           <app-mis-recetas-fav [recetasFavoritas]="recetasFavoritas"></app-mis-recetas-fav>
@@ -54,12 +54,10 @@
             </div>
           </ng-template>
           <app-notificaciones [notificaciones]="notificaciones"></app-notificaciones>
-          <div *ngIf="notificacionesNuevas.length == 0" class="no-notificaciones">
-            <p class="text-m">No tienes notificaciones nuevas</p>
-          </div>
         </p-tabPanel>
       </p-tabView>
     </div>
   </div>
 </div>
 <app-footer></app-footer>
+<p-toast></p-toast>

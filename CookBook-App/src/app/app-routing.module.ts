@@ -1,8 +1,6 @@
-import { Component, NgModule } from '@angular/core';
+import { ComponentRef, NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { FormularioRecipeComponent } from './shared/components/formulario-recipe/formulario-recipe.component';
-import { CalendarComponent } from './shared/components/calendar/calendar.component';
-import { DragCalendarComponent } from './shared/components/drag-calendar/drag-calendar.component';
+import { Error404Component } from './shared/pages/error404/error404.component';
 
 const routes: Routes = [
   { path: 'home', loadChildren: () => import('./home/home.module').then(m => m.HomeModule) },
@@ -13,10 +11,7 @@ const routes: Routes = [
   { path: 'about', loadChildren: () => import('./about/about.module').then(m => m.AboutModule) },
   { path: 'categorias', loadChildren: () => import('./categorias/categorias.module').then(m => m.CategoriasModule)},
   { path: 'admin', loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule) },
-  { path: 'alta', component: FormularioRecipeComponent},
-  { path: 'calendar', component: CalendarComponent},
-  { path: 'dragcalendar', component: DragCalendarComponent},
-  { path: '**', redirectTo: 'home' }
+  { path: '**', component: Error404Component },
 ];
 
 @NgModule({

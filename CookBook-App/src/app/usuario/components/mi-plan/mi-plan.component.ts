@@ -2,6 +2,8 @@ import { Component, Input, OnInit } from '@angular/core';
 import { UsuarioConPlan } from '../../interface/usuarioconplan.interface';
 import { Usuario } from '../../interface/usuario.interface';
 import { UsuarioService } from '../../services/usuario.service';
+import { DragCalendarComponent } from 'src/app/shared/components/drag-calendar/drag-calendar.component';
+import { DialogService } from 'primeng/dynamicdialog';
 
 @Component({
   selector: 'app-mi-plan',
@@ -17,13 +19,9 @@ export class MiPlanComponent implements OnInit {
   fechaInicio: Date = new Date();
   rangeDates: Date[] = [new Date(), new Date()];
 
-  constructor(private _usuarioService: UsuarioService) { }
+  constructor(private _dialogService: DialogService) { }
 
   ngOnInit(): void {
-
-    console.log('Starting');
-    console.log('Usuario: ' + this.usuario.email);
-    console.log('Usuario con plan: ' + this.usuarioConPlan);
     this.progreso = this.calcularProgreso();
   }
 
@@ -45,9 +43,18 @@ export class MiPlanComponent implements OnInit {
     this.rangeDates = [fechaInicio, fechaFin];
     this.fechaFin = fechaFin;
     this.fechaInicio = fechaInicio;
-    console.log(progreso);
 
     return progreso;
   }
+  mostrarCalendario(){
+    this._dialogService.open( DragCalendarComponent ,{
+                                                    header: 'Planning semanal' ,
+                                                    width: '90%',
+                                                    height: '80%',
+                                                    maximizable: true
+                                                  })
+
+}
+
 
 }

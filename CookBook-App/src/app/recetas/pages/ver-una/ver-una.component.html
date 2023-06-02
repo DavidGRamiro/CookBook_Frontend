@@ -1,103 +1,185 @@
 <app-navbar></app-navbar>
-<p-breadcrumb class="max-w-full" [model]="items" [home]="home" [style]="{'border': 'none'}"></p-breadcrumb>
-
-
-<div class="container mt-5 mb-5">
-  <div class="row">
-    <!-- Primer bloque, que recoge la imagen y los ingredientes que necesita la receta -->
-    <div class="col" style="background-color: cadetblue;">
-      <h3 class="text-center m-5">{{receta.nombre }}</h3>
-      <div class="row">
-        <div class="text-center">
-          <img alt="foto-receta"[src]= receta.imagen style="width: 80%; border-radius: 10px;">
+<div class="container">
+  <div class="breadcrumb">
+    <p-breadcrumb
+      class="max-w-full"
+      [model]="items"
+      [home]="home"
+      [style]="{ border: 'none' }"
+    ></p-breadcrumb>
+  </div>
+  <div class="recipe-main" *ngIf="receta">
+    <div class="recipe-block-first">
+      <h1 class="recipe-title">{{ receta.nombre }}</h1>
+      <div class="recipe-subblock">
+        <div class="recipe-image-block">
+          <img alt="foto-receta" [src]="receta.imagen" class="recipe-image" />
         </div>
-        <div class ="mt-2 ml-7">
-          <p-chip label="{{ receta.usuario.username }}" image="{{ receta.usuario.imagen }}"></p-chip>
+        <div class="chip-block">
+          <span class="chip-title">Creada por: </span>
+          <p-chip
+            label="{{ receta.usuario.username }}"
+            image="{{ receta.usuario.imagen }}"
+            styleClass="p-chip"
+          ></p-chip>
         </div>
-        <p-divider></p-divider>
+        <div class="add-fav" *ngIf="usuarioLogueado; else noLogeado">
+          <p-button
+            icon="{{iconoFav}}"
+            iconPos="right"
+            label="{{labelFav}}"
+            (click)="addFav()"
+            class="boton-fav"
+            [style]="{'background-color': '#92e3a9','border-color': '#71b083', 'border-radius': '5px'}"
+          ></p-button>
+        </div>
+        <ng-template #noLogeado>
+          <p-divider></p-divider>
+        </ng-template>
         <!-- Sección bajo la imagen de la receta -->
       </div>
-      <div>
-        <h4>Ingredientes</h4>
+      <div class="ingredient-section">
+        <h2>Ingredientes</h2>
         <ul>
           <li *ngFor="let item of receta.recetasConIngredientes">
-              {{ item.ingrediente.nombre}} : {{  cantidad }} {{ item.unidadMedida }}
+            <span class="ing-nombre">{{ item.ingrediente.nombre }}</span
+            >: {{ cantidad }}
+            {{ item.unidadMedida }}
           </li>
         </ul>
       </div>
     </div>
 
     <!-- Segundo bloque que recoge las intrucciones de la receta -->
-    <div class="col" style="background-color: aqua;">
-      <h3 class ="text-center">¿Por donde empezamos?</h3>
-      <div class="mt-8">
-        <ul>
-          <li *ngFor = "let instruccion of instruciones">
-            {{ instruccion }}
-          </li>
+    <div class="recipe-block-second">
+      <h2 class="titulo-inst">¿Por donde empezamos?</h2>
+      <div class="instrucciones">
+        <ul *ngFor="let instruccion of instruciones">
+          <li>{{ instruccion }}</li>
         </ul>
       </div>
-      <div class="row">
-        <div class="col">
-          <h3>Macronutrientes</h3>
-            <p> Calorias {{ calorias }}</p>
-            <p> Grasas {{ grasas }}</p>
-            <p> Carbohidratos {{ carbohidratos }}</p>
-            <p> Proteinas {{ proteinas }}</p>
+      <div class="mod-mac">
+        <div class="macros">
+          <h2>Macronutrientes</h2>
+          <p>
+            <span>Calorias: </span> <span>{{ calorias }}</span>
+            <span> kcal</span>
+          </p>
+          <p>
+            <span>Grasas: </span> <span>{{ grasas }}</span> <span> g</span>
+          </p>
+          <p>
+            <span>Carbohidratos: </span> <span>{{ carbohidratos }}</span>
+            <span> g</span>
+          </p>
+          <p>
+            <span>Proteinas: </span> <span>{{ proteinas }}</span>
+            <span> g</span>
+          </p>
         </div>
-        <div class="col">
-          <h3>Modificar</h3>
+        <div class="modificar">
+          <h2>Modificar</h2>
           <p>Esta receta está pensada para una ración por persona</p>
-          <div class ="text-center">
+          <div class="input-mod">
             <!-- Botón para imcrementar el numero de raciones -->
-            <p-inputNumber [(ngModel)]="valor" (ngModelChange)="actualizarMacros()"
-                          [showButtons]="false"
-                          inputId="stacked"
-                          [min] ="1"  [max]="10"
-                          [inputStyle]="{ 'width':'50%', 'height': '50%','background-color':'#fff3cd', 'border-radius':'3px'}"
-                          [style]="{'width':'50%' ,'height': '50%',}"> </p-inputNumber>
+            <p-inputNumber
+              [(ngModel)]="valor"
+              (ngModelChange)="actualizarMacros()"
+              [showButtons]="false"
+              inputId="stacked"
+              [min]="1"
+              [max]="10"
+              [inputStyle]="{
+                width: '50%',
+                height: '50%',
+                'background-color': '#fff3cd',
+                'border-radius': '3px'
+              }"
+              [style]="{'width':'50%' ,'height': '50%',}"
+            >
+            </p-inputNumber>
           </div>
         </div>
       </div>
-      <div>
-        <h4 class ="text-center">Comentarios de usuarios</h4>
-        <div class="card">
+      <div class="comentarios">
+        <h3 class="titulo-com">Comentarios de usuarios</h3>
+        <div class="comentarios-card">
           <p-tabView (click)="obtenerComentarios(receta.idReceta)">
-                <p-tabPanel header="Deja tu opinion" *ngIf="usuarioLogueado; else noLogin">
-                    <form [formGroup]="formComentario" id="formularioComentario">
-                        <div>
-                          <textarea id="float-input" rows="5" cols="80%" pInputTextarea  [autoResize]="true" formControlName="textoComentario"
-                                    placeholder="Escribe aquí tu comentario"></textarea>
-                        </div>
-                      <button type="submit" (click)="subirComentario()">Subir comentario</button>
-                    </form>
-                  </p-tabPanel>
-                  <ng-template #noLogin>
-                    <p-tabPanel header="Deja tu opinion">
-                      <span class="alert text text-danger ">
-                        <p>Para poder comentar debes estar registrado</p>
-                      </span>
-                      <p-button label="Registrate ahora" icon ="pi pi-sign-in" iconPos="right" routerLink="/auth/registro"></p-button>
-                    </p-tabPanel>
-                  </ng-template>
-              <p-tabPanel header="Comentarios de usuarios">
-                <div *ngFor="let comentario of comentario | slice:first:first + pageSize">
-                  <div>
-                    <p-avatar image="{{ comentario.usuario.imagen }}" styleClass="mr-2" shape="circle"></p-avatar>
-                    {{ comentario.textoComentario }}
-                    <span  class ="icon-right" *ngIf="usuarioLogueado?.idUsuario === 100">
-                      <i class="pi pi-trash" (click)="eliminarComentario(comentario.idComentario)" style="color:red; cursor: pointer;"></i>
-                    </span>
-                  </div>
+            <p-tabPanel
+              header="Deja tu opinion"
+              *ngIf="usuarioLogueado; else noLogin"
+            >
+              <form [formGroup]="formComentario" id="formularioComentario">
+                <div>
+                  <textarea
+                    id="float-input"
+                    rows="5"
+                    pInputTextarea
+                    [autoResize]="true"
+                    formControlName="textoComentario"
+                    placeholder="Escribe aquí tu comentario"
+                  ></textarea>
                 </div>
-                <p-paginator [first]="first" [rows]="pageSize" [totalRecords]="totalRecords" (onPageChange)="first = $event.first"></p-paginator>
+                <p-button
+                      type="submit"
+                      (click)="subirComentario()"
+                      [style]="{'background-color': '#92e3a9','border-color': '#71b083', 'border-radius': '5px'}"
+                      label="Subir comentario">
+                </p-button>
+              </form>
+            </p-tabPanel>
+            <ng-template #noLogin>
+              <p-tabPanel header="Deja tu opinion">
+                <span class="alert text text-danger">
+                  <p class="ml-3"><strong>Para poder comentar debes estar registrado</strong></p>
+                </span>
+                <p-button
+                  label="Registrate ahora"
+                  icon="pi pi-sign-in"
+                  iconPos="right"
+                  routerLink="/auth/registro"
+                  [style]="{'background-color': '#92e3a9','border-color': '#71b083', 'border-radius': '5px'}"
+                ></p-button>
               </p-tabPanel>
+            </ng-template>
+            <p-tabPanel header="Comentarios de usuarios">
+              <div
+                *ngFor="
+                  let comentario of comentario
+                    | slice : first : first + pageSize
+                "
+              >
+                <div>
+                  <p-avatar
+                    image="{{ comentario.usuario.imagen }}"
+                    styleClass="mr-2"
+                    shape="circle"
+                  ></p-avatar>
+                  {{ comentario.textoComentario }}
+                  <span
+                    class="icon-right"
+                    *ngIf="usuarioLogueado?.idUsuario === 100"
+                  >
+                    <i
+                      class="pi pi-trash basura"
+                      (click)="eliminarComentario(comentario.idComentario)"
+                      style="color:red"
+                    ></i>
+                  </span>
+                </div>
+              </div>
+              <p-paginator
+                [first]="first"
+                [rows]="pageSize"
+                [totalRecords]="totalRecords"
+                (onPageChange)="first = $event.first"
+              ></p-paginator>
+            </p-tabPanel>
           </p-tabView>
-      </div>
+        </div>
       </div>
     </div>
   </div>
 </div>
-
 <p-toast></p-toast>
 <app-footer></app-footer>

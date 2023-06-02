@@ -1,7 +1,7 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Receta, Comentario } from 'src/app/recetas/interface/recetas.interface';
+import { Receta } from 'src/app/recetas/interface/recetas.interface';
 import { Usuario } from '../interface/usuario.interface';
 import { Plan } from '../interface/plan.interface';
 import { UsuarioConPlan } from '../interface/usuarioconplan.interface';
@@ -88,9 +88,9 @@ export class UsuarioService {
 
   //Eliminar un comentario de usuario
   eliminarComentario( idComentario: number){
-    const url = `${this.endPoint}${this.common}/eliminar/uno`;
+    const url = `${this.endPoint}${this.common}/eliminar/comentario`;
     const params = new HttpParams().set('idComentario', idComentario);
-    return this._http.delete(url, { params, responseType:  'arraybuffer' })
+    return this._http.delete(url, { params })
   }
 
   //Metodo para actualizar una notificacion
@@ -123,6 +123,25 @@ export class UsuarioService {
   updateUsuario(usuario: Usuario): Observable<Usuario>{
     const url = `${ this.endPoint }${ this.common }/actualizar`
     return this._http.put<Usuario>(url, usuario)
+  }
+
+  //Metodo para actualizar el perfil de un usuario
+  updatePerfil(idUsuario: number, email: string, username: string): Observable<Usuario> {
+    const url = `${ this.endPoint }${ this.common }/actualizarPerfil`;
+    let params = new HttpParams();
+    params = params.append('idUsuario', idUsuario.toString());
+    params = params.append('email', email);
+    params = params.append('username', username);
+    return this._http.put<Usuario>(url, {}, { params: params });
+}
+
+  //Método para guardar una imagen de perfil
+  saveImagePerfil( idUsuario: number, imagen: File): Observable<Usuario>{
+    const url = `${ this.endPoint }${ this.common }/guardarImagen`
+    const formData = new FormData();
+    formData.append('imagen', imagen, imagen.name);
+    formData.append('idUsuario', idUsuario.toString());
+    return this._http.post<Usuario>(url, formData)
   }
 
 }
