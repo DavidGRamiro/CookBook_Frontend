@@ -109,16 +109,5 @@ export class PerfilComponent implements OnInit {
       window.location.reload();
     });
   }
-
-  mostrarCalendario(){
-      this._dialogService.open( DragCalendarComponent ,{
-                                                      header: 'Planning semanal' ,
-                                                      width: '80%',
-                                                      height: '80%',
-                                                      maximizable: true
-                                                    })
-
-  }
-
 }
 

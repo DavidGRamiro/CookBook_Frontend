@@ -55,9 +55,10 @@ h2{
 }
 
 .plan-card {
-  margin-bottom: 20px;
   display: flex;
   align-items: center;
+  flex-direction: column;
+  justify-content: space-around;
 }
 
 .progreso {
@@ -150,5 +151,6 @@ h2{
   .progreso {
     flex-wrap: nowrap;
   }
+
 }
 

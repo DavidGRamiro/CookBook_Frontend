@@ -1,5 +1,5 @@
 <div *ngIf="!recetaGuardada">
-  <h2> Primero, introduce los datos generales de la receta</h2>
+  <h2 class="info-text"> Primero, introduce los datos generales de la receta</h2>
 <form [formGroup]="recetaForm" (ngSubmit)="onSubmitReceta($event)">
   <h3>Información de la receta</h3>
   <div class="columna">
@@ -10,7 +10,6 @@
         id="nombre"
         formControlName="nombre"
         class="form-control"
-        [disabled]="recetaGuardada"
       />
     </div>
     <div class="form-group">
@@ -20,7 +19,6 @@
         id="descripcion"
         formControlName="descripcion"
         class="form-control"
-        [disabled]="recetaGuardada"
       />
     </div>
     <div class="form-group">
@@ -33,7 +31,6 @@
         optionLabel="nombre"
         (onChange)="seleccionarCategoria($event.value)"
         placeholder="Selecciona una"
-        [disabled]="recetaGuardada"
       ></p-dropdown>
     </div>
   </div>
@@ -47,7 +44,6 @@
           id="tiempoPreparacion"
           formControlName="tiempoPreparacion"
           class="form-control"
-          [disabled]="recetaGuardada"
         />
       </div>
       <div class="form-group">
@@ -57,7 +53,6 @@
           id="tiempoCoccion"
           formControlName="tiempoCoccion"
           class="form-control"
-          [disabled]="recetaGuardada"
         />
       </div>
     </div>
@@ -69,7 +64,6 @@
         id="instrucciones"
         formControlName="instrucciones"
         class="form-control"
-        [disabled]="recetaGuardada"
       ></textarea>
     </div>
   </div>
@@ -84,23 +78,32 @@
   Añadir ingredientes
 </p-button>
 </div>
-<div *ngIf="recetaGuardada">
+<div *ngIf="recetaGuardada" class="fila">
+  <div class="columna">
     <h2>Información de la receta</h2>
-    <p><strong>Título:</strong> {{ receta.nombre }}</p>
-    <p><strong>Descripción:</strong> {{receta.descripcion }}</p>
-    <p><strong>Categoría:</strong> {{ receta.categoria.nombre }}</p>
+<div class="contenido-rec">
+    <p><strong class="bold">Título:</strong> {{ receta.nombre }}</p>
+    <p><strong class="bold">Descripción:</strong> {{receta.descripcion }}</p>
+    <p><strong class="bold">Categoría:</strong> {{ receta.categoria.nombre }}</p>
+  </div></div>
+
+  <div class="columna">
 
     <h2>Preparación y cocción</h2>
-    <p><strong>Tiempo de preparación:</strong> {{ receta.tiempoPreparacion }} minutos</p>
-    <p><strong>Tiempo de cocción:</strong> {{ receta.tiempoCoccion }} minutos</p>
-    <p><strong>Instrucciones:</strong></p>
+
+<div class="contenido-rec">
+    <p><strong class="bold">Tiempo de preparación:</strong> {{ receta.tiempoPreparacion }} minutos</p>
+    <p><strong class="bold">Tiempo de cocción:</strong> {{ receta.tiempoCoccion }} minutos</p>
+    <p><strong class="bold">Instrucciones:</strong></p>
       <ul *ngFor="let instruccion of dividirCadena(receta.instrucciones)">
         <li>{{ instruccion }}</li>
       </ul>
+      </div>
+      </div>
 </div>
 
 <div *ngIf="mostrarNuevoIngrediente">
-  <h3>Ingredientes</h3>
+  <h2>Ingredientes</h2>
   <form [formGroup]="ingredienteForm">
     <div class="col-ing">
       <div class="row-ing">

@@ -1,5 +1,14 @@
 #img-fqs{
-  max-width: 120%;
-  margin-left: 10%;
+  max-width: 100%;
 
+}
+.titulo{
+  font-family: 'Fira Sans', sans-serif;
+  font-size: 56px;
+  font-weight: bold;
+  text-align: center;
+  margin: 40px auto;
+}
+.contenedor{
+  margin: 64px 42px;
 }

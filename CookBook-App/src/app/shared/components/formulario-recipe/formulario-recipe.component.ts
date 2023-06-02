@@ -235,7 +235,6 @@ export class FormularioRecipeComponent implements OnInit {
       );
       this.ingredientesAnadidos = true;
       this.recetaGuardada = true;
-      this.recetaForm.disable();
     }
   }
 

@@ -44,7 +44,7 @@ export class NavbarComponent implements OnInit {
       if(userString != null){
         this.usuarioLogueado = JSON.parse(userString)
       }
-      
+
       if(this.usuarioLogueado.usuarioConRoles?.find(r => r.role.nombreRol == 'admin')){
         this.isAdmin = true;
       }
@@ -66,8 +66,7 @@ export class NavbarComponent implements OnInit {
       label: 'Acerca de',
       items: [
         { label: 'Quiénes somos', routerLink: '/about' },
-        { label: 'FAQs', routerLink: '/about/faqs' },
-        { label: 'Contacto', routerLink: '/about/contacto' }
+        { label: 'FAQs', routerLink: '/about/faqs' }
       ]
     }
   ]

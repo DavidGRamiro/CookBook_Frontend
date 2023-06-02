@@ -26,4 +26,18 @@ p{
 
 #img-3{
   max-width: 100%;
+  margin: 0;
+}
+.fila{
+  display: flex;
+  flex-direction: row;
+}
+@media (max-width: 1024px) and (min-width: 200px) {
+  .fila{
+    flex-direction: column;
+  }
+  #img-3{
+    max-width: 75%;
+    margin: 0;
+  }
 }
