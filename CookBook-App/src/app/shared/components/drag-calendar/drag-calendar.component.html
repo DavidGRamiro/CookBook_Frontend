@@ -1,7 +1,7 @@
 <div class="container-fluid">
-  <div id="calendarBox" class="row">
-  <div class="col-9">
-    <h2 class ="text-center">Calendario</h2>
+  <div id="calendarBox">
+  <div class="calendario">
+    <h2 class ="titulo">Calendario</h2>
     <div id="calendarWeek" class="row">
       <div class="col">
         <!-- Recetas LUNES-->
@@ -117,10 +117,10 @@
 
 
   </div>
-  <div class="col-1">
+  <div class="recetas-todas">
     <!-- Recetas TODAS-->
     <div id="recetasBox" class="container">
-      <h2 class="row">Recetas</h2>
+      <h2 class="titulo">Recetas</h2>
       <div id="Recetas" class="row">
         <div class="example-container">
           <div cdkDropList #todoList="cdkDropList" [cdkDropListData]="todo"

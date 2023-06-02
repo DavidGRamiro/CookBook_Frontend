@@ -1,6 +1,10 @@
-<div *ngIf="recetasFavoritas" class="recetas-fav">
+<div *ngIf="recetasFavoritas" class="recetas-fav" >
   <!-- Aquí se muestra la lista de recetas favoritas del usuario -->
   <h2>Recetas favoritas</h2>
+  <div *ngIf="recetasFavoritas.length == 0 else conRecFav" class="no-fav" >
+    <h4>Todavía no has añadido recetas a favoritos.</h4>
+  </div>
+  <ng-template #conRecFav>
   <div class="container-fav">
     <div class="lista">
       <p-listbox
@@ -20,9 +24,11 @@
       <app-tarjeta [receta]="recetaSeleccionada"></app-tarjeta>
     </div>
   </div>
+  </ng-template>
 </div>
 
 <div *ngIf="!recetasFavoritas">
   <!-- Mostrar un indicador de carga o un mensaje mientras se obtienen los datos -->
   <p>Cargando recetas favoritas...</p>
 </div>
+

@@ -37,7 +37,6 @@ export class DragCalendarComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    debugger;
     let calendarItem = localStorage.getItem('calendarWeek');
     if (!calendarItem){
       this.initCalendar();
@@ -61,7 +60,7 @@ export class DragCalendarComponent implements OnInit {
   clearCalendar(){
     localStorage.removeItem("calendarWeek")
     this.initCalendar()
-    this._msg.add({severity:'info', summary:'Calendario actualizado', detail:'Comeinza de nuevo tu planing semanal'});
+    this._msg.add({severity:'info', summary:'Calendario actualizado', detail:'Comienza de nuevo tu planing semanal'});
 
   }
 

@@ -8,7 +8,7 @@
       [style]="{ border: 'none' }"
     ></p-breadcrumb>
   </div>
-  <div class="recipe-main">
+  <div class="recipe-main" *ngIf="receta">
     <div class="recipe-block-first">
       <h1 class="recipe-title">{{ receta.nombre }}</h1>
       <div class="recipe-subblock">
@@ -24,15 +24,12 @@
           ></p-chip>
         </div>
         <div class="add-fav" *ngIf="usuarioLogueado; else noLogeado">
-          <button
-            pButton
-            class="add-fav-btn"
-        (click)="addFav()"
-            type="button"
-            title="fav"
-            label="Añadir receta a favoritos"
-            class="ui-button-warning"
-          ></button>
+          <p-button
+            icon="{{iconoFav}}"
+            iconPos="right"
+            label="{{labelFav}}"
+            (click)="addFav()"
+          ></p-button>
         </div>
         <ng-template #noLogeado>
           <p-divider></p-divider>

@@ -1,0 +1,49 @@
+/* Estilo para la etiqueta de contenedor principal */
+#main-container {
+  width: 100%;  /* o cualquier porcentaje o tamaño fijo que desees */
+  margin: auto;  /* centra el contenedor en la página */
+}
+
+/* Estilo para los títulos y subtítulos */
+#main-container h5,
+#main-container h6 {
+  text-align: center;
+}
+
+/* Estilo para el párrafo */
+#main-container p {
+  text-align: center;
+}
+
+/* Estilo para el formulario */
+#main-container form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Estilo para los labels, inputs y textarea */
+#main-container label,
+#main-container input,
+#main-container textarea {
+  width: 100%;
+  margin-bottom: 1em;
+}
+
+/* Estilo para el botón */
+#main-container .btn-cta {
+  border: none;
+  border-radius: 10px;
+  font-weight: bold;
+  font-size: 16px;
+
+}
+
+/* Para que todos los elementos hijos del contenedor principal tengan el mismo ancho */
+#main-container > * {
+  width: 100%;
+}
+::ng-deep .form-contacto button.p-ripple.p-element.p-button.p-button-rounded.p-component{
+  font-size: 22px;
+  width: 200px;
+}

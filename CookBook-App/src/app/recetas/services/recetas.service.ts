@@ -98,4 +98,13 @@ export class RecetasService {
     return this._http.delete<boolean>(url, { params: params });
   }
 
+  //Verificamos si una receta es favorita o no.
+  esFavorita(idUsuario: number, idReceta: number): Observable<boolean>{
+    const url = `${this.endPoint}/favoritos/esFavorita`
+    let params = new HttpParams();
+    params = params.append('idUsuario', idUsuario);
+    params = params.append('idReceta', idReceta);
+    return this._http.get<boolean>(url, { params: params });
+  }
+
 }

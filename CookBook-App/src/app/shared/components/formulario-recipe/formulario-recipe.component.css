@@ -11,7 +11,7 @@ label{
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  gap: 8px;
+  gap: 16px;
 }
 .columna{
   display: flex;
@@ -25,7 +25,22 @@ label{
 #instrucciones{
   height: 108px;
 }
-.boton{
+
+::ng-deep input.p-element.p-autocomplete-input.p-inputtext.p-component.ng-tns-c18-4.ng-star-inserted{
+  width: 100%;
+}
+::ng-deep .p-autocomplete{
+  width: 100%;
+}
+::ng-deep .p-inputtext {
+  width: 100%;
+}
+::ng-deep .boton button.p-ripple.p-element.p-button.p-component{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+p-button.p-element.boton {
   width: 100%;
 }
 h3{
@@ -48,6 +63,7 @@ h3{
 .input-ing{
   display: flex;
   flex-direction: column;
+  width: 100%;
 }
 .chip-container {
   display: flex;
@@ -71,4 +87,31 @@ h3{
 }
 .form-group-full {
   width: 100%;
+}
+::ng-deep .chip-container .p-chip{
+  background-color: #ffe086;
+  color: black;
+  font-size: 21px;
+  font-weight: 500;
+  padding: 0 16px;
+}
+.contenido-rec{
+  padding: 8px 16px;
+}
+.contenido-rec p{
+  font-size: 18px;
+  font-weight: 300;
+}
+
+.bold{
+
+    font-weight: 900;
+    text-shadow: 0 0 black;
+}
+.info-text{
+  background: #ffe086;
+  text-align: center;
+  border-radius: 30px;
+  font-weight: bold;
+  padding: 8px;
 }

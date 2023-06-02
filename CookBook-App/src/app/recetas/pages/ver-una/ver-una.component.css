@@ -14,8 +14,13 @@ h3{
   margin: 8px 0;
   padding: 16px;
 }
-.add-fav-btn{
-  width: 100%;
+
+.add-fav{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
 }
 .recipe-block-first {
   background-color: #e0e0e0;
