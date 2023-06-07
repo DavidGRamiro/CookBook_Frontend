@@ -22,3 +22,14 @@
 h2{
   margin-bottom: 36px;
 }
+@media (max-width: 799px) and (min-width: 400px) {
+  ::ng-deep .lista .p-listbox-list-wrapper{
+    max-height: 150px !important;
+  }
+.container-creadas{
+  flex-direction: column;
+}
+.lista{
+  min-width: unset;
+}
+}

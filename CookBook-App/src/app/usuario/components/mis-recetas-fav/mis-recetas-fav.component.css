@@ -17,3 +17,12 @@ h2{
 .no-fav{
   margin-top: 24px;
 }
+
+@media (max-width: 799px) and (min-width: 400px) {
+  ::ng-deep .lista .p-listbox-list-wrapper{
+    max-height: 150px !important;
+  }
+.container-fav{
+  flex-direction: column;
+}
+}

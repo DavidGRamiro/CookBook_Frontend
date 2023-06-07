@@ -1,8 +1,8 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { MessageService } from 'primeng/api';
 import { DynamicDialogConfig } from 'primeng/dynamicdialog';
-import { Ingrediente, Receta, RecetasConIngrediente } from 'src/app/recetas/interface/recetas.interface';
+import { Ingrediente, Receta } from 'src/app/recetas/interface/recetas.interface';
 import { RecetasService } from 'src/app/recetas/services/recetas.service';
 
 @Component({
@@ -36,6 +36,7 @@ export class EditRecetaComponent implements OnInit {
       proteinas: [this.receta.proteinas],
       grasas: [this.receta.grasas],
       carbohidratos: [this.receta.carbohidratos],
+      imagen: [this.receta.imagen],
       usuario: [this.receta.usuario],
       recetasConIngredientes: [this.receta.recetasConIngredientes],
     });

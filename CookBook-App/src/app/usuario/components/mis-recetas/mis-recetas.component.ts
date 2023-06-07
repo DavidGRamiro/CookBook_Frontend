@@ -5,6 +5,7 @@ import { UsuarioService } from '../../services/usuario.service';
 import { MessageService } from 'primeng/api';
 import { DialogService } from 'primeng/dynamicdialog';
 import { FormularioRecipeComponent } from 'src/app/shared/components/formulario-recipe/formulario-recipe.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-mis-recetas',
@@ -18,7 +19,8 @@ export class MisRecetasComponent implements OnInit{
 
   constructor(private _usuarioService: UsuarioService,
               private _msgService: MessageService,
-              private _dialogService: DialogService
+              private _dialogService: DialogService,
+              private _router: Router
     ) { }
 
   ngOnInit(): void {
@@ -36,7 +38,8 @@ export class MisRecetasComponent implements OnInit{
         usuario: this.usuario
       }
     }).onClose.subscribe(() => {
-      window.location.reload();
+     this._router.navigateByUrl('/user/perfil');
+     window.location.reload();
     });
   }
 }

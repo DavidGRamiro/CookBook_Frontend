@@ -33,6 +33,7 @@ export class PerfilComponent implements OnInit {
     private _validator: ValidatorService,
     private _dialogService: DialogService,
     private _notificacionService: NotificacionService,
+    private _router: Router
   ) {}
 
   ngOnInit(): void {
@@ -101,6 +102,7 @@ export class PerfilComponent implements OnInit {
       },
     }).onClose.subscribe(() => {
       window.location.reload();
+      this._router.navigateByUrl('/user/perfil');
     });
   }
 }
