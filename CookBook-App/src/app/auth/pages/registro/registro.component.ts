@@ -14,11 +14,14 @@ import { MessageService } from 'primeng/api';
 })
 export class RegistroComponent implements OnInit {
 
-  usuarioRecibido! : Usuario;
+  usuarioRecibido! : Usuario | null;
   registroInvalido: boolean = false;
   passwordCoinciden!: boolean;
   emailForm!: string;
   emailUtilizado! : boolean;
+  rol: string = '';
+  token: string = '';
+  isLoggedIn : boolean = false;
 
   formRegistro = this._fb.group(
     {
@@ -75,8 +78,18 @@ export class RegistroComponent implements OnInit {
         password: this.formRegistro.value.password
       }).subscribe(response => {
         if(this.passwordCoinciden=== true){
-          this.usuarioRecibido = response
-          this._router.navigateByUrl("home")
+          this.usuarioRecibido = response.body
+
+          this.token = response.headers.get("Authorization") || '';
+          localStorage.setItem('token', this.token);
+          this.rol = this.usuarioRecibido?.usuarioConRoles?.[0].role.nombreRol || '';
+          localStorage.setItem('rol', this.rol);
+          this.isLoggedIn = true;
+          localStorage.setItem('isLoggedIn', JSON.stringify(this.isLoggedIn));
+          localStorage.setItem('user', JSON.stringify(this.usuarioRecibido))
+
+
+          this._router.navigateByUrl("/home")
         }
       },
       error => {

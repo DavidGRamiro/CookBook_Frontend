@@ -102,7 +102,7 @@ export class LoginComponent implements OnInit {
 
           this._authService.altaUsuario(this.usuarioGoogle).subscribe(response => {
 
-            let idUsuarioNuevo: number | undefined = response.idUsuario;
+            let idUsuarioNuevo: number | undefined = response.body?.idUsuario;
 
             if (typeof idUsuarioNuevo === 'number') {
 

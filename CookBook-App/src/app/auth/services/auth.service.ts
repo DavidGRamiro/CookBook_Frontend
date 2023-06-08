@@ -36,9 +36,9 @@ export class AuthService {
   }
 
   //Petición de alta de nuevo usuario
-  altaUsuario(user : Usuario){
+  altaUsuario(user : Usuario): Observable<HttpResponse<Usuario>>{
     const url = `${this.endPoint}${this.common}/register`
-    return this._http.post<Usuario>(url,user);
+    return this._http.post<Usuario>(url,user,{ observe: 'response' });
   }
 
   //Buscar usuario por email
